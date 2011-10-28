@@ -1,0 +1,79 @@
+!-----------------------------------------------------------------
+!Xcursor.theme: Obsidian
+!Xcursor.size: 10
+
+!-----------------------------------------------------------------
+Xft.antialias: true
+Xft.dpi:        96
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintslight
+
+!-----------------------------------------------------------------
+URxvt*termName: rxvt-256color
+URxvt*xftAntialias: true
+!black
+*color0:     #000000
+*color8:     #353535
+!red
+*color1:     #d42f2f
+*color9:     #d45959
+!green
+*color2:     #1fe41f
+*color10:    #49f449
+!yellow
+*color3:     #c6d42f
+*color11:    #cdd459
+!blue
+*color4:     #2f2fd4
+*color12:    #595cd4
+!magenta
+*color5:     #d42fbf
+*color13:    #d459cd
+!cyan
+*color6:     #2fc6d4
+*color14:    #59d3d4
+!white
+*color7:     #b2b2b2
+*color15:    #d7d7d7
+
+URxvt*background: #000000
+URxvt*foreground: #0ff40f
+!URxvt*cursorColor: #aaaaaa
+!URxvt*colorUL: #366060
+!URxvt*underlineColor: #dfaf8f
+!URxvt*color0: #3f3f3f
+!URxvt*color1: #cc9393
+!URxvt*color2: #7f9f7f
+!URxvt*color3: #d0bf8f
+!URxvt*color4: #6ca0a3
+!URxvt*color5: #dc8cc3
+!URxvt*color6: #93e0e3
+!URxvt*color7: #dcdccc
+!URxvt*color8: #000000
+!URxvt*color9: #dca3a3
+!URxvt*color10: #bfebbf
+!URxvt*color11: #f0dfaf
+!URxvt*color12: #8cd0d3
+!URxvt*color13: #dc8cc3
+!URxvt*color14: #93e0e3
+!URxvt*color15: #ffffff
+!transparent background
+URxvt.transparent: false
+URxvt.depth: 32
+!URxvt.font: -*-droid sans mono-*-*-*-*-14-*-*-*-*-*-*-u
+URxvt.font: xft:Droid Sans Mono:pixelsize=14:antialias=true
+URxvt.scrollBar: false
+URxvt.saveLines: 1000
+URxvt.cursorBlink: true
+!URxvt.iconFile: /usr/share/icons/hicolor/64x64/apps/xterminal.png
+URxvt.perl-ext-common: selection,tabbed,matcher
+URxvt.urlLauncher: /usr/bin/google-chrome
+! left mouse button click to go to link
+URxvt.matcher.button: 1
+URxvt.tabbed.tabbar-fg: 15
+URxvt.tabbed.tabbar-bg: 0
+URxvt.tabbed.tab-fg:    0
+URxvt.tabbed.tab-bg:    15
+!set urgent status when something (ex. mcabber) bell
+URxvt.urgentOnBell: true

@@ -1,0 +1,6 @@
+set bell-style visible
+TAB: menu-complete
+
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+

@@ -1,0 +1,10 @@
+(add-to-list 'load-path "~/.emacs.d/elisp/haskell-mode/")
+(load "~/.emacs.d/elisp/haskell-mode/haskell-site-file")
+
+(add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+(set 'tab-width 4)
+(set 'haskell-font-lock-symbols t)
+(put 'downcase-region 'disabled nil)

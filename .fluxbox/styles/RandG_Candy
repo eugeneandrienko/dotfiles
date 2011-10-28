@@ -1,0 +1,156 @@
+Copyright 2009
+
+Name: 		R&G Candy
+Author:		Pete
+Date:		Saturday Aug. 01, 2009 6:36 PM
+
+This style is licensed under The FreeBSD Documentation License. The license
+can be found here: http://www.freebsd.org/copyright/freebsd-doc-license.html
+
+
+!!!!!!!!!!!!!!!!!!!!!!   WINDOW OPTIONS !!!!!!!!!!!!!!!!!!!!!!   
+
+window.bevelWidth:              1
+window.borderColor:             green
+window.borderWidth:             1
+window.button.focus: flat
+window.button.focus.color:  black
+window.button.focus.colorTo: black
+window.button.focus.picColor:   red
+window.button.pressed: flat
+window.button.pressed.color:  green
+window.button.pressed.colorTo: green
+window.button.unfocus:          raised
+window.button.unfocus.color:    black
+window.button.unfocus.colorTo:  black
+window.button.unfocus.picColor: green
+window.font:                    sans-9:bold
+window.frame.focusColor:        red
+window.frame.unfocusColor:      green
+window.grip.focus: flat
+window.grip.focus.color:  red
+window.grip.focus.colorTo: red
+window.grip.unfocus: raised
+window.grip.unfocus.color:  green
+window.grip.unfocus.colorTo: green
+window.handle.focus:           flat 
+window.handle.focus.color:      black
+window.handle.focus.colorTo:    black
+window.handle.unfocus:          raised
+window.handle.unfocus.color:    green
+window.handle.unfocus.colorTo:  green
+window.handleWidth:             1
+window.justify:                 Center
+window.label.active:            flat
+window.label.active.textColor:  green
+window.label.focus:             flat
+window.label.focus.color:       black
+window.label.focus.colorTo:     black
+window.label.unfocus:           raised
+window.label.unfocus.color:     black
+window.label.unfocus.colorTo:   black
+window.label.focus.textColor: red
+window.label.unfocus.textColor: green
+window.roundCorners:            TopRight TopLeft BottomRight BottomLeft
+window.title.focus:            flat 
+window.title.focus.color:       black
+window.title.focus.colorTo:     black
+window.title.height:            
+window.title.unfocus:           raised
+window.title.unfocus.color:     black
+window.title.unfocus.colorTo:   black
+
+!!!!!!!!!!!!!!!!!!!!!!   MENU OPTIONS !!!!!!!!!!!!!!!!!!!!!!   
+
+menu.bevelWidth:                1
+menu.borderColor:               green
+menu.borderWidth:               1
+menu.bullet:                    triangle
+menu.bullet.position:           right
+menu.frame:                     flat
+menu.frame.color:               black
+menu.frame.colorTo:             black
+menu.frame.disableColor:        red
+menu.frame.font:                sans-9:bold
+menu.frame.justify:             Left
+menu.frame.textColor:           green
+menu.hilite:                   	gradient 
+menu.hilite.color:              green
+menu.hilite.colorTo:            green
+menu.hilite.textColor:          black
+menu.itemHeight:                10
+menu.title:                     flat
+menu.title.color:               black
+menu.title.colorTo:             black
+menu.title.font:                sans-9:bold
+menu.title.textColor:           red
+menu.title.justify:             Left
+menu.titleHeight:               15
+menu.roundCorners:              TopRight TopLeft BottomRight BottomLeft
+
+!!!!!!!!!!!!!!!!!!!!!!   BACKGROUND !!!!!!!!!!!!!!!!!!!!!!   
+
+!background: gradient
+!background.pixmap: <file or directory>
+!background.color: black
+!background.colorTo: darkgreen
+!background.modX: 10
+!background.modY: 10
+
+!!!!!!!!!!!!!!!!!!!!!!   SLIT !!!!!!!!!!!!!!!!!!!!!!   
+
+slit: <texture type>
+slit.bevelWidth: 1
+slit.borderColor: green
+slit.borderWidth:               1
+slit.color:                    
+slit.colorTo:                   
+
+!!!!!!!!!!!!!!!!!!!!!!   TOOLBAR OPTIONS !!!!!!!!!!!!!!!!!!!!!!   
+
+toolbar: flat
+toolbar.bevelWidth:             1
+toolbar.borderColor:            green
+toolbar.borderWidth:            1
+toolbar.button.scale:           <integer>
+toolbar.color:  black
+toolbar.colorTo: black
+toolbar.clock: flat
+toolbar.clock.borderColor:      black
+toolbar.clock.borderWidth:      1
+toolbar.clock.font:             sans-9:bold
+toolbar.clock.justify:          Right
+toolbar.clock.color:  black
+toolbar.clock.colorTo: 
+toolbar.clock.textColor:        green
+toolbar.height:                 <integer>
+toolbar.iconbar.focused: red
+toolbar.iconbar.focused.color:  black
+toolbar.iconbar.focused.colorTo: black
+toolbar.iconbar.unfocused: flat
+toolbar.iconbar.unfocused.color:  black
+toolbar.iconbar.unfocused.colorTo: black
+toolbar.iconbar.empty: black
+toolbar.iconbar.empty.color:  black
+toolbar.iconbar.empty.colorTo: black
+toolbar.iconbar.focused.borderColor: green
+toolbar.iconbar.focused.borderWidth:    1
+toolbar.iconbar.unfocused.borderColor: green
+toolbar.iconbar.unfocused.borderWidth: 1 
+toolbar.iconbar.borderColor:  black
+toolbar.iconbar.borderWidth:            1
+toolbar.iconbar.focused.font: sans-9:bold
+toolbar.iconbar.focused.justify:        Left
+toolbar.iconbar.focused.textColor: red
+toolbar.iconbar.unfocused.font: sans-9:bold
+toolbar.iconbar.unfocused.justify:      Left
+toolbar.iconbar.unfocused.textColor: green
+toolbar.shaped:                 true
+toolbar.workspace.font:         sans-9:bold
+toolbar.workspace.justify:      Left
+toolbar.workspace.textColor:    green
+toolbar.workspace:              flat
+toolbar.workspace.borderColor:  green
+toolbar.workspace.borderWidth:  1
+toolbar.workspace.color:        black
+toolbar.workspace.colorTo:      black

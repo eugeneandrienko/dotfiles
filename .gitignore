@@ -1,0 +1,7 @@
+.w3m/.sessions
+.w3m/history
+.w3m/.arrived
+.config/google-chrome
+.emacs.d/auto-save-list
+.emacs.d/backups
+.local/share/recently-used.xbel

@@ -1,0 +1,13 @@
+[ui]
+username = h0rr0rr_drag0n
+extcommit = None
+; editor used to enter commit logs, etc.  Most text editors will work.
+editor = emacsclient -c
+tabwidth = 4
+longsummary = True
+copyhash = False
+graphlimit = 500
+merge = emacsclient
+
+[merge-tools]
+emacsclient.args = -c --eval "(ediff-merge-with-ancestor \"$local\" \"$other\" \"$base\" nil \"$output\")"

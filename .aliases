@@ -1,0 +1,60 @@
+# vi like exiting
+alias :q='exit'
+alias :Q='exit'
+
+# colorized commands
+#alias ls='grca ls --color -Fh'
+alias ls='ls --color -Fh'
+alias grep='grep --color=auto'
+
+# spellchecking
+alias ks='ls'
+alias la='ls'
+alias xs='cd'
+alias vf='cd'
+alias rn='rm'
+
+# for use system comfortable 
+alias rm='rm -v'
+alias ..='cd ..'
+alias ~='cd $HOME'
+#alias df='pydf'
+alias free='free -m'
+alias du='du -hs'
+alias bk='cd "$OLDPWD"'
+alias gdb='gdb --tui'
+#alias ll='grca ls -l --color -Fh'
+#alias ll='ls -l --color -Fh'
+alias mplayer='mplayer -msglevel all=0 -msgcolor -nojoystick -nolirc -vo xv -subcp cp1251'
+#alias ps='grca ps --headers -eo pid,uid,pcpu,pmem,rss,cmd'
+alias less='less -R' # to display some ESC-symbols as colors
+alias pingya='ping -c3 ya.ru'
+alias s='sudo'
+alias ss='sudo -s'
+alias wget='wget -c'
+alias tele2gprs='sudo wvdial -C ~/.wvdial.conf'
+alias irdac75='sudo irattach irda0 -s && sudo obexfs -i /mnt/mobile' # fusermount -u /mnt/mobile
+alias y='yaourt'
+alias p='pacman'
+#alias startx='startx &; exit'
+alias man='LC_ALL=C man' # i hate Russian manpages!
+alias feh='feh --scale'
+alias startwpa='sudo wpa_supplicant -Dwext -iwlan0 -c /etc/wpa_supplicant.conf -B'
+alias ifmo_proxy='http_proxy=http://proxy.ifmo.ru:3128/ https_proxy=http://proxy.ifmo.ru:3128/ ftp_proxy=http://proxy.ifmo.ru:3128/'
+alias chromium_ifmo='ifmo_proxy chromium &'
+alias panic='kill -9 $$'
+alias tvoe.tv_mac='sudo ifconfig eth0 hw ether 00:11:2F:9B:6B:8B'
+alias mc='mc -S gotar'
+alias emacs='emacsclient -c -n'
+alias emacsc='emacsclient -c -t'
+
+#mount aliases
+alias mount_vfat='sudo mount -o utf8=yes'
+alias cryptmount_maxtor='sudo cryptsetup luksOpen /dev/sdc1 maxtor && sleep 5 && sudo mount /dev/mapper/maxtor /mnt'
+alias cryptumount_maxtor='sudo umount /mnt && sudo cryptsetup luksClose maxtor'
+#Use simple-agent to set up PIN code
+alias mount_nokia='sudo mount -t fuse -o allow_other "obexfs#-b00:25:D0:AA:75:5E" /mnt'
+
+#ssh and ftp
+alias torssh='ssh drag0n@shell.tor.hu'
+alias csftp='lftp s145438@cs.ifmo.ru'

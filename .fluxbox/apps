@@ -1,0 +1,8 @@
+[app] (name=fbrun) {1}
+  [Position]	(TOP)	{0 0}
+  [Layer]	{2}
+  [Deco]	{NONE}
+[end]
+[app] (name=rdesktop) (class=rdesktop)
+  [Position]	(UPPERLEFT)	{0 0}
+[end]
