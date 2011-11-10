@@ -99,3 +99,5 @@ fi
 #    fi
 #fi
 
+#Start the Dropbox
+~/.bin/start_dropbox.sh
