@@ -5,8 +5,9 @@ echo "$PSLIST" | grep -v 'start_dropbox.sh' | grep -q 'dropbox'
 if [ "$?" -ne "0" ]; then
     if [ ! "$DISPLAY" == "" ]; then
 	echo "`basename $0`: Starting dropbox service..."
-	nohup dropbox 1>/dev/null 2>&1 &
-	rm -f nohup.out
+	nohup dropbox &
+	sleep 1
+	rm -fv nohup.out
     else
 	echo "`basename $0`: X server not running!"
 	exit 1
