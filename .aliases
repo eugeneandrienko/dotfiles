@@ -47,6 +47,7 @@ alias tvoe.tv_mac='sudo ifconfig eth0 hw ether 00:11:2F:9B:6B:8B'
 alias mc='mc -S gotar'
 alias emacs='emacsclient -c -n'
 alias emacsc='emacsclient -c -t'
+alias wicd='wicd-curses'
 
 #mount aliases
 alias mount_vfat='sudo mount -o utf8=yes'
