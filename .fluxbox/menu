@@ -19,7 +19,8 @@
 [encoding] {UTF-8}
       [exec] (urxvt) {urxvt}
       [exec] (google-chrome) {google-chrome}
-      [exec]   (emacs) {emacsclient -c -n}
+      [exec] (emacs) {emacsclient -c -n}
+      [exec] (skype) {skype}  
 [nop] (System)
       [exec] (Reload .Xdefaults) {xrdb -load $HOME/.Xdefaults}
 [submenu] (Fluxbox menu)
