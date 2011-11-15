@@ -101,3 +101,7 @@ fi
 
 #Start the Dropbox
 ~/.bin/start_dropbox.sh
+
+function d3ssh {
+    ssh -p 666 -i /home/drag0n/.ssh/id_rsa_d3 drag0n@"${1// */}"
+}
