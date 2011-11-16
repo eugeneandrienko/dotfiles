@@ -5,6 +5,7 @@ export EDITOR
 LESS="-X"
 export LESS
 PATH=$PATH":/home/drag0n/.emacs.d/deploy/:/sbin/:/usr/sbin/:/usr/lib/java/bin/"
+PATH=$PATH":/home/drag0n/tools/gnuarm-3.4.3/bin/"
 export PATH
 #if [ $USER = drag0n ] && [ "`tty`" = "/dev/tty1" ]; then
 #    startx &
