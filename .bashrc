@@ -104,5 +104,5 @@ fi
 
 function d3ssh {
     #ssh -p 666 -i /home/drag0n/.ssh/id_rsa_d3 drag0n@"${1// */}"
-    ssh -p 666 -i /home/drag0n/.ssh/id_rsa_d3 drag0n@192.168.1.7
+    ssh -p 666 -i /home/drag0n/.ssh/id_rsa_d3 drag0n@77.234.203.163
 }
