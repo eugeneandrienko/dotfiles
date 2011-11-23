@@ -7,3 +7,5 @@
 .local/share/recently-used.xbel
 .local/share/icons
 .config/gtk-2.0/
+.local/share/applications
+.local/share/mime
