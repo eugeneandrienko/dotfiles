@@ -49,6 +49,7 @@
 (load "~/.emacs.d/rc-verilog-mode.el")
 (load "~/.emacs.d/rc-octave.el")
 (load "~/.emacs.d/rc-emacs-w3m.el")
+(load "~/.emacs.d/rc-cedet.el")
 
 ;;default cyr/latin input method
 (setq default-input-method "russian-computer")
