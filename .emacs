@@ -8,6 +8,12 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(Man-notify-method (quote pushy))
+ '(ecb-compile-window-height 7)
+ '(ecb-compile-window-temporally-enlarge (quote after-selection))
+ '(ecb-compile-window-width (quote edit-window))
+ '(ecb-layout-name "left1")
+ '(ecb-prescan-directories-for-emptyness nil)
+ '(ecb-tip-of-the-day nil)
  '(ido-mode (quote buffer) nil (ido))
  '(initial-scratch-message nil))
 (custom-set-faces
