@@ -11,3 +11,4 @@
 .local/share/mime
 .emacs.d/elisp/jabber/avatars
 .emacs.d/elisp/jabber/history
+.emacs.d/rc-jabber.el
