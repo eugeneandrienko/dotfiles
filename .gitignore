@@ -9,3 +9,5 @@
 .config/gtk-2.0/
 .local/share/applications
 .local/share/mime
+.emacs.d/elisp/jabber/avatars
+.emacs.d/elisp/jabber/history

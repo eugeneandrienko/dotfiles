@@ -46,7 +46,7 @@
 (load "~/.emacs.d/rc-haskell-mode.el")
 (load "~/.emacs.d/rc-ahg.el")
 (load "~/.emacs.d/rc-magit.el")
-;(load "~/.emacs.d/rc-jabber.el")
+(load "~/.emacs.d/rc-jabber.el")
 (load "~/.emacs.d/rc-emms.el")
 (load "~/.emacs.d/rc-noweb-mode.el")
 (load "~/.emacs.d/rc-fill-column-indicator.el")
