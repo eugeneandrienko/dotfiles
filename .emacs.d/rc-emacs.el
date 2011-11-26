@@ -31,6 +31,7 @@
 (add-hook 'c-mode-hook
 	  '(lambda ()
 	     (linum-mode 1)))
+(add-hook 'c-mode-hook 'fci-mode)
 (add-hook 'objc-mode-hook 'my-ret-hook)
 (add-hook 'clojure-mode-hook 'my-ret-hook)
 (add-hook 'haskell-mode-hook 'my-ret-hook)
