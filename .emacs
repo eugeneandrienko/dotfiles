@@ -12,6 +12,7 @@
  '(ecb-compile-window-temporally-enlarge (quote after-selection))
  '(ecb-compile-window-width (quote edit-window))
  '(ecb-layout-name "left3")
+ '(ecb-options-version "2.40")
  '(ecb-prescan-directories-for-emptyness nil)
  '(ecb-tip-of-the-day nil)
  '(ido-mode (quote buffer) nil (ido))
