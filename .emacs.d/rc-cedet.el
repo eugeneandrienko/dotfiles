@@ -6,3 +6,4 @@
 (semantic-load-enable-code-helpers)
 (semantic-load-enable-gaudy-code-helpers)
 (semantic-load-enable-primary-exuberent-ctags-support)
+(global-semantic-stickyfunc-mode nil)
