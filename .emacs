@@ -58,6 +58,7 @@
 (load "~/.emacs.d/rc-emacs-w3m.el")
 (load "~/.emacs.d/rc-cedet.el")
 (load "~/.emacs.d/rc-ecb.el")
+(load "~/.emacs.d/rc-auto-complete.el")
 
 ;;default cyr/latin input method
 (setq default-input-method "russian-computer")
