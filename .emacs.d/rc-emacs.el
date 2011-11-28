@@ -52,3 +52,8 @@
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 ;Bind 'M-g' to 'M-x goto-line'
 (global-set-key "\eg" 'goto-line)
+
+;;default mode for text
+(setq default-major-mode 'text-mode)
+(add-hook 'text-mode-hook 'longlines-mode)
+(add-hook 'text-mode-hook '(lambda () (set-fill-column 78)))
