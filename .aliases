@@ -48,6 +48,7 @@ alias mc='mc -S gotar'
 alias emacs='emacsclient -c -n'
 alias emacsc='emacsclient -c -t'
 alias wicd='wicd-curses'
+alias startcs='cd ~/.wine/drive_c/Program\ Files/Counter-Strike\ 1.6/ && wine hl.exe -console -game cstrike -gl -gldrv Default -w 800'
 
 #mount aliases
 alias mount_vfat='sudo mount -o utf8=yes'
