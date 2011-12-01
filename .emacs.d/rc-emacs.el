@@ -36,6 +36,10 @@
 (add-hook 'clojure-mode-hook 'my-ret-hook)
 (add-hook 'haskell-mode-hook 'my-ret-hook)
 (add-hook 'octave-mode-hook 'my-ret-hook)
+(add-hook 'sh-mode-hook 'fci-mode)
+(add-hook 'sh-mode-hook
+	  '(lambda ()
+	     (linum-mode 1)))
 ;
 (setq compilation-window-height 10)
 ;Emacs font
