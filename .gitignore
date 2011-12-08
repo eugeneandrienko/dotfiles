@@ -12,3 +12,8 @@
 .emacs.d/elisp/jabber/avatars
 .emacs.d/elisp/jabber/history
 .emacs.d/rc-jabber.el
+.xmonad/history
+.xmonad/xmonad-i386-linux
+.xmonad/xmonad.errors
+.xmonad/xmonad.hi
+.xmonad/xmonad.o
