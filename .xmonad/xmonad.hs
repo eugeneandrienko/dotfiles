@@ -44,15 +44,15 @@ myModMask       = mod4Mask
 myWorkspaces    = ["term","web","doc","dev"] ++ map show [5..9]
 
 -- Border colors for unfocused and focused windows, respectively.
-myNormalBorderColor  = "#000000"
-myFocusedBorderColor = "#3f3f3f"
+myNormalBorderColor  = "#dddddd"
+myFocusedBorderColor = "#00dd00"
 
 defaultsXP = defaultXPConfig {
-    bgColor = "#3f3f3f",
-    fgColor = "#dddddd",
-    fgHLight = "#3f3f3f",
-    bgHLight = "#dddddd",
-    borderColor = "#bbbbbb",
+    bgColor = "#000000",
+    fgColor = "#00dd00",
+    fgHLight = "#000000",
+    bgHLight = "#00dd00",
+    borderColor = "#00dd00",
     font = "-*-terminus-medium-*-*-*-12-*-*-*-*-*-*-u"
 }
 
@@ -226,6 +226,7 @@ myManageHook = composeAll
     , className =? "Chromium-browser"       --> moveTo "web"
     , className =? "Apvlv"          --> moveTo "doc"
     , className =? "Evince"         --> moveTo "doc"
+    , className =? "Google-chrome"  --> moveTo "web"
     -- 2fullscreen flashplayer
     , title     =? "<unknown>"      --> doFullFloat
     , title     =? "exe"            --> doFullFloat
@@ -295,9 +296,9 @@ xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig {
         handleEventHook    = myEventHook,
         logHook            = myLogHook >> dynamicLogWithPP xmobarPP
                                    { ppOutput = System.IO.hPutStrLn xmproc
-                                   , ppTitle = xmobarColor "gray" "" . shorten 60
+                                   , ppTitle = xmobarColor "green" "" . shorten 60
                                    , ppSep = " | "
-                                   , ppCurrent = xmobarColor "black" "gray"
+                                   , ppCurrent = xmobarColor "black" "green"
                                    , ppUrgent = xmobarColor "black" "red" . xmobarStrip
                                    },
         startupHook        = myStartupHook
