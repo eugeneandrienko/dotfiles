@@ -5,7 +5,9 @@ if [ "`pgrep emacs | wc -l`" -eq "0" ]; then
     echo "Starting the Emacs server..."
     emacs --daemon
 fi
-test -f /etc/profile.d/bash-completion.sh && source /etc/profile.d/bash-completion.sh
+#test -f /etc/profile.d/bash-completion.sh && source /etc/profile.d/bash-completion.sh
+. /etc/bash_completion
+
 set -o emacs
 shopt -s histappend
 shopt -s cmdhist
@@ -102,6 +104,12 @@ fi
 
 #Start the Dropbox
 ~/.bin/start_dropbox.sh
+
+#start halevt
+ps -e | grep -q halevt
+if [ "$?" -ne "0" ]; then
+    halevt -c /home/drag0n/.halevt
+fi
 
 function d3ssh {
     #ssh -p 666 -i /home/drag0n/.ssh/id_rsa_d3 drag0n@"${1// */}"
