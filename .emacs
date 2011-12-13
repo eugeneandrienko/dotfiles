@@ -16,7 +16,10 @@
  '(ecb-prescan-directories-for-emptyness nil)
  '(ecb-tip-of-the-day nil)
  '(ido-mode (quote buffer) nil (ido))
- '(initial-scratch-message nil))
+ '(initial-scratch-message nil)
+ '(jabber-alert-message-hooks (quote (jabber-message-awesome jabber-message-scroll)))
+ '(jabber-alert-muc-hooks (quote (jabber-muc-awesome-personal jabber-muc-scroll)))
+ '(jabber-alert-presence-hooks nil))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
@@ -38,6 +41,7 @@
 (load "~/.emacs.d/rc-edit-server.el")
 (load "~/.emacs.d/rc-eshell.el")
 (load "~/.emacs.d/rc-org.el")
+(load "~/.emacs.d/rc-aspell.el")
 (load "~/.emacs.d/rc-auctex.el")
 (load "~/.emacs.d/rc-colortheme.el")
 (load "~/.emacs.d/rc-slime.el")
