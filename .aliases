@@ -60,3 +60,4 @@ alias mount_nokia='sudo mount -t fuse -o allow_other "obexfs#-b00:25:D0:AA:75:5E
 #ssh and ftp
 alias torssh='ssh drag0n@shell.tor.hu'
 alias csftp='lftp s145438@cs.ifmo.ru'
+alias d3ftp='lftp stud@77.234.203.163'
