@@ -24,3 +24,5 @@
           ;; will appear before semantic tag completions).
           (setq ac-sources '(ac-source-semantic))
   ))
+
+(ac-flyspell-workaround)
