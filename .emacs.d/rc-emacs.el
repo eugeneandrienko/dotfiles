@@ -40,6 +40,14 @@
 (add-hook 'sh-mode-hook
 	  '(lambda ()
 	     (linum-mode 1)))
+;enable FIXME:|TODO:|BUG: highlighting for C source code
+(add-hook 'c-mode-common-hook
+	  (lambda ()
+	    (font-lock-add-keywords 
+	     nil
+	     '(("\\<\\(FIXME\\|TODO\\|BUG\\):" 1 font-lock-warning-face t)))))
+
+
 ;
 (setq compilation-window-height 10)
 ;Emacs font
