@@ -4,3 +4,4 @@ xsetroot -cursor_name left_ptr
 #startfluxbox
 #xmonad
 exec awesome
+#exec asscube/1.1.0.4/assaultcube.sh
