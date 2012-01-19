@@ -21,4 +21,4 @@
 (add-hook 'clojure-mode-hook 'my-clojure-mode-hook)
 (set-language-environment "UTF-8")
 
-;(setq inferior-lisp-program "lein repl")
+(setq inferior-lisp-program "lein repl")
