@@ -38,7 +38,7 @@
 
 (load "~/.emacs.d/rc-emacs.el")
 (load "~/.emacs.d/rc-ido.el")
-(load "~/.emacs.d/rc-edit-server.el")
+;(load "~/.emacs.d/rc-edit-server.el")
 (load "~/.emacs.d/rc-eshell.el")
 (load "~/.emacs.d/rc-org.el")
 (load "~/.emacs.d/rc-aspell.el")
