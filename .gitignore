@@ -17,3 +17,5 @@
 .xmonad/xmonad.errors
 .xmonad/xmonad.hi
 .xmonad/xmonad.o
+.vnc/*.log
+.vnc/*.pid
