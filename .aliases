@@ -25,7 +25,7 @@ alias bk='cd "$OLDPWD"'
 alias gdb='gdb --tui'
 #alias ll='grca ls -l --color -Fh'
 #alias ll='ls -l --color -Fh'
-alias mplayer='mplayer -msglevel all=0 -msgcolor -nojoystick -nolirc -vo xv -subcp cp1251'
+alias mplayer='mplayer -msglevel all=0 -msgcolor -nojoystick -nolirc -vo xv -ao alsa -subcp cp1251'
 #alias ps='grca ps --headers -eo pid,uid,pcpu,pmem,rss,cmd'
 alias less='less -R' # to display some ESC-symbols as colors
 alias pingya='ping -c3 ya.ru'
