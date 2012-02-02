@@ -89,3 +89,6 @@ style "default"
 }
 
 class "GtkWidget" style "default"
+
+gtk-font-name="Droid Sans Mono 10"
+
