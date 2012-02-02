@@ -103,13 +103,13 @@ fi
 #fi
 
 #Start the Dropbox
-~/.bin/start_dropbox.sh
+#~/.bin/start_dropbox.sh
 
 #start halevt
-ps -e | grep -q halevt
-if [ "$?" -ne "0" ]; then
-    halevt -c /home/drag0n/.halevt
-fi
+#ps -e | grep -q halevt
+#if [ "$?" -ne "0" ]; then
+#    halevt -c /home/drag0n/.halevt
+#fi
 
 function d3ssh {
     #ssh -p 666 -i /home/drag0n/.ssh/id_rsa_d3 drag0n@"${1// */}"
