@@ -46,6 +46,7 @@
 (load "~/.emacs.d/rc-colortheme.el")
 (load "~/.emacs.d/rc-slime.el")
 (load "~/.emacs.d/rc-paredit.el")
+(load "~/.emacs.d/rc-c-mode.el")
 (load "~/.emacs.d/rc-objc-mode.el")
 (load "~/.emacs.d/rc-clojure-mode.el")
 (load "~/.emacs.d/rc-haskell-mode.el")
