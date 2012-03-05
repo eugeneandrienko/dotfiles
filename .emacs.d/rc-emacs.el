@@ -22,6 +22,8 @@
 (show-paren-mode t)
 ;highligth the current line
 (global-hl-line-mode 1)
+;auto-revert buffer
+(global-auto-revert-mode t)
 ;;identation by default
 (defun my-ret-hook()
   "Make new lines indented"
