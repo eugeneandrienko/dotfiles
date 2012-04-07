@@ -4,11 +4,13 @@ EDITOR="emacsclient -c"
 export EDITOR
 LESS="-X"
 export LESS
-PATH=$PATH":/home/drag0n/.emacs.d/deploy/:/sbin/:/usr/sbin/:/usr/lib/java/bin/"
+PATH=$PATH":/home/drag0n/.emacs.d/deploy/:/sbin/:/usr/sbin/:/opt/java/jre/bin/"
 PATH=$PATH":/home/drag0n/tools/gnuarm/toolchain/bin/"
 PATH=$PATH":/home/drag0n/tools/sam-ba_cdc_linux/"
 PATH=$PATH":/home/drag0n/.bin/"
 export PATH
+JAVA_HOME=/opt/java
+export JAVA_HOME
 #if [ $USER = drag0n ] && [ "`tty`" = "/dev/tty1" ]; then
 #    startx &
 #    exit
