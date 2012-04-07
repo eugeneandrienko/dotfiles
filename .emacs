@@ -60,6 +60,7 @@
 (load "~/.emacs.d/rc-wiki-creole.el")
 (load "~/.emacs.d/rc-verilog-mode.el")
 (load "~/.emacs.d/rc-octave.el")
+(load "~/.emacs.d/rc-gnuplot.el")
 ;(load "~/.emacs.d/rc-emacs-w3m.el")
 (load "~/.emacs.d/rc-cedet.el")
 (load "~/.emacs.d/rc-ecb.el")
