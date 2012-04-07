@@ -6,7 +6,9 @@ if [ "`pgrep emacs | wc -l`" -eq "0" ]; then
     emacs --daemon
 fi
 #test -f /etc/profile.d/bash-completion.sh && source /etc/profile.d/bash-completion.sh
-. /etc/bash_completion
+#. /etc/bash_completion
+[ -r /usr/share/bash-completion/bash_completion   ] && \
+. /usr/share/bash-completion/bash_completion
 
 set -o emacs
 shopt -s histappend
