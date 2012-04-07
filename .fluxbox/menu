@@ -20,7 +20,8 @@
       [exec] (urxvt) {urxvt}
       [exec] (google-chrome) {google-chrome}
       [exec] (emacs) {emacsclient -c -n}
-      [exec] (skype) {skype}  
+      [exec] (skype) {skype}
+      [exec] (Gimp)  {gimp}
 [nop] (System)
       [exec] (Reload .Xdefaults) {xrdb -load $HOME/.Xdefaults}
 [submenu] (Fluxbox menu)
