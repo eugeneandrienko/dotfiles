@@ -1,4 +1,4 @@
-[B.w3m/.sessions
+.w3m/.sessions
 .w3m/history
 .w3m/.arrived
 .config/google-chrome
@@ -17,3 +17,13 @@
 .xmonad/xmonad.errors
 .xmonad/xmonad.hi
 .xmonad/xmonad.o
+.config/autostart/
+.config/geeqie/
+.config/menus/
+.config/viewnior/
+.local/share/desktop-directories/
+.local/share/gegl-0.1/
+.local/share/love/
+.local/share/mc/
+.local/share/mimeapps.list
+.local/share/mime/*
