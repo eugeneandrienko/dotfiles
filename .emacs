@@ -44,7 +44,6 @@
 (load "~/.emacs.d/rc-aspell.el")
 (load "~/.emacs.d/rc-auctex.el")
 (load "~/.emacs.d/rc-colortheme.el")
-(load "~/.emacs.d/rc-slime.el")
 (load "~/.emacs.d/rc-paredit.el")
 (load "~/.emacs.d/rc-c-mode.el")
 (load "~/.emacs.d/rc-objc-mode.el")

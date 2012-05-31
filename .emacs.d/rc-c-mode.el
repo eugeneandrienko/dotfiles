@@ -53,6 +53,6 @@
 	  (lambda ()
 ;	    (c-set-style "linux-tabs-only")
 	    (c-set-style "K&R")
-	    (setq tab-width 8)
+	    (setq tab-width 2)
 	    (setq indent-tabs-mode t)
-	    (setq c-basic-offset 8)))
+	    (setq c-basic-offset 2)))

@@ -1,3 +1,6 @@
+;;Add [lein-swank "1.4.4"] to the :plugins section
+;;From an Emacs buffer inside a project, invoke M-x clojure-jack-in
+
 (add-to-list 'load-path "~/.emacs.d/elisp/clojure-mode")
 (add-to-list 'load-path "~/.emacs.d/elisp/highlight-symbol")
 (require 'clojure-mode)
@@ -21,4 +24,4 @@
 (add-hook 'clojure-mode-hook 'my-clojure-mode-hook)
 (set-language-environment "UTF-8")
 
-(setq inferior-lisp-program "lein repl")
+;(setq inferior-lisp-program "lein repl")
