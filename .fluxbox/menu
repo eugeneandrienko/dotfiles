@@ -22,6 +22,7 @@
       [exec] (emacs) {emacsclient -c -n}
       [exec] (skype) {skype}
       [exec] (Gimp)  {gimp}
+      [exec] (Audacity) {audacity}
 [nop] (System)
       [exec] (Reload .Xdefaults) {xrdb -load $HOME/.Xdefaults}
 [submenu] (Fluxbox menu)

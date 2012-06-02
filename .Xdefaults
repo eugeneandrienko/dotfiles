@@ -79,3 +79,4 @@ URxvt.tabbed.tab-fg:    0
 URxvt.tabbed.tab-bg:    15
 !set urgent status when something (ex. mcabber) bell
 URxvt.urgentOnBell: true
+URxvt.backgroundPixmap: /home/drag0n/urxvtbgs.png;+0+0:tile
