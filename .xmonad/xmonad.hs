@@ -132,11 +132,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Restart xmonad
     , ((modm              , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
-    ]
-    ++
 
     -- Start my dmenu
-    --, ((modm              , xK_o     ), spawn "/home/drag0n/bin/goodmenu/goodmenu.sh")]
+    , ((modm              , xK_o     ), spawn "/home/drag0n/.bin/goodmenu.sh")]
+    ++
 
     --
     -- mod-[1..9], Switch to workspace N
