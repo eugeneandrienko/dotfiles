@@ -1,3 +1,5 @@
+(load "auctex.el" nil t t)
+(load "preview-latex.el" nil t t)
 ;loading AuCTeX
 (require 'tex-site)
 ;loading Preview-LaTeX

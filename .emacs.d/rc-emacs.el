@@ -41,7 +41,8 @@
 ;
 (setq compilation-window-height 10)
 ;Emacs font
-(custom-set-faces '(default ((t (:size "14pt" :family "Droid Sans Mono-14")))))
+;(custom-set-faces '(default ((t (:size "14pt" :family "Droid Sans Mono-14")))))
+(set-default-font "-unknown-Droid Sans Mono-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1")
 ;y is rather short than yes
 (fset 'yes-or-no-p 'y-or-n-p)
 ;

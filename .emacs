@@ -25,7 +25,6 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:size "14pt" :family "Droid Sans Mono-14"))))
  '(font-latex-sectioning-0-face ((t (:inherit font-latex-sectioning-1-face :foreground "green" :height 1.1))))
  '(font-latex-sectioning-1-face ((t (:inherit font-latex-sectioning-2-face :foreground "green" :height 1.1))))
  '(font-latex-sectioning-2-face ((t (:inherit font-latex-sectioning-3-face :foreground "green" :height 1.1))))
@@ -64,6 +63,8 @@
 (load "~/.emacs.d/rc-cedet.el")
 (load "~/.emacs.d/rc-ecb.el")
 (load "~/.emacs.d/rc-auto-complete.el")
+(load "~/.emacs.d/rc-jde.el")
+(load "~/.emacs.d/rc-android.el")
 
 ;;default cyr/latin input method
 (setq default-input-method "russian-computer")

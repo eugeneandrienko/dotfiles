@@ -4,7 +4,7 @@
 
 !-----------------------------------------------------------------
 Xft.antialias: true
-Xft.dpi:        96
+XftG.dpi:        96
 Xft.rgba:       rgb
 Xft.hinting:    true
 Xft.hintstyle:  hintslight
@@ -80,3 +80,5 @@ URxvt.tabbed.tab-bg:    15
 !set urgent status when something (ex. mcabber) bell
 URxvt.urgentOnBell: true
 URxvt.backgroundPixmap: /home/drag0n/urxvtbgs.png;+0+0:tile
+
+Emacs.font: -unknown-Droid Sans Mono-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1
