@@ -19,6 +19,6 @@ export JAVA_HOME
 ANT_HOME=/home/drag0n/tools/apache-ant
 export ANT_HOME
 #if [ $USER = drag0n ] && [ "`tty`" = "/dev/tty1" ]; then
-#    startx &
-#    exit
+    #startx &
+    #exit
 #fi
