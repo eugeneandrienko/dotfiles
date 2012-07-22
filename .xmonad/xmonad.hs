@@ -53,7 +53,7 @@ defaultsXP = defaultXPConfig {
     fgHLight = "#000000",
     bgHLight = "#00dd00",
     borderColor = "#00dd00",
-    font = "-*-terminus-medium-*-*-*-12-*-*-*-*-*-*-u"
+    font = "-*-droid sans mono-*-*-*-*-12-*-*-*-*-*-*-u"
 }
 
 ------------------------------------------------------------------------

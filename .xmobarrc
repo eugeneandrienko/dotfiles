@@ -1,4 +1,4 @@
-Config { font = "-*-terminus-*-*-*-*-12-*-*-*-*-*-*-u"
+Config { font = "-*-droid sans mono-*-*-*-*-12-*-*-*-*-*-*-u"
        , bgColor = "#000000"
        , fgColor = "#00dd00"
        , position = Top
