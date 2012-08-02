@@ -24,7 +24,7 @@
 ;; GNU Emacs; see the file COPYING.  If not, write to the Free Software
 ;; Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
-;; $Id: ecb-speedbar.el,v 1.73 2009/05/08 14:05:55 berndl Exp $
+;; $Id: ecb-speedbar.el,v 1.77 2010/02/23 16:09:06 berndl Exp $
 
 ;;; Commentary:
 
@@ -64,10 +64,11 @@
 (eval-when-compile
   (require 'silentcomp))
 
-(require 'speedbar)
 (require 'ecb-util)
 (require 'ecb-cedet-wrapper)
+(ecb-cedet-require 'speedbar)
 (require 'ecb-common-browser)
+(require 'ecb-layout)
 
 (eval-when-compile
   ;; to avoid compiler grips
@@ -174,7 +175,7 @@ could slow down dramatically!"
   "Name of the ECB speedbar buffer.")
 
 (defun ecb-speedbar-buffer-selected ()
-  (equal (current-buffer) (get-buffer ecb-speedbar-buffer-name)))
+  (equal (current-buffer) (ecb-buffer-obj ecb-speedbar-buffer-name)))
 
 (defecb-advice speedbar-click around ecb-speedbar-adviced-functions
   "Makes the function compatible with ECB. If ECB is active and the window of
@@ -264,13 +265,15 @@ the point was not set by `mouse-set-point'."
     (and (window-live-p (get-buffer-window ecb-speedbar-buffer-name))
          (select-window (get-buffer-window ecb-speedbar-buffer-name)))))
 
-(defun ecb-speedbar-set-buffer()
-  "Set the speedbar buffer within ECB."
+(defecb-window-dedicator-to-ecb-buffer ecb-set-speedbar-buffer
+    ecb-speedbar-buffer-name nil
+  "Display in current window the speedbar-buffer and make window dedicated."
   (ecb-speedbar-activate)
   (set-window-buffer (selected-window)
                      (get-buffer-create ecb-speedbar-buffer-name))
   (unless ecb-running-xemacs
     (set (make-local-variable 'automatic-hscrolling) nil)))
+
 
 
 (defvar ecb-speedbar-verbosity-level-old nil)
@@ -395,7 +398,7 @@ future this could break."
 
 (defun ecb-speedbar-active-p ()
   "Return not nil if speedbar is active and integrated in the `ecb-frame'."
-  (and (get-buffer ecb-speedbar-buffer-name)
+  (and (ecb-buffer-obj ecb-speedbar-buffer-name)
        (get-buffer-window (get-buffer ecb-speedbar-buffer-name) ecb-frame)))
 
 (defun ecb-speedbar-update-contents ()
@@ -407,8 +410,7 @@ future this could break."
     ecb-speedbar-buffer-name ecb-speedbar-buffer-sync t
   "Update the speedbar so that it's synced up with the current file."
   (let ((speedbar-default-directory
-         (save-excursion
-           (set-buffer visible-buffer)
+         (with-current-buffer visible-buffer
            (ecb-fix-filename default-directory)))
         (ecb-default-directory (ecb-fix-filename default-directory)))
     (when (and (or (not (ecb-string= speedbar-default-directory

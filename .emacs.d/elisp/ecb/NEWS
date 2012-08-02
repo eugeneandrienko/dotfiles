@@ -1,3 +1,114 @@
+* Changes for ECB version 2.40.1
+
+** Better compatibility with forthcoming Gnu Emacs 23.2
+
+*** Works out of the box with the Emacs-integrated CEDET-suite
+
+    If Emacs >= 23.2 is used then CEDET is already integrated into Emacs and
+    ECB can be used out of the box without further requirements.
+
+    PLEASE NOTE: If ECB detects an author version of CEDET (as available at
+    `http://cedet.sourceforge.net') then ECB will ALWAYS try to use that one
+    even if you use Emacs >= 23.2! This is for users who want to use latest
+    Emacs >= 23.2 but still prefer using the latest author version of CEDET
+    instead of the Emacs-integrated one.
+
+    So if you want to use the Emacs-integrated CEDET-suite you have to ensure
+    that no author-version of CEDET is in the `load-path'! This means that the
+    library cedet.el of the author-version MUST NOT be loaded into Emacs (as
+    described in the file INSTALL of CEDET)!
+    This is a valid check: (locate-library "semantic-ctxt") must return nil!
+
+    Details about the Requirements of ECB are available in the README.
+    
+** The special symboldef ECB-window is now stable and ready for usage
+
+*** TODO description what is new
+
+** ECB now uses the partial reparse feature of semantic
+
+   The main effect a user will notice is that edit actions which trigger just a
+   partial reparse will just update the related node in the methods-window and
+   not the whole methods-window. One of the main advantages is that this
+   preserves the expand/collapse state of the methods-window.
+
+   Editing examples which trigger only a partial reparse:
+   - editing a function- or methodbody
+   - changing the name of a variable or function/method
+   - modifying the return-type of a function/method
+   - and some other...
+
+   In these cases only the related node in the methods-window will change
+   nothing else, ie. the expand/collapse-states of all other nodes in the
+   methods-window will not be changed.
+
+** ECB eliminates duplicates in the directories-buffer
+
+   There can be duplicates either .... TODO description
+   
+** New default-value for `ecb-auto-update-methods-after-save': nil
+
+   Switching off this by default makes sense because now ECB uses the
+   idle-scheduler of semantic (if it is switched on but this is at least very
+   recommended) and therefore the methods-buffer will be up-to-date most of
+   the time. Therefore updating it after saving makes not much sense. In
+   addition this auto update is always a full-fetch for the tags which does
+   not preserve the expand/collapse-state of the methods-window whereas a
+   partial reparse does (s.a.).
+   
+** The contents of the methods-window are updated even if currently hidden
+
+   If at least the current ecb-window-layout contains a methods-window then
+   the contents will be autom-updated even if the methods-window is currently
+   invisible (e.g. because the ecb-windows are all hidden or another
+   ecb-window is currently maximized. But the updates takes only place if the
+   semantic idle scheduler is active (see instructions in the manuals of ECB
+   and/or cedet).
+
+   The advantage of this new behavior is that now editing changes done with
+   invisible methods-window will be reflected immediately after showing the
+   methods-window (e.g. by unhiding the ecb-windows via the command
+   `ecb-toggle-ecb-windows' - bound to [C-c . l w]).
+
+** New support for Bazaar as version-control system
+   If Bazaar is supported by VC (means vc-bzr.el is distributed with Emacs)
+   then ECB supports it out of the box.
+
+** New default value of the option `ecb-history-make-buckets'
+
+   This option offers now an additional choice 'directory-with-source-path:
+   This substituts the best (= deepest) matching source-path of the
+   directory-window in the directory-bucket with the alias of this matching
+   source-path (if an alias is set in the option `ecb-source-path'). A new
+   face is used for this: `ecb-history-bucket-node-dir-soure-path-face'.
+
+** `defecb-window-dedicator-to-ecb-buffer' replaces `defecb-window-dedicator'
+
+   This is only relevant for people who program own special ecb-windows.
+
+** Fixed Bugs
+
+*** Command `delete-windows-on' has only deleted one window
+    Now this command works also with ECB as expected.
+
+*** Fixed a bug which prevents the ecb-windows from being vertically resizeable
+    This bug occured only when using Gnu Emacs.
+
+*** Fixed a bug concerning horizontal mouse-scrolling of ecb-windows via
+    modeline-click when the ecb-window was not the selected window.
+    This  bug occured only when using Gnu Emacs.
+
+*** Fixed a bug which prevented `ecb-type-tag-display' from taking effect.
+
+*** Killing a buffer failed when history-window is not visible
+    Killing a buffer failed in case the history buffer is not visible (e.g.
+    when currently a layout without a history buffer is used or when another
+    buffer is maximized and the history buffer thus hidden). This is fixed
+    now.
+
+*** All compile-modes (e.g. compile, grep etc.) failed in XEmacs
+    This came from a bug introduced in 2.40 but it is fixed now.
+
 * Changes for ECB version 2.40
 
 ** ECB now requires full CEDET-suite being installed (at least version 1.0pre6)

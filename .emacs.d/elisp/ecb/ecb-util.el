@@ -25,7 +25,7 @@
 ;; GNU Emacs; see the file COPYING.  If not, write to the Free Software
 ;; Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
-;; $Id: ecb-util.el,v 1.155 2009/05/15 15:19:53 berndl Exp $
+;; $Id: ecb-util.el,v 1.165 2010/03/02 12:02:59 berndl Exp $
 
 ;;; Commentary:
 ;;
@@ -97,21 +97,22 @@
 ;;; ----- Some constants -----------------------------------
 
 ;;;###autoload
-;;(defconst ecb-running-xemacs (string-match "XEmacs\\|Lucid" emacs-version))
 (defconst ecb-running-xemacs (featurep 'xemacs))
+
+(defconst ecb-running-gnu-emacs (not ecb-running-xemacs))
 
 (defconst ecb-running-unsupported-emacs (condition-case nil
                                             (<= emacs-major-version 20)
                                           (error t))
-  "True if running XEmacs or Emacs < 21.")
+  "True if running XEmacs or Gnu Emacs < 21.")
 
-(defconst ecb-running-version-22 (and (not ecb-running-unsupported-emacs)
-                                      (>= emacs-major-version 22))
-  "True if running \(X)Emacs >= version 22")
+(defconst ecb-running-gnu-emacs-version-22 (and ecb-running-gnu-emacs
+                                                (>= emacs-major-version 22))
+  "True if running Gnu Emacs >= version 22")
 
-(defconst ecb-running-version-23 (and (not ecb-running-unsupported-emacs)
-                                      (>= emacs-major-version 23))
-  "True if running \(X)Emacs >= version 23")
+(defconst ecb-running-gnu-emacs-version-23 (and ecb-running-gnu-emacs
+                                                (>= emacs-major-version 23))
+  "True if running Gnu Emacs >= version 23")
 
 (defconst ecb-temp-dir
   (file-name-as-directory
@@ -173,10 +174,24 @@ want the BODY being parsed by semantic!. If not use the variable
      ,@body))
 
 (defmacro when-ecb-running-emacs (&rest body)
-  "Evaluates BODY when `ecb-running-xemacs' is false. Use this macro when you
-want the BODY being parsed by semantic!. If not use the form
-\(unless ecb-running-xemacs)."
-  `(unless ecb-running-xemacs
+  "Evaluates BODY when `ecb-running-gnu-emacs' is false. Use this
+macro when you want the BODY being parsed by semantic!. If not
+use the form \(unless ecb-running-xemacs)."
+  `(when ecb-running-gnu-emacs
+     ,@body))
+
+(defmacro when-ecb-running-emacs-22 (&rest body)
+  "Evaluates BODY when `ecb-running-gnu-emacs-version-22' is
+true. Use this macro when you want the BODY being parsed by
+semantic!. If not use the form \(when ecb-running-gnu-emacs-version-22)."
+  `(when ecb-running-gnu-emacs-version-22
+     ,@body))
+
+(defmacro when-ecb-running-emacs-23 (&rest body)
+  "Evaluates BODY when `ecb-running-gnu-emacs-version-23' is
+true. Use this macro when you want the BODY being parsed by
+semantic!. If not use the form \(when ecb-running-gnu-emacs-version-23)."
+  `(when ecb-running-gnu-emacs-version-23
      ,@body))
 
 ;; I do not want all this compatibitly stuff being parsed by semantic,
@@ -316,13 +331,17 @@ Uses the `derived-mode-parent' property of the symbol to trace backwards."
 (if (not ecb-running-xemacs)
     (progn
       (defalias 'ecb-make-overlay            'make-overlay)
+      (defalias 'ecb-overlay-p               'overlayp)
       (defalias 'ecb-overlay-put             'overlay-put)
+      (defalias 'ecb-overlay-get             'overlay-get)
       (defalias 'ecb-overlay-move            'move-overlay)
       (defalias 'ecb-overlay-delete          'delete-overlay)
       (defalias 'ecb-overlay-kill            'delete-overlay))
   ;; XEmacs
   (defalias 'ecb-make-overlay            'make-extent)
+  (defalias 'ecb-overlay-p               'extentp)
   (defalias 'ecb-overlay-put             'set-extent-property)
+  (defalias 'ecb-overlay-get             'extent-property)
   (defalias 'ecb-overlay-move            'set-extent-endpoints)
   (defalias 'ecb-overlay-delete          'detach-extent)
   (defalias 'ecb-overlay-kill            'delete-extent))
@@ -399,6 +418,7 @@ in exactly this sequence."
 
 ;;; ----- Some function from cl ----------------------------
 
+
 (defun ecb-filter (seq pred)
   "Filter out those elements of SEQUENCE for which PREDICATE returns nil."
   (let ((res))
@@ -431,6 +451,7 @@ The elements of the list are not copied, just the list structure itself."
           (while (consp list) (push (pop list) res))
           (prog1 (nreverse res) (setcdr res list)))
       (car list))))
+
 
 (defun ecb-set-difference (list1 list2 &optional test-fcn)
   "Combine LIST1 and LIST2 using a set-difference operation.
@@ -466,20 +487,140 @@ optimization."
           list))
     (member item list)))
 
-(defun ecb-position (seq elem &optional test-fcn)
-  "Return the position of ELEM within SEQ counting from 0. Comparison is done
-with `equal' unless TEST-FCN is not nil: In this case TEST-FCN will be used to
-compare ITEM with the elements of SEQ."
-  (if (listp seq)
-      (let ((pos (- (length seq) (length (ecb-member elem seq test-fcn)))))
-        (if (= pos (length seq))
-            nil
-          pos))
-    (catch 'found
-      (dotimes (i (length seq))
-        (if (funcall (or test-fcn 'equal) elem (aref seq i))
-            (throw 'found i)))
-      nil)))
+;; stolen and adapted from cl-seq.el
+(defun ecb-delete-duplicates (cl-seq &optional
+                                     cl-test-fcn cl-start cl-end cl-from-end cl-copy)
+  "Deletes duplicate elements from CL-SEQ.
+Comparison is done with `equal' unless CL-TEST-FCN is not nil: In
+this case TEST-FCN will be used to compare CL-ITEM with the
+elements of CL-SEQ. Specifically, if two elements from the
+sequence match according to the test-function \(s.a.) only the
+rightmost one is retained. If CL-FROM-END is true, the leftmost
+one is retained instead. If CL-START or CL-END is specified, only
+elements within that subsequence are examined or removed. If
+CL-COPY is nil then it destructively modifies CL-SEQ otherwise a
+copy of CL-SEQ with removed duplicates is returned."
+  (if (listp cl-seq)
+      (let ((cl-start (or cl-start 0)))
+        (if cl-from-end
+            (let ((cl-p (nthcdr cl-start cl-seq))
+                  cl-i)
+              (setq cl-end (- (or cl-end (length cl-seq)) cl-start))
+              (while (> cl-end 1)
+                (setq cl-i 0)
+                (while (setq cl-i (ecb-position (car cl-p)
+                                                (cdr cl-p)
+                                                cl-test-fcn
+                                                cl-i
+                                                (1- cl-end)))
+                  (if cl-copy (setq cl-seq (ecb-copy-list cl-seq)
+                                    cl-p (nthcdr cl-start cl-seq) cl-copy nil))
+                  (let ((cl-tail (nthcdr cl-i cl-p)))
+                    (setcdr cl-tail (cdr (cdr cl-tail))))
+                  (setq cl-end (1- cl-end)))
+                (setq cl-p (cdr cl-p) cl-end (1- cl-end)
+                      cl-start (1+ cl-start)))
+              cl-seq)
+          (setq cl-end (- (or cl-end (length cl-seq)) cl-start))
+          (while (and (cdr cl-seq) (= cl-start 0) (> cl-end 1)
+                      (ecb-position (car cl-seq)
+                                    (cdr cl-seq)
+                                    cl-test-fcn
+                                    0
+                                    (1- cl-end)))
+            (setq cl-seq (cdr cl-seq) cl-end (1- cl-end)))
+          (let ((cl-p (if (> cl-start 0) (nthcdr (1- cl-start) cl-seq)
+                        (setq cl-end (1- cl-end) cl-start 1) cl-seq)))
+            (while (and (cdr (cdr cl-p)) (> cl-end 1))
+              (if (ecb-position (car (cdr cl-p))
+                                (cdr (cdr cl-p))
+                                cl-test-fcn
+                                0
+                                (1- cl-end))
+                  (progn
+                    (if cl-copy (setq cl-seq (ecb-copy-list cl-seq)
+                                      cl-p (nthcdr (1- cl-start) cl-seq)
+                                      cl-copy nil))
+                    (setcdr cl-p (cdr (cdr cl-p))))
+                (setq cl-p (cdr cl-p)))
+              (setq cl-end (1- cl-end) cl-start (1+ cl-start)))
+            cl-seq)))
+    (let ((cl-res (ecb-delete-duplicates (append cl-seq nil)
+                                         cl-test-fcn
+                                         cl-start
+                                         cl-end
+                                         cl-from-end
+                                         nil)))
+      (if (stringp cl-seq) (concat cl-res) (vconcat cl-res)))))
+
+;; (ecb-delete-duplicates (vector 'a 'b 'c 'd 'A 'a 'c 'e) nil nil nil t t)
+
+;; (ecb-delete-duplicates '("a" "b" "c" "d" "A" ("a" . 0) "a" ("c" . "ewfwrew") "e")
+;;                           (function (lambda (l r)
+;;                                       (ecb-string= (if (consp l) (car l) l)
+;;                                                    (if (consp r) (car r) r))
+;;                                       ))
+;;                           nil nil t t)
+
+;; (remove-duplicates '("a" "b" "c" "d" "A" ("a" . 0) "a" ("c" . "ewfwrew") "e")
+;;                    :test (function (lambda (l r)
+;;                                      (ecb-string= (if (consp l) (car l) l)
+;;                                                   (if (consp r) (car r) r))
+;;                                      ))
+;;                    :from-end nil)
+
+;; stolen and adapted from cl-seq.el
+(defun ecb-position (cl-item cl-seq &optional cl-test-fcn cl-start cl-end cl-from-end)
+  "Return the position of first occurence of CL-ITEM in CL-SEQ.
+Comparison is done with `equal' unless CL-TEST-FCN is not nil: In
+this case TEST-FCN will be used to compare CL-ITEM with the elements
+of CL-SEQ.
+Return the 0-based index of the matching item, or nil if not found."
+  (let ((cl-test (or cl-test-fcn 'equal)))
+    (or cl-start (setq cl-start 0))
+    (if (listp cl-seq)
+        (let ((cl-p (nthcdr cl-start cl-seq)))
+          (or cl-end (setq cl-end 8000000))
+          (let ((cl-res nil))
+            (while (and cl-p (< cl-start cl-end) (or (not cl-res) cl-from-end))
+              (if (funcall cl-test cl-item (car cl-p))
+                  (setq cl-res cl-start))
+              (setq cl-p (cdr cl-p) cl-start (1+ cl-start)))
+            cl-res))
+      (or cl-end (setq cl-end (length cl-seq)))
+      (if cl-from-end
+          (progn
+            (while (and (>= (setq cl-end (1- cl-end)) cl-start)
+                        (not (funcall cl-test cl-item (aref cl-seq cl-end)))))
+            (and (>= cl-end cl-start) cl-end))
+        (while (and (< cl-start cl-end)
+                    (not (funcall cl-test cl-item (aref cl-seq cl-start))))
+          (setq cl-start (1+ cl-start)))
+        (and (< cl-start cl-end) cl-start)))))
+
+;; (ecb-position "v" '("a" "b" "c" "d" "A" ("a" . 0) "w" "a" ("c" . "ewfwrew") "e")
+;;                  (function (lambda (l r)
+;;                              (ecb-string= (if (consp l) (car l) l)
+;;                                           (if (consp r) (car r) r))
+;;                              ))
+;;                  0)
+;; (ecb-position "d" '("a" "b" "c" "d" "e") 'ecb-string= 1 4)
+;; (position "d" '("a" "b" "c" "d" "e") :test 'ecb-string= :start 1 :end 3)
+
+;; (defun ecb-position (seq elem &optional test-fcn)
+;;   "Return the position of ELEM within SEQ counting from 0. Comparison is done
+;; with `equal' unless TEST-FCN is not nil: In this case TEST-FCN will be used to
+;; compare ITEM with the elements of SEQ."
+;;   (if (listp seq)
+;;       (let ((pos (- (length seq) (length (ecb-member elem seq test-fcn)))))
+;;         (if (= pos (length seq))
+;;             nil
+;;           pos))
+;;     (catch 'found
+;;       (dotimes (i (length seq))
+;;         (if (funcall (or test-fcn 'equal) elem (aref seq i))
+;;             (throw 'found i)))
+;;       nil)))
 
 (defun ecb-set-elt (seq n val)
   "Set VAL as new N-th element of SEQ. SEQ can be any sequence. SEQ will be
@@ -497,7 +638,7 @@ changed because this is desctructive function. SEQ is returned."
 (defun ecb-replace-first-occurence (seq old-elem new-elem)
   "Replace in SEQ the first occurence of OLD-ELEM with NEW-ELEM. Comparison is
 done by `equal'. This is desctructive function. SEQ is returned."
-  (let ((pos (ecb-position seq old-elem)))
+  (let ((pos (ecb-position old-elem seq)))
     (if pos
         (ecb-set-elt seq pos new-elem)))
   seq)
@@ -505,22 +646,22 @@ done by `equal'. This is desctructive function. SEQ is returned."
 (defun ecb-replace-all-occurences (seq old-elem new-elem)
   "Replace in SEQ all occurences of OLD-ELEM with NEW-ELEM. Comparison is
 done by `equal'. This is desctructive function. SEQ is returned."
-  (while (ecb-position seq old-elem)
+  (while (ecb-position old-elem seq)
     (setq seq (ecb-replace-first-occurence seq old-elem new-elem)))
   seq)
 
-(defun ecb-remove-first-occurence-from-list (list elem)
+(defun ecb-delete-first-occurence-from-list (list elem)
   "Replace first occurence of ELEM from LIST. Comparison is done by `equal'.
 This is desctructive function. LIST is returned."
   (delq 'ecb-util-remove-marker
         (ecb-replace-first-occurence list elem 'ecb-util-remove-marker)))
 
-(defun ecb-remove-all-occurences-from-list (list elem)
+(defun ecb-delete-all-occurences-from-list (list elem)
   "Replace all occurences of ELEM from LIST. Comparison is done by `equal'.
 This is desctructive function. LIST is returned."
   (delq 'ecb-util-remove-marker
         (progn          
-          (while (ecb-position list elem)
+          (while (ecb-position elem list)
             (setq list (ecb-replace-first-occurence list elem
                                                     'ecb-util-remove-marker)))
           list)))
@@ -562,7 +703,7 @@ TYPE can be 'string, 'vector or 'list."
   "Rotate SEQ so START-ELEM is the new first element of SEQ. SEQ is an
 arbitrary sequence. Example: \(ecb-rotate '\(a b c d e f) 'c) results in \(c d
 e f a b). If START-ELEM is not contained in SEQ then nil is returned."
-  (let ((start-pos (ecb-position seq start-elem)))
+  (let ((start-pos (ecb-position start-elem seq)))
     (when start-pos
       (ecb-concatenate (typecase seq
                          (list 'list)
@@ -600,7 +741,7 @@ times. Example: Suppose LIST = '\(a b c d), ELEM is 'c and NTH-NEXT = 3 then
 'b is returned - same result for NTH-NEXT = 7, 11... It works also for
 negative integers, so when NTH-NEXT is -1 in the example above then 'b is
 returned."
-  (let ((elem-pos (ecb-position list elem))
+  (let ((elem-pos (ecb-position elem list))
         (next (or nth-next 1)))
     (and elem-pos
          (nth (mod (+ elem-pos next)
@@ -664,6 +805,22 @@ results in
 ;;    (if (string= (car item1) (car item2))
 ;;        (string< (symbol-name (cdr item1)) (symbol-name (cdr item2)))
 ;;      (string< (car item1) (car item2)))))
+
+(defun ecb-values-of-symbol/value-list (list &optional elem-accessor)
+  "Return a list of values build from the members of LIST.
+The result-list is a list which is build from LIST by using the
+symbol-value if a list-member is a symbol and otherwise the
+list-member itself.
+
+If ELEM-ACCESSOR is a function then it is used to get that part of an elem
+of LIST for which the rule above should be applied."
+  (let ((elem-acc (or elem-accessor 'identity)))
+    (mapcar (function (lambda (elem)
+                        (let ((e (funcall elem-acc elem)))
+                          (if (symbolp e)
+                              (symbol-value e)
+                            e))))
+            list)))
 
 ;; Maybe we should enhance this docstring ;-)
 (defun ecb-member-of-symbol/value-list (value list &optional elem-accessor
@@ -1307,14 +1464,18 @@ should stopped but no debugging is senseful."
 
 ;;; ----- Text and string-stuff ----------------------------
 
-(defun ecb-merge-face-into-text (text face)
-  "Merge FACE to the already precolored TEXT so the values of all
-face-attributes of FACE take effect and but the values of all face-attributes
-of TEXT which are not set by FACE are preserved."
+(defun ecb-merge-face (face start end &optional text)
+  "Merge FACE either to a buffer-part or to TEXT.
+In both cases START and END define the region which should be
+faced. The FACE is merged, i.e. the values of all face-attributes
+of FACE take effect and the values of all face-attributes of the
+buffer-part or TEXT which are not set by FACE are preserved.
+
+If always returns TEXT \(if not nil then modified with FACE)."
   (if (null face)
       text
     (if ecb-running-xemacs
-        (put-text-property 0 (length text) 'face
+        (put-text-property start end 'face
                            (let* ((current-face (get-text-property 0
                                                                    'face
                                                                    text))
@@ -1336,7 +1497,7 @@ of TEXT which are not set by FACE are preserved."
                                )
                              )
                            text)
-      (alter-text-property 0 (length text) 'face
+      (alter-text-property start end 'face
                            (lambda (current-face)
                              (let ((cf
                                     (typecase current-face
@@ -1355,6 +1516,15 @@ of TEXT which are not set by FACE are preserved."
                                  (append nf cf))))
                            text))
     text))
+
+(defun ecb-merge-face-into-text (text face)
+  "Merge FACE to the already precolored TEXT so the values of all
+face-attributes of FACE take effect and but the values of all face-attributes
+of TEXT which are not set by FACE are preserved.
+If FACE or TEXT is nil then simply original TEXT is returned."
+  (if (or (null face) (null text))
+      text
+    (ecb-merge-face face 0 (length text) text)))
 
 (if (fboundp 'compare-strings)
     (defalias 'ecb-compare-strings 'compare-strings)
@@ -1617,8 +1787,7 @@ BUFFER \(not read-only an evaluation-time of BODY) and make afterwards BUFFER
 read-only. Note: All this is done with `save-excursion' so after BODY that
 buffer is current which was it before calling this macro."
   `(if (buffer-live-p ,buffer)
-       (save-excursion
-         (set-buffer ,buffer)
+       (with-current-buffer ,buffer
          (unwind-protect
              (progn
                (setq buffer-read-only nil)
@@ -1670,18 +1839,25 @@ or a buffer-object."
     (if (file-exists-p exp-file)
         (delete-file exp-file))))
 
-(defun ecb-buffer-name (buffer-or-name)
-  "Return the buffer-name of BUFFER-OR-NAME."
-  (typecase buffer-or-name
-    (string buffer-or-name)
-    (buffer (buffer-name buffer-or-name))
+(defun ecb-buffer-name (buffer-or-window)
+  "Return the buffer-name of BUFFER-OR-WINDOW.
+BUFFER-OR-WINDOW can be a buffer-name, a buffer or a window. If a
+window then the name of the buffer curently displayed in this
+window is returned."
+  (typecase buffer-or-window
+    (string buffer-or-window)
+    (buffer (buffer-name buffer-or-window))
+    (window (buffer-name (window-buffer buffer-or-window)))
     (otherwise nil)))
 
-(defun ecb-buffer-obj (buffer-or-name)
-  "Return the buffer-object of BUFFER-OR-NAME."
-  (typecase buffer-or-name
-    (string (get-buffer buffer-or-name))
-    (buffer buffer-or-name)
+(defun ecb-buffer-obj (buffer-or-window)
+  "Return the buffer-object of BUFFER-OR-WINDOW.
+BUFFER-OR-WINDOW can be a buffer-name, a buffer or a window.
+If a window then the buffer curently displayed in this window is returned."
+  (typecase buffer-or-window
+    (string (get-buffer buffer-or-window))
+    (buffer buffer-or-window)
+    (window (window-buffer buffer-or-window))
     (otherwise nil)))
 
 (defun ecb-buffer-local-value (sym buffer)
@@ -1741,8 +1917,7 @@ nil whereas in the latter case the current-buffer is assumed."
     (or (and file (file-readable-p file))
         (and (not ecb-running-xemacs)
              (if filename
-                 (save-excursion
-                   (set-buffer (find-file-noselect filename))
+                 (with-current-buffer (find-file-noselect filename)
                    (ecb-current-buffer-archive-extract-p))
                (ecb-current-buffer-archive-extract-p))))))
 
@@ -1787,6 +1962,7 @@ means not to count the minibuffer even if it is active."
           (error "Window must be on frame."))
       (let ((current-frame (selected-frame))
             (current-window (selected-window))
+            (current-buf (current-buffer))
             (current-point (point))
             list)
         (unwind-protect
@@ -1806,6 +1982,7 @@ means not to count the minibuffer even if it is active."
               (setq list (cons window list)))
           (select-frame current-frame)
           (select-window current-window)
+          (set-buffer current-buf)
           ;; we must reset the point of the buffer which was current at call-time
           ;; of this function
           (goto-char current-point))))))
@@ -1815,6 +1992,10 @@ means not to count the minibuffer even if it is active."
 from the left-most top-most window) in the order `next-window' would walk
 through these windows."
   (ecb-window-list ecb-frame 0 (frame-first-window ecb-frame)))
+
+(defun ecb-window-live-p (buffer-or-name)
+  "Return not nil if buffer BUFFER-OR-NAME is displayed in an active window."
+  (and buffer-or-name (window-live-p (get-buffer-window buffer-or-name))))
 
 (defun ecb-enlarge-window (window &optional val)
   "Enlarge the given window.
@@ -1963,6 +2144,20 @@ nothing happens and nil is returned."
 	(select-window window)
       nil)))
 
+
+;; (defmacro ecb-exec-in-window (buffer-or-name &rest body)
+;;   "Evaluates BODY in that window which displays the buffer BUFFER-OR-NAME
+;; which can be either a buffer-object or a buffer-name. If that window is not
+;; visible then BODY is not evaluated and the symbol 'window-not-visible is
+;; returned. Otherwise the return value of BODY is returned. Runs encapsulated in
+;; `save-selected-window' and `save-excursion'."
+;;   `(save-selected-window
+;;      (if (not (ecb-window-select ,buffer-or-name))
+;;          'window-not-visible
+;;        (save-excursion
+;;          (set-buffer ,buffer-or-name)
+;;          ,@body))))
+
 (defmacro ecb-exec-in-window (buffer-or-name &rest body)
   "Evaluates BODY in that window which displays the buffer BUFFER-OR-NAME
 which can be either a buffer-object or a buffer-name. If that window is not
@@ -1972,8 +2167,7 @@ returned. Otherwise the return value of BODY is returned. Runs encapsulated in
   `(save-selected-window
      (if (not (ecb-window-select ,buffer-or-name))
          'window-not-visible
-       (save-excursion
-         (set-buffer ,buffer-or-name)
+       (with-current-buffer ,buffer-or-name
          ,@body))))
 
 (put 'ecb-exec-in-window 'lisp-indent-function 1)
@@ -2000,10 +2194,8 @@ The left-top-most window of the frame has number 1. The other windows have
 the same ordering as `other-window' would walk through the frame.
 
 If WINDOW is nil then the currently selected window is used."
-  (let ((win-number (ecb-position win-list (or window (selected-window)))))
+  (let ((win-number (ecb-position (or window (selected-window)) win-list)))
     (if win-number (1+ win-number) nil)))
-
-
 
 ;;; ----- Time  stuff -----------------------------------------
 

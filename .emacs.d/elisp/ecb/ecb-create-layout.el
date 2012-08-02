@@ -23,7 +23,7 @@
 ;; GNU Emacs; see the file COPYING.  If not, write to the Free Software
 ;; Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
-;; $Id: ecb-create-layout.el,v 1.36 2009/05/15 16:40:05 berndl Exp $
+;; $Id: ecb-create-layout.el,v 1.38 2009/06/23 11:16:56 berndl Exp $
 
 ;;; Commentary:
 ;;
@@ -68,12 +68,12 @@
   :group 'ecb-create-layout
   :type 'file)
 
-(defcustom ecb-create-layout-frame-width 110
+(defcustom ecb-create-layout-frame-width 140
   "*Frame width of the layout creation frame."
   :group 'ecb-create-layout
   :type 'integer)
 
-(defcustom ecb-create-layout-frame-height 42
+(defcustom ecb-create-layout-frame-height 51
   "*Frame height of the layout creation frame."
   :group 'ecb-create-layout
   :type 'integer)
@@ -85,7 +85,7 @@
 (defconst ecb-create-layout-buf-prefix " *ECB-LC-")
 (defconst ecb-create-layout-frame-name "Creation of a new ECB-layout")
 (defconst ecb-create-layout-all-buf-types
-  '("directories" "history" "methods" "sources" "speedbar" "analyse"))
+  '("directories" "history" "methods" "sources" "speedbar" "analyse" "symboldef"))
 
 (defconst ecb-create-layout-help-text-left-right
   "
@@ -344,7 +344,7 @@ DELETE-FRAME is not nil then the new created frame will be deleted and the
 
 (defun ecb-create-layout-insert-file-header ()
   (insert (format ";;; %s --- user defined ECB-layouts" ;;
-                  (file-name-nondirectory ecb-create-layout-file)))
+                  (ecb-file-name-nondirectory ecb-create-layout-file)))
   (insert ecb-create-layout-file-header))
 
 (defun ecb-create-layout-save-layout ()

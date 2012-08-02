@@ -24,7 +24,7 @@
 ;; GNU Emacs; see the file COPYING.  If not, write to the Free Software
 ;; Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
-;; $Id: ecb-mode-line.el,v 1.40 2009/05/15 16:40:05 berndl Exp $
+;; $Id: ecb-mode-line.el,v 1.42 2010/02/23 16:09:06 berndl Exp $
 
 ;;; Commentary:
 ;;
@@ -325,9 +325,8 @@ as \"W-<number>\"."
 
 (defun ecb-mode-line-update-buffer (buffer-name new-mode-line-format)
   "Update the given buffer...."
-  (if (get-buffer buffer-name)
-      (save-excursion
-        (set-buffer buffer-name)
+  (if (ecb-buffer-obj buffer-name)
+      (with-current-buffer buffer-name
         (setq mode-line-format new-mode-line-format)
         (if ecb-running-xemacs
             (redraw-modeline)

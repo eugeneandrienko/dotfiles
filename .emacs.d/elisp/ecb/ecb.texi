@@ -23,7 +23,7 @@
 @c GNU Emacs; see the file COPYING.  If not, write to the Free Software
 @c Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
-@c $Id: ecb.texi,v 1.226 2009/05/16 13:24:19 berndl Exp $
+@c $Id: ecb.texi,v 1.235 2010/02/24 21:53:55 berndl Exp $
 
 @setfilename ecb.info
 
@@ -238,7 +238,7 @@ Usage of ECB
 * The edit-area::               How to use the edit-area
 * Temp- and compile-buffers::   Displaying temp- and compilation-buffers
 * The other window::            How the ``other window'' is determined
-* The Methods buffer::          Using and customizing the Methods-buffer
+* The Methods window::          Using and customizing the Methods-window
 * Filtering the tree-buffers::  Applying filters to the ECB-tree-buffers 
 * The ECB-layout::              Changing, customizing, redrawing, creating
 * Hiding the ECB windows::      Hiding/Showing the ECB-windows
@@ -255,12 +255,14 @@ Working with the keyboard in the ECB-windows
 * Personal tree-keybindings::   Adding personal keybindings to a tree-buffer
 * Using popup-menus::           Using the popup-menus from keyboard.
 
-Using and customizing the ECB-Methods buffer
+Using and customizing the ECB-Methods window
 
 * Visiting tags::               Possible actions after visiting a tag
 * Expanding::                   Explicit and automatic expanding
 * Customizing the display::     How to customize the Methods-buffer display
-* Rebuilding the Methods::      When to rebuild the Methods-buffer      
+* Updating Methods-window::     Updating Methods with contents of current buffer
+* Updating for ind. buffers::   Updating Methods for indirect buffers
+* Jumping to external tags::    Jumping to the definition of external types
 
 Applying filters to the special ECB-tree-buffers
 
@@ -303,6 +305,7 @@ All customizable options of ECB
 * ecb-methods::                 Customizing the ECB-methods-window
 * ecb-history::                 Customizing the ECB-history-window
 * ecb-analyse::                 Customizing the ECB-analyse-window
+* ecb-symboldef::               Customizing the ECB-symboldef-window
 * ecb-layout::                  Customizing the ECB-layout
 * ecb-compilation::             Customizing the compile-window
 * ecb-create-layout::           Customizing options for creating layouts
@@ -343,6 +346,7 @@ Handling of common use-cases
 * Non-semantic sources::        Parsing and displaying non-semantic sources
 * Hide-show::                   Using hide-show from the methods-buffer-menu
 * Window-managers and ECB::     Support of several Emacs-window-managers
+* Virtual folders in History::  Simulating something like virtual folders
 
 Supporting Version control systems
 
@@ -413,22 +417,39 @@ This section describes how to install ECB.
 @node Requirements, ECB as XEmacs-package, Installation, Installation
 @subsection Requirements
 
-This section describes the requirements of ECB. Just follow these steps and
-the requirements of ECB are fulfilled.
+This section describes the requirements of ECB. Just ensure that these
+requirements of ECB are fulfilled.
+
+The short story: With Emacs >= 23.2 there is nothing to do. With XEmacs or
+Emacs < 23.2 you have to install the CEDET-suite.
+
+The long story:
 
 @enumerate
 
 @item Emacs-version:
 ECB works only with (X)Emacs >= 21! If you have an older one, please upgrade.
 
-@item Install CEDET-suite:
-Get it from @url{http://cedet.sourceforge.net}, read the setup-instructions in
-@url{http://cedet.sourceforge.net/setup.shtml} and read also the shipped file
-@file{INSTALL}.
+@item CEDET-suite:
+If Emacs >= 23.2 is used then CEDET is already integrated into Emacs and there
+is nothing to do.
 
-@strong{Please note}: ECB requires now a complete CEDET-installation! It will
-not longer work with outdated separate packages semantic 1.4.X, eieio 0.X and
-speedbar 0.X!
+For users of any XEmacs-version, any Emacs-version < 23.2 or the latest author
+CEDET version: Get it from @url{http://cedet.sourceforge.net}, read the
+setup-instructions in @url{http://cedet.sourceforge.net/setup.shtml} and read
+also the shipped file @file{INSTALL}.
+
+@strong{Please note}: If ECB detects an author version of CEDET (as available
+at @url{http://cedet.sourceforge.net}) then ECB will ALWAYS try to use that
+one even if you use Emacs >= 23.2! This is for users who want to use latest
+Emacs >= 23.2 but still prefer using the latest author version of CEDET
+instead of the Emacs-integrated one.
+
+So if you want to use the Emacs-integrated CEDET-suite of Emacs >= 23.2 you
+have to ensure that no author-version of CEDET is in the @code{load-path}!
+This means that the library cedet.el of the author-version MUST NOT be loaded
+into Emacs (as described in the file INSTALL of CEDET)! This is a valid check:
+(locate-library "semantic-ctxt") must return nil!
 
 @item Only for XEmacs-users:
 If you use XEmacs you must have installed the
@@ -438,8 +459,8 @@ mail-lib XEmacs package) installed; this package is also needed for submitting
 problem-reports to the ECB-maintainers!
 
 @item Optional for Java-coding:
-If Java code is edited the ECB works best when the JDEE package (
-@url{http://jdee.sourceforge.net}) is installed.
+ECB works very well with the JDEE package (
+@url{http://jdee.sourceforge.net}) but JDEE is not required by ECB.
 
 @end enumerate
 
@@ -610,6 +631,10 @@ This loads all available autoloads of ECB, e.g. @code{ecb-activate},
 Regardless which method you prefer: In both cases the used statement
 must be placed @strong{after} the statement of step 3!
 
+Only for users of a manually installed author version of the CEDET-suite (not
+that one integrated into Emacs >= 23.2): Instructions for loading CEDET into
+Emacs must be placed somewhere before the statements needed for loading ECB
+(s.a.)!
 
 @item Restart (X)Emacs.
 @end enumerate
@@ -756,19 +781,38 @@ concerning your Emacs-setup:
 @enumerate
 @item Setting up CEDET/semantic itself
 
-This section implies that you have already successfully installed
-the CEDET-suite and describes how to setup cedet and here mainly
-semantic.
+This section implies that you either use Emacs >= 23.2 or that you have
+already successfully installed the CEDET-suite.
 
 For all semantic-supported file-types parsing files is done completely
-by semantic. ECB just displays the parsing results. For all needs of
-ECB semantic is completely setup by ECB itself, i.e. ECB sets up
-semantic for you!
+by semantic. ECB just displays the parsing results.
 
-@strong{Please note}: Nevertheless you should read carefully the file
-@file{INSTALL} shipped with the cedet-suite. In addition the CEDET-website
-offers a link to a ``Gentle introduction to Cedet''. It's worth to read it!
-You find it here:
+@itemize
+@item Users of Emacs >= 23.2:
+You just have to enable semantic by activating the semantic-mode. This can be
+done by adding code to your initialization-file (e.g. .emacs) like
+this:
+
+@lisp
+(semantic-mode 1)
+@end lisp
+
+This should be placed BEFORE the statements which activate ECB.
+
+As an alternative you can use the @code{ecb-before-activate-hook} like
+follows:
+
+@lisp
+(add-hook 'ecb-before-activate-hook
+          (lambda () (semantic-mode 1)))
+@end lisp
+
+This is a smarter way when you need semantic only if ECB is active.
+
+@item Users of XEmacs or Emacs < 23.2:
+You should read carefully the file @file{INSTALL} shipped with the
+cedet-suite. In addition the CEDET-website offers a link to a ``Gentle
+introduction to Cedet''. It's worth to read it! You find it here:
 @ifhtml
 @uref{http://xtalk.msk.su/~ott/en/writings/emacs-devenv/EmacsCedet.html}
 @end ifhtml
@@ -778,16 +822,20 @@ You find it here:
 If CEDET is not correctly installed then ECB can not setup semantic for its
 needs.
 
+@end itemize
+
 @strong{Minimum setup recommendation}: It is very useful to enable the
 @code{global-semantic-idle-scheduler-mode} and
-@code{global-semanticdb-minor-mode}. Read the manual of cedet/semantic how to
-do this. With CEDET-versions >= 1.0pre6 this can be done by adding
-@code{semantic-load-enable-minimum-features} to your startup-file. Please read
-also the subsection ``Jumping to the definition of external types'' in
-@ref{ECB Methods-window}.
+@code{global-semanticdb-minor-mode}. Read the manual of Emacs 23.2 or the
+manual of cedet/semantic how to do this. With CEDET-versions >= 1.0pre6 this
+can be done by adding @code{semantic-load-enable-minimum-features} to your
+startup-file. Please read also the subsection ``Jumping to the definition of
+external types'' in @ref{ECB Methods-window}.
 
 @anchor{Checking your hooks}
-@item Checking your hooks
+@item Checking your hooks (Only for XEmacs and Emacs < 23.2!)
+
+If you use Emacs > 23.2 you can ignore the following paragraphs.
 
 If you have already checked point (1.) and if you have still problems
 getting ECB/semantic working properly for your sources you should
@@ -816,9 +864,9 @@ value of a hook with the new value whereas @code{add-hook}
 
 @end enumerate
 
-If your source-files are ``running'' with correct @code{major-mode}
-and correct major-mode hooks ECB and semantic will do what you expect
-them doing!
+If your source-files are ``running'' with correct @code{major-mode} and - in
+case of XEmacs or Emacs < 23.2 - correct major-mode hooks ECB and semantic
+will do what you expect them doing!
 
 @node Non-semantic files, , Setting up CEDET/semantic, Setting up Emacs
 @subsection Setup for file types not supported by semantic
@@ -901,21 +949,33 @@ for browsing your sources comfortable with the mouse and the keyboard.
 ECB offers some basic ECB-windows to browse your sources:
 @itemize @minus
 @item ECB-Directories for browsing directories
-@item ECB-Sources for browsing source-files and a file-history
+@item ECB-Sources for browsing source-files
 @item ECB-Methods for browsing the contents of a source
+@item ECB-History for a history for open or recently opened files
 @end itemize
 
 See @ref{Basic ECB-windows} for a detailled description what these
 basic ECB-windows offer. See @ref{ECB-windows} for a general
 introduction in the ECB-window-concept of ECB.
 
+In addition ECB offers some add-on ECB-window for special purposes:
+@itemize @minus
+@item ECB-Analyse for some intellisense stuff like possible completions or
+local variables
+@item ECB-Symboldef for displaying the documentation of current symbol under
+point
+@end itemize
+
+See @ref{Add-on ECB-windows} for a detailled description what these
+add-on ECB-windows offer.
+
 In addition to these ``special'' ECB-windows you have always an
-@dfn{edit-area} where you can edit your source-files. The edit-area
-can be divided into several @dfn{edit-windows} - as many as you need
-(@pxref{The edit-area}). And at the bottom of the ECB-frame a persistent
-@dfn{compilation-window} (also called @dfn{compile-window}) can be
-displayed (optional), where all the output of Emacs-compilation
-(compile, grep etc.) is shown (@pxref{Temp- and compile-buffers}).
+@dfn{edit-area} where you can edit your source-files. The edit-area can be
+divided into several @dfn{edit-windows} - as many as you need (@pxref{The
+edit-area}). And at the bottom of the ECB-frame a persistent
+@dfn{compilation-window} (also called @dfn{compile-window}) can be displayed
+(optional), where all the output of Emacs-compilation (compile, grep etc.) and
+Emacs temp-buffers (help etc.) is shown (@pxref{Temp- and compile-buffers}).
 
 The following ``screenshot'' illustrates the typical layout of the
 ECB-frame@footnote{This is only one example of the layouts ECB offers,
@@ -985,16 +1045,15 @@ Instructions what to do if you encounters problems with ECB.
 
 @item Upgrading and downloading ECB (@pxref{Upgrading})
 Gives an introduction into the automatic option-upgrading-feature of
-ECB and you can download and install a newer ECB-version from within
 ECB.
 
 @item Common use-cases (@pxref{Common use-cases})
-How to deal with special situations and circumstances, so e.g. working
-with big and small screens, working with large directories, using the
-builtin version-control-support of ECB, parsing non-semantic-supported
-sources like perl, using hide-show, working best with eshell and JDEE
-and some window-managers of Emacs (like escreen or winring) and many
-more...
+How to deal with common (and also some special) situations and circumstances,
+so e.g. working with big and small screens, working with large directories,
+using the builtin version-control-support of ECB, parsing
+non-semantic-supported sources like perl, using hide-show, working best with
+eshell and JDEE and some window-managers of Emacs (like escreen or winring)
+and many more...
 
 @item Entry points for Elisp programmers (@pxref{Elisp programming})
 All informations needed by programmers when using some ECB-concepts
@@ -1500,7 +1559,9 @@ buffers).
 
 Per default the content of the methods-ECB-window is automatically
 synchronized and updated with current point of the current source-buffer in
-the edit-area (@pxref{ECB-window synchronizing}).
+the edit-area (@pxref{ECB-window synchronizing}). This and other important
+informations about usage of the powerful Methods-window of ECB can be found in
+@ref{The Methods window}.
 
 @subsubsection Usage of the methods ECB-window
 
@@ -1541,320 +1602,6 @@ ECB-window (@pxref{Changing the ECB-layout}) (e.g. via @kbd{C-c . l
 c}) or create a new ecb-layout via the command
 @code{ecb-create-new-layout} and add a buffer of type ``methods'' into
 this new layout (@pxref{Creating a new ECB-layout}).
-
-@subsubsection Synchronizing the Methods-window with current source-buffer
-
-First a preliminary remark: Do not confuse this chapter with that
-synchronizing described in @ref{ECB-window synchronizing}. The latter one
-describes the mechanism for synchronizing the ECB-windows when the
-current-buffer in the edit-area has been changed. This chapter describes how
-to synchronize the ECB-methods-window with the contents of the current-buffer
-if the buffer has been modified!
-
-Now lets start:
-
-Generally ECB calls semantic to get the list of tags for current source-file
-of current edit-window. Per default ECB does never automatically force a
-reparse of the source-file after this has been changed - this is only done on
-demand by calling the command @code{ecb-rebuild-methods-buffer}. So per
-default the idle-scheduler of semantic is responsible for reparsing the
-source-file when this is necessary (see `semantic-idle-scheduler-mode' for
-further details). So this scheduler is also repsonsible in turn for
-updating/sychronizing the methods-window with current buffer-contents. This is
-the most user-resonsible and therefore the recommended approach.
-
-So it's strongly recommended to enable @code{semantic-idle-scheduler-mode} or
-@code{global-semantic-idle-scheduler-mode} (@pxref{Setting up CEDET/semantic})
-because then reparsing is always done during idle-time of Emacs and - maybe
-even more important - it is also interruptable.
-
-But if this idle-scheduler is switched off then ECB offers now two
-possibilities (via @code{ecb-force-reparse-when-semantic-idle-scheduler-off}):
-
-@itemize @bullet
-
-@item
-
-Not forcing itself a reparse when tags are needed by ECB: then a user declines
-knowingly Emacs/semantic-driven parsing of code when he/she switches off the
-idle-mode of semantic. This is the default behavior of ECB and the default
-value of this option. But this has also the consequence that the
-methods-buffer is only filed on demand via @code{ecb-rebuild-methods-buffer}
-(bound to @key{C-c . r})!
-
-This means also in consequence that the methods-buffer is not
-automatically filled when a source-file is opened but first on demand
-after calling the command @code{ecb-rebuild-methods-buffer}!
-
-@item
-
-Forcing a reparse when tags are needed: Then ECB forces semantic to parse
-the source-file when ECB needs tags to display. For this behavior this
-option has to be set to not nil.
-@end itemize
-
-The term ``forcing a reparse by semantic'' is a simplification: ECB uses then
-the function @code{semantic-fetch-tags} which can decide that the cached tags
-are up-to-date so no real reparsing is necessary - but it can also run a full
-reparse and this reparse is not being done when Emacs is idle but immediatelly
-and not interruptable (as with the idle-scheduler of semantic), which can be
-quite annoying with big source-files.
-
-To make a long story short: It is strongly recommended to enable the
-@code{semantic-idle-scheduler-mode} or
-@code{global-semantic-idle-scheduler-mode}! See @ref{Setting up
-CEDET/semantic}. This will give you in all cases the behavior you would expect
-of en IDE like ECB/semantic.
-
-@subsubsection Synchronizing with indirect buffers
-
-ECB works out of the box with indirect buffers, especially with indirect
-buffer clones created with the command @code{clone-indirect-buffer} (only
-available with GNU Emacs >= 21). They will be handled as all other buffers and
-you can work with them with no difference to ``normal'' buffers. With one
-exception:
-
-@strong{Please note}: Cause of a bug in Emacs 22 (and maybe also in Emacs 23)
-the propagation of parsing informations from one buffer to all others which are
-in an indirect-buffer relation to the same base-buffer does currently not
-work.
-
-What does this mean: If you modify a buffer then Emacs propagates this change
-to all buffers with the same base-buffer. ECB/semantic recognize this change
-and do all necessary to automatically reparse the changed buffer (at least if
-you have customized semantic/ECB to do this). So far so good, but: If you
-switch to another buffer with the same base-buffer then you will notice that
-the methods-window of ECB still displays the contents before the change, ie.
-the need for a reparse has not been propagated to these other buffers. This is
-a bug in Emacs.
-
-What can you do: As long as this bug is not fixed there is no chance that all
-other affected ``indirect-related'' buffers will be reparsed automatically
-after modifying one of them. So you have to do this reparse ``by hand'' after
-switching to such an indirect-related buffer, but this is very simple: Just
-call the command @code{ecb-rebuild-methods-buffer} with prefix arg or hit
-@key{C-u C-c . r} (key this command is bound to).
-
-Lets make an example:
-
-@enumerate
-
-@item
-
-Suppose we have a sourcefile test.java loaded as a buffer into Emacs and
-suppose further we have created two indirect-buffer clones test-clone1.java and
-test-clone2.java - all of these buffers point to the same file: test.java.
-
-@item
-
-Now lets be the buffer test-clone1.java the current buffer and let us modify
-it (e.g. adding a new method). If you have enabled the idle-reparse mechanism
-of semantic (@pxref{Setting up CEDET/semantic}) then this buffer will be
-reparsed automatically and ECBs methods-window will be updated in turn too.
-
-@item
-
-So far so good. But if you now switch to one of the two other buffers, lets
-say to test.java, then you will notice that the change done in
-test-clone1.java is also visible in the buffer test.java but the
-ECB-methods-window for test.java will display the contents before the change.
-This is cause of the Emacs-bug described above.
-
-@item
-
-To update the methods-window for test.java to the new contents you have to call
-@code{ecb-rebuild-methods-buffer} with prefix argument (ie. clear-cache is
-true) or hitting @key{C-u C-c . r}. Note: Calling this command without prefix
-argument is not enough!
-
-@end enumerate
-
-@subsubsection Jumping to the definition of external types
-
-There are two common types of ``external'' tags displayed in the
-method-window, mostly with object oriented programing-languages:
-
-@enumerate
-
-@item parent-types
-
-Tags which represent the type of a parent-class (which can be defined in the
-same file but which is more often defined in another file). All parents
-(regardless if defined internaly or externaly) of a type will be displayed
-under a bucket ``[Parents]'' in the methods-window of ECB.
-
-@item ``virtual'' types
-
-In OO-languages like CLOS, eieio and C++ there can be nodes with type-tags in
-the method-buffer which are somehow virtual because there is no definition in
-the current source-file. But such a virtual type collects all its outside
-defined members like methods in C++ which are defined in the @file{*.cc} file
-whereas the class-definition is defined in the associated header-file.
-
-@end enumerate
-
-In both cases the user wants to jump to the definition of the type if he clicks
-onto the related node in the methods-window of ECB.
-
-Here is a C++-example for ``virtual'' types (2) and parent types (1) which
-explains this in detail:
-
-Let's say this class is defined in a file @file{ParentClass.h}:
-
-@example
-@group
-class ParentClass
-@{
-protected:
-  int p;
-@};  
-@end group
-@end example
-
-Let's say this class is defined in a file @file{ClassWithExternals.h}
-
-@example
-@group
-#include "ParentClass.h"
-
-class ClassWithExternals : public ParentClass
-@{
-private:
-  int i;
-
-public:
-  ClassWithExternals();
-  ~ClassWithExternals();
-@};
-@end group
-@end example
-
-Both the constructor and the destructor of the class
-``ClassWithExternals'' are implemented in a file
-@file{ClassWithExternals.cc}:
-
-@example
-@group
-#include "test.h"
-
-ClassWithExternals::ClassWithExternals(int i,
-                                       boolean b,
-                                       char c)
-@{
-  return;
-@}
-
-void
-ClassWithExternals::~ClassWithExternals()
-@{
-  return;
-@}
-@end group
-@end example
-
-ECB displays the contents of @file{ClassWithExternals.cc} in its methods-buffer like
-follows:
-
-@example
-@group
-[-] [Includes]
- `- test.h
-[-] ClassWithExternals
- |  +ClassWithExternals (+i:int, +b:class boolean, +c:char):ClassWithExternals
- `- +~ClassWithExternals ():void
-@end group
-@end example
-
-Both the constructor and the destructor of the class
-``ClassWithExternals'' are grouped under their class-type. But this class-type
-``ClassWithExternals'' is represented by a so called ``virtual'' or ``faux''
-node-tag, i.e. there is no real tag in the current source-buffer for this tag.
-
-If a user now clicks onto the node of ``ClassWithExternals'' then he wants to
-jump to the right location in the right file where ``ClassWithExternals'' is
-defined. ECB now uses now some smart mechanisms (see below) to do this. In
-case of success (means ECB has found the definition) it opens the right file
-and point will stay at beginning of the definition of the type
-``ClassWithExternals''.
-
-The contents of @file{ClassWithExternals.h} are then displayed like
-follows:
-
-@example
-@group
-[-] [Includes]
- `- ParentClass.h
-[-] ClassWithExternals:class
- |  [-] [Parents]
- |   `- ParentClass
- |  [-] [Variables]
- |   `- -i:int
- |  +ClassWithExternals ():ClassWithExternals
- |  +~ClassWithExternals ():void
- `- [+] [Misc]
-@end group
-@end example
-
-Now let's play it again: Now we want to go to the definition of the
-parent-type ``ParentClass'' when we click onto the related node under the
-bucket ``[Parents]''. Again ECB uses its smartness to jump to the definition
-of the class ``ParentClass'' when you click onto the node ``ParentClass''.
-
-Now lets explain the precondition which must be fulfilled so ECB can do its
-job:
-
-@itemize
-@item Customizing the semantic analyzer for your needs
-
-ECB itself is quite stupid concerning finding external tags. But it can use
-the semantic-analyzer of the CEDET-suite (remember: The CEDET-suite is a
-must-requirement of ECB, see @ref{Requirements}). But this in turn means that the
-semantic-analyzer must be customized in the right way for the needs of your
-programing projects. Mainly this means activating semanticdb and setting the
-correct include-path etc...
-
-@strong{Please note}: Read the related manuals of semantic and - strongly
-recommended - read in addition the article ``Gentle introduction to Cedet''.
-It's worth to read it! The website of CEDET contains a link, you find it here:
-@ifhtml
-@uref{http://xtalk.msk.su/~ott/en/writings/emacs-devenv/EmacsCedet.html}
-@end ifhtml
-@ifnothtml
-@url{http://xtalk.msk.su/~ott/en/writings/emacs-devenv/EmacsCedet.html}
-@end ifnothtml
-
-@item Customize the related options of ECB:
-
-There is exactly one option you have to take into account:
-@code{ecb-find-external-tag-functions}. This defines the method ECB uses to
-find these external tags.
-
-Mostly there is nothing to do because the default values should do a good job.
-But if things are running bad then maybe this is the right screw for you.
-
-Finding such external types can be very complex and there are several roads to
-success. ECB uses per default methods based on the semantic-analyzer. But this
-option allows to define own find-functions and tell ECB to uses them.
-
-This functionality is set on a major-mode base, i.e. for every major-mode a
-different setting can be used. ECB first performs all find-functions defined
-for current major-mode (if any) anf then all find-functions defined for the
-special symbol 'default (if any).
-
-ECB offers some predefined senseful finding-functions. Currently there are:
-
-@itemize @minus
-@item @code{ecb-search-tag-by-semantic-analyzer}: The most powerfil one, based
-on the semantic-analyzer
-@item @code{ecb-search-tag-by-semanticdb}: A backup for the first one
-@item @code{ecb-jde-show-class-source}: For major-mode @code{jde-mode} when
-coding in java, uses java-mechanisms - maybe for java the best choice.
-@end itemize
-
-See the documentation of the option and also of these function for details how
-they work and how to write own finding-functions.
-
-@end itemize
 
 
 @subsubsection Customizing the methods ECB-window
@@ -2265,7 +2012,7 @@ Emacs Code Browser.
 * The edit-area::               How to use the edit-area
 * Temp- and compile-buffers::   Displaying temp- and compilation-buffers
 * The other window::            How the ``other window'' is determined
-* The Methods buffer::          Using and customizing the Methods-buffer
+* The Methods window::          Using and customizing the Methods-window
 * Filtering the tree-buffers::  Applying filters to the ECB-tree-buffers 
 * The ECB-layout::              Changing, customizing, redrawing, creating
 * Hiding the ECB windows::      Hiding/Showing the ECB-windows
@@ -3094,7 +2841,7 @@ compile-window is set or not. In the latter case using
 @code{display-buffer} or @code{pop-to-buffer} takes always account for
 the values of these options - like the original behavior of Emacs.
 
-@node The other window, The Methods buffer, Temp- and compile-buffers, Usage of ECB
+@node The other window, The Methods window, Temp- and compile-buffers, Usage of ECB
 @section How the ``other window'' is determined by ECB
 
 @cindex other window
@@ -3284,8 +3031,8 @@ Here is an example for such a function:
 
 This example implements the builtin smart behavior described above.
 
-@node The Methods buffer, Filtering the tree-buffers, The other window, Usage of ECB
-@section Using and customizing the ECB-Methods buffer
+@node The Methods window, Filtering the tree-buffers, The other window, Usage of ECB
+@section Using and customizing the ECB-Methods window
 
 ECB is mostly designed to display parsing information for files
 supported by semantic. But beginning with version 1.94 it also
@@ -3319,10 +3066,12 @@ ECB.
 * Visiting tags::               Possible actions after visiting a tag
 * Expanding::                   Explicit and automatic expanding
 * Customizing the display::     How to customize the Methods-buffer display
-* Rebuilding the Methods::      When to rebuild the Methods-buffer      
+* Updating Methods-window::     Updating Methods with contents of current buffer
+* Updating for ind. buffers::   Updating Methods for indirect buffers
+* Jumping to external tags::    Jumping to the definition of external types
 @end menu
 
-@node Visiting tags, Expanding, The Methods buffer, The Methods buffer
+@node Visiting tags, Expanding, The Methods window, The Methods window
 @subsection Possible actions after visiting a tag
 
 You visit a tag by clicking with either the primary oder secondary
@@ -3357,7 +3106,7 @@ Per default ECB performs the actions
 @code{ecb-tag-visit-highlight-tag-header} for all major-modes.
 
 
-@node Expanding, Customizing the display, Visiting tags, The Methods buffer
+@node Expanding, Customizing the display, Visiting tags, The Methods window
 @subsection Explicit and automatic expanding of the ECB-methods-buffer
 
 @subsubsection Explicit expanding all nodes to a certain expansion level
@@ -3495,7 +3244,7 @@ the following highlighting of the node for the current tag expands the
 needed parts of the tree-buffer.
 
 
-@node Customizing the display, Rebuilding the Methods, Expanding, The Methods buffer
+@node Customizing the display, Updating Methods-window, Expanding, The Methods window
 @subsection Customizing the display of the Methods-buffer
 
 @cindex semantic tag
@@ -3567,8 +3316,19 @@ recommended to have a look into the customize-group @code{ecb-methods}
 All these options are only relevant for semantic-sources and take no
 effect for non-semantic-sources!
 
-@node Rebuilding the Methods, , Customizing the display, The Methods buffer
-@subsection Rebuilding the Methods-buffer
+XXXXX
+
+@node Updating Methods-window, Updating for ind. buffers, Customizing the display, The Methods window
+@subsection Updating the Methods-window with contents of current source-buffer
+
+First a preliminary remark: Do not confuse this chapter with that
+synchronizing described in @ref{ECB-window synchronizing}. The latter one
+describes the mechanism for synchronizing the ECB-windows when the
+current-buffer in the edit-area has been changed. This chapter describes how
+to update the ECB-methods-window with the contents of the current-buffer
+if the buffer has been modified!
+
+@subsubsection The short version
 
 In almost all cases there is @strong{NO} need to manually rebuild the
 method-buffer, because it is always done automatically if necessary;
@@ -3576,8 +3336,10 @@ the mechanism depends on the sources:
 
 @itemize @minus
 @item semantic-sources:
-The command @code{global-semantic-auto-parse-mode} switches on autom.
-reparsing of semantic-sources.
+The command @code{global-semantic-idle-scheduler-mode} switches on autom.
+reparsing of semantic-sources. All the rest will be done by semantic and ECB
+automatically. ECB and semantic always try to reparse and update as less as
+possible of the sourcecode-buffer.
 
 @item non-semantic-sources (imenu supported):
 You can switch on autom. rescanning/reparsing with the option
@@ -3595,24 +3357,339 @@ external tool. But of course you can program such a an
 etags-auto-rescan mechanism for yourself!
 @end itemize
 
-Besides for etags-supported non-semantic-sources there exist a few rare
-scenarios also for the other sources where a complete manual rebuild
-can be necessary. Here is one example:
+@subsubsection The full and long story
 
-Depending on the semantic-version: If an Elisp-file is parsed which
-contains a defun X in the middle where the closing ) is missing, then
-semantic parses only until this defun X is reached and you will get an
-incomplete ECB-method buffer. In such a case you must complete the
-defun X and then completely reparse the Elisp-file and rebuild the ECB
-method buffer!
+Generally ECB calls semantic to get the list of tags for current source-file
+of current edit-window. Per default ECB does never automatically force a
+reparse of the source-file after this has been changed - this is only done on
+demand by calling the command @code{ecb-rebuild-methods-buffer}. So per
+default the idle-scheduler of semantic is responsible for reparsing the
+source-file when this is necessary (see `semantic-idle-scheduler-mode' for
+further details). So this scheduler is also responsible when
+updating/sychronizing the methods-window with current buffer-contents. This is
+the most user-resonsible and therefore the recommended approach.
 
-A complete manually rebuild is done by
-@code{ecb-rebuild-methods-buffer}. For etags-parsed
-non-semantic-sources this causes an automatic saving of the
-source-buffer because otherwise etags would not operate with the
-latest contents!
+ECB is responsible to update the methods-window after the idle scheduler of
+semantic has triggered either a full or partial reparse of the source-buffer.
+Semantic always tries to reparse as less tags of the buffer as possible, often
+just the edited section (if it has no sideeffect to tags outside the edited
+parts). ECB handles this partial reparse output smoothly and updates only
+these nodes which are releated to the reparsed tags.
 
-@node Filtering the tree-buffers, The ECB-layout, The Methods buffer, Usage of ECB
+The main effect a user will notice is that edit actions which trigger just a
+partial reparse will just update the related node in the methods-window and
+not the whole methods-window. One of the main advantages is that this
+preserves the expand/collapse state of the methods-window.
+
+Editing examples which trigger only a partial reparse:
+@itemize
+@item editing a function- or method-body
+@item changing the name of a variable or function/method
+@item modifying the return-type of a function/method
+@item and some other...
+@end itemize
+
+In these cases only the related node in the methods-window will change
+nothing else, ie. the expand/collapse-states of all other nodes in the
+methods-window will not be changed.
+
+@strong{Summary}: It's strongly recommended to enable
+@code{semantic-idle-scheduler-mode} or
+@code{global-semantic-idle-scheduler-mode} (@pxref{Setting up CEDET/semantic})
+because then reparsing is always done during idle-time of Emacs and - maybe
+even more important - it is also interruptable.
+
+But if this idle-scheduler is switched off then ECB offers now two
+possibilities (via @code{ecb-force-reparse-when-semantic-idle-scheduler-off}):
+
+@itemize @bullet
+
+@item
+
+Not forcing itself a reparse when tags are needed by ECB: then a user declines
+knowingly Emacs/semantic-driven parsing of code when he/she switches off the
+idle-mode of semantic. This is the default behavior of ECB and the default
+value of this option. But this has also the consequence that the
+methods-buffer is only filed on demand via @code{ecb-rebuild-methods-buffer}
+(bound to @key{C-c . r})!
+
+This means also in consequence that the methods-buffer is not
+automatically filled when a source-file is opened but first on demand
+after calling the command @code{ecb-rebuild-methods-buffer}!
+
+@item
+
+Forcing a reparse when tags are needed: Then ECB forces semantic to parse
+the source-file when ECB needs tags to display. For this behavior this
+option has to be set to not nil.
+@end itemize
+
+The term ``forcing a reparse by semantic'' is a simplification: ECB uses then
+the function @code{semantic-fetch-tags} which can decide that the cached tags
+are up-to-date so no real reparsing is necessary - but it can also run a full
+reparse and this reparse is not being done when Emacs is idle but immediatelly
+and not interruptable (as with the idle-scheduler of semantic), which can be
+quite annoying with big source-files.
+
+To make a long story short: It is strongly recommended to enable the
+@code{semantic-idle-scheduler-mode} or
+@code{global-semantic-idle-scheduler-mode}! See @ref{Setting up
+CEDET/semantic}. This will give you in all cases the behavior you would expect
+of an IDE like ECB/semantic.
+
+@node Updating for ind. buffers, Jumping to external tags, Updating Methods-window, The Methods window
+@subsection Updating Methods for indirect buffers
+
+ECB works out of the box with indirect buffers, especially with indirect
+buffer clones created with the command @code{clone-indirect-buffer} (only
+available with GNU Emacs >= 21). They will be handled as all other buffers and
+you can work with them with no difference to ``normal'' buffers. With one
+exception:
+
+@strong{Please note}: Cause of a bug in Emacs 22 (and maybe also in Emacs 23)
+the propagation of parsing informations from one buffer to all others which are
+in an indirect-buffer relation to the same base-buffer does currently not
+work.
+
+What does this mean: If you modify a buffer then Emacs propagates this change
+to all buffers with the same base-buffer. ECB/semantic recognize this change
+and do all necessary to automatically reparse the changed buffer (at least if
+you have customized semantic/ECB to do this). So far so good, but: If you
+switch to another buffer with the same base-buffer then you will notice that
+the methods-window of ECB still displays the contents before the change, ie.
+the need for a reparse has not been propagated to these other buffers. This is
+a bug in Emacs.
+
+What can you do: As long as this bug is not fixed there is no chance that all
+other affected ``indirect-related'' buffers will be reparsed automatically
+after modifying one of them. So you have to do this reparse ``by hand'' after
+switching to such an indirect-related buffer, but this is very simple: Just
+call the command @code{ecb-rebuild-methods-buffer} with prefix arg or hit
+@key{C-u C-c . r} (key this command is bound to).
+
+Lets make an example:
+
+@enumerate
+
+@item
+
+Suppose we have a sourcefile test.java loaded as a buffer into Emacs and
+suppose further we have created two indirect-buffer clones test-clone1.java and
+test-clone2.java - all of these buffers point to the same file: test.java.
+
+@item
+
+Now lets be the buffer test-clone1.java the current buffer and let us modify
+it (e.g. adding a new method). If you have enabled the idle-reparse mechanism
+of semantic (@pxref{Setting up CEDET/semantic}) then this buffer will be
+reparsed automatically and ECBs methods-window will be updated in turn too.
+
+@item
+
+So far so good. But if you now switch to one of the two other buffers, lets
+say to test.java, then you will notice that the change done in
+test-clone1.java is also visible in the buffer test.java but the
+ECB-methods-window for test.java will display the contents before the change.
+This is cause of the Emacs-bug described above.
+
+@item
+
+To update the methods-window for test.java to the new contents you have to call
+@code{ecb-rebuild-methods-buffer} with prefix argument (ie. clear-cache is
+true) or hitting @key{C-u C-c . r}. Note: Calling this command without prefix
+argument is not enough!
+
+@end enumerate
+
+@node Jumping to external tags, , Updating for ind. buffers, The Methods window
+@subsection Jumping to the definition of external types
+
+There are two common types of ``external'' tags displayed in the
+method-window, mostly with object oriented programing-languages:
+
+@enumerate
+
+@item parent-types
+
+Tags which represent the type of a parent-class (which can be defined in the
+same file but which is more often defined in another file). All parents
+(regardless if defined internaly or externaly) of a type will be displayed
+under a bucket ``[Parents]'' in the methods-window of ECB.
+
+@item ``virtual'' types
+
+In OO-languages like CLOS, eieio and C++ there can be nodes with type-tags in
+the method-buffer which are somehow virtual because there is no definition in
+the current source-file. But such a virtual type collects all its outside
+defined members like methods in C++ which are defined in the @file{*.cc} file
+whereas the class-definition is defined in the associated header-file.
+
+@end enumerate
+
+In both cases the user wants to jump to the definition of the type if he clicks
+onto the related node in the methods-window of ECB.
+
+Here is a C++-example for ``virtual'' types (2) and parent types (1) which
+explains this in detail:
+
+Let's say this class is defined in a file @file{ParentClass.h}:
+
+@example
+@group
+class ParentClass
+@{
+protected:
+  int p;
+@};  
+@end group
+@end example
+
+Let's say this class is defined in a file @file{ClassWithExternals.h}
+
+@example
+@group
+#include "ParentClass.h"
+
+class ClassWithExternals : public ParentClass
+@{
+private:
+  int i;
+
+public:
+  ClassWithExternals();
+  ~ClassWithExternals();
+@};
+@end group
+@end example
+
+Both the constructor and the destructor of the class
+``ClassWithExternals'' are implemented in a file
+@file{ClassWithExternals.cc}:
+
+@example
+@group
+#include "test.h"
+
+ClassWithExternals::ClassWithExternals(int i,
+                                       boolean b,
+                                       char c)
+@{
+  return;
+@}
+
+void
+ClassWithExternals::~ClassWithExternals()
+@{
+  return;
+@}
+@end group
+@end example
+
+ECB displays the contents of @file{ClassWithExternals.cc} in its methods-buffer like
+follows:
+
+@example
+@group
+[-] [Includes]
+ `- test.h
+[-] ClassWithExternals
+ |  +ClassWithExternals (+i:int, +b:class boolean, +c:char):ClassWithExternals
+ `- +~ClassWithExternals ():void
+@end group
+@end example
+
+Both the constructor and the destructor of the class
+``ClassWithExternals'' are grouped under their class-type. But this class-type
+``ClassWithExternals'' is represented by a so called ``virtual'' or ``faux''
+node-tag, i.e. there is no real tag in the current source-buffer for this tag.
+
+If a user now clicks onto the node of ``ClassWithExternals'' then he wants to
+jump to the right location in the right file where ``ClassWithExternals'' is
+defined. ECB now uses now some smart mechanisms (see below) to do this. In
+case of success (means ECB has found the definition) it opens the right file
+and point will stay at beginning of the definition of the type
+``ClassWithExternals''.
+
+The contents of @file{ClassWithExternals.h} are then displayed like
+follows:
+
+@example
+@group
+[-] [Includes]
+ `- ParentClass.h
+[-] ClassWithExternals:class
+ |  [-] [Parents]
+ |   `- ParentClass
+ |  [-] [Variables]
+ |   `- -i:int
+ |  +ClassWithExternals ():ClassWithExternals
+ |  +~ClassWithExternals ():void
+ `- [+] [Misc]
+@end group
+@end example
+
+Now let's play it again: Now we want to go to the definition of the
+parent-type ``ParentClass'' when we click onto the related node under the
+bucket ``[Parents]''. Again ECB uses its smartness to jump to the definition
+of the class ``ParentClass'' when you click onto the node ``ParentClass''.
+
+Now lets explain the precondition which must be fulfilled so ECB can do its
+job:
+
+@itemize
+@item Customizing the semantic analyzer for your needs
+
+ECB itself is quite stupid concerning finding external tags. But it can use
+the semantic-analyzer of the CEDET-suite (remember: The CEDET-suite is a
+must-requirement of ECB, see @ref{Requirements}). But this in turn means that the
+semantic-analyzer must be customized in the right way for the needs of your
+programing projects. Mainly this means activating semanticdb and setting the
+correct include-path etc...
+
+@strong{Please note}: Read the related manuals of semantic and - strongly
+recommended - read in addition the article ``Gentle introduction to Cedet''.
+It's worth to read it! The website of CEDET contains a link, you find it here:
+@ifhtml
+@uref{http://xtalk.msk.su/~ott/en/writings/emacs-devenv/EmacsCedet.html}
+@end ifhtml
+@ifnothtml
+@url{http://xtalk.msk.su/~ott/en/writings/emacs-devenv/EmacsCedet.html}
+@end ifnothtml
+
+@item Customize the related options of ECB:
+
+There is exactly one option you have to take into account:
+@code{ecb-find-external-tag-functions}. This defines the method ECB uses to
+find these external tags.
+
+Mostly there is nothing to do because the default values should do a good job.
+But if things are running bad then maybe this is the right screw for you.
+
+Finding such external types can be very complex and there are several roads to
+success. ECB uses per default methods based on the semantic-analyzer. But this
+option allows to define own find-functions and tell ECB to uses them.
+
+This functionality is set on a major-mode base, i.e. for every major-mode a
+different setting can be used. ECB first performs all find-functions defined
+for current major-mode (if any) anf then all find-functions defined for the
+special symbol 'default (if any).
+
+ECB offers some predefined senseful finding-functions. Currently there are:
+
+@itemize @minus
+@item @code{ecb-search-type-tag-by-semantic-analyzer}: The most powerfil one, based
+on the semantic-analyzer
+@item @code{ecb-search-type-tag-by-semanticdb}: A backup for the first one
+@item @code{ecb-jde-show-class-source}: For major-mode @code{jde-mode} when
+coding in java, uses java-mechanisms - maybe for java the best choice.
+@end itemize
+
+See the documentation of the option and also of these function for details how
+they work and how to write own finding-functions.
+
+@end itemize
+
+@node Filtering the tree-buffers, The ECB-layout, The Methods window, Usage of ECB
 @section Applying filters to the special ECB-tree-buffers
 
 @cindex Filter
@@ -4696,7 +4773,7 @@ name of the user-defined type you have specified during
 layout-creation.
 
 This function @code{ecb-set-X-buffer} must be defined with the macro
-@code{defecb-window-dedicator} and has to switch to the buffer you
+@code{defecb-window-dedicator-to-ecb-buffer} and has to switch to the buffer you
 want to display in this window. This macro automatically ensures that
 this window is dedicated to that buffer.
 
@@ -4705,7 +4782,7 @@ then you have to define and load a function
 @code{ecb-set-example-buffer} which could be defined like follows:
 
 @example
-(defecb-window-dedicator ecb-set-example-buffer " *ECB example-buf*"
+(defecb-window-dedicator-to-ecb-buffer ecb-set-example-buffer " *ECB example-buf*"
   (switch-to-buffer (get-buffer-create " *ECB example-buf*")))
 @end example
 
@@ -6270,6 +6347,7 @@ been done for a better readable option index. @xref{Option Index}.
 * ecb-methods::                 Customizing the ECB-methods-window
 * ecb-history::                 Customizing the ECB-history-window
 * ecb-analyse::                 Customizing the ECB-analyse-window
+* ecb-symboldef::               Customizing the ECB-symboldef-window
 * ecb-layout::                  Customizing the ECB-layout
 * ecb-compilation::             Customizing the compile-window
 * ecb-create-layout::           Customizing options for creating layouts
@@ -7503,12 +7581,6 @@ Show source files in directories buffer.
 Paths where to find code sources. Each path can have an optional alias
 that is used as it's display name. If no alias is set, the path is
 used as display name.
-@end defopt
-
-@defopt source-path
-Paths where to find code sources. Each path can have an optional alias
-that is used as it's display name. If no alias is set, the path is
-used as display name.
 
 Lisp-type of tis option: The value must be a list L whereas each
 element of L is either
@@ -7518,7 +7590,7 @@ a simple string which has to be the full path of a directory (this
 string is displayed in the directory-browser of ECB) or
 
 @item
-a 2-element list whereas the first element is the full path of a
+a 2-elemet list whereas the first element is the full path of a
 directory (string) and the second element is an arbitrary alias
 (string) for this directory which is then displayed instead of the
 underlying directory.
@@ -7940,8 +8012,8 @@ ECB first performs all find-functions defined for current @code{major-mode}
 
 ECB offers some predefined senseful finding-functions. Currently there are:
 @itemize
-@item @code{ecb-search-tag-by-semantic-analyzer} (most powerful)
-@item @code{ecb-search-tag-by-semanticdb}
+@item @code{ecb-search-type-tag-by-semantic-analyzer} (most powerful)
+@item @code{ecb-search-type-tag-by-semanticdb}
 @item @code{ecb-jde-show-class-source} (for major-mode @code{jde-mode} when
 coding in java)
 @end itemize
@@ -8598,6 +8670,13 @@ displayed flat.
 All entries with related filesources residing in the same
 directory will be contained in a bucket named with that directory.
 
+@item 'directory-with-source-path:
+
+Same as 'directory but the best matching source-path of the directory-window
+(see @code{ecb-source-path}) substituts the matching part of the directory.
+For this a special face is used (see
+@code{ecb-history-bucket-node-dir-soure-path-face}).
+
 @item 'mode:
 
 All entries with related buffers have the same
@@ -8746,7 +8825,7 @@ Asks, if the history-entry should be removed after the kill.
 @end itemize
 @end defopt
 
-@node ecb-analyse, ecb-layout, ecb-history, Customizable options
+@node ecb-analyse, ecb-symboldef, ecb-history, Customizable options
 @subsection Group ecb-analyse
 
 @defopt analyse-bucket-element-face
@@ -8977,7 +9056,116 @@ is echo-area-display.
 See also @code{ecb-analyse-gen-tag-info-fn}.
 @end defopt
 
-@node ecb-layout, ecb-compilation, ecb-analyse, Customizable options
+@node ecb-symboldef, ecb-layout, ecb-analyse, Customizable options
+@subsection Group ecb-analyse
+
+@defopt symboldef-buffer-name
+Name of the ECB-symbol-definition buffer.
+Because it is not a normal buffer for editing you should enclose the name with
+stars, e.g. ``*ECB Symboldefinition*''.
+
+If it is necessary for you you can get emacs-lisp access to the buffer-object
+of the ECB-symbol-definition-buffer by this name, e.g. by a call of
+@code{set-buffer}.
+
+Changes for this option at runtime will take affect only after deactivating and
+then activating ECB again!
+@end defopt
+
+@defopt symboldef-buffer-sync
+Synchronize the symboldef buffer automatically with current edit buffer.
+
+If @code{always} then the synchronization takes place always a buffer changes in the
+edit window, if nil then never. If a list of major-modes then only if the
+@code{major-mode} of the new buffer belongs NOT to this list.
+
+If the special value @code{basic} is set then ECB uses the setting of the option
+@code{ecb-basic-buffer-sync}.
+
+IMPORTANT NOTE: Every time the synchronization is done the hook
+@code{ecb-symboldef-buffer-sync-hook} is evaluated.
+@end defopt
+
+@defopt symboldef-buffer-sync-delay
+Time Emacs must be idle before the symboldef-buffer is synchronized.
+Synchronizing is done with the current source displayed in the edit window. If
+nil then there is no delay, means synchronization takes place immediately. A
+small value of about 0.25 seconds saves CPU resources and you get even though
+almost the same effect as if you set no delay.
+
+If the special value 'basic is set then ECB uses the setting of the option
+@code{ecb-basic-buffer-sync-delay}.
+@end defopt
+
+@defopt symboldef-buffer-sync-hook
+ook run at the end of the function @code{ecb-symboldef-buffer-sync}.
+See documentation of @code{ecb-symboldef-buffer-sync} for conditions when
+synchronization takes place and so in turn these hooks are evaluated.
+
+Preconditions for such a hook:
+
+@itemize
+@item Current buffer is the buffer of the currently selected edit-window.
+@item The symboldef-buffer is displayed in a visible window of the
+ecb-frame (so no check for visibilty of the symboldef-buffer in
+the ecb-frame is necessary in a hook function)
+@end itemize
+
+Postcondition for such a hook:
+Point must stay in the same edit-window as before evaluating the hook.
+
+Important note: If the option @code{ecb-symboldef-buffer-sync} is not
+nil the function @code{ecb-symboldef-buffer-sync} is running either
+every time Emacs is idle or even after every command (see
+@code{ecb-symboldef-buffer-sync-delay}). So if the symboldef-buffer is
+displayed in a window of the ecb-frame (see preconditions above)
+these hooks can be really called very often! Therefore each
+function of this hook should/must check in an efficient way at
+beginning if its task have to be really performed and then do
+them only if really necessary! Otherwise performance of Emacs
+could slow down dramatically!
+@end defopt
+
+@defopt symboldef-find-functions
+Funtions to find the definition for current symbol under point.
+This functionality is set on a major-mode base, i.e. for every major-mode a
+different setting can be used. The value of this option is a list of
+cons-cells:
+
+@itemize
+
+@item
+The car is either a major-mode symbol or the special symbol 'default which
+means if no setting for a certain major-mode is defined then the cdr of
+the 'default cons-cell is used.
+
+@item
+The car is a function intended to find the definition of a certain symbol for
+files of this major-mode. Such a function will be called with two arguments,
+the first is the symbol-name as string for which the definition should be
+displayed and the second the current edit-buffer as buffer-object,
+i.e. the current buffer of the current edit-window. The function will be
+called with the special ecb-symbol-definition-buffer as current buffer
+whereas this buffer is empty. The function has to insert everything
+necessary to display the symbol-definition and is also responsible to format
+the displayed text. The buffer-local variable @code{fill-column is already preset
+to the window-width of the special ecb-window minus 1. The function is
+responsible to set the buffer-local variable `truncate-lines} appropriate.
+The function can either return nil or a string which will be integrated in
+the modeline-display of this ecb-window.
+@end itemize
+
+There are two prefined functions @code{ecb-symboldef-find-lisp-doc} and
+@code{ecb-symboldef-find-definition} whereas the latter on is used a default
+find-function.
+@end defopt
+
+@defopt symboldef-minimum-symbol-length
+Minimum length a symbol must have so its definition or doc is displayed.
+@end defopt
+
+
+@node ecb-layout, ecb-compilation, ecb-symboldef, Customizable options
 @subsection Group ecb-layout
 
 @noindent
@@ -9208,30 +9396,31 @@ changed the ECB-screen-layout by any action you can always go back to
 this layout with @code{ecb-redraw-layout}
 @end defopt
 
-
 @defopt layout-window-sizes
-Specifies the sizes of the ECB windows for each layout. The easiest
-way (and also the strongly recommended way) to change this variable is
-to change the window sizes by dragging the window borders using the
-mouse and then store the window sizes by calling the command
-@code{ecb-store-window-sizes}. Next time the layout is redrawn the
-values stored in this option will be used.
+Specifies the sizes of the ECB windows for each layout.
+The easiest way (and also the very strongly recommended way) to set this
+option is to change the window sizes by dragging the window borders using
+the mouse and then store the window sizes by calling the command
+@code{ecb-store-window-sizes}. Next time the layout is redrawn the values stored in
+this option will be used.
 
-If @code{ecb-store-window-sizes} is used then the windows sizes are
-stored per default as fractions of current frame-width and -height of
-the ecb-frame, so the stored values will ``work'' for other frame
-sizes too. But if you call @code{ecb-store-window-sizes} with a
-prefix-argument then the fixed values of current width and height are
-stored!
+If @code{ecb-store-window-sizes} is used then the windows sizes are stored per
+default as fractions of current frame-width and -height of the ecb-frame, so
+the stored values will ``work'' for other frame sizes too. But if you call
+@code{ecb-store-window-sizes} with a prefix-argument then the fixed values of
+current width and height are stored!
 
-If this option is set ``by hand'' (i.e. not by
-@code{ecb-store-window-sizes}) then the following is important:
-@itemize @minus
-@item
-It is recommended to use fractions of frame-width and -height!.
-@item
-The order of the sequence of the inserted window sizes must be the same as
-@code{other-window} (the not-adviced version!) would walk!
+If this option is set ``by hand'' (i.e. not by @code{ecb-store-window-sizes}) then
+the following is important:
+@itemize
+@item Use always @code{customize-option}, never @code{setq}!
+@item It is recommended to use fractions of frame-width and -height!.
+@item It is also recommended to use buffer-name-symbols instead of plain
+buffer-names (e.g. ecb-history-buffer-name instead of " *ECB History*'')
+@item There must be an entry for each special ecb-buffer of that layout for which
+the sizes are stored.
+@item The order of the sequence of the inserted window sizes doesn't matter
+because each size-pair is assigned to a buffer-name the sizes belong to.
 @end itemize
 @end defopt
 
@@ -9855,6 +10044,17 @@ Changes take first effect after finishing and reactivating ECB!
 Face for not accessible dirs in the directories buffer.
 @end defopt
 
+@defopt history-bucket-node-dir-soure-path-face
+Basic face for displaying the source-path part in a directory bucket.
+This defines the face for the source-path part in a bucket-node of the
+history-buffer if @code{ecb-history-make-buckets} is set to
+'directory-with-source-path. For all other values of
+@code{ecb-history-make-buckets} this option takes no effect.
+
+Changes take first effect after finishing and reactivating ECB!
+@end defopt
+
+
 @defopt history-bucket-node-face
 Basic face for displaying a bucket-node in the ECB-history-buffer.
 This defines the basic face for the bucket-nodes used to bucketize the
@@ -9950,6 +10150,23 @@ Changes take first effect after finishing and reactivating ECB!
 Face for read-only sources.
 @end defopt
 
+@defopt symboldef-prototype-face
+Which face should be used for the symbol prototype in the symboldef-buffer.
+
+The prototype can be the function prototype in case of a function or method or
+- in case of a variable - the type of the variable (in case of a typed
+language).
+@end defopt
+
+@defopt symboldef-symbol-face
+Which face should be used for the symbol itself in the symboldef-buffer.
+
+There are two choices: Either a face or the special symbol 'use-font-lock-face
+whereas the latter one means that ECB uses that face font-lock uses for
+fontifying the symbol (e.g. font-lock-function-name-face for a function
+symbol or font-lock-variable-name-face for a variable symbol).
+@end defopt
+
 @defopt tag-header-face
 Face used for highlighting the tag header after jumping to it by
 clicking onto a node in the methods buffer.
@@ -10014,6 +10231,18 @@ buffer.
 @item ecb-directory-not-accessible-face
 Define a face for not accessible dirs in the directories buffer.
 
+@item ecb-history-bucket-node-dir-soure-path-face:
+Face used for displaying the source-path part in a directory-bucket.
+
+In GNU Emacs 21.X this face inherits from the face
+@code{ecb-history-bucket-node-face}.
+
+With XEmacs and GNU Emacs 20.X there is no inheritance-feature so if the
+buckets in the ECB-history-buffer should be displayed with the same basic
+attributes set by @code{ecb-history-bucket-node-face} this set of basic
+attributes have to be set in
+@code{ecb-history-bucket-node-dir-soure-path-face} too!
+
 @item ecb-history-bucket-node-face:
 Face used for displaying a bucket-node in the ECB-history-buffer.
 
@@ -10071,6 +10300,10 @@ Define face for the data in the mode-line. See
 Define face for the prefix in the mode-line. See
 @code{ecb-mode-line-prefixes}.
 
+@item ecb-mode-line-win-nr-face
+Define face for the window-number in the mode-line. See
+@code{ecb-mode-line-display-window-number}.
+
 @item ecb-source-face:
 Define face used for highlighting current source in the sources
 buffer.
@@ -10084,6 +10317,12 @@ the font-family, the font-size, the basic color etc.
 
 @item ecb-source-read-only-face
 Define a face for read-only sources
+
+@item ecb-symboldef-prototype-face
+Define face used for the prototype of symbol in the symboldef-buffer.
+
+@item ecb-symboldef-symbol-face
+Define a face used for the symbol itself in the symboldef-buffer
 
 @item ecb-tag-header-face:
 Define face used for highlighting the tag header after jumping to it
@@ -10113,10 +10352,6 @@ Define face used with option @code{ecb-type-tag-display}.
 
 @item ecb-type-tag-union-face:
 Define face used with option @code{ecb-type-tag-display}.
-
-@item ecb-mode-line-win-nr-face
-Define face for the window-number in the mode-line. See
-@code{ecb-mode-line-display-window-number}.
 
 @end table
 
@@ -10649,13 +10884,14 @@ possible performance.
 To prepend ECB from checking the VC-state for any file set
 @code{ecb-vc-enable-support} to nil.
 
-Default value: Support for CVS, RCS, SCCS, Subversion, Git and
-Monotone. To identify the VC-backend the functions
-@code{ecb-vc-managed-by-CVS}, @code{ecb-vc-managed-by-RCS} rsp.
-@code{ecb-vc-managed-by-SCCS} rsp. @code{ecb-vc-managed-by-SVN} rsp.
-@code{ecb-vc-managed-by-GIT} rsp. @code{ecb-vc-managed-by-MTN}are used.
+Default value: Support for CVS, RCS, SCCS, Subversion, Git, Bazaar, Monotone
+and Mercurial. To identify the VC-backend the functions
+@code{ecb-vc-dir-managed-by-CVS}, @code{ecb-vc-dir-managed-by-RCS} rsp.
+@code{ecb-vc-dir-managed-by-SCCS} rsp. @code{ecb-vc-dir-managed-by-SVN} rsp.
+@code{ecb-vc--dir-managed-by-GIT} rsp. @code{ecb-vc-dir-managed-by-BZR} rsp.
+@code{ecb-vc-dir-managed-by-MTN} rsp. @code{ecb-vc-dir-managed-by-HG}are used.
 
-For all six backends the function @code{ecb-vc-state} of the
+For all eight backends the function @code{ecb-vc-state} of the
 VC-package is used by default (which uses a heuristic and
 therefore faster but less accurate approach), but there is also
 @code{ecb-vc-recompute-state} available which is an alias for
@@ -10668,6 +10904,7 @@ and @code{ecb-vc-state} for all other backends then an element
 (ecb-vc-dir-managed-by-CVS . ecb-vc-recompute-state) should be added at the
 beginning of this option.
 @end defopt
+
 
 
 @node Submitting problem report, Upgrading, Customizing, Top
@@ -11417,6 +11654,9 @@ Return @code{SCCS} if DIRECTORY is managed by SCCS. nil if not.
 @item ecb-vc-dir-managed-by-MTN DIRECTORY
 return @code{MTN} if directory is managed by Monotone. nil if not.
 
+@item ecb-vc-dir-managed-by-BZR DIRECTORY
+return @code{BZR} if directory is managed by Bazaar. nil if not.
+
 @item ecb-vc-dir-managed-by-GIT DIRECTORY
 Return @code{GIT} if directory is managed by Git. nil if not.
 Because with Git only the top-most directory of a source-tree has a subdir
@@ -11962,7 +12202,7 @@ from being tried to parsed and this (annoying) message will not occur.
 
 @subsection Automatic rescanning/reparsing of non-semantic-sources
 
-In contrast to semantic (see @code{global-semantic-auto-parse-mode})
+In contrast to semantic (see @code{global-semantic-idle-scheduler-mode})
 there is no built-in mechanism for autom. reparsing
 non-semantic-sources and then updating the contents of the
 Methods-buffer.
@@ -13440,7 +13680,8 @@ the details how to use it.
 @item @code{tree-node-remove-child-by-data/name}
 @item @code{tree-node-find-child-by-data/name}
 @item @code{tree-node-find-child-by-name}
-@item @code{tree-node-search-subtree-by-data/name}
+@item @code{tree-node-search-subtree-by-data}
+@item @code{tree-node-search-subtree-by-id}
 @item @code{tree-node-sort-children}
 @item @code{tree-node-toggle-expanded}
 @end itemize
@@ -13678,24 +13919,26 @@ one of the following functions:
 @item @code{ecb-set-methods-buffer}
 @item @code{ecb-set-history-buffer}
 @item @code{ecb-set-speedbar-buffer}
+@item @code{ecb-set-analyse-buffer}
+@item @code{ecb-set-symboldef-buffer}
 @end itemize
 Each layout can only contain one of each tree-buffer-type!
 
 In addition to these functions there is a general macro:
-@code{defecb-window-dedicator}: This macro defines a so called
-``window-dedicator'' which is a function registered at ECB and called
-by ECB to perform any arbitrary code in current window and makes the
-window autom. dedicated at the end. This can be used by third party
-packages like JDEE to create arbitrary ECB-windows besides the
-standard tree-windows.
+@code{defecb-window-dedicator-to-ecb-buffer}: This macro defines a so called
+``window-dedicator'' which is a function registered at ECB and called by ECB
+to perform any arbitrary code in current window and makes the window autom.
+dedicated to the special ecb-buffer at the end. This can be used by third
+party packages like JDEE to create arbitrary ECB-windows besides the standard
+special ecb-windows.
 
-To make a special ECB-window a dedicated window either one of the five
+To make a special ECB-window a dedicated window either one of the seven
 functions above must be used or a new ``window-dedicator''-function
-has to be defined with `defecb-window-dedicator' and must be used
+has to be defined with @code{defecb-window-dedicator-to-ecb-buffer} and must be used
 within the layout-definition.
 
 @item
-Every(!) special ECB-window must be dedicated as described in 2.
+Every(!) special ECB-window must be dedicated to a buffer as described in 2.
 
 @item
 @var{CREATE-CODE} must work correctly regardless if there is already a
@@ -14112,8 +14355,8 @@ and registers the new special window/buffer at ECB.
 
 @lisp
 @group
-(defecb-window-dedicator ecb-examples-set-bufferinfo-buffer
-    ecb-examples-bufferinfo-buffer-name
+(defecb-window-dedicator-to-ecb-buffer ecb-examples-set-bufferinfo-buffer
+    ecb-examples-bufferinfo-buffer-name nil
   "Set the buffer in the current window to the bufferinfo-buffer and make this
 window dedicated for this buffer. Makes the buffer read-only."
 
@@ -14136,7 +14379,7 @@ window dedicated for this buffer. Makes the buffer read-only."
 This is all what we need for the special bufferinfo buffer. We have
 demonstrated already three of the important functions/macros of the
 layout-engine API of ECB: @code{ecb-with-readonly-buffer},
-@code{defecb-autocontrol/sync-function} and @code{defecb-window-dedicator}
+@code{defecb-autocontrol/sync-function} and @code{defecb-window-dedicator-to-ecb-buffer}
 (@pxref{The layout-engine API}. Especially the second macro is a MUST for
 programming good synchronizing functions which do not waste CPU-power! We have
 also shown how to start/activate a synchronizing function by
@@ -14230,8 +14473,8 @@ registers it at ECB.
 
 @lisp
 @group
-(defecb-window-dedicator ecb-examples-set-action-buffer
-    (buffer-name (ecb-examples-action-buffer-create))
+(defecb-window-dedicator-to-ecb-buffer ecb-examples-set-action-buffer
+    ecb-examples-action-buffer-name nil
   "Set the buffer in the current window to the action-buffer
 and make this window dedicated for this buffer."
   (switch-to-buffer (buffer-name (ecb-examples-action-buffer-create))))
@@ -14239,9 +14482,7 @@ and make this window dedicated for this buffer."
 @end lisp
 
 We do not need more code for the action buffer. All of the code is
-standard emacs-lisp which would also needed if used without ECB. You
-see that you can use any arbitrary code as second argument for
-@code{defecb-window-dedicator} as long it returns a buffer-name.
+standard emacs-lisp which would also needed if used without ECB.
 
 @subsubsection Adding the bufferinfo- and action-buffer to a new layout
 
@@ -14420,15 +14661,15 @@ windows.
 @group
 ------------------------------------------------------------------
 |                                                                |
-|                 Upper special window                           |
+|                 Upper special window (a tree-buffer)           |
 |                                                                |
 |----------------------------------------------------------------|
 |                                                                |
-|                 Middle special window                          |
+|                 Middle special window (no tree-buffer)         |
 |                                                                |
 |----------------------------------------------------------------|
 |                                                                |
-|                 Lower special window                           |
+|                 Lower special window (a tree-buffer)           |
 |                                                                |
 |================================================================|
 |                                                                |
@@ -14447,15 +14688,18 @@ Here is the code for that top layout (all buffers are dummy-buffers):
 @lisp
 @group
 
-;; The "window dedicator" functions:
+;; The "window dedicator to buffer" functions:
 
-(defecb-window-dedicator ecb-set-usw-buffer "Upper special window"
+(defecb-window-dedicator-to-ecb-buffer ecb-set-usw-buffer
+   upper-special-window-buffer-name t
   (switch-to-buffer (get-buffer-create "Upper special window")))
 
-(defecb-window-dedicator ecb-set-msw-buffer "Middle special window"
+(defecb-window-dedicator-to-ecb-buffer ecb-set-msw-buffer
+   middle-special-window-buffer-name nil
   (switch-to-buffer (get-buffer-create "Middle special window")))
 
-(defecb-window-dedicator ecb-set-lsw-buffer "Lower special window"
+(defecb-window-dedicator-to-ecb-buffer ecb-set-lsw-buffer
+   lower-special-window-buffer-name t
   (switch-to-buffer (get-buffer-create "Lower special window")))
 
 ;; The layout itself:
@@ -14515,14 +14759,18 @@ Here is the code for that left-right layout, again with dummy-buffers
 (depending to your screen-resolution you will need a quite big value
 for @code{ecb-windows-width}, e.g. 0.4):
 
-Here is one of the ``window dedicator''-functions@footnote{The
-``window dedicators'' for all these ecb-windows/buffers are
-not explicitly described - they look all like
-@code{ecb-set-left1-buffer} - of course with different buffer-names!}:
+Here is one of the ``window dedicator for buffer''-functions@footnote{The
+``window dedicators'' for all these ecb-windows/buffers are not explicitly
+described - they look all like @code{ecb-set-left1-buffer} - of course with
+different buffer-names!}:
 
 @lisp
 @group
-(defecb-window-dedicator ecb-set-left1-buffer "Left1"
+(defvar buffer-name-left1 "left1")
+
+;; Note that the third argument muts be not nil if the ecb-window should
+;; display an ecb-buffer of type tree-buffer!
+(defecb-window-dedicator-to-ecb-buffer ecb-set-left1-buffer buffer-name-left1 nil
   (switch-to-buffer (get-buffer-create "Left1")))
 @end group
 @end lisp
@@ -14575,7 +14823,7 @@ detailed description.
 Functions and macros for programming with layouts and special
 ecb-windows:
 @itemize @minus
-@item @code{defecb-window-dedicator}
+@item @code{defecb-window-dedicator-to-ecb-buffer}
 @item @code{ecb-available-layouts-member-p}
 @item @code{ecb-canonical-ecb-windows-list}
 @item @code{ecb-canonical-edit-windows-list}
@@ -14595,7 +14843,7 @@ ecb-windows:
 @item @code{ecb-split-ver}
 @item @code{ecb-where-is-point}
 @item @code{ecb-with-dedicated-window}@footnote{Normally not needed because
-@code{defecb-window-dedicator} does all necessary.}
+@code{defecb-window-dedicator-to-ecb-buffer} does all necessary.}
 @end itemize
 
 Utility functions/macros:

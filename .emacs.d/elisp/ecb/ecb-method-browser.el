@@ -23,7 +23,7 @@
 ;; GNU Emacs; see the file COPYING.  If not, write to the Free Software
 ;; Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
-;; $Id: ecb-method-browser.el,v 1.94 2009/05/08 14:05:55 berndl Exp $
+;; $Id: ecb-method-browser.el,v 1.99 2010/02/23 16:09:05 berndl Exp $
 
 ;;; Commentary:
 
@@ -38,10 +38,12 @@
 (require 'ecb-face)
 (require 'ecb-speedbar)
 (require 'ecb-common-browser)
+(require 'ecb-speedbar)
 
 (require 'ecb-cedet-wrapper)
+(require 'ecb-semantic)
 ;; This loads the semantic-setups for the major-modes.
-(require 'semantic-load)
+;; (require 'semantic-load)
 
 ;; various loads
 (require 'assoc)
@@ -173,7 +175,7 @@ node immediately visible and destroys the explicitly set expand-level."
   :group 'ecb-methods
   :type 'boolean)
 
-(defcustom ecb-auto-update-methods-after-save t
+(defcustom ecb-auto-update-methods-after-save nil
   "*Automatically updating the ECB method buffer after saving a source."
   :group 'ecb-methods
   :type 'boolean)
@@ -532,9 +534,8 @@ as specified in `ecb-type-tag-expansion'"
                                                  type-specifier
                                                nil))
                          (setq col-type-name text)))
-                     (when (and (equal major-mode 'c++-mode)
-                                (fboundp 'semantic-c-template-string))
-                       (setq template-text (semantic-c-template-string
+                     (when (equal major-mode 'c++-mode)
+                       (setq template-text (ecb--semantic-c-template-string
                                             tag parent-tag colorize))
                        ;; Removing {...} from within the template-text.
                        ;; Normally the semantic-formatters should not add this
@@ -543,7 +544,7 @@ as specified in `ecb-type-tag-expansion'"
                          (if (string-match "^\\(.+\\){.*}\\(.+\\)$" template-text)
                              (setq template-text
                                    (concat (match-string 1 template-text)
-                                           (match-string 2 template-text))))^)
+                                           (match-string 2 template-text)))))
                        (put-text-property 0 (length template-text)
                                           'face
                                           (get-text-property
@@ -561,8 +562,8 @@ as specified in `ecb-type-tag-expansion'"
 (defcustom ecb-find-external-tag-functions
   (list (cons 'default
               (list (if (fboundp 'semantic-calculate-scope)
-                        'ecb-search-tag-by-semantic-analyzer
-                      'ecb-search-tag-by-semanticdb)))
+                        'ecb-search-type-tag-by-semantic-analyzer
+                      'ecb-search-type-tag-by-semanticdb)))
         (cons 'jde-mode (list 'ecb-jde-show-class-source)))
   "*Functions used for searching external tags clicked in the methods buffer.
 The methods buffer displays for oo-languages the parents of a
@@ -596,8 +597,8 @@ ECB first performs all find-functions defined for current
 the special symbol 'default \(if any).
 
 ECB offers some predefined senseful finding-functions. Currently there are:
-- `ecb-search-tag-by-semantic-analyzer' (most powerful)
-- `ecb-search-tag-by-semanticdb'
+- `ecb-search-type-tag-by-semantic-analyzer' (most powerful)
+- `ecb-search-type-tag-by-semanticdb'
 - `ecb-jde-show-class-source' (for major-mode `jde-mode' when coding in java)
   This function does not only the searching but displays the founded tag.
 See the documentation of these function for details how they work.
@@ -635,10 +636,10 @@ Current point depends on the clicked tag:
   :group 'ecb-methods
   :type '(repeat (cons (symbol :tag "Major-mode or default")
                        (repeat (choice :tag "Find external tag function" :menu-tag "Function list"
-                                       (const :tag "ecb-search-tag-by-semantic-analyzer"
-                                              :value ecb-search-tag-by-semantic-analyzer)
-                                       (const :tag "ecb-search-tag-by-semanticdb"
-                                              :value ecb-search-tag-by-semanticdb)
+                                       (const :tag "ecb-search-type-tag-by-semantic-analyzer"
+                                              :value ecb-search-type-tag-by-semantic-analyzer)
+                                       (const :tag "ecb-search-type-tag-by-semanticdb"
+                                              :value ecb-search-type-tag-by-semanticdb)
                                        (const :tag "ecb-jde-show-class-source"
                                               :value ecb-jde-show-class-source)
                                        (function :tag "Function"))))))
@@ -1479,7 +1480,7 @@ ECB-methods-window is not visible in current layout."
       (ecb-maximize-window-speedbar)
     (ecb-maximize-ecb-buffer ecb-methods-buffer-name t)))
 
-(defecb-window-dedicator ecb-set-methods-buffer ecb-methods-buffer-name
+(defecb-window-dedicator-to-ecb-buffer ecb-set-methods-buffer ecb-methods-buffer-name t
   "Display in current window the methods-buffer and make window dedicated."
   (let ((set-methods-buffer
          (not (equal ecb-use-speedbar-instead-native-tree-buffer 'method))))
@@ -1551,7 +1552,8 @@ there is no distinction between superclasses and interfaces."
 
 (defun ecb-get-tag-name (tag &optional parent-tag)
   "Get the name of TAG with the appropriate fcn from
-`ecb-tag-display-function'."
+`ecb-tag-display-function'.
+This function MUST be called with the source-buffer as current buffer!"
   (condition-case nil
       (funcall (ecb-get-tag-display-function)
                tag parent-tag (ecb-font-lock-tags))
@@ -1563,7 +1565,8 @@ there is no distinction between superclasses and interfaces."
                                        &optional parent-tag no-bucketize)
   "Finds a bucket containing tags of the given TYPE, creates nodes for them
 and adds them to the given NODE. The bucket is removed from the BUCKETS list.
-PARENT-TAG is only propagated to `ecb-add-tag-bucket'."
+PARENT-TAG is only propagated to `ecb-add-tag-bucket'.
+This function MUST be called with the source-buffer as current buffer!"
   (when (cdr buckets)
     (let ((bucket (cadr buckets)))
       (if (eq type (ecb--semantic-tag-class (cadr bucket)))
@@ -1572,7 +1575,7 @@ PARENT-TAG is only propagated to `ecb-add-tag-bucket'."
                                   no-bucketize)
 	    (setcdr buckets (cddr buckets)))
 	(ecb-find-add-tag-bucket node type display sort-method
-				   (cdr buckets) parent-tag no-bucketize)))))
+                                 (cdr buckets) parent-tag no-bucketize)))))
 
 (defsubst ecb-forbid-tag-display (tag)
   (ecb--semantic--tag-put-property tag 'hide-tag t))
@@ -1649,13 +1652,16 @@ necessary. For the arguments TEXT-NAME, FIRST-CHARS and ICON-NAME see
 
 (defun ecb-add-tag-bucket (node bucket display sort-method
                                 &optional parent-tag no-bucketize)
-  "Adds a tag bucket to a node unless DISPLAY equals 'hidden."
+  "Adds a tag bucket to a node unless DISPLAY equals 'hidden.
+This function MUST be called with the source-buffer as current buffer!"
   (when bucket
     (let* ((name-bucket (ecb-format-bucket-name (car bucket)))
            (image-name (format "%s-bucket" (ecb--semantic-tag-class (cadr bucket))))
            (name (ecb-tag-generate-node-name name-bucket -1 image-name))
            ;;(type (ecb--semantic-tag-class (cadr bucket)))
-           (bucket-node node))
+           (bucket-node node)
+           (new-tag-node nil)
+           (new-tag-overlay nil))
       (unless (eq 'hidden display)
         (ecb-apply-user-filter-to-tags (cdr bucket))
 	(unless (or (eq 'flattened display)
@@ -1673,12 +1679,22 @@ necessary. For the arguments TEXT-NAME, FIRST-CHARS and ICON-NAME see
         (dolist (tag (ecb-sort-tags sort-method (cdr bucket)))
           ;; we create only a new node for a tag of the bucket when the tag is
           ;; not forbidden to be displayed.
-          (if (not (ecb-tag-forbidden-display-p tag))
-              (ecb-update-tag-node tag
-                                   (tree-node-new "" ecb-methods-nodetype-tag
-                                                  tag t bucket-node
-                                                  (if ecb-truncate-long-names 'end))
-                                   parent-tag no-bucketize))
+          (unless (ecb-tag-forbidden-display-p tag)
+            (setq new-tag-node (tree-node-new "" ecb-methods-nodetype-tag
+                                              tag t bucket-node
+                                              (if ecb-truncate-long-names 'end)))
+            (ecb-update-tag-node tag
+                                 new-tag-node
+                                 parent-tag no-bucketize)
+            (setq new-tag-overlay (ecb--semantic-tag-overlay tag))
+            ;; for partial reparsing/updating each semantic-tag with an
+            ;; overlay needs the id of that tree-node which holds as data that
+            ;; tag.
+            (when (ecb-overlay-p new-tag-overlay)
+              (ecb-overlay-put new-tag-overlay
+                               'ECB-tree-node-id
+                               (tree-node->id new-tag-node)))
+            )
           ;; now we allow each tag to be displayed. This can be done because
           ;; here we already excluded the tag from being added as a node to
           ;; the tree-buffer and therefore from being displayed. So we can
@@ -1856,7 +1872,8 @@ abstract-static-tag-protection to an existing icon-file-name.")
 ;; node-name without any modification.
 
 (defun ecb-displayed-tag-name (tag &optional parent-tag)
-  "Return the tag-name of TAG as it will be displayed in the methods-buffer."
+  "Return the tag-name of TAG as it will be displayed in the methods-buffer.
+This function MUST be called with the source-buffer as current buffer!"
   (let* ((plain-tag-name (ecb-get-tag-name tag parent-tag))
          (has-protection (if (= 0 (length plain-tag-name))
                              nil
@@ -1903,7 +1920,8 @@ tag of class 'variable."
                         
 
 (defun ecb-update-tag-node (tag node &optional parent-tag no-bucketize)
-  "Updates a node containing a tag."
+  "Updates a node containing a tag.
+This function MUST be called with the source-buffer as current buffer!"
   (let ((children (ecb-children-tags tag))
         (tag-name (ecb-displayed-tag-name tag parent-tag)))
     (setf (tree-node->name node) tag-name)
@@ -1925,14 +1943,15 @@ tag of class 'variable."
 (defun ecb-post-process-taglist (taglist)
   "If for current major-mode post-process functions are found in
 `ecb-post-process-semantic-taglist' then these functions are called with
-TAGLIST otherwise TAGLIST is returned."
+TAGLIST otherwise TAGLIST is returned.
+This function MUST be called with the source-buffer as current buffer!"
   (let ((fcn-list (cdr (assoc major-mode ecb-post-process-semantic-taglist))))
     (dolist (fcn fcn-list)
       (if (fboundp fcn)
           (setq taglist (funcall fcn taglist)))))
   (ecb-set-current-tag-table taglist)
   ;; now we apply that tag-filters which must operate onto the whole
-  ;; tag-table of
+  ;; tag-table of the current buffer
   (ecb-apply-tag-table-filters taglist))
 
 (defun ecb-apply-tag-table-filters (taglist)
@@ -2047,8 +2066,7 @@ onto the whole tag-table are performed by `ecb-apply-tag-table-filters'.")
                                                 &optional tag-class)
   "Filter the Methods-buffer by a tag-class."
   (let* ((curr-semantic-symbol->name-assoc-list
-          (save-excursion
-            (set-buffer source-buffer)
+          (with-current-buffer source-buffer
             (ecb--semantic-symbol->name-assoc-list)))
          (choice (or tag-class
                      (ecb-query-string "Tag-class filter:"
@@ -2234,23 +2252,20 @@ used; if point does not stay on a tag then nil is returned."
   "Display only the current-type and its contents in the methods-buffer. The
 argument INVERSE is ignored here."
   (let* ((curr-type-tag (or (and (ecb--semantic-tag-p tag)
-                                 (save-excursion
-                                   (set-buffer source-buffer)
+                                 (with-current-buffer source-buffer
                                    (ecb-get-type-tag-of-tag tag)))
                             (cond ((ecb-point-in-edit-window-number)
                                    (if (ecb--semantic-active-p)
-                                       (save-excursion
-                                         (set-buffer source-buffer)
+                                       (with-current-buffer source-buffer
                                          (ecb-get-type-tag-of-tag (ecb-get-real-curr-tag)))))
                                   ((equal (current-buffer)
-                                          (get-buffer ecb-methods-buffer-name))
+                                          (ecb-buffer-obj ecb-methods-buffer-name))
                                    (let ((node (tree-buffer-get-node-at-point)))
                                      (and node
                                           (tree-node->data (ecb-get-type-node-of-node node)))))
                                   (t (ecb-error "ECB can not identify the current-type-tag!")))))
          (curr-tag-type-name-hierachy (and curr-type-tag
-                                           (save-excursion
-                                             (set-buffer source-buffer)
+                                           (with-current-buffer source-buffer
                                              (ecb-get-type-name-hierarchy-of-current-tag
                                               curr-type-tag)))))
     (if (and curr-type-tag curr-tag-type-name-hierachy)
@@ -2275,7 +2290,7 @@ argument INVERSE is ignored here."
   (cond ((ecb-point-in-edit-window-number)
          (current-buffer))
         ((equal (current-buffer)
-                (get-buffer ecb-methods-buffer-name))
+                (ecb-buffer-obj ecb-methods-buffer-name))
          (ecb-methods-get-data-store 'source-buffer))
         (t (or (and ecb-last-source-buffer
                     (buffer-live-p ecb-last-source-buffer)
@@ -2401,13 +2416,11 @@ applied default-tag-filters."
 (defun ecb-methods-filter-internal (inverse &optional filter-type)
   "FILTER-TYPE has to be one of the symbols 'regexp, 'protection,
 'tag-class, 'curr-type, 'function, 'no-filter or 'delete-last."
-  (if (save-excursion
-        (set-buffer ecb-methods-buffer-name)
+  (if (with-current-buffer ecb-methods-buffer-name
         (tree-buffer-empty-p))
       (message "There is nothing to filter in an empty Methods-buffer!")
     (let* ((source-buffer (ecb-get-source-buffer-for-tag-filter))
-           (semantic-source-p (save-excursion
-                                (set-buffer source-buffer)
+           (semantic-source-p (with-current-buffer source-buffer
                                 (ecb--semantic-active-p)))
            (choice (or filter-type
                        (intern (ecb-query-string
@@ -2447,8 +2460,7 @@ should be displayed in the modeline of the methods-buffer. If REMOVE-LAST is
 not nil then the topmost filter will be removed and all other arguments unless
 SOURCE-BUFFER arguments are ignored. Returns t if the filter has been applied
 otherwise nil."
-  (save-excursion
-    (set-buffer source-buffer)
+  (with-current-buffer source-buffer
     (if (and (not remove-last)
              (member filtertype '(protection tag-class curr-type))
              (not (ecb--semantic-active-p)))
@@ -2484,8 +2496,7 @@ otherwise nil."
           (setq ecb-methods-user-filter-alist
                 (cons (cons source-buffer filters) ecb-methods-user-filter-alist)))))
   (when (buffer-live-p source-buffer)
-    (save-excursion
-      (set-buffer source-buffer)
+    (with-current-buffer source-buffer
       (if (ecb--semantic-active-p)
           ;; For semantic-sources we do not use `ecb-rebuild-methods-buffer)'
           ;; because this would always reparse the source-buffer even if not
@@ -2495,8 +2506,7 @@ otherwise nil."
             (ecb-rebuild-methods-buffer-with-tagcache
              (ecb-fetch-semantic-tags)))
         (ecb-rebuild-methods-buffer-fully)))
-    (if (save-excursion
-          (set-buffer ecb-methods-buffer-name)
+    (if (with-current-buffer ecb-methods-buffer-name
           (tree-buffer-empty-p))
         (progn
           (ecb-methods-filter-apply nil nil nil "" "" source-buffer t)
@@ -2510,7 +2520,7 @@ otherwise nil."
 applied to the displayed tags is displayed. This function is only for using by
 the option `ecb-mode-line-prefixes'."
   (let* ((filters (and sel-source
-                       (cdr (assoc (get-buffer (cdr sel-source))
+                       (cdr (assoc (ecb-buffer-obj (cdr sel-source))
                                    ecb-methods-user-filter-alist))))
          (top-filter-spec (ecb-last filters))
          (filter-type-str (nth 3 top-filter-spec))
@@ -2601,7 +2611,8 @@ removes itself from the `post-command-hook'."
   "Add TAGS to the node NODE.
 If NO-BUCKETIZE is not nil then TAGS will not bucketized by
 `ecb--semantic-bucketize' but must already been bucketized! If not nil
-PARENT-TAG is the parent of TAGS."
+PARENT-TAG is the parent of TAGS.
+This function MUST be called with the source-buffer as current buffer!"
   (ecb-add-tag-buckets
    node parent-tag
    (if no-bucketize
@@ -2646,7 +2657,8 @@ PARENT-TAG is the parent of TAGS."
 (defun ecb-add-tag-buckets (node parent-tag buckets &optional no-bucketize)
   "Creates and adds tag nodes to the given node.
 The PARENT-TAG is propagated to the functions `ecb-add-tag-bucket' and
-`ecb-find-add-tag-bucket'."
+`ecb-find-add-tag-bucket'.
+This function MUST be called with the source-buffer as current buffer!"
   (setq buckets (cons nil buckets))
   (dolist (tag-display (ecb-get-show-tags-list))
     (let* ((type (car tag-display))
@@ -2694,51 +2706,233 @@ The PARENT-TAG is propagated to the functions `ecb-add-tag-bucket' and
       (ecb-add-tag-bucket node bucket (cadr type-display)
                             (caddr type-display) parent-tag no-bucketize))))
 
+(defvar ecb-partial-reparse-always-full-fetch nil
+  "Always perform a full tag fetching when a partial reparse occur.
+
+This is only a fallback if partial reparsing support of ECB is too buggy. In
+this case set it to not nil.")
+
+(defvar ecb-partial-reparse-debug nil
+  "If not nil the partial reparse support of ECB outputs to message buffer.")
+
+(defun ecb-partial-reparse-debug (&rest args)
+  "Run ARGS through `format' and write it to the *Messages*-buffer.
+Does nothing if `ecb-partial-reparse-debug' is nil."
+  (when (and ecb-partial-reparse-debug args)
+    (message (concat (format "ECB %s partial-reparse debug: " ecb-version)
+                     (apply 'format args)))))
 
 (defun ecb-update-after-partial-reparse (updated-tags)
   "Updates the method buffer and all internal ECB-caches after a partial
 semantic-reparse. This function is added to the hook
-`semantic-after-partial-cache-change-hook'."
-  ;; TODO: Currently we get simply the whole cache from semantic (already up
-  ;; to date at this time!) and then we rebuild the whole tree-buffer with
-  ;; this cache-contents. This is slow for big sources. We should implement
-  ;; a mechanism where only the UPDATED-TAGS are used and only this ones are
-  ;; updated.
+`semantic-after-partial-cache-change-hook'.
 
-  ;; TODO: Klaus Berndl <klaus.berndl@sdm.de>: here we could check if
-  ;; UPDATED-TAGS contains only one tag and if this tag contains no childrens
-  ;; then we could use the new function `tree-buffer-update-node' to simply
-  ;; updating the associated node instead of a full reparse and then full
-  ;; tree-buffer-update.
-  (if (and (= 1 (length updated-tags))
-           (null (ecb-children-tags (car updated-tags))))
-      ;; TODO: Klaus Berndl <klaus.berndl@sdm.de>: 
-      ;; we could update this single node if we can find this node. But this
-      ;; could be difficult (or impossible?) because here we only know the new
-      ;; semantic-tag but our nodes contain only outdated semantic-tags as
-      ;; data so how to find the associated node??!!
-      ;; Maybe we could search the node which contaisn the parent-tag of the
-      ;; updated tag and then we compute the position p of this tag in the list
-      ;; of the children of its parent-tag and then we update that node which
-      ;; comes on the same position p in the list of childrens of the
-      ;; associated parent-node - hmm, but can we be sure that the sequence of
-      ;; children-tags and children-nodes is the same?? probably not because
-      ;; the nodes are ordered alphabetically and the tags are are ordered in
-      ;; that sequence they are code in the source-buffer! Hmmm...........
-      ;; Until this question is solved we must use the full reparse/rebuild
-      ;; :-( One possible solution: tempor. ordering the
-      ;; semantic-tag-childrens by name and getting the position p of the
-      ;; updated tag in that ordered tag-sequence...
+If `ecb-partial-reparse-always-full-fetch' is not nil then always a full fetch
+for tags is performed; this is just a fallback if there are problems with the
+partial reparse and update-mechanism."
+  (if (or ecb-partial-reparse-always-full-fetch
+          ;; if at least one of the updated-tags is a tag without an overlay
+          ;; we should do a full fetch (example: semantic calls the partial
+          ;; hook when deleting a complete function and then calling
+          ;; semantic-fetch-tags - the supplied updated-tag will be a tag
+          ;; without an overlay but instead a beg/end-array where beg and end
+          ;; are the same buffer location = empty tag)
+          (catch 'tag-without-overlay
+            (dolist (tag updated-tags)
+              (when (not (ecb-overlay-p (ecb--semantic-tag-overlay tag)))
+                (ecb-partial-reparse-debug "Called for a tag without overlay:%s - full-fetch needed" tag)
+                (throw 'tag-without-overlay t)))
+            nil))
+      ;; perform a full fetch
       (ecb-rebuild-methods-buffer-with-tagcache (ecb-fetch-semantic-tags))
-    (ecb-rebuild-methods-buffer-with-tagcache (ecb-fetch-semantic-tags))))
 
+    ;; now our partial reparse/update mechanism begins
+    (ecb-partial-reparse-debug "Partial reparse starts for the tags:")
+    (dolist (tag updated-tags)
+      (ecb-partial-reparse-debug "- Tag-name:%s,tag-class:%s,full-tag:%s"
+                                 (ecb--semantic-tag-name tag)
+                                 (ecb--semantic-tag-class tag)
+                                 tag))
+    (when (and ecb-minor-mode ;; ECB must be active - just for saveness
+               ;; ECB-frame must be active
+               (equal (selected-frame) ecb-frame)
+               ;; if there is a methods-buffer in current layout
+               ;; I think there is no need that the methods buffer is visible
+               ;; because we should also update if currently hidden
+               (ecb-buffer-is-ecb-buffer-of-current-layout-p ecb-methods-buffer-name)
+               ;; current buffer must have a filename.
+               (ecb-buffer-file-name (current-buffer))
+               ;; the parsed buffer must be displayed in a window within the
+               ;; ECB-frame: This prevents the methods-buffer being confused by
+               ;; the background-parsing of other files by semantic-idle-timer
+               (or ecb-method-buffer-rebuild-allowed-for-invisible-buffers
+                   (get-buffer-window (current-buffer) ecb-frame)))
+      (let ((full-fetch-needed nil)
+            (taglist updated-tags)
+            (tag nil)
+            (at-least-one-node-updated nil)
+            (post-processed-list nil)
+            (fcn-list (cdr (assoc major-mode ecb-post-process-semantic-taglist))))
+        (while (and (not full-fetch-needed) taglist)
+          (setq tag (car taglist))
+          (ecb-partial-reparse-debug "Processing tag: %s" (ecb--semantic-tag-name tag))
+          (setq taglist (cdr taglist))
+          ;; for each tag in the updated tags we do
+          ;; 1. run the post-processing function of current major-mode
+          ;; 2. apply the tag-table filters
+          ;; 3. apply the tag filters
+          (let* ((one-tag-list (list tag))
+                 (tag-for-update nil)
+                 (tag-ident-name (ecb--semantic-tag-name tag))
+                 (tag-ident-class (ecb--semantic-tag-class tag))
+                 (tag-ident-parent (ecb--semantic-tag-named-parent tag))
+                 (tag-ident-parent-name (if (ecb--semantic-tag-p tag-ident-parent)
+                                            (ecb--semantic-tag-name tag-ident-parent)
+                                          tag-ident-parent)))
+            (ecb-partial-reparse-debug "tag-ident-name:%s,tag-ident-class:%s,tag-ident-parent:%s"
+                                       tag-ident-name
+                                       tag-ident-class
+                                       tag-ident-parent-name)
+            ;; first we run the post-process functions and build up
+            ;; post-processed-list which contains one element for each tag of
+            ;; the updated tags. But be aware that the orginal tag is maybe not
+            ;; contained in the list because a post-process function as somehow
+            ;; modified it or added as member to a new container tag, e.g.
+            ;; semantic-adopt-external-members which creates maybe new faux tags
+            ;; for methods which are defined in another file as the class itself
+            ;; (e.g. with c++)!
+            (dolist (fcn fcn-list)
+              (if (fboundp fcn)
+                  (setq one-tag-list (funcall fcn one-tag-list))))
+            (ecb-partial-reparse-debug "one-tag-list after post-processing: %s"
+                                       one-tag-list)
+            ;; now we apply that tag-filters which must operate onto the whole
+            ;; tag-table - but here we use each tag as a separate tag-table
+            (setq one-tag-list (ecb-apply-tag-table-filters one-tag-list))
+            (ecb-partial-reparse-debug "one-tag-list after tag-table filtering %s"
+                                       one-tag-list)
+            ;; now we must see how get from the one-tag-list our orginal tag so
+            ;; we can apply the tag-filters:
+            (if (null one-tag-list)
+                (ecb-partial-reparse-debug "tag has been filtered out by tag-table filters")
+              (if (and (equal (ecb--semantic-tag-name (car one-tag-list))
+                              tag-ident-name)
+                       (equal (ecb--semantic-tag-class (car one-tag-list))
+                              tag-ident-class))
+                  (setq tag-for-update (car one-tag-list))
+                ;; if the first tag in the one-tag-list is not our original tag
+                ;; then we check if the first component of the first tag of
+                ;; one-tag-list is our original tag (e.g. when
+                ;; semantic-adopt-external-members has been run then this is the
+                ;; case)
+                (let ((try (car (ecb--semantic-tag-components-with-overlays
+                                 (car one-tag-list)))))
+                  (ecb-partial-reparse-debug "We try the first member - it is: %s" try)
+                  (when (ecb--semantic-tag-p try)
+                    (if (and (equal (ecb--semantic-tag-name try)
+                                    tag-ident-name)
+                             (equal (ecb--semantic-tag-class try)
+                                    tag-ident-class))
+                        (setq tag-for-update try)))))
+              (if (null tag-for-update)
+                  ;; if we failed in getting our original tag we indicate a
+                  ;; full-fetch - should not happen but how knows...
+                  (progn
+                    (ecb-partial-reparse-debug "full-fetch-needed because we didn't found our tag")
+                    (setq taglist nil) ;; it makes no sense to process further tags
+                    (setq full-fetch-needed t)
+                    )
+                ;; now we apply the tag-related filters to see if the updated tag
+                ;; is filtered out - in this case we would do nothing
+                (ecb-partial-reparse-debug "tag-for-update before tag-filters: %s" tag-for-update)
+                (ecb-apply-user-filter-to-tags (list tag-for-update))
+                (ecb-partial-reparse-debug "tag-for-update after tag-filters: %s" tag-for-update)
+                (if (ecb-tag-forbidden-display-p tag-for-update)
+                    ;; we can re-allow because now we process only tags which are
+                    ;; not forbidden (ie. filtered out), so for next run we can
+                    ;; filter again - see the other location in code where this
+                    ;; function is used for explanation.
+                    ;; if the tag is filtered out we simply do nothing for this tag
+                    (progn
+                      (ecb-partial-reparse-debug "tag-for-update is filtered out by tag-filters")
+                      (ecb-allow-tag-display tag-for-update)
+                      )
+                  ;; now we try to find the related tree-node and then we check if
+                  ;; the parent of our tag is equal to that tag currently stored
+                  ;; in the tree-nodes data-slot
+                  (let* ((id (ecb-overlay-get (ecb--semantic-tag-overlay tag-for-update)
+                                              'ECB-tree-node-id))
+                         (node (when id
+                                 (with-current-buffer ecb-methods-buffer-name
+                                   (tree-node-search-subtree-by-id (tree-buffer-get-root)
+                                                                   id))))
+                         (data-parent (and node
+                                           (ecb--semantic-tag-named-parent (tree-node->data node))))
+                         (data-parent-name (if (ecb--semantic-tag-p data-parent)
+                                               (ecb--semantic-tag-name data-parent)
+                                             data-parent)))
+                    (if (and node (equal data-parent-name tag-ident-parent-name))
+                        ;; we must generate the new tag-name with
+                        ;; source-buffer current and not with methods-buffer current!!
+                        (let ((new-tag-name (ecb-displayed-tag-name tag-for-update)))
+                          ;; If all is fine (ie. tag is not filtered out, we have a
+                          ;; tree-node found and the parent tag has not changed) then
+                          ;; we update the found tree-node with the new updated and
+                          ;; post-processed tag
+                          (ecb-partial-reparse-debug "We update node for tag:%s with new name:%s"
+                                                     (ecb--semantic-tag-name tag-for-update)
+                                                     new-tag-name)
+                          (with-current-buffer ecb-methods-buffer-name
+                            (tree-buffer-update-node node
+                                                     new-tag-name
+                                                     'use-old-value
+                                                     'use-old-value
+                                                     tag-for-update
+                                                     'use-old-value))
+                          ;; we run tree-buffer-update first after all tags are
+                          ;; processed and full-fetch-needed is still nil and
+                          ;; at-least-one-node-updated is not nil
+                          (setq at-least-one-node-updated t)
+                          )
+                      (ecb-partial-reparse-debug "full-fetch-needed: id:%s,node-p:%s,parent-old:%s,parent-new:%s"
+                                                 id (and node t)
+                                                 data-parent-name tag-ident-parent-name)
+                      ;; if there is no node with this id or no node with same id
+                      ;; and same parent as the updated tag we need a full-fetch
+                      (setq full-fetch-needed t)
+                      (setq taglist nil) ;; it makes no sense to process further tags
+                      )))))))
+      
+        ;; if we have at least one node updated and no tag has shown that a
+        ;; full-fetch is better than a partial update then we updated the
+        ;; methods-buffer if it is displayed.
+        (when (and (not full-fetch-needed) at-least-one-node-updated)
+          (ecb-partial-reparse-debug "We perform tree-buffer-update")
+          (ecb-exec-in-window ecb-methods-buffer-name
+            (tree-buffer-update)))
 
+        (if full-fetch-needed
+            (progn
+              (ecb-rebuild-methods-buffer-with-tagcache (ecb-fetch-semantic-tags))
+              (ecb-partial-reparse-debug "full fetch has been performed")
+              )
+          ;; as last step we must update the current-tag-table
+          ;; for current source-buffer
+          ;; remark: There is no need to update the internal
+          ;; ecb-tag-tree-cache because we haven't created or deleted any
+          ;; tree-nodes but only updated existing ones. So the
+          ;; ecb-tag-tree-cache contains autom. the new datas of the modified
+          ;; tree-nodes because the cache contains the same cells!
+          (ecb-partial-reparse-debug "We set current tag table")
+          (ecb-set-current-tag-table (ecb-fetch-semantic-tags))
+          )))))
+
+;; currently not used
 (defun ecb-semantic-active-for-file (filename)
   "Return not nil if FILENAME is already displayed in a buffer and if semantic
 is active for this buffer."
   (and (get-file-buffer filename)
-       (save-excursion
-         (set-buffer (get-file-buffer filename))
+       (with-current-buffer (get-file-buffer filename)
          (ecb--semantic-active-p))))
 
 
@@ -2921,8 +3115,7 @@ TABLE."
 
 (defun ecb-methods-get-data-store (key)
   "Get the value for KEY from the tree-buffer-data-store of the Methods-buffer."
-  (save-excursion
-    (set-buffer ecb-methods-buffer-name)
+  (with-current-buffer ecb-methods-buffer-name
     (cdr (assoc key (tree-buffer-get-data-store)))))
   
 
@@ -2951,8 +3144,10 @@ to be rescanned/reparsed and therefore the Method-buffer will be rebuild too."
   (when (and ecb-minor-mode ;; ECB must be active - just for saveness
              ;; ECB-frame must be active
              (equal (selected-frame) ecb-frame)
-             ;; the methods-buffer must be visible
-             (get-buffer-window ecb-methods-buffer-name)
+             ;; if there is a methods-buffer in current layout
+             ;; I think there is no need that the methods buffer is visible
+             ;; because we should also update if currently hidden
+             (ecb-buffer-is-ecb-buffer-of-current-layout-p ecb-methods-buffer-name)
              ;; current buffer must have a filename.
              (ecb-buffer-file-name (current-buffer))
              ;; the parsed buffer must be displayed in a window within the
@@ -3106,8 +3301,7 @@ to be rescanned/reparsed and therefore the Method-buffer will be rebuild too."
       ;; cache can not work because the buffer-string is a "copy" of the
       ;; tree-buffer and therefore the cached buffer-string can not be updated
       ;; automatically.
-      (save-excursion
-        (set-buffer ecb-methods-buffer-name)
+      (with-current-buffer ecb-methods-buffer-name
         ;; we store in the tree-buffer the buffer and the major-mode for which
         ;; the tree-buffer has been build. In no other place the data-store
         ;; will be set!
@@ -3344,6 +3538,10 @@ current buffer."
                      (ecb--semantic-tag-class highlight-tag))))
          (type-node nil))
     (or (and curr-tag
+             ;; this is save because ecb-try-highlight-tag runs only within
+             ;; ecb-tag-sync which is defined to do nothing if
+             ;; ecb-methods-buffer-name is not visible in the current layout
+             ;; ==> the return value 'window-not-visible is not possible here!
              (ecb-exec-in-window ecb-methods-buffer-name
                (or (tree-buffer-highlight-node-by-data/name
                     highlight-tag nil nil
@@ -3574,8 +3772,7 @@ file types which are parsed by imenu or etags \(see
     ;; expanded to max level...
     (when ecb-expand-methods-switch-off-auto-expand
       (ecb-toggle-auto-expand-tag-tree -1))
-    (ecb-expand-methods-node-internal (save-excursion
-                                         (set-buffer ecb-methods-buffer-name)
+    (ecb-expand-methods-node-internal (with-current-buffer ecb-methods-buffer-name
                                          (tree-buffer-get-root))
                                        level force-all t t)))
 
@@ -3652,125 +3849,34 @@ types which are parsed by imenu or etags \(see
                                     (symbol-name elem))))))
             spec)))
 
-;; TODO: Klaus Berndl <klaus.berndl@sdm.de>: modify this so it can be used by
-;; ecb-find-external-tag-functions - currently not used
-(defun ecb-semantic-tag-external-class-default (tag)
-  "Return a list of real tags that faux TAG might represent.
-See `semantic-tag-external-class' for details."
-  (if (and (fboundp 'semanticdb-minor-mode-p)
-	   (semanticdb-minor-mode-p))
-      (let* ((semanticdb-search-system-databases nil)
-	     (m (semanticdb-find-tags-by-class 
-		 (semantic-tag-class tag)
-		 (semanticdb-find-tags-by-name (semantic-tag-name tag)))))
-	(semanticdb-strip-find-results m))
-    ;; Presumably, if the tag is faux, it is not local.
-    nil
-    ))
 
-
-;; ;; semantic 1.X does not have this
-(silentcomp-defvar semanticdb-search-system-databases)
-
-(defun ecb-semanticdb-find-result-nth-with-file (result n)
-  "In RESULT, return the Nth search result.
-This is a 0 based search result, with the first match being element 0. Returns
-a cons cell with car is the searched and found tag and the cdr is the
-associated full filename of this tag. If the search result is not associated
-with a file, then the cdr of the result-cons is nil."
-  (let ((result-nth (ecb--semanticdb-find-result-nth result n)))
-    (if (and (car result-nth)
-             (ecb--semantic-tag-with-position-p (car result-nth))
-             (cdr result-nth))
-        (cons (car result-nth)
-              (ecb--semanticdb-full-filename (cdr result-nth)))
-      (cons (car result-nth) nil))))
-
-(defun ecb-semanticdb-get-type-definition-list (external-tag)
-  "Search for the definition of the type with name of EXTERNAL-TAG.
-The search is performed viy semanticdb.
-`semanticdb-search-system-databases' is taken into account.
-Return-value is either nil \(if no positioned tag can be found
-for external-tag or a positioned semantic-tag for the
-type-definition of EXTERNAL-TAG."
-  (when (and (featurep 'semanticdb) (ecb--semanticdb-minor-mode-p))
-    ;; With semantic 2.X we do a full featured database-search.
-    (let* ((search-result (ecb--semanticdb-find-tags-by-name
-                           (ecb--semantic-tag-name external-tag)))
-           (result-tags (and search-result
-                             (ecb--semanticdb-strip-find-results search-result)))
-           (type-tag-numbers nil))
-      (when (and result-tags
-                 ;; some paranoia
-                 (= (length result-tags)
-                    (ecb--semanticdb-find-result-length search-result)))
-        ;; First we check which tags in the stripped search-result
-        ;; (result-tags) are types with positions (means associated with a
-        ;; file) and collect their sequence-positions in type-tag-numbers.
-        (dotimes (i (length result-tags))
-          (if (and (equal (ecb--semantic-tag-class (nth i result-tags))
-                          'type)
-                   (ecb--semantic-tag-with-position-p (nth i result-tags)))
-              (setq type-tag-numbers
-                    (cons i type-tag-numbers))))
-        (setq type-tag-numbers (nreverse type-tag-numbers))
-        ;; Now we get for each element in type-tag-numbers the related
-        ;; filename (where the tag is defined) and collect them in an alist
-        ;; where each element is a cons-cell where car is the filename and
-        ;; cdr is the tag in this file. Especially with scoped languages
-        ;; like C++ or Java a type with the same name can be defined in more
-        ;; than one file - each of these files belonging to another
-        ;; package/library.
-        (delq nil
-              (mapcar (function (lambda (n)
-                                  (let ((r (ecb-semanticdb-find-result-nth-with-file
-                                            search-result n)))
-                                    (if (and (cdr r)
-                                             (stringp (cdr r))
-                                             (ecb-file-readable-p (cdr r)))
-                                        (cons (cdr r) (car r))))))
-                      type-tag-numbers))))))
-
-(defun ecb-search-tag-by-semanticdb (external-tag)
-  "Uses semanticdb to search for the type-definition of EXTERNAL-TAG.
-Return exactly one semantic tag for the type-definition of
-EXTERNAL-TAG. If more than one definition have been found then
-the user has to make a choice on file-basis.
-
-This function is for usage with `ecb-find-external-tag-functions.'"
-  (let ((type-definition-alist (ecb-semanticdb-get-type-definition-list
-                                external-tag))
-        (result-elem))
-    (when type-definition-alist
-      ;; if we got more than one file for EXTERNAL-TAG then the user has to
-      ;; choose one.
-      (setq result-elem
-            (if (> (length type-definition-alist) 1)
-                (assoc (ecb-offer-choices "Select a definition-file: "
-                                          (mapcar #'car type-definition-alist))
-                       type-definition-alist)
-              (car type-definition-alist)))
-      ;; we add the filename to the tag, then all needed informations are
-      ;; within the tag and afterwards `semantic-tag-buffer can do its work
-      (semantic--tag-put-property (cdr result-elem)
-                                  :filename
-                                  (car result-elem)))))
-
-(defun ecb-search-tag-by-semantic-analyzer (tag)
-  "Calculate the scope at current point and search for a type with name of TAG.
+(defun ecb-search-type-tag-by-semantic-analyzer (tag)
+  "Calculate scope at point and search for a type with name of TAG.
 
 Return either a positioned semantic-tag for the found
 type-definition or nil if nothing is found. This mechanism uses
 the semantic-analyzer. Therefore it will work at its best if all
-nneded customizations for the semantic analyzer have been done.
+needed customizations for the semantic analyzer have been done.
 \(See the manual of the semantic analyzer for how to customizing
 it).
 
-This function is for usage with `ecb-find-external-tag-functions'."
-  (let* ((scope (ecb--semantic-calculate-scope)))
-    (when scope
-      (ecb--semantic-analyze-find-tag (ecb--semantic-tag-name tag)
-                                      'type scope))))
+This function is fully fitting the needs of the option
+`ecb-find-external-tag-functions'."
+  (ecb-search-tag-by-semantic-analyzer (ecb--semantic-tag-name tag) 'type))
+
+(defun ecb-search-type-tag-by-semanticdb (tag)
+  "Uses semanticdb for searching a type with name of TAG.
+
+Return either a positioned semantic-tag for the found
+type-definition or nil if nothing is found. This mechanism uses
+the semantic-analyzer. Therefore it will work at its best if all
+needed customizations for the semantic analyzer have been done.
+\(See the manual of the semantic analyzer for how to customizing
+it).
+
+This function is fully fitting the needs of the option
+`ecb-find-external-tag-functions'."
+  (ecb-search-tag-by-semanticdb (ecb--semantic-tag-name tag) 'type))
 
 (defun ecb-next-tag-parent-node (node)
   "Go upward in the parent-hierarchy of NODE and return next node holding a tag."
@@ -3814,8 +3920,7 @@ This function is for usage with `ecb-find-external-tag-functions'."
       ;; included file
       (unless destination
         (when (equal 'include (ecb--semantic-tag-class node-tag))
-          (save-excursion
-            (set-buffer (ecb-path-selected-source 'buffer))
+          (with-current-buffer (ecb-path-selected-source 'buffer)
             (let ((file (ecb--semantic-dependency-tag-file node-tag)))
               (when (and file (ecb-file-exists-p file))
                 (setq destination (list (ecb-source-make file)
@@ -4182,8 +4287,7 @@ Returns current point."
 (defun ecb-methods-menu-activate-hs ()
   "Activates `hs-minor-mode' in the buffer of `ecb-path-selected-source'. If
 this fails then nil is returned otherwise t."
-  (save-excursion
-    (set-buffer (get-file-buffer (ecb-path-selected-source 'file)))
+  (with-current-buffer (get-file-buffer (ecb-path-selected-source 'file))
     (if (or (not (boundp 'hs-minor-mode))
             (not hs-minor-mode))
         (if (fboundp 'hs-minor-mode)
@@ -4343,8 +4447,7 @@ edit-windows. Otherwise return nil."
           ;; we must not use here (ecb-methods-get-data-store
           ;; 'semantic-symbol->name-assoc-list) because we do not want the
           ;; function-prototypes...
-          (save-excursion
-            (set-buffer (ecb-methods-get-data-store 'source-buffer))
+          (with-current-buffer (ecb-methods-get-data-store 'source-buffer)
             (ecb--semantic-symbol->name-assoc-list)))
          (prot-list '("private" "protected" "public"))
          (prot-menu-elems nil)
@@ -4611,8 +4714,7 @@ moved over it."
     ;; we ca not use format here because XEmacs-format removes all
     ;; text-properties! 
     (insert (concat (make-string indent ? )
-                    (save-excursion
-                      (set-buffer source-buffer)
+                    (with-current-buffer source-buffer
                       (ecb--semantic-format-tag-uml-prototype tag parent t))
                     ", tag-class: "
                     (format "%s" (ecb--semantic-tag-class tag))

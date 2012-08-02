@@ -8,3 +8,6 @@
 (setq ecb-method-face 'zenburn-orange)
 (setq ecb-source-face 'zenburn-orange)
 (setq ecb-directory-face 'zenburn-orange)
+;to avoid "ecb-activate-internal: Symbol's value as variable is void:
+;stack-trace-on-error"
+(setq stack-trace-on-error t)
