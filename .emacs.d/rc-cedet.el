@@ -1,6 +1,6 @@
 (setq byte-compile-warnings nil)
 
-(load-file "/usr/share/emacs/site-lisp/cedet/common/cedet.el")
+(load-file "~/.emacs.d/elisp/cedet/common/cedet.el")
 
 (global-ede-mode 1)
 (semantic-load-enable-code-helpers)
