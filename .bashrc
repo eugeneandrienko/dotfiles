@@ -1,7 +1,7 @@
 # exported variables is specify for bash, because it here and 
 # not in ~/.profile
 # Start the Emacs server
-if [ "`pgrep emacs | wc -l`" -eq "0" ]; then
+if [ "`ps -e | grep emacs | wc -l`" -eq "0" ]; then
     echo "Starting the Emacs server..."
     emacs --daemon
 fi
