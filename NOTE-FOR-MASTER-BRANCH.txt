@@ -1,4 +1,0 @@
-DO NOT USE master branch!
-Use corresponding branches for every system.
-
-Master branch closed at 07-09-2012 19:39
