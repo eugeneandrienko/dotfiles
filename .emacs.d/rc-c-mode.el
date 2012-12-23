@@ -29,7 +29,7 @@
 ;; }
 (add-hook 'c-mode-common-hook
           (lambda ()
-	    (c-set-offset 'case-label 8)))
+	    (c-set-offset 'case-label 2)))
 ;;for linux coding style
 (defun c-lineup-arglist-tabs-only (ignored)
   "Line up argument lists by tabs, not spaces"
