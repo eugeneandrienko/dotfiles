@@ -9,6 +9,7 @@
 (global-set-key "\e\eb" 'org-iswitchb)
 
 (setq org-agenda-files (quote ("~/.org/")))
+(setq org-directory "~/.org/")
 
 ;my prefer identation
 (setq org-startup-indented t)
@@ -23,3 +24,8 @@
       (quote ((sequence "TODO(t!)" "NEXT(n!)" "WAITING(w@/!)" "STARTED(s!)" "|" "DONE(d!/!)" "CANCELLED(c@/!)")
               (sequence "QUOTE(Q!)" "QUOTED(D!)" "|" "APPROVED(A@)" "EXPIRED(E@)" "REJECTED(R@)")
               (sequence "OPEN(O!)" "|" "CLOSED(C!)"))))
+
+;;org-mode settings
+(setq org-mobile-directory "~/Dropbox/org-mode/MobileOrg")
+;Set to the name of the file where new notes will be stored
+(setq org-mobile-inbox-for-pull "~/.org/flagged.org")
