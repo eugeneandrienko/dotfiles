@@ -1,0 +1,458 @@
+﻿"после установки под Win7, надо не забыть переименовать директорию lang
+"в lang_orig, в каталоге установки vim'а!
+"
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" YOU SHOULD INSTALL Vundle first!!!
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" List of external software, which need to be installed:
+"  1) exuberant ctags
+"  2) Unix cp
+"  3) Python 3.2 (or another, with which your Vim was compiled:
+"  http://stackoverflow.com/a/17963884)
+"  4) Google Chrome (chrome should be in PATH) with preinstalled Markdown Preview Plus
+"     (https://chrome.google.com/webstore/detail/markdown-preview-plus/febilkbfcbhebfnokafefeacimjdckgl
+"     plugin should be permitted to open files by links)
+
+
+set runtimepath+=~/.vim
+set nocompatible                        "Не нужна мне совместимость с vi!
+
+
+
+" Install plugin manager
+" Usage - :Bundle<TAB>
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+filetype plugin indent on
+
+" List of installed plugins:
+Bundle 'a.vim'
+Bundle 'errormarker.vim'
+Bundle 'taglist.vim'
+Bundle 'bling/vim-airline'
+Bundle 'Townk/vim-autoclose'
+Bundle 'snipMate'
+Bundle 'klen/python-mode'
+Bundle 'tomtom/tcomment_vim'
+Bundle 'rosenfeld/conque-term'
+Bundle 'tpope/vim-fugitive'
+Bundle 'gregsexton/gitv'
+
+
+
+"" CONTENTS:
+""" *) General
+""" *) Encoding
+""" *) Files
+""" *) Searching
+""" *) Indents
+""" *) Look and Feel
+""" *) Statusline (airline)
+""" *) GUI Settings
+""" *) Coding
+""" *) TagList
+""" *) Python-mode
+""" *) Conque-term settings
+""" *) Keybindings
+
+
+
+""
+"" General
+""
+" Save 50 lines in cmdline history
+set history=50
+" Backspace works through EOL, TABs, etc...
+set backspace=indent,eol,start
+" Autocomplete by <TAB>
+set wcm=<Tab>
+" Do not stop cursor at the EOL
+set whichwrap=<,>,[,],h,l
+" Current directory == directory of file in current buffer
+set autochdir
+" Do not read config-file from current directory
+set noex
+" Unknown magic
+map Q gq
+" Enable paste with normal indentation
+"This two lines can break indentation
+set paste
+set pastetoggle=
+" Enable syntax highlighting
+syntax on
+" Reread .vimrc after write
+autocmd! bufwritepost $VIM/.vimrc execute "normal! :source $VIM/.vimrc"
+" Switch to last known cursor position in opened file.
+autocmd BufReadPost *
+  \ if line("'\"") > 0 && line("'\"") <= line("$") |
+  \   exe "normal! g`\"" |
+  \ endif
+
+
+
+""
+"" Encoding
+""
+" Default encoding for terminal
+set termencoding=utf8
+"
+set fileformats=unix,dos,mac
+"
+set fileencodings=utf8,cp1251,cp866,koi8-r
+" Default codepage
+set encoding=utf8
+" Codepage for THIS file
+scriptencoding=utf8
+
+
+
+
+""
+"" Files
+""
+" Do not create backup files (filename.txt~)
+set nobackup
+" Write all changes in file if we are switching to another file
+set autowrite
+"
+set directory=~/.vim/swapfiles
+"
+set undodir=~/.vim/undodir
+" Enable infinite undo
+set undofile
+
+
+
+""
+"" Searching
+""
+" Show first matching word, when typing pattern
+set incsearch
+" Do not highlight matching words
+set nohlsearch
+"
+set ignorecase
+
+
+
+
+""
+"" Indents
+""
+" Enable smart indents
+set autoindent
+set smartindent
+" Copy indent from previous line for current line
+set ai
+" C-style indentation
+set cin
+" Size of tab (in spaces)
+set tabstop=4
+" Count of spaces using with autoindentation
+set shiftwidth=4
+" Enable smart tabs
+set smarttab
+" Replace tabs by spaces (also, look on :retab command)
+set expandtab
+" Set different indentation politics for crontab, fstab, make...
+au FileType crontab,fstab,make set noet ts=8 sw=8
+
+
+
+""
+"" Look and Feel
+""
+" TTY background - dark
+set background=dark
+" Connection with TTY is fast
+set ttyfast
+" Enable supply of 256 colors
+set t_Co=256
+" Use blink unstead of bell
+set visualbell
+" Show matching brackets
+set showmatch
+" Disable text about Uganda childs in start
+set shortmess+=tToOI
+" Do not wrap string near end of screen
+set wrap
+" Do not wrap word - all hyphenation just between words.
+set linebreak
+" Nice autocomplete
+set wildmenu
+" New window appears below present window
+set splitbelow
+" Always show line with tabs
+set stal=2
+" Maximal count of opened tabs
+set tpm=100
+" Use ALT key as usual, not for window menu invoke
+set wak=yes
+" Save size of windows in vim session
+set ssop+=resize
+" What to show unstead tabs and spaces
+set listchars=tab:>>,trail:_
+" Show tabs and spaces
+set list
+set colorcolumn=0                       "Граница в 0 символов
+" Settings for popup menu
+set completeopt=menuone,menu,longest,preview
+set wrapmargin=5                        "отступ от текста до правой границы окна
+set scrolloff=3                         "Сколько строк показывать при скроллинге сверху и снизу
+" Color theme
+Bundle 'jonathanfilip/vim-lucius'
+color lucius
+set bg=dark
+function! ToggleBg()
+    if &background == 'dark'
+        set bg=light
+    else
+        set bg=dark
+    endif
+endfunc
+
+
+
+
+""
+"" Statusline (airline)
+""
+" Show uncomplete commands
+set showcmd
+" Disable displaying of mode
+set noshowmode
+" Show statusline
+set laststatus=2
+"g:airline_section_a - show mode by default
+let g:airline_section_b = '[FORMAT=%{&ff}] [TYPE=%Y]'
+let g:airline_section_c = '%f'
+let g:airline_section_x = '%{fugitive#statusline()}'
+let g:airline_section_y = '[POS=%04l,%04v] %p%%'
+let g:airline_section_z = '[LEN=%L]'
+let g:airline_theme = 'lucius'
+" Disable info about trailing whitespace
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+" which sections get truncated at what width
+let g:airline#extensions#default#section_truncate_width = {
+  \ 'b': 79,
+  \ 'x': 79,
+  \ 'z': 60,
+  \ 'c': 45,
+  \ 'y': 45,
+  \ }
+
+
+""
+"" GUI Settings
+""
+if has ("gui_running")
+    " Use mouse
+    set mouse=a                             "используем мышку
+    " Disable menu
+    set guioptions-=m
+    " Disable toolbar
+    set guioptions-=T
+    " Disable scrollbars
+    set guioptions-=r
+    set guioptions-=l
+    set guioptions-=L
+    " Use console dialogs unstead of graphical dialogs
+    set guioptions+=c
+    " Use antialiasing for fonts
+    set antialias
+    " Hide mouse cursor
+    set mousehide
+    " Disable unneeded escape chars in shell
+    set noguipty
+    " Highlight current line
+    set cursorline
+
+    " Set default font and setup window-maximize method for different OSes
+    if has("gui_gtk2")
+        set guifont=Terminus  " TODO: may be add Droid Sans Mono here??
+        au GUIEnter * :set lines=99999 columns=99999
+    elseif has("gui_win32")
+        set guifont=Droid\ Sans\ Mono:h10
+        au GUIEnter * :set lines=50 columns=120
+    endif
+    " Disable cursor blinking
+    set guicursor+=a:blinkon0
+    " Show tab number
+    set guitablabel=%N\ %f\ %M
+endif
+
+
+
+""
+"" Coding
+""
+"
+" <C-c>c -- enable or disable vertical line for 80th character
+" <C-c>m -- compile C, C++ or LaTeX source
+" <C-c>np -- create new project
+" gc -- (un)comment source code
+" :Gitv<CR> -- browse repo
+" :Gitv!<CR> -- browse file history
+"
+" format of error string for gcc and sdcc (for errormarker plugin)
+let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
+" Create new project
+menu NewProj.C :!cp -r ~/.vim/mproj/c/* .<CR>:e ./main.c<CR>
+menu NewProj.LaTeX_report :!cp -r ~/.vim/mproj/latex-report/* .<CR>:e ./report.tex<CR>
+menu NewProj.LaTeX_beamer :!cp -r ~/.vim/mproj/latex-beamer/* .<CR>:e ./presentation.tex<CR>
+map <C-c>np :emenu NewProj.<TAB>
+" If Makefile present - use make. Unstead - use gcc for current file
+function MakeOurProject()
+    if filereadable("Makefile")
+        set makeprg=make
+    else
+        set makeprg=gcc\ -Wall\ -o\ %<\ %
+    endif
+    if &filetype == "TEX"
+        set makeprg=latexmk\ -norc\ -pdf\ -time\ %
+    elseif &filetype == "MARKDOWN"
+        set makeprg=chrome\ %
+    endif
+    make!
+endfunction
+" Compile programs using MakeOurProject (and do not jump to first error)
+au BufRead,BufNewFile,BufEnter,BufWinEnter *.c,*.h,*.asm imap <C-c>m <Esc>mc:execute MakeOurProject()<CR>`ca
+au BufRead,BufNewFile,BufEnter,BufWinEnter *.c,*.h,*.asm nmap <C-c>m mc:execute MakeOurProject()<CR>`c
+au BufRead,BufNewFile,BufEnter,BufWinEnter *.tex map <C-c>m mc:execute MakeOurProject()<CR>`c
+au BufRead,BufNewFile,BufEnter,BufWinEnter *.md map <C-c>m mc:execute MakeOurProject()<CR>`c
+"
+let g:tex_flavor = 'latex'
+" Enable/disable vertical line for 80th character
+function MyColorColumn()
+    if &colorcolumn == 80
+        set colorcolumn=0
+    else
+        set colorcolumn=80
+    endif
+endfunction
+imap <C-c>c <Esc>mg:execute MyColorColumn()<CR>`ga
+nmap <C-c>c mg:execute MyColorColumn()<CR>`g
+" Close popup preview window for omnicompletion
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+" Pass *.md files as markdown files
+autocmd BufNewFile,BufRead *.md set filetype=markdown
+" Open all Gitv windows horizontal
+let g:Gitv_OpenHorizontal = 1
+
+
+
+
+""
+"" TagList
+""
+"
+" <C-c>t -- open TagList window
+"
+" Show info just about one file
+let g:Tlist_Show_One_File = 1
+" Get focus after opening
+let g:Tlist_GainFocus_On_ToggleOpen = 1
+"
+let g:Tlist_Compact_Format = 1
+" Do not close the window after tag selection
+let g:Tlist_Close_On_Select = 0
+" Highlight tag which corresponding with current position in file
+let g:Tlist_Auto_Highlight_Tag = 1
+let tlist_tex_settings   = 'latex;s:sections;g:graphics;l:labels'
+let tlist_make_settings  = 'make;m:macros;t:targets'
+let tlist_markdown_settings = 'markdown;h:headings'
+let Tlist_Use_Right_Window = 1
+
+
+
+""
+"" Python-mode
+""
+"
+" \b -- set breakpoint
+" <C-w>o -- maximize current window
+" <C-c>rr -- refactor function/method/variable under the cursor
+" <C-c>td -- show all TODOs in Python files
+"
+" Disable line numbers and 80th symbol color column
+let g:pymode_options = 0
+let g:pymode_lint = 1
+let g:pymode_lint_checker = "pyflakes,pep8"
+let g:pymode_lint_ignore = "E501"
+" When user save a file - check code
+let g:pymode_lint_write = 1
+" Disable window with errors and warnings
+let g:pymode_lint_cwindow = 0
+" VirtualEnv support
+let g:pymode_virtualenv = 1
+let g:pymode_breakpoint = 1
+let g:pymode_breakpoint_key = '<leader>b'
+let g:pymode_syntax = 1
+let g:pymode_syntax_all = 1
+let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+let g:pymode_syntax_space_errors = g:pymode_syntax_all
+" Disable autofolding
+let g:pymode_folding = 0
+let g:pymode_python = 'python3'
+let g:pymode_indent = 1
+let g:pymode_rope_completion = 1
+let g:pymode_rope_complete_on_dot = 1
+" Find and show all TODOs
+imap <C-c>td <Esc>:noautocmd vimgrep /TODO/j **/*.py<CR>:cw<CR>a
+nmap <C-c>td :noautocmd vimgrep /TODO/j **/*.py<CR>:cw<CR>
+
+
+
+""
+"" Conque-term settings
+""
+menu CMD.Python.Interpretator :ConqueTermSplit python<CR>
+" menu CMD.Python.Debug :ConqueTermSplit python -i %<CR>
+map <C-c>i :emenu CMD.<TAB>
+let g:ConqueTerm_StartMessages = 0
+let g:ConqueTerm_CloseOnEnd = 0
+
+
+
+""
+"" Keybindings
+""
+" Close buffer without saving
+map <Esc><Esc> :q!<CR>
+" Autocomplete by Tab (use Shift-TAB unstead)
+imap <Tab> <C-N>
+" Show more (un)useful information rather than <C-g>
+map <C-g> g<C-g>
+" Open new tab
+imap <C-t>t <Esc>:tabnew<CR>a
+nmap <C-t>t :tabnew<CR>
+" Show/hide line numbers
+imap <C-c>n <Esc>:set<Space>nu!<CR>a
+nmap <C-c>n :set<Space>nu!<CR>
+" Show list of errors
+imap <C-c>l <Esc>:copen<CR>
+nmap <C-c>l :copen<CR>
+" Show/hide taglist
+imap <C-c>t <Esc>:TlistToggle<CR>:TlistUpdate<CR>
+nmap <C-c>t :TlistToggle<CR>:TlistUpdate<CR>
+" Switch between *.c and *.h file (a.vim plugin)
+imap <C-c>sw <Esc>:AT<CR>
+nmap <C-c>sw :AT<CR>
+" Change color theme
+imap <C-c>tb <Esc>:call ToggleBg()<CR>a
+nmap <C-c>tb :call ToggleBg()<CR>
+" Nightmare mode
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+noremap <F1> <NOP>
+
+
+"""EOF

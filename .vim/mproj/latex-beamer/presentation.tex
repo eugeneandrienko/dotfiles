@@ -1,0 +1,67 @@
+% add notes to show notes
+% add notesonly to show only notes
+\documentclass{beamer}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[english, russian]{babel}
+
+\usepackage{hyperref}
+\hypersetup{unicode=true}
+\usepackage{breakurl}
+
+\usepackage{graphicx}
+\graphicspath{{images/}}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+
+\usepackage[labelformat=empty]{caption}
+\usepackage{verbatim}
+\usepackage{listings}
+
+\lstset{language=C,
+  escapechar=|,
+  frame=tb,
+  showstringspaces=false}
+
+
+\definecolor{mygreen}{rgb}{.2,.6,.2}
+\usetheme{Luebeck}
+\usecolortheme{lily}
+\useinnertheme{circles}
+\setbeamercolor*{palette primary} {use=structure, bg=mygreen}
+\setbeamercolor{frametitle}{fg=black}
+\setbeamercolor{framesubtitle}{fg=black}
+\setbeamercolor{titlelike}{fg=black}
+\setbeamercolor{section in toc}{fg=black}
+\setbeamercolor{section number projected}{bg=mygreen,fg=black}
+\setbeamercolor{itemize item}{fg=mygreen}
+\setbeamercolor{item projected}{fg=white,bg=mygreen}
+\setbeamercolor{block title}{bg=mygreen, fg=black}
+\setbeamercolor{description item}{fg=mygreen}
+\hypersetup{urlcolor=mygreen}
+
+\title{}
+\date{}
+\institute{}
+\author{Андриенко Евгений}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+%------------------------------------------------------------------
+
+%------------------------------------------------------------------
+
+\end{document}
+
