@@ -1,10 +1,3 @@
-# WARNING!
-
-**Now, `deploy.sh` script is old and unusable! DO NOT use it.**
-I will rewrite this script next week or two weeks.
-*14.10.2014*
-
-
 ### About this repository
 
 This repository contains different configuration files, which I
@@ -87,4 +80,4 @@ You **mustn't** clone it to your `~` directory!
 
 After that run *deploy.sh* script, which just create symlinks in $HOME directory to
 these configuration files. If $HOME contains some matching configuration files -
-script creates backups for these files.
+script warn you and will not rewrite these files.

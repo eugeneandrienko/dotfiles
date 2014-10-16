@@ -1,34 +1,44 @@
 #!/bin/bash
 
-if [ "`dirname $0`" != "." ]; then
-    echo "This script didn't executed from directory with \
-dotfiles repository!"
+
+# Settings:
+
+GITREPO_NAME="dotfiles"
+# Ignored files and catalogs (in ls -F format), separated by colon
+IGNORED_FILES=".git/:README.md:deploy.sh*"
+
+
+
+# Are we in the directory with cloned dotfiles repository?
+
+ls -aF | grep -q '\.git/'
+DOTGIT_NOT_PRESENT=$?
+if [ `basename $PWD` != $GITREPO_NAME ] || [ $DOTGIT_NOT_PRESENT -ne 0 ]; then
+    echo "Current directory IS NOT the directory with 'dotfiles' git repository!"
     exit 1
 fi
 
-echo "Deploying..."
 
-FLIST="`echo * .* | sed -r 's/(\.\.)|(\.) //g' | sed 's/README //g' \
-| sed 's/deploy.sh //g' | sed 's/\.gitignore //g' | sed 's/\.git //g'`"
-
-echo "List of files:"
-echo $FLIST | fold -s -w 40
+echo "Deploying configuration files to the your home directory..."
 echo
-echo -n "Add symlinks to this files in "'$HOME'" and remove previous \
-versions of this files? (y/n) "
-read ANSWER
-while [ "$ANSWER" != "y" ] && [ "$ANSWER" != "n" ]; do
-    echo "Please answer y or n"
-    read ANSWER
-done
-if [ "$ANSWER" == "n" ]; then
-    exit 0
-fi
 
-for i in $FLIST; do
-    rm -rfv $HOME/$i
-done
 
-for i in $FLIST; do
-    ln -sv $PWD/$i $HOME/$i
+FILELIST=`ls -AF`
+for repo_file in $FILELIST; do
+    echo $IGNORED_FILES | tr ':' '\n' | grep -q $repo_file
+    FILE_NOT_IGNORED=$?
+    if [ $FILE_NOT_IGNORED -eq 1 ]; then
+        repo_file=`basename $repo_file`
+        ln -s $repo_file ~/$repo_file
+        if [ $? -ne 0 ]; then
+            echo "~/$repo_file already exists in your HOME directory!"
+        else
+            echo "$repo_file -> ~/$repo_file"
+        fi
+    fi
 done
+echo
+
+
+echo "Done!"
+
