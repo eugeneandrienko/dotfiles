@@ -29,9 +29,13 @@ for repo_file in $FILELIST; do
     FILE_NOT_IGNORED=$?
     if [ $FILE_NOT_IGNORED -eq 1 ]; then
         repo_file=`basename $repo_file`
-        ln -s $PWD/$repo_file ~/$repo_file
-        if [ $? -ne 0 ]; then
+        if [ -e "$HOME/$repo_file" ]; then
             echo "~/$repo_file already exists in your HOME directory!"
+            continue
+        fi
+        ln -s $PWD/$repo_file $HOME/$repo_file
+        if [ $? -ne 0 ]; then
+            echo "Cannot create symlink to $repo_file in your HOME directory!"
         else
             echo "$repo_file -> ~/$repo_file"
         fi
