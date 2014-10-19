@@ -29,7 +29,7 @@ for repo_file in $FILELIST; do
     FILE_NOT_IGNORED=$?
     if [ $FILE_NOT_IGNORED -eq 1 ]; then
         repo_file=`basename $repo_file`
-        ln -s $repo_file ~/$repo_file
+        ln -s $PWD/$repo_file ~/$repo_file
         if [ $? -ne 0 ]; then
             echo "~/$repo_file already exists in your HOME directory!"
         else
