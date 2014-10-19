@@ -1,2 +1,4 @@
 .config/qtile/config.pyc
 .vim/bundle
+.vim/swapfiles
+.vim/undodir
