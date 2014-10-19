@@ -24,23 +24,25 @@ set nocompatible                        "Не нужна мне совмести
 " Install plugin manager
 " Usage - :Bundle<TAB>
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-filetype plugin indent on
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " List of installed plugins:
-Bundle 'a.vim'
-Bundle 'errormarker.vim'
-Bundle 'taglist.vim'
-Bundle 'bling/vim-airline'
-Bundle 'Townk/vim-autoclose'
-Bundle 'snipMate'
-Bundle 'klen/python-mode'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'rosenfeld/conque-term'
-Bundle 'tpope/vim-fugitive'
-Bundle 'gregsexton/gitv'
+Plugin 'gmarik/Vundle.vim'
+Plugin 'a.vim'
+Plugin 'errormarker.vim'
+Plugin 'taglist.vim'
+Plugin 'bling/vim-airline'
+Plugin 'Townk/vim-autoclose'
+Plugin 'snipMate'
+Plugin 'klen/python-mode'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'rosenfeld/conque-term'
+Plugin 'tpope/vim-fugitive'
+Plugin 'gregsexton/gitv'
 
+call vundle#end()
+filetype plugin indent on
 
 
 "" CONTENTS:
