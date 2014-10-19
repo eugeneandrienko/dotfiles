@@ -43,6 +43,8 @@ for repo_file in $FILELIST; do
 done
 echo
 
+mkdir -v $HOME/.vim/swapfiles
+mkdir -v $HOME/.vim/undodir
 
 echo "Done!"
 
