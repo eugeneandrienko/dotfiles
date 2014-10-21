@@ -16,7 +16,6 @@ List of programs, which using these configuration files or used by these files:
 * mplayer
 * sudo
 * feh
-* wicd, wicd-curses
 * bash-completion
 * screen
 * exuberant-ctags
@@ -38,13 +37,6 @@ List of Vim dependencies you can find in .vimrc file. Look at this file before s
 
 ### Contents
 
-* `.bin` - different scripts, which make life easier
-  * `displays.sh` - recofigure Xorg for two-monitor configuration
-  on the fly. It worked on my old notebook with old tube monitor 3-4
-  years ago
-  * `goodmenu.sh` - displays dmenu with GUI programs such as google-chrome
-  or audacity
-  * `xlock.sh` - locks screen via xlock with my own configuration of timings and fonts.
 * `.vim`
   * `mproj` - templates for different projects
     * `c` - template for C project
@@ -52,6 +44,7 @@ List of Vim dependencies you can find in .vimrc file. Look at this file before s
     * `latex-report` - template for LaTeX report
   * `syntax` - old syntax files. I just like it
 * `.aliases` - useful bash aliases
+* `.bash_login`
 * `.bashrc`
 * `.ctags` - configuration file for exuberant-ctags. Adds support for
 TeX, Markdown files and Makefiles. Without it file you cannot use vim's plugin
@@ -67,6 +60,13 @@ with typed text
 * `.Xdefaults` - fonts and urxvt settings. Includes urxvt color settings
 * `.xinitrc` - command which will be executing after X server will start. Includes
 commands which install your wallpaper on the desktop, setup keyboard language switch ant so on
+* `bin` - different scripts, which make life easier
+  * `displays.sh` - recofigure Xorg for two-monitor configuration
+  on the fly. It worked on my old notebook with old tube monitor 3-4
+  years ago
+  * `goodmenu.sh` - displays dmenu with GUI programs such as google-chrome
+  or audacity
+  * `xlock.sh` - locks screen via xlock with my own configuration of timings and fonts.
 * `deploy.sh` - installs this configuration files in the your system. Read **Install** section for
 more information
 * `urxvtbgs.png` - semitransparent background for urxvt

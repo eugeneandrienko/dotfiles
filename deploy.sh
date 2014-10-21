@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/local/bin/bash
 
 
 # Settings:
@@ -46,5 +46,6 @@ echo
 mkdir -v $HOME/.vim/swapfiles
 mkdir -v $HOME/.vim/undodir
 
+echo
 echo "Done!"
 
