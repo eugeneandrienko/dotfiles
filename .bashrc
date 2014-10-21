@@ -48,7 +48,7 @@ export HISTCONTROL
 #. ~/.profile
 
 function screen {
-    SCREEN_BIN="/usr/bin/screen"
+    SCREEN_BIN="/usr/local/bin/screen"
     if [ ! -n "$1" ]; then
         $SCREEN_BIN -ls
     else
