@@ -5,3 +5,4 @@ xsetroot -cursor_name left_ptr
 ##################################################
 # Put the line here, which starts your favorite WM
 ##################################################
+i3
