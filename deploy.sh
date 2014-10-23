@@ -45,6 +45,8 @@ echo
 
 mkdir -v $HOME/.vim/swapfiles
 mkdir -v $HOME/.vim/undodir
+mkdir -v $HOME/.freetalk/downloads
+mkdir -v $HOME.freetalk/history
 
 echo
 echo "Done!"
