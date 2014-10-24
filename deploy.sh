@@ -5,7 +5,7 @@
 
 GITREPO_NAME="dotfiles"
 # Ignored files and catalogs (in ls -F format), separated by colon
-IGNORED_FILES=".git/:README.md:deploy.sh*"
+IGNORED_FILES=".git/:README.md:deploy.sh*:.gitignore"
 
 
 
@@ -43,10 +43,10 @@ for repo_file in $FILELIST; do
 done
 echo
 
-mkdir -v $HOME/.vim/swapfiles
-mkdir -v $HOME/.vim/undodir
-mkdir -v $HOME/.freetalk/downloads
-mkdir -v $HOME.freetalk/history
+mkdir -pv $HOME/.vim/swapfiles
+mkdir -pv $HOME/.vim/undodir
+mkdir -pv $HOME/.freetalk/downloads
+mkdir -pv $HOME/.freetalk/history
 
 echo
 echo "Done!"
