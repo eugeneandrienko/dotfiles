@@ -1,7 +1,7 @@
 [[ $PS1 && -f /usr/local/share/bash-completion/bash_completion.sh ]] && \
 	source /usr/local/share/bash-completion/bash_completion.sh
 
-set -o emacs
+set -o vi
 
 shopt -s histappend
 shopt -s cmdhist

@@ -8,7 +8,6 @@ Xft.hintstyle:  hintslight
 
 
 !-----------------------------------------------------------------
-!!! TODO: change this theme to normal Zenburn/grey theme!!!
 URxvt*termName: rxvt-256color
 URxvt*xftAntialias: true
 
@@ -56,15 +55,13 @@ URxvt*underlineColor: #dfaf8f
 URxvt.transparent: false
 URxvt.depth: 32
 
-
-!URxvt.font: -*-droid sans mono-*-*-*-*-14-*-*-*-*-*-*-u
 URxvt.font: xft:Droid Sans Mono:pixelsize=14:antialias=true
 
 URxvt.scrollBar: false
 URxvt.saveLines: 1000
 URxvt.cursorBlink: true
 URxvt.perl-ext-common: selection,tabbed,matcher
-URxvt.urlLauncher: /usr/bin/google-chrome
+URxvt.urlLauncher: /usr/local/bin/chrome
 
 ! left mouse button click to go to link
 URxvt.matcher.button: 1
@@ -77,4 +74,5 @@ URxvt.tabbed.tab-bg:    15
 ! set urgent status when something (ex. mcabber) uses system bell
 URxvt.urgentOnBell: true
 
-URxvt.backgroundPixmap: /home/drag0n/urxvtbgs.png;+0+0:tile
+! this is here for vi mode (http://www.jukie.net/bart/blog/20040326082602)
+xterm*eightBitInput : false
