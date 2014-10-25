@@ -1,5 +1,13 @@
-[[ $PS1 && -f /usr/local/share/bash-completion/bash_completion.sh ]] && \
-	source /usr/local/share/bash-completion/bash_completion.sh
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
 
 set -o vi
 
@@ -49,7 +57,7 @@ export HISTCONTROL
 #. ~/.profile
 
 function screen {
-    SCREEN_BIN="/usr/local/bin/screen"
+    SCREEN_BIN="/usr/bin/screen"
     if [ ! -n "$1" ]; then
         $SCREEN_BIN -ls
     else

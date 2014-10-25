@@ -1,4 +1,4 @@
-#!/usr/local/bin/bash
+#!/bin/bash
 
 
 # Settings:
@@ -45,8 +45,6 @@ echo
 
 mkdir -pv $HOME/.vim/swapfiles
 mkdir -pv $HOME/.vim/undodir
-mkdir -pv $HOME/.freetalk/downloads
-mkdir -pv $HOME/.freetalk/history
 
 echo
 echo "Done!"

@@ -3,7 +3,7 @@ alias :q='exit'
 alias :Q='exit'
 
 # colorized commands
-alias ls='ls -G -Fh'
+alias ls='ls --color -Fh'
 alias grep='grep --color=auto'
 
 # for comfortable system using
@@ -12,7 +12,7 @@ alias ..='cd ..'
 alias ~='cd $HOME'
 alias du='du -hs'
 alias bk='cd "$OLDPWD"'
-alias ll='ls -l -G -Fh'
+alias ll='ls -l --color -Fh'
 alias mplayer='mplayer -msglevel all=0 -msgcolor -nojoystick -nolirc -vo xv -ao alsa -subcp cp1251'
 alias ps='ps --headers -eo pid,uid,pcpu,pmem,rss,cmd'
 alias pingya='ping -c3 ya.ru'
@@ -24,3 +24,6 @@ alias panic='kill -9 $$'
 
 # mount aliases
 alias mount_vfat='sudo mount -t msdosfs'
+
+alias disable_touchpad='xinput set-prop 12 "Device Enabled" 0'
+alias enable_touchpad='xinput set-prop 12 "Device Enabled" 1'

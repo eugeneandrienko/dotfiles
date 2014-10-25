@@ -1,34 +1,9 @@
 #!/bin/bash
 
-EXECLIST="google-chrome\n\
-emacs\n\
-skype\n\
-gimp\n\
-audacity\n\
-lock"
-ECHO="/bin/echo -e"
-DMENU='dmenu -b -p "Execute:" -nb black -nf green -sb green -sf black'
-RETVAL=`$ECHO $EXECLIST | $DMENU -fn "-*-droid sans mono-*-*-*-*-12-*-*-*-*-*-*-u"`
-
-case "$RETVAL" in
-    "google-chrome")
-	google-chrome &
-	;;
-    "emacs")
-	emacsclient -c -n &
-	;;
-    "skype")
-	skype &
-	;;
-    "gimp")
-	gimp &
-	;;
-    "audacity")
-	audacity & 
-	;;
-    "lock")
-	/home/drag0n/.bin/xlock.sh
-	;;
-esac
-
-exit 0
+FONT='-xos4-terminus-*-*-*-*-14-*-*-*-*-*-*-u'
+cat << EOF | dmenu -p "Execute:" -l 3 -i -b -fn $FONT | xargs bash -c
+chrome
+gvim
+enable_touchpad
+disable_touchpad
+EOF
