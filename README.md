@@ -6,11 +6,10 @@ have been writing since 2005.
 
 ### Dependencies
 
-List of programs, which using by scripts inside the .bin/ directory:
+List of programs, which using by scripts inside the bin/ directory:
 * xrandr
 * dialog
 * dmenu
-* xlock
 
 List of programs, which using these configuration files or used by these files:
 * mplayer
@@ -20,13 +19,14 @@ List of programs, which using these configuration files or used by these files:
 * screen
 * exuberant-ctags
 * git
-* vim
+* vim (and gvim too)
 * Xorg
 * rtorrent
-* google-chrome (by vim)
+* google-chrome or chromium (by vim)
 * urxvt
 * setxkbmap
 * xsetroot
+* i3wm
 
 These lists do not include usual programs like grep or rm.
 
@@ -57,7 +57,7 @@ with typed text
 * `.rtorrent.rc` - configuration file for rtorrent
 * `.screenrc`
 * `.vimrc`
-* `.Xdefaults` - fonts and urxvt settings. Includes urxvt color settings
+* `.xdefaults` - fonts and urxvt settings. Includes urxvt color settings
 * `.xinitrc` - command which will be executing after X server will start. Includes
 commands which install your wallpaper on the desktop, setup keyboard language switch ant so on
 * `bin` - different scripts, which make life easier
@@ -65,11 +65,9 @@ commands which install your wallpaper on the desktop, setup keyboard language sw
   on the fly. It worked on my old notebook with old tube monitor 3-4
   years ago
   * `goodmenu.sh` - displays dmenu with GUI programs such as google-chrome
-  or audacity
-  * `xlock.sh` - locks screen via xlock with my own configuration of timings and fonts.
+  or gvim
 * `deploy.sh` - installs this configuration files in the your system. Read **Install** section for
 more information
-* `urxvtbgs.png` - semitransparent background for urxvt
 
 
 ### Install
