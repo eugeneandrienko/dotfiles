@@ -27,7 +27,7 @@ font pango:Droid Sans Mono 8
 floating_modifier $mod
 
 # Focus do not follows mouse
-focus_follows_mouse no
+focus_follows_mouse yes
 
 # Show popup if it belongs to current window in fullscreen
 popup_during_fullscreen smart
