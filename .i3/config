@@ -172,8 +172,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        position top
-        font pango:Droid Sans Mono 8
+        font pango:Droid Sans Mono 10
         status_command i3status --config ~/.i3status.conf
 }
 
@@ -181,6 +180,6 @@ bar {
 assign [class="Chromium-browser"] 2
 
 # Execute on startup
-exec --no-startup-id i3-msg 'exec urxvt'
-exec --no-startup-id i3-msg 'workspace 2; exec chrome; workspace 1'
-exec --no-startup-id i3-msg 'workspace 3; exec gvim; workspace 1'
+exec --no-startup-id i3-msg 'exec xrdb ~/.xdefaults'
+exec --no-startup-id i3-msg 'exec setxkbmap -layout us,ru -option grp:caps_toggle,grp_led:caps'
+exec --no-startup-id i3-msg 'exec feh --bg-fill /home/drag0n/Dropbox/filez/wallpaperz/0b1347b8ae66.jpg'

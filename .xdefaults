@@ -75,4 +75,4 @@ URxvt.tabbed.tab-bg:    15
 URxvt.urgentOnBell: true
 
 ! this is here for vi mode (http://www.jukie.net/bart/blog/20040326082602)
-xterm*eightBitInput : false
+URxvt*eightBitInput : false

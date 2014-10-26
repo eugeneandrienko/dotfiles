@@ -2,14 +2,6 @@ LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:c
 export LS_COLORS
 
 EDITOR="vim";           export EDITOR
-LESS="-XR";             export LESS
-PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/games:/usr/local/sbin:/usr/local/bin:$HOME/bin; export PATH
-BLOCKSIZE=K;	        export BLOCKSIZE
+LESS="-R";              export LESS
+PATH=$PATH:$HOME/bin;   export PATH
 PAGER=less;  	        export PAGER
-ENV=$HOME/.bashrc;      export ENV
-BASH_ENV=$HOME/.bashrc; export BASH_ENV
-
-if [ $USER = drag0n ] && [ "`tty`" = "/dev/tty1" ]; then
-    startx &
-    exit
-fi

@@ -23,6 +23,8 @@ set nocompatible                        "Не нужна мне совмести
 
 " Install plugin manager
 " Usage - :Bundle<TAB>
+" Launch this to install:
+"    git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -40,6 +42,8 @@ Plugin 'tomtom/tcomment_vim'
 Plugin 'rosenfeld/conque-term'
 Plugin 'tpope/vim-fugitive'
 Plugin 'gregsexton/gitv'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tacahiroy/ctrlp-funky'
 
 call vundle#end()
 filetype plugin indent on
@@ -300,6 +304,9 @@ endif
 " gc -- (un)comment source code
 " :Gitv<CR> -- browse repo
 " :Gitv!<CR> -- browse file history
+" <C-p>f -- fuzzy search in files
+" <C-p>b -- fuzzy search in buffers
+" <C-p>c -- fuzzy search in code
 "
 " format of error string for gcc and sdcc (for errormarker plugin)
 let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
@@ -346,6 +353,11 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 " Open all Gitv windows horizontal
 let g:Gitv_OpenHorizontal = 1
+" Plugin for CtrlP - can work with functions
+let g:ctrlp_extensions = ['ctrlp-funky']
+let g:ctrlp_map='<c-p>f'
+nmap <C-p>b :CtrlPBuffer<CR>
+nmap <C-p>c :CtrlPFunky<CR>
 
 
 
