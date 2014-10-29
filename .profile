@@ -5,3 +5,4 @@ EDITOR="vim";           export EDITOR
 LESS="-R";              export LESS
 PATH=$PATH:$HOME/bin;   export PATH
 PAGER=less;  	        export PAGER
+LC_MESSAGES="C";        export LC_MESSAGES

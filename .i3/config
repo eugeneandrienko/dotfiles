@@ -182,4 +182,5 @@ assign [class="Chromium-browser"] 2
 # Execute on startup
 exec --no-startup-id i3-msg 'exec xrdb ~/.xdefaults'
 exec --no-startup-id i3-msg 'exec setxkbmap -layout us,ru -option grp:caps_toggle,grp_led:caps'
+exec --no-startup-id i3-msg 'exec xsetroot -cursor_name left_ptr'
 exec --no-startup-id i3-msg 'exec feh --bg-fill /home/drag0n/Dropbox/filez/wallpaperz/0b1347b8ae66.jpg'
