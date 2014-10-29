@@ -177,7 +177,7 @@ bar {
 }
 
 # Start all Chrome windows on 2nd workspace
-assign [class="Chromium-browser"] 2
+assign [class="Chromium"] 2
 
 # Execute on startup
 exec --no-startup-id i3-msg 'exec xrdb ~/.xdefaults'
