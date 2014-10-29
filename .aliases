@@ -25,5 +25,5 @@ alias panic='kill -9 $$'
 # mount aliases
 alias mount_vfat='sudo mount -t msdosfs'
 
-alias disable_touchpad='xinput set-prop 12 "Device Enabled" 0'
-alias enable_touchpad='xinput set-prop 12 "Device Enabled" 1'
+alias disable_touchpad='synclient TouchpadOff=1'
+alias enable_touchpad='synclient TouchpadOff=0'

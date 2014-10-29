@@ -27,6 +27,8 @@ List of programs, which using these configuration files or used by these files:
 * setxkbmap
 * xsetroot
 * i3wm
+* xcompmgr
+* transset-df
 
 These lists do not include usual programs like grep or rm.
 
@@ -44,7 +46,6 @@ List of Vim dependencies you can find in .vimrc file. Look at this file before s
     * `latex-report` - template for LaTeX report
   * `syntax` - old syntax files. I just like it
 * `.aliases` - useful bash aliases
-* `.bash_login`
 * `.bashrc`
 * `.ctags` - configuration file for exuberant-ctags. Adds support for
 TeX, Markdown files and Makefiles. Without it file you cannot use vim's plugin

@@ -280,7 +280,7 @@ if has ("gui_running")
 
     " Set default font and setup window-maximize method for different OSes
     if has("gui_gtk2")
-        set guifont=Droid\ Sans\ Mono\ 10
+        set guifont=Droid\ Sans\ Mono\ 12
         au GUIEnter * :set lines=99999 columns=99999
     elseif has("gui_win32")
         set guifont=Droid\ Sans\ Mono:h10

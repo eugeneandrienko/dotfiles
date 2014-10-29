@@ -15,7 +15,7 @@ set $mod Mod1
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:Droid Sans Mono 8
+font pango:Droid Sans Mono 10
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
@@ -183,4 +183,5 @@ assign [class="Chromium-browser"] 2
 exec --no-startup-id i3-msg 'exec xrdb ~/.xdefaults'
 exec --no-startup-id i3-msg 'exec setxkbmap -layout us,ru -option grp:caps_toggle,grp_led:caps'
 exec --no-startup-id i3-msg 'exec xsetroot -cursor_name left_ptr'
+exec --no-startup-id i3-msg 'exec xcompmgr -c &'
 exec --no-startup-id i3-msg 'exec feh --bg-fill /home/drag0n/Dropbox/filez/wallpaperz/0b1347b8ae66.jpg'
