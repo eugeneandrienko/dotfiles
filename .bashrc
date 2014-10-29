@@ -18,8 +18,7 @@ shopt -s cmdhist
 shopt -s cdspell
 shopt -s autocd
 shopt -s globstar
-
-PROMPT_COMMAND=`history -a`
+shopt -s checkwinsize
 
 LIGHTWHITE="\[\033[1;37m\]"
 WHITE="\[\033[0;37m\]"
@@ -28,16 +27,26 @@ CYAN="\[\033[1;36m\]"
 RED="\[\033[0;31m\]"
 YELLOW="\[\033[0;33m\]"
 
-if [ "$UID" = "0" ]; then
-    SPEC_SYMBOL="$RED#"
-    ADOG=$RED@$WHITE
-else
-    SPEC_SYMBOL="$WHITE\$"
-    ADOG=$CYAN@$WHITE
-fi
+SPEC_COLOR="$WHITE"
+ADOG=$CYAN@$WHITE
 
-PS1="\u$ADOG\h $GREEN\w$WHITE\n$SPEC_SYMBOL "
+PS1PROMPT="$WHITE[\u$ADOG\h] $GREEN\w$WHITE\n$SPEC_COLOR\$ "
+
+function retval {
+    if [ $? -eq 0 ]; then
+        PS1="$GREEN$? "
+    else
+        PS1="$RED$? "
+    fi
+    PS1+=$PS1PROMPT
+    PS1+=$GREEN
+}
+PROMPT_COMMAND='retval'
+export PROMPT_COMMAND
 export PS1
+
+# show command output in normal color
+trap 'echo -ne "\e[0m"' DEBUG
 
 PS2="$YELLOW> $WHITE"
 export PS2

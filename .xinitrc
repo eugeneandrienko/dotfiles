@@ -3,6 +3,8 @@ if [ -e "$HOME/.dell_laptop" ]; then
 	xrandr --auto
 fi
 
+numlockx &
+
 ##################################################
 # Put the line here, which starts your favorite WM
 ##################################################
