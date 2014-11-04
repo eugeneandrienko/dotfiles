@@ -26,7 +26,7 @@ font pango:Droid Sans Mono 10
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# Focus do not follows mouse
+# Focus follows mouse
 focus_follows_mouse yes
 
 # Show popup if it belongs to current window in fullscreen
@@ -172,10 +172,24 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        font pango:Droid Sans Mono 10
-        status_command i3status --config ~/.i3status.conf
+    font pango:Droid Sans Mono 10
+    colors {
+        background #3f3f3f
+        statusline #dddddd
+        separator  #dddddd
+        focused_workspace  #dddddd #3f3f3f #aaaaaa
+        inactive_workspace #3f3f3f #9f9f9f #333333
+    }
+    status_command i3status --config ~/.i3status.conf
 }
 
 # Start all Chrome windows on 2nd workspace
 assign [class="Chromium"] 2
 
+# Colors
+client.focused          #3f3f3f #3f3f3f #aaaaaa #eeeeee
+client.focused_inactive #3f3f3f #5f5f5f #999999 #eeeeee
+client.unfocused        #3f3f3f #9f9f9f #333333 #eeeeee
+client.urgent           #2f343a #900000 #ffffff #900000
+#client.placeholder      #000000 #9f9f9f #333333 #000000
+client.background               #3f3f3f
