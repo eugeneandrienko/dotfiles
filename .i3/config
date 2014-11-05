@@ -185,6 +185,8 @@ bar {
 
 # Start all Chrome windows on 2nd workspace
 assign [class="Chromium"] 2
+# Make "Share VK" floating
+for_window [title="VK | Share Link - Chromium"] floating enable
 
 # Colors
 client.focused          #3f3f3f #3f3f3f #aaaaaa #eeeeee
