@@ -45,6 +45,7 @@ echo
 
 mkdir -pv $HOME/.vim/swapfiles
 mkdir -pv $HOME/.vim/undodir
+mkdir -pv $HOME/.rtorrent
 
 echo
 echo "Done!"
