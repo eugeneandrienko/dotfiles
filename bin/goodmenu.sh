@@ -15,7 +15,7 @@ case $(echo $DMENU_ITEMS | tr ':' '\n' | $DMENU_CMD) in
     'enable touchpad')
         synclient TouchpadOff=0
         ;;
-    'disable_touchpad')
+    'disable touchpad')
         synclient TouchpadOff=1
         ;;
     *)
