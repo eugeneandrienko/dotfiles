@@ -38,8 +38,8 @@ workspace_auto_back_and_forth yes
 # default layout
 workspace_layout stacking
 
-# Hide vertical borders
-hide_edge_borders vertical
+# Hide both borders
+hide_edge_borders both
 
 # start a terminal
 bindsym $mod+Return exec urxvt
@@ -177,8 +177,8 @@ bar {
         background #3f3f3f
         statusline #dddddd
         separator  #dddddd
-        focused_workspace  #dddddd #3f3f3f #aaaaaa
-        inactive_workspace #3f3f3f #9f9f9f #333333
+        inactive_workspace #3f3f3f #3f3f3f #aaaaaa
+        focused_workspace  #3f3f3f #9f9f9f #333333
     }
     status_command i3status --config ~/.i3status.conf
 }
@@ -189,9 +189,9 @@ assign [class="Chromium"] 2
 for_window [title="VK | Share Link - Chromium"] floating enable
 
 # Colors
-client.focused          #3f3f3f #3f3f3f #aaaaaa #eeeeee
+client.focused          #3f3f3f #9f9f9f #333333 #eeeeee
 client.focused_inactive #3f3f3f #5f5f5f #999999 #eeeeee
-client.unfocused        #3f3f3f #9f9f9f #333333 #eeeeee
+client.unfocused        #3f3f3f #3f3f3f #aaaaaa #eeeeee
 client.urgent           #2f343a #900000 #ffffff #900000
-#client.placeholder      #000000 #9f9f9f #333333 #000000
-client.background               #3f3f3f
+#client.placeholder     #000000 #9f9f9f #333333 #000000
+client.background       #3f3f3f
