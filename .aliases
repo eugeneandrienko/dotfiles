@@ -21,9 +21,11 @@ alias ss='sudo -s'
 alias wget='wget -c'
 alias feh='feh --scale'
 alias panic='kill -9 $$'
+alias df='df -h'
 
 # mount aliases
-alias mount_vfat='sudo mount -t msdosfs'
+alias mount_vfat='sudo mount -t vfat'
+alias mount_cyr='sudo mount -o codepage=866,iocharset=utf8'
 
 alias disable_touchpad='synclient TouchpadOff=1'
 alias enable_touchpad='synclient TouchpadOff=0'
