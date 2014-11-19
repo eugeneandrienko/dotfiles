@@ -48,7 +48,7 @@ bindsym $mod+Return exec urxvt
 bindsym $mod+Shift+q kill
 
 # start i3lock
-bindsym $mod+Shift+x exec i3lock -c 000000
+bindsym $mod+Shift+x exec i3lock-wrapper -b
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec goodmenu.sh
