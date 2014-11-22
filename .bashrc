@@ -39,7 +39,7 @@ function retval {
         PS1="$RED$? "
     fi
     PS1+=$PS1PROMPT
-    PS1+=$GREEN
+    PS1+=$CYAN
 }
 PROMPT_COMMAND='retval'
 export PROMPT_COMMAND
