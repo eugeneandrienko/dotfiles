@@ -2,3 +2,6 @@
 .vim/swapfiles
 .vim/undodir
 .mcabber/histo
+.moc/equalizer
+.moc/last_directory
+.moc/softmixer
