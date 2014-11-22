@@ -1,5 +1,4 @@
 .vim/bundle
 .vim/swapfiles
 .vim/undodir
-.freetalk/downloads
-.freetalk/history
+.mcabber/histo
