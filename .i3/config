@@ -187,6 +187,8 @@ bar {
 assign [class="Chromium"] 2
 # Make "Share VK" floating
 for_window [title="VK | Share Link - Chromium"] floating enable
+# Make Chromium app windows (for example mini player) floating
+for_window [class="Chromium" window_role="app"] floating enable
 
 # Colors
 client.focused          #3f3f3f #9f9f9f #333333 #eeeeee
