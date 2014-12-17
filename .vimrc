@@ -44,6 +44,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'gregsexton/gitv'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
+Plugin 'jmcantrell/vim-virtualenv'
 
 call vundle#end()
 filetype plugin indent on
