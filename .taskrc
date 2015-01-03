@@ -26,6 +26,7 @@ include /usr/share/doc/task/rc/solarized-dark-256.theme
 #include /usr/share/doc/task/rc/dark-gray-256.theme
 
 include ~/.taskrc_priv
+taskd.trust=ignore hostname
 
 editor=vim
 
