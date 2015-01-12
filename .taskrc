@@ -46,7 +46,5 @@ journal.time=yes
 
 fontunderline=off
 
-default.command=project:Sysops or project:Todo or project:Daily or project:Work long
-
 color.burndown.pending=on yellow
 
