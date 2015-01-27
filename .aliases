@@ -30,3 +30,5 @@ alias mount_cyr='sudo mount -o codepage=866,iocharset=utf8'
 
 alias disable_touchpad='synclient TouchpadOff=1'
 alias enable_touchpad='synclient TouchpadOff=0'
+
+alias tasklist='task project:Daily long && task project:Sysops long && task project:Work long'
