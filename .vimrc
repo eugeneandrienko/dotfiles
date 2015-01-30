@@ -45,6 +45,7 @@ Plugin 'gregsexton/gitv'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'jmcantrell/vim-virtualenv'
+Plugin 'mhinz/vim-startify'
 
 call vundle#end()
 filetype plugin indent on
@@ -220,6 +221,11 @@ function! ToggleBg()
         set bg=dark
     endif
 endfunc
+" Startify settings
+let g:startify_bookmarks = ['~/.vimrc',]
+let g:startify_change_to_vcs_root = 1
+let g:startify_files_number = 8
+let g:startify_skiplist = ['vimrc',]
 
 
 
