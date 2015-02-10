@@ -67,20 +67,6 @@ export HISTCONTROL
 
 #. ~/.profile
 
-function screen {
-    SCREEN_BIN="/usr/bin/screen"
-    if [ ! -n "$1" ]; then
-        $SCREEN_BIN -ls
-    else
-        $SCREEN_BIN -ls | grep -q "\.\<$1\>"
-        if [ "$?" -eq "0" ]; then
-            $SCREEN_BIN -dr "$1"
-        else
-            $SCREEN_BIN -S "$1"
-        fi
-    fi
-}
-
 if [ -e ~/.aliases ]; then
     . ~/.aliases
 fi

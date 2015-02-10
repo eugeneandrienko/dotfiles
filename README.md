@@ -15,6 +15,7 @@ List of programs, which using these configuration files or used by these files:
 * bash-completion
 * exuberant-ctags
 * feh
+* f.lux
 * git
 * google-chrome or chromium (used by vim)
 * i3lock-wrapper
@@ -22,10 +23,10 @@ List of programs, which using these configuration files or used by these files:
 * mocp
 * mplayer
 * rtorrent
-* screen
 * setxkbmap
 * sudo
 * task
+* tmux
 * transset-df
 * vim (and gvim too)
 * vimpager
