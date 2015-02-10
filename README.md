@@ -17,6 +17,7 @@ List of programs, which using these configuration files or used by these files:
 * feh
 * git
 * google-chrome or chromium (used by vim)
+* i3lock-wrapper
 * i3wm
 * mocp
 * mplayer
@@ -27,6 +28,7 @@ List of programs, which using these configuration files or used by these files:
 * task
 * transset-df
 * vim (and gvim too)
+* vimpager
 * urxvt
 * xcompmgr
 * Xorg
