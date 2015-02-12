@@ -85,10 +85,6 @@ set autochdir
 set noex
 " Unknown magic
 map Q gq
-" Enable paste with normal indentation
-"This two lines can break indentation
-set paste
-set pastetoggle=
 " Enable syntax highlighting
 syntax on
 " Reread .vimrc after write
