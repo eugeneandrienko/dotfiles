@@ -42,7 +42,7 @@ dateformat.annotation=D.M.Y H:N:S
 weekstart=Monday
 displayweeknumber=no
 calendar.details=full
-journal.time=yes
+journal.time=no
 
 fontunderline=off
 
