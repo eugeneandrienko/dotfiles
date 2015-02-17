@@ -23,6 +23,8 @@ alias iget='wget -c -e http_proxy=127.0.0.1:4444'
 alias feh='feh --scale'
 alias panic='kill -9 $$'
 alias df='df -h'
+alias tasklist='task project:Todo long ; task project:Daily long ; task project:Sysops long ; task project:Work long'
+alias startxflux='xflux -l 60 -g 30.3'
 
 # mount aliases
 alias mount_vfat='sudo mount -t vfat'
@@ -30,3 +32,4 @@ alias mount_cyr='sudo mount -o codepage=866,iocharset=utf8'
 
 alias disable_touchpad='synclient TouchpadOff=1'
 alias enable_touchpad='synclient TouchpadOff=0'
+
