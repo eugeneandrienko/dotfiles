@@ -29,6 +29,7 @@ List of programs, which using these configuration files or used by these files:
 * vim (and gvim too)
 * urxvt
 * xcompmgr
+* xosd
 * Xorg
 * xsetroot
 
