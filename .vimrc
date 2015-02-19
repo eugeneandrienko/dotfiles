@@ -416,7 +416,7 @@ let g:pymode_syntax_indent_errors = g:pymode_syntax_all
 let g:pymode_syntax_space_errors = g:pymode_syntax_all
 " Disable autofolding
 let g:pymode_folding = 0
-let g:pymode_python = 'python3'
+let g:pymode_python = 'python'
 let g:pymode_indent = 1
 let g:pymode_rope_completion = 1
 let g:pymode_rope_complete_on_dot = 1
