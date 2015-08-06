@@ -1,0 +1,7 @@
+ctags
+git
+mplayer
+sudo
+tmux
+vim
+wget
