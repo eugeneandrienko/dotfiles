@@ -70,3 +70,9 @@ export HISTCONTROL
 if [ -e ~/.aliases ]; then
     . ~/.aliases
 fi
+
+# For Canon LiDe 220
+export SANE_DEBUG_GENESYS=255
+export SANE_DEBUG_GENESYS_LOW=255
+export SANE_DEBUG_GENESYS_GL124=255
+
