@@ -1,10 +1,4 @@
-.vim/bundle
-.vim/swapfiles
-.vim/undodir
-.mcabber/histo
-.moc/equalizer
-.moc/last_directory
-.moc/softmixer
-.moc/pid
-.moc/playlist.m3u
-.vim/.netrwhist
+utils/vim/.vim/bundle
+utils/vim/.vim/swapfiles
+utils/vim/.vim/undodir
+utils/vim/.vim/.netrwhist
