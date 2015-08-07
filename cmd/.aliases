@@ -35,13 +35,14 @@ alias panic='kill -9 $$'
 alias df='df -h'
 
 # Git aliases
-alias gits='git status'
+alias gits='git status -s'
 alias gitc='git commit -m'
 alias gitp='git push'
 alias gitpl='git pull'
 alias gitf='git fetch'
 alias gitb='git branch -a'
 alias gitd='git diff'
+alias gitl='git log --pretty=oneline --graph --abbrev-commit'
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '

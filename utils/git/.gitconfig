@@ -1,13 +1,21 @@
 [user]
-	name = h0rr0rrdrag0n
-	email = h0rr0rrdrag@gmail.com
+    name = h0rr0rrdrag0n
+    email = h0rr0rrdrag@gmail.com
 [push]
-	default = simple
+    default = simple
+    # Make `git push` push relevant annotated tags when pushing
+    # branches out.
+    followTags = true
 [diff]
-	tool = vimdiff
+    tool = vimdiff
 [difftool]
-	prompt = false
+    prompt = false
 [alias]
-	d = difftool
+    d = difftool
+    remotes = remote -v
+    amend = commit --amend --reuse-message=HEAD
 [color]
     ui = auto
+[help]
+    # Automatically correct and execute mistyped commands
+    autocorrect = 1
