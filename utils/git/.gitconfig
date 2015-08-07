@@ -9,3 +9,5 @@
 	prompt = false
 [alias]
 	d = difftool
+[color]
+    ui = auto
