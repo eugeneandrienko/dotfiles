@@ -21,6 +21,9 @@ alias rm='rm -v'
 alias du='du -hs'
 alias bk='cd "$OLDPWD"'
 alias ll='ls -l --color -Fh'
+alias la='ls -a --color -Fh'
+alias lal='ls -la --color -Fh'
+alias lla='ls -la --color -Fh'
 alias mplayer='mplayer -msglevel all=0 -msgcolor -nojoystick -nolirc -vo xv -ao alsa -subcp cp1251'
 alias ps='ps --headers -eo pid,uid,pcpu,pmem,rss,cmd'
 alias pingya='ping -c3 ya.ru'
@@ -31,6 +34,15 @@ alias iget='wget -c -e http_proxy=127.0.0.1:4444'
 alias panic='kill -9 $$'
 alias df='df -h'
 
+# Git aliases
+alias gits='git status'
+alias gitc='git commit -m'
+alias gitp='git push'
+alias gitpl='git pull'
+alias gitf='git fetch'
+alias gitb='git branch -a'
+alias gitd='git diff'
+
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
 
@@ -39,6 +51,7 @@ alias reload='exec $SHELL'
 
 # Fix mistypes
 alias gut='git'
+alias ks='ls'
 
 # Shortcuts
 alias g='cd ~/git_repos'
