@@ -8,15 +8,14 @@ YELLOW="\[\033[0;33m\]"
 SPEC_COLOR="$WHITE"
 ADOG=$CYAN@$WHITE
 
-PS1PROMPT="$WHITE[\u$ADOG\h] $GREEN\w$WHITE"
-
 function prompt {
     if [ $? -eq 0 ]; then
-        PS1="$GREEN$? "
+        PS1=""
     else
         PS1="$RED$? "
     fi
 
+    PS1PROMPT="$WHITE\u$ADOG\h: $GREEN\w$WHITE"
     GIT_BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
     if [ "$GIT_BRANCH" != "" ]; then
         GIT_BRANCH=" ("$GIT_BRANCH")"
@@ -27,6 +26,7 @@ function prompt {
     PS1+="\n$SPEC_COLOR\$ "
     PS1+=$CYAN
 }
+
 PROMPT_COMMAND='prompt'
 export PROMPT_COMMAND
 export PS1
