@@ -1,4 +1,3 @@
-complete
 ctags
 git
 mplayer
