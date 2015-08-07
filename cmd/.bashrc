@@ -30,4 +30,7 @@ fi
 if [ -e ~/.prompt ]; then
     . ~/.prompt
 fi
+if [ -e ~/.functions ]; then
+    . ~/.functions
+fi
 
