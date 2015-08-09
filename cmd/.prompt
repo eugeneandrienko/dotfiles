@@ -25,6 +25,11 @@ function prompt {
     PS1+=$GIT_BRANCH
     PS1+="\n$SPEC_COLOR\$ "
     PS1+=$CYAN
+
+    # Change terminal title
+    if [ "$TERM" == "xterm" ]; then
+        echo -ne "\033]0;$PWD\007"
+    fi
 }
 
 PROMPT_COMMAND='prompt'
