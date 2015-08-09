@@ -6,12 +6,7 @@
     # Make `git push` push relevant annotated tags when pushing
     # branches out.
     followTags = true
-[diff]
-    tool = vimdiff
-[difftool]
-    prompt = false
 [alias]
-    d = difftool
     remotes = remote -v
     amend = commit --amend --reuse-message=HEAD
 [color]
@@ -19,3 +14,7 @@
 [help]
     # Automatically correct and execute mistyped commands
     autocorrect = 1
+[core]
+    pager =
+    autocrlf = input
+    whitespace = trailing-space,space-before-tab
