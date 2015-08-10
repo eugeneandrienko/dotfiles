@@ -67,7 +67,7 @@ def main():
             check_for_installed_programs(REQUIREMENTS_FILE)
         except (CalledProcessError, FileNotFoundError):
             print("not installed!")
-            return
+            exit(1)
         deploy_dotfiles()
 
 

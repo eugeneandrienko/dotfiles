@@ -34,6 +34,7 @@ alias wget='wget -c'
 alias iget='wget -c -e http_proxy=127.0.0.1:4444'
 alias panic='kill -9 $$'
 alias df='df -h'
+alias progress='progress -w'
 
 # Git aliases
 alias gits='git status -s'

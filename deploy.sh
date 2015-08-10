@@ -24,11 +24,24 @@ fi
 
 
 python3 ./deploy.py --deploy
+if [ "$?" -ne "0" ]; then
+    exit 1
+fi
 
 
 # Making necessary (empty) directories for vim.
 mkdir -pv $HOME/.vim/swapfiles
 mkdir -pv $HOME/.vim/undodir
+
+# Making binaries
+./build.sh
+if [ $? -ne "0" ]; then
+    exit 1
+fi
+# Making directory for binaries
+mkdir -pv $HOME/.bin/
+# Copying binaries
+cp -v progress/progress $HOME/.bin/
 
 echo
 echo "Done!"
