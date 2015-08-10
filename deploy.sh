@@ -34,6 +34,7 @@ mkdir -pv $HOME/.vim/swapfiles
 mkdir -pv $HOME/.vim/undodir
 
 # Making binaries
+cd ./bin/
 ./build.sh
 if [ $? -ne "0" ]; then
     exit 1
@@ -41,7 +42,8 @@ fi
 # Making directory for binaries
 mkdir -pv $HOME/.bin/
 # Copying binaries
-cp -v progress/progress $HOME/.bin/
+./install.sh
+cd ..
 
 echo
 echo "Done!"

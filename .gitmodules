@@ -1,3 +1,3 @@
 [submodule "progress"]
-	path = progress
+	path = bin/progress
 	url = https://github.com/Xfennec/progress.git
