@@ -46,6 +46,10 @@ alias gitb='git branch -a'
 alias gitd='git diff'
 alias gitl='git log --reverse --pretty=oneline --abbrev-commit'
 
+# apt aliases
+alias search='apt-cache search'
+alias install='sudo apt-get install'
+
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
 
