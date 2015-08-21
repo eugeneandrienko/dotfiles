@@ -23,6 +23,7 @@ if [ "$?" -ne "0" ]; then
 fi
 
 
+unset TMUX
 python3 ./deploy.py --deploy
 if [ "$?" -ne "0" ]; then
     exit 1

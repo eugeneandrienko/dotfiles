@@ -1,4 +1,5 @@
 cmd
 utils/git
+utils/ipython
 utils/tmux
 utils/vim
