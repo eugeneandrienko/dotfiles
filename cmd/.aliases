@@ -50,6 +50,12 @@ alias gitl='git log --reverse --pretty=oneline --abbrev-commit --decorate=short'
 alias search='apt-cache search'
 alias install='sudo apt-get install'
 
+# Python aliases
+alias makevenv2='virtualenv --python=python2 --system-site-packages --prompt=venv2 virtualenv'
+alias makevenv='virtualenv --python=python3 --system-site-packages --prompt=venv virtualenv'
+alias activate='source virtualenv/bin/activate'
+alias ipython='ipython3'
+
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
 
