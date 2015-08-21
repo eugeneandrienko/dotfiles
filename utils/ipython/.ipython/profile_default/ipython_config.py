@@ -92,7 +92,7 @@ c = get_config()
 # c.TerminalIPythonApp.exec_lines = []
 
 # Suppress warning messages about legacy config files
-# c.TerminalIPythonApp.ignore_old_config = False
+c.TerminalIPythonApp.ignore_old_config = True
 
 # Path to an extra config file to load.
 # 
@@ -158,7 +158,7 @@ c.TerminalIPythonApp.display_banner = False
 # TerminalInteractiveShell will inherit config from: InteractiveShell
 
 # auto editing of files with syntax errors.
-# c.TerminalInteractiveShell.autoedit_syntax = False
+c.TerminalInteractiveShell.autoedit_syntax = True
 
 # Use colors for displaying information about objects. Because this information
 # is passed through a pager (like 'less'), and some pagers get confused with
@@ -176,7 +176,7 @@ c.TerminalIPythonApp.display_banner = False
 # c.TerminalInteractiveShell.disable_failing_post_execute = False
 
 # Show rewritten input, e.g. for autocall.
-# c.TerminalInteractiveShell.show_rewritten_input = True
+c.TerminalInteractiveShell.show_rewritten_input = False
 
 # Set the color scheme (NoColor, Linux, or LightBG).
 c.TerminalInteractiveShell.colors = 'Linux'
@@ -202,7 +202,7 @@ c.TerminalInteractiveShell.autoindent = True
 # it is not applied if there are no more arguments on the line, and '2' for
 # 'full' autocall, where all callable objects are automatically called (even if
 # no arguments are present).
-# c.TerminalInteractiveShell.autocall = 0
+c.TerminalInteractiveShell.autocall = 0
 
 # Number of lines of your screen, used to control printing of very long strings.
 # Strings longer than this number of lines will be sent through a pager instead
@@ -241,7 +241,7 @@ c.TerminalInteractiveShell.autoindent = True
 # Set to confirm when you try to exit IPython with an EOF (Control-D in Unix,
 # Control-Z/Enter in Windows). By typing 'exit' or 'quit', you can force a
 # direct exit without any confirmation.
-# c.TerminalInteractiveShell.confirm_exit = True
+c.TerminalInteractiveShell.confirm_exit = False
 
 # 
 # c.TerminalInteractiveShell.ipython_dir = ''
