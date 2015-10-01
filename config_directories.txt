@@ -3,3 +3,5 @@ utils/git
 utils/ipython
 utils/tmux
 utils/vim
+utils/i3wm
+utils/urxvt
