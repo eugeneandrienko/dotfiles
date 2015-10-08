@@ -21,7 +21,7 @@ URxvt*color1: #cc9393
 URxvt*color9: #dca3a3
 
 ! green
-URxvt*color2: #7f9f7f
+URxvt*color2: #3f9f3f
 URxvt*color10: #bfebbf
 
 ! yellow
@@ -61,7 +61,7 @@ URxvt.font: xft:Droid Sans Mono:pixelsize=16:antialias=true
 URxvt.scrollBar: false
 URxvt.saveLines: 1000
 URxvt.cursorBlink: true
-URxvt.perl-ext-common: default,selection,tabbed,url-select
+URxvt.perl-ext-common: default,selection,url-select
 URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.url-select.launcher: /usr/bin/google-chrome-stable
 URxvt.url-select.underline: true
