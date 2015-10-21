@@ -18,3 +18,21 @@
     pager =
     autocrlf = input
     whitespace = trailing-space,space-before-tab
+[merge]
+    conflictstyle = diff3
+
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+[color "status"]
+    added = green
+    changed = yellow
+    untracked = cyan
+
