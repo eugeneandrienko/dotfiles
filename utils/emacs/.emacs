@@ -72,7 +72,6 @@
 (setq org-tag-alist
       (quote (("todo" . ?t) ("books" . ?b))))
 ;
-;
 
 
 ;;default cyr/latin input method
