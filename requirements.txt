@@ -1,4 +1,5 @@
 ctags
+emacs
 ipython
 git
 mplayer
