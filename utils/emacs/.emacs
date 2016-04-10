@@ -58,6 +58,7 @@
 (global-set-key "\e\eb" 'org-iswitchb)
 
 (setq default-directory "~/Dropbox/org/")
+(setq org-directory "~/Dropbox/org/")
 (setq org-agenda-files (quote ("~/Dropbox/org/")))
 
 ;my preferred indentation
@@ -65,14 +66,13 @@
 ;disable wrapping
 (setq org-startup-truncated t)
 
-;;logging stuff
-(setq org-log-done (quote time))
-(setq org-log-into-drawer nil)
-(setq org-log-redeadline (quote note))
-(setq org-log-reschedule (quote time))
 ;todo keywords
 (setq org-todo-keywords
-      (quote ((sequence "TODO(t!)" "NEXT(n!)" "WAITING(w@/!)" "STARTED(s!)" "|" "DONE(d!/!)" "CANCELLED(c@/!)"))))
+      (quote ((sequence "TODO(t)" "NEXT(n)" "WAITING(w)" "STARTED(s)" "|" "DONE(d)" "CANCELLED(c)"))))
+(setq org-tag-alist
+      (quote (("todo" . ?t) ("books" . ?b))))
+;
+;
 
 
 ;;default cyr/latin input method
