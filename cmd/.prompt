@@ -17,12 +17,19 @@ function prompt {
 
     PS1PROMPT="$WHITE\u$ADOG\h: $GREEN\w$WHITE"
     GIT_BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
-    if [ "$GIT_BRANCH" != "" ]; then
+    if [ "$GIT_BRANCH" != "" ] && [ "$GIT_BRANCH" != "(no branch)" ]; then
         GIT_BRANCH=" ("$GIT_BRANCH")"
+    else
+        GIT_BRANCH=""
+    fi
+    GIT_TAG=`git describe --tags 2>/dev/null`
+    if [ "$GIT_TAG" != "" ]; then
+        GIT_TAG=" ["$GIT_TAG"]"
     fi
 
     PS1+=$PS1PROMPT
     PS1+=$GIT_BRANCH
+    PS1+=$GIT_TAG
     PS1+="\n$SPEC_COLOR\$ "
     PS1+=$CYAN
 
