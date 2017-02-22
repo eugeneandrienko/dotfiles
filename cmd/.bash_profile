@@ -34,7 +34,3 @@ if [ -e ~/.functions ]; then
     . ~/.functions
 fi
 
-if command -v tmux > /dev/null; then
-    [[ $DISPLAY =~ :0 ]] && [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
-fi
-
