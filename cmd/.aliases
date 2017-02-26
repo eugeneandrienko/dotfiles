@@ -45,6 +45,7 @@ alias gitf='git fetch'
 alias gitb='git branch -a'
 alias gitd='git diff --color=always'
 alias gitl='git log --reverse --pretty=oneline --abbrev-commit --decorate=short'
+alias gitld='git log -p --oneline --abbrev-commit --decorate=short'
 alias gitt='git tag'
 
 # apt aliases
