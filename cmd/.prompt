@@ -1,21 +1,22 @@
 LIGHTWHITE="\[\033[1;37m\]"
 WHITE="\[\033[0;37m\]"
 GREEN="\[\033[0;32m\]"
-CYAN="\[\033[1;36m\]"
+MAGENTA="\[\033[0;35m\]"
 RED="\[\033[0;31m\]"
 YELLOW="\[\033[0;33m\]"
+BLACK="\[\033[0;30m\]"
 
-SPEC_COLOR="$WHITE"
-ADOG=$CYAN@$WHITE
+SPEC_COLOR="$BLACK"
+ADOG=$MAGENTA@$BLACK
 
 function prompt {
     if [ $? -eq 0 ]; then
         PS1=""
     else
-        PS1="$RED$? "
+        PS1="$RED$? $BLACK"
     fi
 
-    PS1PROMPT="$WHITE\u$ADOG\h: $GREEN\w$WHITE"
+    PS1PROMPT="$BLACK\u$ADOG\h: $GREEN\w$BLACK"
     GIT_BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
     if [ "$GIT_BRANCH" != "" ] && [ "$GIT_BRANCH" != "(no branch)" ]; then
         GIT_BRANCH=" ("$GIT_BRANCH")"
@@ -31,7 +32,7 @@ function prompt {
     PS1+=$GIT_BRANCH
     PS1+=$GIT_TAG
     PS1+="\n$SPEC_COLOR\$ "
-    PS1+=$CYAN
+    PS1+=$BLACK
 
     # Change terminal title
     if [ "$TERM" == "xterm" ]; then
