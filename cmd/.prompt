@@ -28,6 +28,7 @@ function prompt {
         GIT_TAG=" ["$GIT_TAG"]"
     fi
 
+    PS1+="[`date +%H:%M:%S`] "
     PS1+=$PS1PROMPT
     PS1+=$GIT_BRANCH
     PS1+=$GIT_TAG
