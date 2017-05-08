@@ -208,9 +208,8 @@ set completeopt=menuone,menu,longest,preview
 set wrapmargin=5                        "отступ от текста до правой границы окна
 set scrolloff=3                         "Сколько строк показывать при скроллинге сверху и снизу
 " Color theme
-Bundle 'jonathanfilip/vim-lucius'
-color lucius
-set bg=dark
+Bundle 'dim13/xedit.vim'
+color xedit
 function! ToggleBg()
     if &background == 'dark'
         set bg=light
