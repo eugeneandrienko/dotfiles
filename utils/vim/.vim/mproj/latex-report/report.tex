@@ -8,7 +8,11 @@
 
 \usepackage{indentfirst}
 
-\usepackage{hyperref}
+\usepackage[pdftex,
+            pdfauthor={},
+            pdftitle={},
+            pdfsubject={},
+            pdfkeywords={}]{hyperref}
 \hypersetup{
     hidelinks,
     unicode=true,
@@ -44,6 +48,10 @@
   {\hbox{$\mathsurround=0pt #1$}}{}}
 
 \renewcommand{\thesection}{\arabic{section}.}
+\renewcommand{\theequation}{\thesection\arabic{equation}}
+\renewcommand{\thesubsection}{\thesection\arabic{subsection}}
+\renewcommand{\labelenumii}{\theenumii}
+\renewcommand{\theenumii}{\theenumi.\arabic{enumii}.}
 
 \title{}
 \author{}
