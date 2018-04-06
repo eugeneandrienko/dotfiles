@@ -38,7 +38,7 @@ Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Townk/vim-autoclose'
 Plugin 'snipMate'
-Plugin 'klen/python-mode'
+"Plugin 'klen/python-mode'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'rosenfeld/conque-term'
 Plugin 'tpope/vim-fugitive'
@@ -398,31 +398,31 @@ let Tlist_Use_Right_Window = 1
 " <C-c>td -- show all TODOs in Python files
 "
 " Disable line numbers and 80th symbol color column
-let g:pymode_options = 0
-let g:pymode_lint = 1
-let g:pymode_lint_checker = "pyflakes,pep8"
-let g:pymode_lint_ignore = "E501"
-" When user save a file - check code
-let g:pymode_lint_write = 1
-" Disable window with errors and warnings
-let g:pymode_lint_cwindow = 0
-" VirtualEnv support
-let g:pymode_virtualenv = 1
-let g:pymode_breakpoint = 1
-let g:pymode_breakpoint_key = '<leader>b'
-let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
-let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-let g:pymode_syntax_space_errors = g:pymode_syntax_all
-" Disable autofolding
-let g:pymode_folding = 0
-let g:pymode_python = 'python'
-let g:pymode_indent = 1
-let g:pymode_rope_completion = 1
-let g:pymode_rope_complete_on_dot = 1
-" Find and show all TODOs
-imap <C-c>td <Esc>:noautocmd vimgrep /TODO/j **/*.py<CR>:cw<CR>a
-nmap <C-c>td :noautocmd vimgrep /TODO/j **/*.py<CR>:cw<CR>
+"let g:pymode_options = 0
+"let g:pymode_lint = 1
+"let g:pymode_lint_checker = "pyflakes,pep8"
+"let g:pymode_lint_ignore = "E501"
+"" When user save a file - check code
+"let g:pymode_lint_write = 1
+"" Disable window with errors and warnings
+"let g:pymode_lint_cwindow = 0
+"" VirtualEnv support
+"let g:pymode_virtualenv = 1
+"let g:pymode_breakpoint = 1
+"let g:pymode_breakpoint_key = '<leader>b'
+"let g:pymode_syntax = 1
+"let g:pymode_syntax_all = 1
+"let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+"let g:pymode_syntax_space_errors = g:pymode_syntax_all
+"" Disable autofolding
+"let g:pymode_folding = 0
+"let g:pymode_python = 'python'
+"let g:pymode_indent = 1
+"let g:pymode_rope_completion = 1
+"let g:pymode_rope_complete_on_dot = 1
+"" Find and show all TODOs
+"imap <C-c>td <Esc>:noautocmd vimgrep /TODO/j **/*.py<CR>:cw<CR>a
+"nmap <C-c>td :noautocmd vimgrep /TODO/j **/*.py<CR>:cw<CR>
 
 
 
