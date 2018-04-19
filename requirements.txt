@@ -7,3 +7,5 @@ sudo
 tmux
 vim
 wget
+xclip
+

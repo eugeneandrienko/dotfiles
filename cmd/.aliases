@@ -2,20 +2,15 @@
 alias :q='exit'
 alias :Q='exit'
 
-# colorized commands
-alias ls='ls --color -Fh'
-alias grep='grep --color=auto'
-
 # Navigation
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
-alias ~='cd $HOME'
 
 # for comfortable system using
-alias a='atom'
-alias adr='atom -n .'
+alias ls='ls --color -Fh'
+alias grep='grep --color=auto'
 alias bc='bc -l'
 alias rm='rm -v'
 alias du='du -hs'
@@ -35,6 +30,13 @@ alias iget='wget -c -e http_proxy=127.0.0.1:4444'
 alias panic='rm -rfv ~/.cache/thumbnails/* && rm -rfv ~/.thumbnails/* && rm -rfv ~/.cache/vlc/* && sleep 1 && kill -9 $$'
 alias df='df -h'
 alias progress='progress -w'
+alias fuckrkn='sudo openvpn /etc/openvpn/fuckrkn.ovpn'
+
+# Mistypes
+alias xs='cd'
+alias vf='cd'
+alias sl='ls'
+alias cd..='cd ..'
 
 # Git aliases
 alias gits='git status -s'
@@ -47,10 +49,14 @@ alias gitd='git diff --color=always'
 alias gitl='git log --reverse --pretty=oneline --abbrev-commit --decorate=short'
 alias gitld='git log -p --oneline --abbrev-commit --decorate=short'
 alias gitt='git tag'
+alias gitsl='git stash list'
+alias gitss='git stash save'
+alias gitsp='git stash pop'
 
 # apt aliases
-alias search='apt-cache search'
-alias install='sudo apt-get install'
+alias apts='apt-cache search'
+alias apti='sudo apt-get install'
+alias aptupd='sudo apt-get update && sudo apt-get upgrade && sudo apt-get autoremove'
 
 # Python aliases
 alias makevenv2='virtualenv --python=python2 --system-site-packages --prompt=venv2 virtualenv'
@@ -72,4 +78,21 @@ alias ks='ls'
 alias g='cd ~/git_repos'
 alias dw='cd ~/Downloads'
 alias dr='cd ~/Dropbox'
+
+# Maven
+alias mvnci='mvn clean install'
+alias mvnpom='mvn help:effective-pom'
+alias mvndep='mvn dependency:tree'
+
+# Tmux
+alias txl='tmux ls'
+alias txa='tmux a -t'
+alias txn='tmux new -s'
+
+# Xclip
+alias xcopy='xclip -selection clipboard'
+alias xpaste='xclip -selection clipboard -o'
+
+# Docker
+alias docklc='docker ps -l'
 
