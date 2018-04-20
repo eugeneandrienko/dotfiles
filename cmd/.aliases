@@ -94,5 +94,5 @@ alias xcopy='xclip -selection clipboard'
 alias xpaste='xclip -selection clipboard -o'
 
 # Docker
-alias docklc='docker ps -l'
+alias docklc=$'docker ps -l | tail -n 1 | awk \'{print $NF}\''
 
