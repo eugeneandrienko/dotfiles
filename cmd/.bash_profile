@@ -24,13 +24,20 @@ trap 'echo -ne "\e[0m"' DEBUG
 if [ -e ~/.env ]; then
     . ~/.env
 fi
+
 if [ -e ~/.aliases ]; then
     . ~/.aliases
 fi
+
 if [ -e ~/.prompt ]; then
     . ~/.prompt
 fi
+
 if [ -e ~/.functions ]; then
     . ~/.functions
+fi
+
+if [ -e ~/.user_config ]; then
+    . ~/.user_config
 fi
 

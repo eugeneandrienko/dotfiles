@@ -1,11 +1,8 @@
 ctags
 emacs
-ipython
 git
-mplayer
 sudo
 tmux
 vim
 wget
 xclip
-
