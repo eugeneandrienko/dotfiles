@@ -23,6 +23,8 @@ if [ "$?" -ne "0" ]; then
 fi
 
 unset TMUX
+git submodule init
+git submodule update
 python3 ./deploy.py --deploy
 if [ "$?" -ne "0" ]; then
     exit 1
@@ -32,9 +34,6 @@ fi
 # Making necessary (empty) directories for vim.
 mkdir -pv $HOME/.vim/swapfiles
 mkdir -pv $HOME/.vim/undodir
-
-git submodule init
-git submodule update
 
 # Making binaries
 cd ./bin/
