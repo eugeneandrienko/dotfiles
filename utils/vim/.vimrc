@@ -47,6 +47,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'mhinz/vim-startify'
+Plugin 'airblade/vim-gitgutter'
 
 call vundle#end()
 filetype plugin indent on
@@ -76,8 +77,8 @@ filetype plugin indent on
 set history=50
 " Backspace works through EOL, TABs, etc...
 set backspace=indent,eol,start
-" Autocomplete by <TAB>
-set wcm=<Tab>
+" Autocomplete by <C-n>
+set wcm=<C-n>
 " Do not stop cursor at the EOL
 set whichwrap=<,>,[,],h,l
 " Current directory == directory of file in current buffer
@@ -170,8 +171,8 @@ au FileType crontab,fstab,make set noet ts=8 sw=8
 ""
 "" Look and Feel
 ""
-" TTY background - dark
-set background=dark
+" TTY background - light
+set background=light
 " Connection with TTY is fast
 set ttyfast
 " Enable supply of 256 colors
@@ -222,7 +223,8 @@ let g:startify_bookmarks = ['~/.vimrc',]
 let g:startify_change_to_vcs_root = 1
 let g:startify_files_number = 8
 let g:startify_skiplist = ['vimrc',]
-
+" Gitgutter settings
+set updatetime=100
 
 
 
@@ -384,7 +386,7 @@ let g:Tlist_Auto_Highlight_Tag = 1
 let tlist_tex_settings   = 'latex;s:sections;g:graphics;l:labels'
 let tlist_make_settings  = 'make;m:macros;t:targets'
 let tlist_markdown_settings = 'markdown;h:headings'
-let Tlist_Use_Right_Window = 1
+let Tlist_Use_Right_Window = 0
 
 
 
@@ -429,9 +431,9 @@ let Tlist_Use_Right_Window = 1
 ""
 "" Conque-term settings
 ""
+menu CMD.Bash :ConqueTermSplit bash -l<CR>
 menu CMD.Python.Interpretator :ConqueTermSplit python<CR>
 " menu CMD.Python.Debug :ConqueTermSplit python -i %<CR>
-map <C-c>i :emenu CMD.<TAB>
 let g:ConqueTerm_StartMessages = 0
 let g:ConqueTerm_CloseOnEnd = 0
 
@@ -442,8 +444,6 @@ let g:ConqueTerm_CloseOnEnd = 0
 ""
 " Close buffer without saving
 map <Esc><Esc> :q!<CR>
-" Autocomplete by Tab (use Shift-TAB unstead)
-imap <Tab> <C-N>
 " Show more (un)useful information rather than <C-g>
 map <C-g> g<C-g>
 " Open new tab
@@ -470,6 +470,8 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 noremap <F1> <NOP>
+" Open terminal
+map <C-c>i :emenu CMD.<TAB>
 
 
 """EOF
