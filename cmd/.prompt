@@ -26,7 +26,7 @@ function prompt {
 
     # Main prompt:
     if [ "$IS_UTF_CONSOLE" = 't' ]; then
-        PS1PROMPT="$BLUE⌚`date +%H:%M:%S` "
+        PS1PROMPT="$BLUE`date +%H:%M:%S`⌚ "
         PS1PROMPT+="$BLACK«\u$MAGENTA@$BLACK\h» $GREEN\w"
         PS1PROMPT+="$BLACK↴\n"
     else
@@ -36,7 +36,8 @@ function prompt {
     fi
 
     # Git prompt:
-    if [ -d "./.git" ]; then
+    git status > /dev/null 2>&1
+    if [ $? -eq 0 ]; then
         GIT_BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
         if [ "$GIT_BRANCH" != "" ] && [ "$GIT_BRANCH" != "(no branch)" ]; then
             GIT_BRANCH="$BLUE_BG("$GIT_BRANCH")$BLACK"
