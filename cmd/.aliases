@@ -32,6 +32,7 @@ alias df='df -h'
 alias progress='progress -w'
 alias fuckrkn='sudo openvpn /etc/openvpn/fuckrkn.ovpn'
 alias ddg='ddgr --expand --colors fcegxy'
+alias top='htop'
 
 # Mistypes
 alias xs='cd'

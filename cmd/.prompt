@@ -1,39 +1,73 @@
-LIGHTWHITE="\[\033[1;37m\]"
-WHITE="\[\033[0;37m\]"
-GREEN="\[\033[0;32m\]"
-MAGENTA="\[\033[0;35m\]"
-RED="\[\033[0;31m\]"
-YELLOW="\[\033[0;33m\]"
-BLACK="\[\033[0;30m\]"
+# Color definitions:
+readonly LIGHTWHITE="\[\033[1;37m\]"
+readonly WHITE="\[\033[0;37m\]"
+readonly GREEN="\[\033[0;32m\]"
+readonly MAGENTA="\[\033[0;35m\]"
+readonly RED="\[\033[0;31m\]"
+readonly YELLOW="\[\033[0;33m\]"
+readonly BLACK="\[\033[0;30m\]"
+readonly BLUE="\[\033[0;34m\]"
+readonly BLUE_BG="\[\033[0;104m\]"
+readonly YELLOW_BG="\[\033[0;103m\]"
 
-SPEC_COLOR="$BLACK"
-ADOG=$MAGENTA@$BLACK
 
+# Is console use UTF-8 or not:
+locale | grep 'LC_NAME' | grep -qi 'utf'
+if [ $? -eq 0 ]; then
+    readonly IS_UTF_CONSOLE='t'
+else
+    readonly IS_UTF_CONSOLE='f'
+fi
+
+
+# This function called before display every prompt:
 function prompt {
-    if [ $? -eq 0 ]; then
-        PS1=""
+    PS1=""
+
+    # Main prompt:
+    if [ "$IS_UTF_CONSOLE" = 't' ]; then
+        PS1PROMPT="$BLUE⌚`date +%H:%M:%S` "
+        PS1PROMPT+="$BLACK«\u$MAGENTA@$BLACK\h» $GREEN\w"
+        PS1PROMPT+="$BLACK↴\n"
     else
-        PS1="$RED$? $BLACK"
+        PS1PROMPT="$BLUE[`date +%H:%M:%S`] "
+        PS1PROMPT+="$BLACK\u$MAGENTA@$BLACK\h: $GREEN\w"
+        PS1PROMPT+="$BLACK\n"
     fi
 
-    PS1PROMPT="$BLACK\u$ADOG\h: $GREEN\w$BLACK"
-    GIT_BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
-    if [ "$GIT_BRANCH" != "" ] && [ "$GIT_BRANCH" != "(no branch)" ]; then
-        GIT_BRANCH=" ("$GIT_BRANCH")"
+    # Git prompt:
+    if [ -d "./.git" ]; then
+        GIT_BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+        if [ "$GIT_BRANCH" != "" ] && [ "$GIT_BRANCH" != "(no branch)" ]; then
+            GIT_BRANCH="$BLUE_BG("$GIT_BRANCH")$BLACK"
+        else
+            GIT_BRANCH=""
+        fi
+
+        GIT_TAG=`git describe --tags 2>/dev/null`
+        if [ "$GIT_TAG" != "" ]; then
+            GIT_TAG=" $YELLOW_BG["$GIT_TAG"]"
+        else
+            GIT_TAG=""
+        fi
+
+        GIT_PROMPT="Git: $GIT_BRANCH$GIT_TAG"
+        if [ "$IS_UTF_CONSOLE" = 't' ]; then
+            GIT_PROMPT+="$BLACK↴\n"
+        else
+            GIT_PROMPT+="$BLACK\n"
+        fi
     else
-        GIT_BRANCH=""
-    fi
-    GIT_TAG=`git describe --tags 2>/dev/null`
-    if [ "$GIT_TAG" != "" ]; then
-        GIT_TAG=" ["$GIT_TAG"]"
+        GIT_PROMPT=""
     fi
 
-    PS1+="[`date +%H:%M:%S`] "
     PS1+=$PS1PROMPT
-    PS1+=$GIT_BRANCH
-    PS1+=$GIT_TAG
-    PS1+="\n$SPEC_COLOR\$ "
-    PS1+=$BLACK
+    PS1+=$GIT_PROMPT
+    if [ "$IS_UTF_CONSOLE" = 't' ]; then
+        PS1+="$BLACK↳ "
+    else
+        PS1+="$BLACK\$ "
+    fi
 
     # Change terminal title
     if [ "$TERM" == "xterm" ]; then
