@@ -1,3 +1,6 @@
 [submodule "progress"]
 	path = bin/progress
 	url = https://github.com/Xfennec/progress.git
+[submodule "bin/ddgr"]
+	path = bin/ddgr
+	url = https://github.com/jarun/ddgr

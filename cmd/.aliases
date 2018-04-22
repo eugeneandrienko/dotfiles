@@ -31,6 +31,7 @@ alias panic='rm -rfv ~/.cache/thumbnails/* && rm -rfv ~/.thumbnails/* && rm -rfv
 alias df='df -h'
 alias progress='progress -w'
 alias fuckrkn='sudo openvpn /etc/openvpn/fuckrkn.ovpn'
+alias ddg='ddgr --expand --colors fcegxy'
 
 # Mistypes
 alias xs='cd'
