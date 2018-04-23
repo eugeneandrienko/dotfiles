@@ -7,7 +7,7 @@ readonly RED="\[\033[0;31m\]"
 readonly YELLOW="\[\033[0;33m\]"
 readonly BLACK="\[\033[0;30m\]"
 readonly BLUE="\[\033[0;34m\]"
-readonly BLUE_BG="\[\033[0;104m\]"
+readonly CYAN_BG="\[\033[0;106m\]"
 readonly YELLOW_BG="\[\033[0;103m\]"
 
 
@@ -40,7 +40,7 @@ function prompt {
     if [ $? -eq 0 ]; then
         GIT_BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
         if [ "$GIT_BRANCH" != "" ] && [ "$GIT_BRANCH" != "(no branch)" ]; then
-            GIT_BRANCH="$BLUE_BG("$GIT_BRANCH")$BLACK"
+            GIT_BRANCH="$CYAN_BG("$GIT_BRANCH")$BLACK"
         else
             GIT_BRANCH=""
         fi

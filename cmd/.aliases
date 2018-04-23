@@ -39,6 +39,8 @@ alias xs='cd'
 alias vf='cd'
 alias sl='ls'
 alias cd..='cd ..'
+alias gut='git'
+alias ks='ls'
 
 # Git aliases
 alias gits='git status -s'
@@ -71,10 +73,6 @@ alias sudo='sudo '
 
 # Reload shell
 alias reload='exec $SHELL -l'
-
-# Fix mistypes
-alias gut='git'
-alias ks='ls'
 
 # Shortcuts
 alias g='cd ~/git_repos'
