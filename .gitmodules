@@ -7,3 +7,6 @@
 [submodule "utils/emacs/.emacs.d"]
 	path = utils/emacs/.emacs.d
 	url = https://github.com/technomancy/emacs-starter-kit.git
+[submodule "bin/hr"]
+	path = bin/hr
+	url = https://github.com/LuRsT/hr.git

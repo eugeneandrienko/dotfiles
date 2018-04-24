@@ -34,6 +34,7 @@ alias progress='progress -w'
 alias fuckrkn='ssh -ND 8080 forward@streisand'
 alias ddg='ddgr --expand --colors fcegxy'
 alias top='htop'
+alias hr=$'hr \'#\' \'#\' \'#\''
 
 # Mistypes
 alias xs='cd'
