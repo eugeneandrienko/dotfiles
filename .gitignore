@@ -9,3 +9,4 @@ utils/vim/.vim/swapfiles
 utils/vim/.vim/undodir
 utils/vim/.vim/.netrwhist
 .ropeproject/
+cmd/.userconfig

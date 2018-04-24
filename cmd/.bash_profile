@@ -37,7 +37,7 @@ if [ -e ~/.functions ]; then
     . ~/.functions
 fi
 
-if [ -e ~/.user_config ]; then
-    . ~/.user_config
+if [ -e ~/.userconfig ]; then
+    . ~/.userconfig
 fi
 
