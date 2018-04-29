@@ -35,6 +35,7 @@ alias fuckrkn='ssh -ND 8080 forward@streisand'
 alias ddg='ddgr --expand --colors fcegxy'
 alias top='htop'
 alias hr=$'hr \'#\' \'#\' \'#\''
+alias ydl='youtube-dl --proxy socks5://127.0.0.1:8080'
 
 # Mistypes
 alias xs='cd'
