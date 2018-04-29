@@ -9,11 +9,6 @@
 " List of external software, which need to be installed:
 "  1) exuberant ctags
 "  2) Unix cp
-"  3) Python 3.2 (or another, with which your Vim was compiled:
-"  http://stackoverflow.com/a/17963884)
-"  4) Google Chrome (chrome should be in PATH) with preinstalled Markdown Preview Plus
-"     (https://chrome.google.com/webstore/detail/markdown-preview-plus/febilkbfcbhebfnokafefeacimjdckgl
-"     plugin should be permitted to open files by links)
 
 
 set runtimepath+=~/.vim
@@ -38,14 +33,10 @@ Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Townk/vim-autoclose'
 Plugin 'snipMate'
-"Plugin 'klen/python-mode'
 Plugin 'tomtom/tcomment_vim'
-Plugin 'rosenfeld/conque-term'
 Plugin 'tpope/vim-fugitive'
-Plugin 'gregsexton/gitv'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
-Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'mhinz/vim-startify'
 Plugin 'airblade/vim-gitgutter'
 
@@ -151,6 +142,7 @@ set ignorecase
 " Enable smart indents
 set autoindent
 set smartindent
+set cindent
 " Copy indent from previous line for current line
 set ai
 " C-style indentation
@@ -307,8 +299,6 @@ endif
 " <C-c>m -- compile C, C++ or LaTeX source
 " <C-c>np -- create new project
 " gc -- (un)comment source code
-" :Gitv<CR> -- browse repo
-" :Gitv!<CR> -- browse file history
 " <C-p>f -- fuzzy search in files
 " <C-p>b -- fuzzy search in buffers
 " <C-p>c -- fuzzy search in code
@@ -356,14 +346,13 @@ autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 " Pass *.md files as markdown files
 autocmd BufNewFile,BufRead *.md set filetype=markdown
-" Open all Gitv windows horizontal
-let g:Gitv_OpenHorizontal = 1
 " Plugin for CtrlP - can work with functions
 let g:ctrlp_extensions = ['ctrlp-funky']
 let g:ctrlp_map='<c-p>f'
 nmap <C-p>b :CtrlPBuffer<CR>
 nmap <C-p>c :CtrlPFunky<CR>
-
+" Curly braces indentation
+au BufRead,BufNewFile,BufEnter,BufWinEnter *.c,*.h,*.java inoremap {<CR> {<CR>}<Esc>O
 
 
 
@@ -425,17 +414,6 @@ let Tlist_Use_Right_Window = 0
 "" Find and show all TODOs
 "imap <C-c>td <Esc>:noautocmd vimgrep /TODO/j **/*.py<CR>:cw<CR>a
 "nmap <C-c>td :noautocmd vimgrep /TODO/j **/*.py<CR>:cw<CR>
-
-
-
-""
-"" Conque-term settings
-""
-menu CMD.Bash :ConqueTermSplit bash -l<CR>
-menu CMD.Python.Interpretator :ConqueTermSplit python<CR>
-" menu CMD.Python.Debug :ConqueTermSplit python -i %<CR>
-let g:ConqueTerm_StartMessages = 0
-let g:ConqueTerm_CloseOnEnd = 0
 
 
 
