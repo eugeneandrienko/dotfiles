@@ -22,13 +22,14 @@ if [ "$?" -ne "0" ]; then
     exit 1
 fi
 
-unset TMUX
 git submodule init
 git submodule update
 python3 ./deploy.py --deploy
 if [ "$?" -ne "0" ]; then
     exit 1
 fi
+echo "Done!"
+echo
 
 
 # Making necessary (empty) directories for vim.
@@ -47,6 +48,5 @@ mkdir -pv $HOME/.bin/
 ./install.sh
 cd ..
 
-echo
 echo "Done!"
 

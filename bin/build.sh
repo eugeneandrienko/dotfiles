@@ -7,10 +7,3 @@ if [ "$?" -ne "0" ]; then
 fi
 cd ..
 
-cd ./ddgr/
-make test
-if [ "$?" -ne "0" ]; then
-    exit 1
-fi
-cd ..
-

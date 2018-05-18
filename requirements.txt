@@ -1,9 +1,0 @@
-ctags
-emacs
-git
-sudo
-tmux
-vim
-wget
-xclip
-htop

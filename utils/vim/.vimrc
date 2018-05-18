@@ -6,10 +6,6 @@
 " YOU SHOULD INSTALL Vundle first!!!
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" List of external software, which need to be installed:
-"  1) exuberant ctags
-"  2) Unix cp
-
 
 set runtimepath+=~/.vim
 set nocompatible                        "Не нужна мне совместимость с vi!
