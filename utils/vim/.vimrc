@@ -35,6 +35,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'mhinz/vim-startify'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'ntpeters/vim-better-whitespace'
 
 call vundle#end()
 filetype plugin indent on
@@ -53,6 +54,7 @@ filetype plugin indent on
 """ *) TagList
 """ *) Python-mode
 """ *) Conque-term settings
+""" *) vim-better-whitespace
 """ *) Keybindings
 
 
@@ -187,11 +189,8 @@ set tpm=100
 set wak=yes
 " Save size of windows in vim session
 set ssop+=resize
-" What to show unstead tabs and spaces
-set listchars=tab:>>,trail:_
-" Show tabs and spaces
-set list
-set colorcolumn=0                       "Граница в 0 символов
+" 0-symbol column separator
+set colorcolumn=0
 " Settings for popup menu
 set completeopt=menuone,menu,longest,preview
 set wrapmargin=5                        "отступ от текста до правой границы окна
@@ -410,6 +409,15 @@ let Tlist_Use_Right_Window = 0
 "" Find and show all TODOs
 "imap <C-c>td <Esc>:noautocmd vimgrep /TODO/j **/*.py<CR>:cw<CR>a
 "nmap <C-c>td :noautocmd vimgrep /TODO/j **/*.py<CR>:cw<CR>
+
+
+""
+"" vim-better-whitepace
+""
+let g:better_whitespace_enabled=1
+" Show spaces before or between tabs
+let g:show_spaces_that_precede_tabs=1
+let g:better_whitespace_filetypes_blacklist=['diff', 'gitcommit', 'unite', 'qf', 'help', 'markdown']
 
 
 
