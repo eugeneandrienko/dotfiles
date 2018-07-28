@@ -230,7 +230,7 @@ let g:airline_section_c = '%f'
 let g:airline_section_x = '%{fugitive#statusline()}'
 let g:airline_section_y = '[POS=%04l,%04v] %p%%'
 let g:airline_section_z = '[LEN=%L]'
-let g:airline_theme = 'lucius'
+let g:airline_theme = 'papercolor'
 " Disable info about trailing whitespace
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline_left_sep = ''

@@ -17,37 +17,37 @@ URxvt*color0: #000000
 URxvt*color8: #000000
 
 ! red
-URxvt*color1: #cc9393
-URxvt*color9: #dca3a3
+URxvt*color1: #cc0000
+URxvt*color9: #ff0000
 
 ! green
-URxvt*color2: #3f9f3f
-URxvt*color10: #bfebbf
+URxvt*color2: #00cc00
+URxvt*color10: #00ff00
 
 ! yellow
-URxvt*color3: #d0bf8f
-URxvt*color11: #f0dfaf
+URxvt*color3: #cccc00
+URxvt*color11: #ffff00
 
 ! blue
-URxvt*color4: #6ca0a3
-URxvt*color12: #8cd0d3
+URxvt*color4: #0000cc
+URxvt*color12: #0000ff
 
 ! magenta
-URxvt*color5: #dc8cc3
-URxvt*color13: #dc8cc3
+URxvt*color5: #cc00cc
+URxvt*color13: #ff00ff
 
 ! cyan
-URxvt*color6: #93e0e3
-URxvt*color14: #93e0e3
+URxvt*color6: #00cccc
+URxvt*color14: #00ffff
 
 ! white
-URxvt*color7: #dcdccc
+URxvt*color7: #ffffff
 URxvt*color15: #ffffff
 
 
-URxvt*background: #000000
-URxvt*foreground: #aaaaaa
-URxvt*cursorColor: #00dd00
+URxvt*background: #ffffff
+URxvt*foreground: #000000
+URxvt*cursorColor: #000000
 URxvt*colorUL: #4682B4
 URxvt*underlineColor: #dfaf8f
 
@@ -63,7 +63,7 @@ URxvt.saveLines: 1000
 URxvt.cursorBlink: true
 URxvt.perl-ext-common: default,selection,url-select
 URxvt.keysym.M-u: perl:url-select:select_next
-URxvt.url-select.launcher: /usr/bin/google-chrome-stable
+URxvt.url-select.launcher: /usr/local/bin/firefox
 URxvt.url-select.underline: true
 ! left mouse button click to go to link
 URxvt.matcher.button: 1
