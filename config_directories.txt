@@ -1,9 +1,7 @@
 cmd
 utils/git
 utils/emacs
-utils/ipython
 utils/tmux
 utils/vim
 utils/i3wm
 utils/urxvt
-utils/cmus

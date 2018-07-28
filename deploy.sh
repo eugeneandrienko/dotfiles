@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/local/bin/bash
 
 
 # Settings:
@@ -35,18 +35,6 @@ echo
 # Making necessary (empty) directories for vim.
 mkdir -pv $HOME/.vim/swapfiles
 mkdir -pv $HOME/.vim/undodir
-
-# Making binaries
-cd ./bin/
-./build.sh
-if [ $? -ne "0" ]; then
-    exit 1
-fi
-# Making directory for binaries
-mkdir -pv $HOME/.bin/
-# Copying binaries
-./install.sh
-cd ..
 
 echo "Done!"
 
