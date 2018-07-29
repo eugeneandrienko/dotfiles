@@ -1,25 +1,16 @@
-#!/bin/bash
+#!/usr/local/bin/bash
 
 FONT='-xos4-terminus-*-*-*-*-14-*-*-*-*-*-*-u'
-COLORS='-sb #00dd00 -sf #000000 -nb #000000 -nf #00dd00'
-DMENU_CMD="dmenu -p 'Execute:' -l 5 -i -b -fn $FONT $COLORS"
-DMENU_ITEMS="chrome:keepassx:gimp:enable touchpad:disable touchpad"
+COLORS='-sb #000000 -sf #ffffff -nb #ffffff -nf #000000'
+DMENU_CMD="dmenu2 -p Execute: -l 5 -i -b -fn $FONT $COLORS"
+DMENU_ITEMS="firefox:keepassxc"
 
 case $(echo $DMENU_ITEMS | tr ':' '\n' | $DMENU_CMD) in
-    'chrome')
-        google-chrome-stable &
+    'firefox')
+        /usr/local/bin/firefox &
         ;;
-    'keepassx')
-        keepassx &
-        ;;
-    'gimp')
-        gimp &
-        ;;
-    'enable touchpad')
-        synclient TouchpadOff=0
-        ;;
-    'disable touchpad')
-        synclient TouchpadOff=1
+    'keepassxc')
+        /usr/local/bin/keepassxc &
         ;;
     *)
         exit 1

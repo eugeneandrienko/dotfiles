@@ -183,9 +183,9 @@ bar {
     status_command i3status --config ~/.i3status.conf
 }
 
-# Start all Chrome windows on 2nd workspace
-assign [class="Chromium"] 2
-assign [class="Google-chrome-stable"] 2
+# Start all Firefox windows on 2nd workspace
+assign [class="Firefox"] 2
+assign [class="Navigator"] 2
 # Make "Share VK" floating
 for_window [title="VK | Share Link - Chromium"] floating enable
 # Make Chromium app windows (for example mini player) floating
