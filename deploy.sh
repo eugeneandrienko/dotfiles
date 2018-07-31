@@ -36,5 +36,8 @@ echo
 mkdir -pv $HOME/.vim/swapfiles
 mkdir -pv $HOME/.vim/undodir
 
+# Update login.conf binary config
+cap_mkdb -f ~/.login_conf ~/.login_conf
+
 echo "Done!"
 
