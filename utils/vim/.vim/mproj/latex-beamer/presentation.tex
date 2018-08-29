@@ -11,21 +11,38 @@
 \hypersetup{unicode=true}
 \usepackage{breakurl}
 
+\usepackage{graphics}
 \usepackage{graphicx}
 \graphicspath{{images/}}
 
 \usepackage{tikz}
 \usepackage{pgfplots}
 \usepackage{pgfplotstable}
+\usepackage{pstricks,pst-node,pst-tree}
+\usepackage{auto-pst-pdf}
+\pgfplotsset{compat=1.15}
 
 \usepackage[labelformat=empty]{caption}
 \usepackage{verbatim}
-\usepackage{listings}
+\usepackage{listingsutf8}
+\usepackage{textcomp}
+\usepackage{tabulary}
+
+%\usepackage[backend=biber,style=numeric]{biblatex}
+%\addbibresource{bib.bib}
+%\setbeamertemplate{bibliography item}{\insertbiblabel}
 
 \lstset{language=C,
   escapechar=|,
-  frame=tb,
-  showstringspaces=false}
+  frame=single,
+  basicstyle=\scriptsize,
+  stringstyle=\color{mygreen},
+  showstringspaces=false,
+  inputencoding=utf8,
+  extendedchars=true,
+  captionpos=b,
+  breaklines=true,
+  postbreak=\mbox{\textcolor{mygreen}{\rotatebox[origin=c]{180}{$\Lsh$}}\space}}
 
 
 \definecolor{mygreen}{rgb}{.2,.6,.2}
@@ -39,10 +56,25 @@
 \setbeamercolor{section in toc}{fg=black}
 \setbeamercolor{section number projected}{bg=mygreen,fg=black}
 \setbeamercolor{itemize item}{fg=mygreen}
+\setbeamercolor{itemize subitem}{fg=mygreen}
 \setbeamercolor{item projected}{fg=white,bg=mygreen}
 \setbeamercolor{block title}{bg=mygreen, fg=black}
 \setbeamercolor{description item}{fg=mygreen}
 \hypersetup{urlcolor=mygreen}
+\setbeamercolor{footline}{fg=black}
+
+
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+
+\beamertemplatenavigationsymbolsempty
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
+
 
 \title{}
 \date{}
