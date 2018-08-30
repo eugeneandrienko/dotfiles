@@ -63,7 +63,7 @@ URxvt.saveLines: 1000
 URxvt.cursorBlink: true
 URxvt.perl-ext-common: default,selection,url-select
 URxvt.keysym.M-u: perl:url-select:select_next
-URxvt.url-select.launcher: /usr/local/bin/firefox
+URxvt.url-select.launcher: /usr/bin/firefox-bin
 URxvt.url-select.underline: true
 ! left mouse button click to go to link
 URxvt.matcher.button: 1
@@ -80,4 +80,5 @@ URxvt.urgentOnBell: true
 URxvt*eightBitInput : false
 
 URxvt*loginShell: true
+URxvt*secondaryWheel: true
 

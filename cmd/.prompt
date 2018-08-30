@@ -5,35 +5,24 @@ readonly GREEN="\[\033[0;32m\]"
 readonly MAGENTA="\[\033[0;35m\]"
 readonly RED="\[\033[0;31m\]"
 readonly YELLOW="\[\033[0;33m\]"
-readonly BLACK="\[\033[0;30m\]"
+BLACK="\[\033[0;30m\]"
 readonly BLUE="\[\033[0;34m\]"
 readonly CYAN_BG="\[\033[0;106m\]"
 readonly YELLOW_BG="\[\033[0;103m\]"
-
-
-# Is console use UTF-8 or not:
-locale | grep 'LC_NAME' | grep -qi 'utf'
-if [ $? -eq 0 ]; then
-    readonly IS_UTF_CONSOLE='t'
-else
-    readonly IS_UTF_CONSOLE='f'
-fi
 
 
 # This function called before display every prompt:
 function prompt {
     PS1=""
 
-    # Main prompt:
-    if [ "$IS_UTF_CONSOLE" = 't' ]; then
-        PS1PROMPT="$BLUE`date +%H:%M:%S`⌚ "
-        PS1PROMPT+="$BLACK«\u$MAGENTA@$BLACK\h» $GREEN\w"
-        PS1PROMPT+="$BLACK↴\n"
-    else
-        PS1PROMPT="$BLUE[`date +%H:%M:%S`] "
-        PS1PROMPT+="$BLACK\u$MAGENTA@$BLACK\h: $GREEN\w"
-        PS1PROMPT+="$BLACK\n"
+    if [ ! "$DISPLAY" == ":0" ]; then
+        BLACK="$WHITE"
     fi
+
+    # Main prompt:
+    PS1PROMPT="$BLUE[`date +%H:%M:%S`] "
+    PS1PROMPT+="$BLACK\u$MAGENTA@$BLACK\h: $GREEN\w"
+    PS1PROMPT+="$BLACK\n"
 
     # Git prompt:
     git status > /dev/null 2>&1
@@ -53,25 +42,14 @@ function prompt {
         fi
 
         GIT_PROMPT="Git: $GIT_BRANCH$GIT_TAG"
-        if [ "$IS_UTF_CONSOLE" = 't' ]; then
-            GIT_PROMPT+="$BLACK↴\n"
-        else
-            GIT_PROMPT+="$BLACK\n"
-        fi
+        GIT_PROMPT+="$BLACK\n"
     else
         GIT_PROMPT=""
     fi
 
     PS1+=$PS1PROMPT
     PS1+=$GIT_PROMPT
-    if [ "$IS_UTF_CONSOLE" = 't' ]; then
-        PS1+="$BLACK↳ "
-    else
-        PS1+="$BLACK\$ "
-    fi
-    if [ $UID -eq 0 ]; then
-        PS1+="$RED"
-    fi
+    PS1+="$BLACK\$ "
 
     # Change terminal title
     if [ "$TERM" == "xterm" ]; then

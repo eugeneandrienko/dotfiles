@@ -5,3 +5,4 @@ utils/tmux
 utils/vim
 utils/i3wm
 utils/urxvt
+utils/mplayer

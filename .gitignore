@@ -1,9 +1,3 @@
-utils/ipython/.ipython/profile_default/db
-utils/ipython/.ipython/profile_default/history.sqlite
-utils/ipython/.ipython/profile_default/log
-utils/ipython/.ipython/profile_default/pid
-utils/ipython/.ipython/profile_default/security
-utils/ipython/.ipython/profile_default/startup
 utils/vim/.vim/bundle
 utils/vim/.vim/swapfiles
 utils/vim/.vim/undodir

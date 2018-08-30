@@ -18,8 +18,9 @@ def deploy_dotfiles():
     with open(CONFIG_DIRECTORIES_FILE) as file:
         directories = file.read()
         for directory in directories.split('\n')[0:-1]:
-            copy_dotfiles_to_home(
-                getcwd() + path.sep + directory + path.sep)
+            for dotfile in listdir(directory):
+                copy_dotfiles_to_home(
+                    getcwd() + path.sep + directory + path.sep + dotfile)
 
 
 def main():
