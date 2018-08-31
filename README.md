@@ -8,6 +8,7 @@ have been writing since 2005.
 * ctags
 * htop
 * git
+* mutt
 * sudo
 * tmux
 * vim

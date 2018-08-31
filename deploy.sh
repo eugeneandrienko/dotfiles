@@ -35,6 +35,9 @@ echo
 # Making necessary (empty) directories for vim.
 mkdir -pv $HOME/.vim/swapfiles
 mkdir -pv $HOME/.vim/undodir
+# Making directory for mutt.
+mkdir -pv $HOME/.mutt/cache/{headers,bodies}
+mkdir -pv $HOME/.mutt/certificates
 
 echo "Done!"
 
