@@ -49,7 +49,7 @@ set editor="vim -c 'set syntax=mail ft=mail enc=utf-8'"
 set forward_format="Fwd: [%a: %s]"
 #set forward_quote      # quote the header and body of forward msgs
 #set index_format="%4C %Z %{%m/%d} [%2N] %-15.15F (%4c) %s"
-set index_format="%4C %Z %{%m/%d} %-15.15F (%4c) %s" # format of the index
+set index_format="%4C %Z %{%d-%m-%y} %-15.15F (%4c) %s" # format of the index
 #set hdrs           # include `my_hdr' lines in outgoing messages
 #set header         # include message header when replying
 set help            # show the help lines
@@ -72,7 +72,10 @@ set move = no             # ask about moving messages, just do it
 #set pager_context=3        # no. of lines of context to give when scrolling
 #set pager_format="-%S- %-20.20f %s"    # format of the pager status bar
 set pager_index_lines=6     # how many index lines to show in the pager
-#set pager_stop         # don't move to the next message on next-page
+# don't move to the next message on next-page
+set pager_stop
+# No plus signs
+unset markers
 #set pgp_strict_enc     # use Q-P encoding when needed for PGP
 #set post_indent_string='---end quoted text---'
 set print=ask-yes       # ask me if I really want to print messages
@@ -98,13 +101,15 @@ set nosave_empty        # remove files when no messages are left
 set shell="/bin/bash"
 # file which contains my signature
 set signature="~/.signature"
+# dashes before signature
+set sig_dashes
 
 # sort by threads
-set sort = reverse-threads
+set sort = threads
 # date of the last message in thread
 set sort_aux = last-date-received
 # how to sort files in the dir browser
-set sort_browser = reverse-date
+set sort_browser = date
 # Thread based on subject, not on reply_regexp
 unset sort_re
 #set status_format="-%r-Mutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?  %l]---(%s)-%>-(%P)---"
@@ -144,6 +149,8 @@ unset imap_passive
 set query_command= "abook --mutt-query '%s'"
 # Disable beeps
 unset beep
+# First, search for plain text in mail, then - search for html
+alternative_order text/plain text/html
 
 set ssl_starttls=yes
 set ssl_force_tls=yes
@@ -176,37 +183,37 @@ hdr_order date from subject to cc
 #
 
 # normal (not quoted) text
-color normal black white
+color normal black default
 # default color of the message header in the pager
-color hdrdefault blue white
+color hdrdefault blue default
 # text matching $quote_regexp in the body of the message
 color quoted green white
 # any text beneath the signature line
-color signature green default
+color signature green white
 # arrow or bar used to indicate the current item in a menu
 color indicator white black
 # error messages printed by mutt
-color error brightred white
+color error brightred default
 # mode lines used to display info about the mailbox or message
 color status white blue
 # thread color in index menu
-color tree magenta white
+color tree magenta default
 # the "~" used to pad blank lines in the pager
-color tilde blue white
+color tilde blue default
 # Informational messages
-color message blue white
+color message blue default
 # the "+" markers at the beginning of wrapped lines in the pager
 color markers blue white
 # any attachments present
-color attachment magenta white
+color attachment magenta default
 # highlighting of words in the pager
 color search black green
 # match regexp in the message header
-color header red white ^(From|Subject):
+color header red default ^(From|Subject):
 # point out URLs
-color body magenta white "(ftp|http|https)://[^ ]+"
+color body magenta default "(ftp|http|https)://[^ ]+"
 # e-mail addresses
-color body magenta white "[-a-z_0-9.]+@[-a-z_0-9.]+"
+color body magenta default "[-a-z_0-9.]+@[-a-z_0-9.]+"
 # Highlighting underlined patters in the body of messages
 color underline green white
 
@@ -233,8 +240,6 @@ bind generic { top-page
 bind generic } bottom-page
 bind generic \177 last-entry
 
-macro index \cb "<pipe-message> urlview<Enter>" # simulate the old browse-url function
-
 macro index S "<save-message>+spam<Enter>"
 macro pager S "<save-message>+spam<Enter>"
 
@@ -253,6 +258,11 @@ bind pager <down> next-line
 bind index G imap-fetch-mail
 bind index,pager J sidebar-next
 bind index,pager K sidebar-prev
+bind index,pager O sidebar-open
+macro attach 'V' "<pipe-entry>cat >~/.mutt/mail.html && /usr/bin/firefox-bin ~/.mutt/mail.html && sleep 5 && rm ~/.mutt/mail.html<enter>"
+macro index,pager  a "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
+bind editor        <Tab> complete-query
+macro index .f "T~f .*@habr.com<enter><tag-prefix-cond><save-message>=habr<enter><end-cond>"
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -365,6 +375,7 @@ mailboxes INBOX \
 
 auto_view application/x-gunzip
 auto_view application/x-gzip
+auto_view text/html
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #
