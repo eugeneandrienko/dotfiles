@@ -1,3 +1,0 @@
-[submodule "utils/emacs/.emacs.d"]
-	path = utils/emacs/.emacs.d
-	url = https://github.com/technomancy/emacs-starter-kit.git
