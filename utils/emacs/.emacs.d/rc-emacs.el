@@ -27,8 +27,8 @@
 ;;identation by default
 (defun my-ret-hook()
   "Make new lines indented"
-  (local-set-key (kbd "RET") 'newline-and-indent)
-)
+  (local-set-key (kbd "RET") 'newline-and-indent))
+
 (add-hook 'objc-mode-hook 'my-ret-hook)
 (add-hook 'clojure-mode-hook 'my-ret-hook)
 (add-hook 'haskell-mode-hook 'my-ret-hook)
@@ -69,117 +69,20 @@
 (global-set-key (kbd "C-c <down>")  'windmove-down)
 
 ;;templates for LaTeX
-(define-skeleton template-latex-presentation
-  "Presentation LaTeX skeleton"
-"\\documentclass[hyperref={unicode=true}, utf8x]{beamer}\n"
-"\\documentclass[hyperref={unicode=true}, utf8x]{beamer}\n"
-"% add notes to show notes\n"
-"% add notesonly to show only notes\n"
-"\\usepackage[T2A]{fontenc}\n"
-"\\usepackage{ucs}\n"
-"\\usepackage[utf8x]{inputenc}\n"
-"\\usepackage[english, russian]{babel}\n"
-"\\usepackage{hyperref}\n"
-"\\usepackage{graphicx}\n"
-"\\graphicspath{{images/}}\n"
-"\\usepackage[labelformat=empty]{caption}\n"
-"\\usepackage{verbatim}\n"
-"\\usepackage{listings}\n"
-"\n"
-"\\lstset{language=C,\n"
-"  escapechar=|,\n"
-"  frame=tb,\n"
-"  showstringspaces=false}\n"
-"\n"
-"\n"
-"\\definecolor{mygreen}{rgb}{.2,.6,.2}\n"
-"\\usetheme{Luebeck}\n"
-"\\usecolortheme{lily}\n"
-"\\useinnertheme{circles}\n"
-"\\setbeamercolor*{palette primary} {use=structure, bg=mygreen}\n"
-"\\setbeamercolor{frametitle}{fg=black}\n"
-"\\setbeamercolor{framesubtitle}{fg=black}\n"
-"\\setbeamercolor{titlelike}{fg=black}\n"
-"\\setbeamercolor{section in toc}{fg=black}\n"
-"\\setbeamercolor{section number projected}{bg=mygreen,fg=black}\n"
-"\\setbeamercolor{itemize item}{fg=mygreen}\n"
-"\\setbeamercolor{item projected}{fg=white,bg=mygreen}\n"
-"\\setbeamercolor{block title}{bg=mygreen, fg=black}\n"
-"\\setbeamercolor{description item}{fg=mygreen}\n"
-"\n"
-"\\title{}\n"
-"\\date{}\n"
-"\\institute{}\n"
-"\\author{Андриенко Евгений}\n"
-"\n"
-"\\begin{document}\n"
-"\n"
-"\\begin{frame}\n"
-"\\titlepage\n"
-"\\end{frame}\n"
-"\n"
-"\\begin{frame}\n"
-"\\tableofcontents\n"
-"\\end{frame}\n"
-"\n"
-"%------------------------------------------------------------------\n"
-"\n"
-"%------------------------------------------------------------------\n"
-"\n"
-"\\end{document}\n")
-(define-skeleton template-latex-report
-  "Report LaTeX skeleton"
-"\\documentclass[a4paper, 12pt]{article}\n"
-"\\documentclass[a4paper, 12pt]{article}\n"
-"\\usepackage[T2A]{fontenc}\n"
-"\\usepackage{ucs}\n"
-"\\usepackage[utf8x]{inputenc}\n"
-"\\usepackage[english, russian]{babel}\n"
-"\\usepackage{hyperref}\n"
-"\\usepackage{graphicx}\n"
-"\\usepackage{amsmath}\n"
-"\\usepackage{hyperref}\n"
-"\\usepackage{graphicx}\n"
-"\\graphicspath{{images/}}\n"
-"\\pagestyle{plain}\n"
-"\n"
-"\\begin{document}\n"
-"\n"
-"%---------------------------------------------------------------------------\n"
-"\n"
-"\\begin{titlepage} % начало титульника\n"
-"\\begin{center}\n"
-"\n"
-"\\large Санкт-Петербургский государственный университет информационных технологий \n"
-"механики и оптики\\\\[4.5cm]\n"
-"\n"
-"\\huge Лабораторная работа \\No \\\\[0.6cm]\n"
-"\\large по теме <<>>\\\\[3.7cm]\n"
-"\n"
-"\\begin{minipage}{0.5\\textwidth}\n"
-"\\begin{flushleft}\n"
-"\\emph{Автор:} Андриенко~Евгений\\\\\n"
-"\\emph{Группа:} 5113\\\\\n"
-"\\emph{Факультет:} КТиУ\\\\\n"
-"\\emph{Преподаватель:} \\\\\n"
-"\\end{flushleft}\n"
-"\\end{minipage}\n"
-"\n"
-"\\vfill\n"
-"\n"
-"Санкт-Петербург\\\\\n"
-"{\\large \\today}\n"
-"\n"
-"{\\large \\LaTeX}\n"
-"\n"
-"\\end{center}\n"
-"\\thispagestyle{empty} % не нумеруем страницу\n"
-"\\end{titlepage} % конец титульника\n"
-"\n"
-"%---------------------------------------------------------------------------\n"
-"\n"
-"\\tableofcontents\n"
-"\n"
-"%---------------------------------------------------------------------------\n"
-"\n"
-"\\end{document}\n")
+(defun template-latex-report()
+  "Copy LaTeX report to current directory and open it."
+  (interactive)
+  (let ((latex-report-path "~/.emacs.d/templates/latex-report/*.tex")
+	(main-file-name "report.tex"))
+    (progn
+      (shell-command (concat "cp " latex-report-path " ."))
+      (find-file (expand-file-name (concat "./" main-file-name))))))
+
+(defun template-latex-presentation()
+  "Copy LaTeX presentation to current directory and open it."
+  (interactive)
+  (let ((latex-presentation-path "~/.emacs.d/templates/latex-beamer/*.tex")
+	(main-file-name "presentation.tex"))
+    (progn
+      (shell-command (concat "cp " latex-presentation-path " ."))
+      (find-file (expand-file-name (concat "./" main-file-name))))))
