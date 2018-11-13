@@ -88,8 +88,9 @@ alias mvndep='mvn dependency:tree'
 
 # Tmux
 alias txl='tmux ls'
-alias txa='tmux a -t'
-alias txn='tmux new -s'
+alias txa='tmux a -2 -t'
+alias txn='tmux new -2 -s'
+alias tmux='tmux -2'
 
 # Xclip
 alias xcopy='xclip -selection clipboard'

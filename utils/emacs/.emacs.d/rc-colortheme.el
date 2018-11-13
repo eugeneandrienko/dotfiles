@@ -7,3 +7,7 @@
 (color-theme-initialize)
 
 (color-theme-vim-colors)
+
+; Set color of current line highlighting
+(set-face-background 'hl-line "#eeeeee")
+(set-face-foreground 'highlight nil)
