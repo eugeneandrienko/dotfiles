@@ -57,7 +57,7 @@
 
 ;;default mode for text
 (setq default-major-mode 'text-mode)
-(add-hook 'text-mode-hook 'longlines-mode)
+(add-hook 'text-mode-hook 'visual-line-mode)
 (add-hook 'text-mode-hook '(lambda () (set-fill-column 78)))
 
 ;;windmove

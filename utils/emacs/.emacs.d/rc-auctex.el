@@ -11,15 +11,20 @@
 
 ;loading AuCTeX
 (require 'tex-site)
+(require 'auctex-latexmk)
+(auctex-latexmk-setup)
+(setq auctex-latexmk-inherit-TeX-PDF-mode t)
+
 ;loading Preview-LaTeX
 ;(require 'preview-latex)
+
 ;;allow document parsing
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 ;;setup Apvlv as default document viewer
 (setq TeX-view-program-list '(("EvincE" "evince %o")))
 (setq TeX-view-program-selection '((output-pdf "EvincE")))
- (setq LaTeX-command "latex")
+(setq LaTeX-command "latex")
 ;use pdflatex unstead of latex
 (setq TeX-PDF-mode t)
 (custom-set-faces
