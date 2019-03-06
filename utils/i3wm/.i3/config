@@ -183,14 +183,13 @@ bar {
     status_command i3status --config ~/.i3status.conf
 }
 
-# Start all Firefox windows on 2nd workspace
+# Workspace-mapped windows:
 assign [class="Firefox"] 2
 assign [class="Navigator"] 2
-# Make "Share VK" floating
+assign [class="qBittorrent"] 3
+# Floating windows:
 for_window [title="VK | Share Link - Chromium"] floating enable
-# Make Chromium app windows (for example mini player) floating
 for_window [class="Chromium" window_role="app"] floating enable
-# Make MPlayer floating
 for_window [class="MPlayer"] floating enable
 
 # Colors
