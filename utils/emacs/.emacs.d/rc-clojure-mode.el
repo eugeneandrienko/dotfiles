@@ -1,14 +1,10 @@
-(if (not (package-installed-p 'clojure-mode))
-  (progn
-     (package-refresh-contents)
-     (package-install 'clojure-mode)))
-(if (not (package-installed-p 'highlight-symbol))
-  (progn
-     (package-refresh-contents)
-     (package-install 'highlight-symbol)))
+(install-missing-package 'clojure-mode)
+(install-missing-package 'highlight-symbol)
+(install-missing-package 'cider)
 
 (require 'clojure-mode)
 (require 'highlight-symbol)
+(require 'cider)
 (setq highlight-symbol-idle-delay 1)
 
 (defun my-clojure-mode-hook ()
@@ -29,3 +25,6 @@
 (set-language-environment "UTF-8")
 
 (setq inferior-lisp-program "lein repl")
+
+; Disable warning when jacking-in outside a project
+(setq cider-allow-jack-in-without-project t)

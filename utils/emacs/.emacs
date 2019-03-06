@@ -31,6 +31,13 @@
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                          ("melpa" . "https://melpa.org/packages/")))
 
+(defun install-missing-package (package-name)
+  "Install missing package"
+  (if (not (package-installed-p package-name))
+      (progn
+	(package-refresh-contents)
+	(package-install package-name))))
+
 (load "~/.emacs.d/rc-emacs.el")
 (load "~/.emacs.d/rc-ido.el")
 ;(load "~/.emacs.d/rc-edit-server.el")
