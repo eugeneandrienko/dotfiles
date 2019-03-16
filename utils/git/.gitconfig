@@ -1,6 +1,6 @@
 [user]
-    name = h0rr0rrdrag0n
-    email = h0rr0rrdrag@gmail.com
+    name = eugeneandrienko
+    email = evg.andrienko@gmail.com
 [push]
     default = simple
     # Make `git push` push relevant annotated tags when pushing
