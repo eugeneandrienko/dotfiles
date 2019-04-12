@@ -7,7 +7,7 @@ TAB: menu-complete
 "\e[B": history-search-forward
 
 # Make Tab autocomplete regardless of filename case
-set completion-ignore-case on
+set completion-ignore-case off
 
 # List all matches in case multiple possible completions are possible
 set show-all-if-ambiguous on
@@ -40,4 +40,11 @@ set output-meta on
 set convert-meta off
 
 # Flip through autocompletion matches with Shift-Tab.
-"\e[Z": menu-complete
+"\e[Z": menu-complete-backward
+
+# Enable colored completion
+set colored-stats on
+set colored-completion-prefix on
+
+set echo-control-characters off
+
