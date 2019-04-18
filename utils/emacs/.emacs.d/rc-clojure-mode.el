@@ -28,3 +28,8 @@
 
 ; Disable warning when jacking-in outside a project
 (setq cider-allow-jack-in-without-project t)
+; Do not show REPL window right after REPL connection established
+(setq cider-repl-pop-to-buffer-on-connect nil)
+; Prefer local resources over remote resources
+(setq cider-prefer-local-resources t)
+
