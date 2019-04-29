@@ -36,6 +36,7 @@ You need to have a Python 3 on your machine, to deploy dotfiles!
 Checkout next branch:
 * `master` - for Linux (Gentoo).
 * `freebsd` - for FreeBSD.
+* `termux` - for Termux.
 
 Run *deploy.sh* script, which do the next:
 * Copy dotfiles from our catalog to the user $HOME catalog.
