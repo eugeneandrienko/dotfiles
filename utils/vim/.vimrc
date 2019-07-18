@@ -85,6 +85,8 @@ autocmd BufReadPost *
   \ if line("'\"") > 0 && line("'\"") <= line("$") |
   \   exe "normal! g`\"" |
   \ endif
+" To fix bug with executing code from modeline
+set modelines=0
 
 
 
