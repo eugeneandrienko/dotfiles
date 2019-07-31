@@ -1,0 +1,64 @@
+Hotkeys list
+============
+
+Emacs
+-----
+
+* C-z   - switch keyboard language
+* M-g   - go to line
+* C-x 2 - horizontal split
+* C-x 3 - vertical split
+
+* M-x template-latex-report       - create LaTeX report in current catalog
+* M-x template-latex-presentation - create LaTeX presentation in current
+                                    catalog
+* C-c C-c                         - build or view LaTeX source
+
+* M-x cider-jack-in     - jump into REPL in current directory
+* C-u M-x cider-jack-in - jump into REPL in given directory
+* C-c C-z               - switch between REPL and Clojure file
+* C-c C-e               - eval last S-expression
+* C-c C-k               - eval current buffer
+* C-c C-l               - eval Clojure file
+* C-c M-:               - fast eval Clojure S-expression
+* C-c M-;               - fast eval S-expression and paste result in buffer
+* C-c C-v .             - fast eval function under the cursor
+* C-c C-q               - Close REPL connection
+* C-c M-n r             - reload modified Clojure files in classpath
+
+* M-x cider-classpath   - list classpath
+* C-u C-M-x             - activate debugger on the current S-expression
+* C-c M-t v             - toggle function tracing
+* C-c M-t n             - toggle function tracing in entire namespace
+
+* C-q (     - add ( bracket without bracket autocomplete
+* C-q )     - add ) bracket without bracket autocomplete
+* C-u <DEL> - delete bracket without autocomplete
+
+I3WM
+----
+
+* Win+z - split in horizontal orientation
+* Win+v - split in vertical orientation
+* Win+a - focus parent container
+* Win+c - focus child container
+
+* Win+s - stacking container layout
+* Win+w - tabbed container layout
+* Win+e - toggle split layout
+
+* Win+Shift+Space - toggle tiling / floating
+* Win+Space       - change focus between tiling / floating
+
+* Win+q       - open scratchpad
+* Win+Shift+- - move to scratchpad
+
+Mutt
+----
+
+Vim
+---
+
+C-c n - show line numbers
+C-c c - show 80th symbol line
+
