@@ -47,11 +47,16 @@ I3WM
 * Win+w - tabbed container layout
 * Win+e - toggle split layout
 
+* Win+Right_arrow - move window to right display
+* Win+Left_arrow - move window to left display
+
 * Win+Shift+Space - toggle tiling / floating
 * Win+Space       - change focus between tiling / floating
 
 * Win+q       - open scratchpad
 * Win+Shift+- - move to scratchpad
+
+* Win+Shift+x - lock screen
 
 Mutt
 ----
