@@ -11,10 +11,6 @@
 
 set $mod Mod4
 
-# Monitors
-set $left_display DVI-D-1
-set $right_display HDMI-3
-
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
@@ -76,8 +72,8 @@ bindsym $mod+Shift+l move up
 bindsym $mod+Shift+colon move right
 
 # move focused window between workspaces
-bindsym $mod+Right move container to output $right_display
-bindsym $mod+Left move container to output $left_display
+bindsym $mod+Right move container to output right
+bindsym $mod+Left move container to output left
 
 # split in horizontal orientation
 bindsym $mod+z split h
@@ -190,14 +186,13 @@ bar {
 # Workspace-mapped windows:
 assign [class="Firefox"] web
 assign [class="Navigator"] web
-assign [class="qBittorrent"] output $right_display
+assign [class="qBittorrent"] output right
 # Floating windows:
 for_window [title="VK | Share Link - Chromium"] floating enable
 for_window [class="Chromium" window_role="app"] floating enable
 for_window [class="MPlayer"] floating enable
 # Assign workspaces to monitors:
-workspace web output $left_display
-workspace 3 output $right_display
+workspace web output left
 
 # Colors
 # color-class           border  backgr  text    indicator
