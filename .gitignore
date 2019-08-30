@@ -6,3 +6,5 @@ utils/vim/.vim/undodir
 utils/vim/.vim/.netrwhist
 .ropeproject/
 cmd/.userconfig
+*.tar.bz2
+
