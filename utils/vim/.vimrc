@@ -15,7 +15,7 @@ set nocompatible                        "Не нужна мне совмести
 " Install plugin manager
 " Usage - :Bundle<TAB>
 " Launch this to install:
-"    git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+"    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
