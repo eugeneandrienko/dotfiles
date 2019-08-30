@@ -15,7 +15,7 @@ readonly YELLOW_BG="\[\033[0;103m\]"
 function prompt {
     PS1=""
 
-    if [ ! "$DISPLAY" == ":0" ]; then
+    if [ ! "$DISPLAY" == ":0" ] && [ ! "$DISPLAY" == ":0.0" ]; then
         BLACK="$WHITE"
     fi
 

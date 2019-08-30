@@ -26,7 +26,12 @@ alias s='sudo'
 alias ss='sudo -s'
 alias wget='wget -c'
 alias sget='wget -c -e http_proxy=127.0.0.1:8080 -e https_proxy=127.0.0.1:8080'
-alias panic='rm -rfv ~/.cache/thumbnails/* && rm -rfv ~/.thumbnails/* && rm -rfv ~/.cache/vlc/* && sleep 1 && kill -9 $$'
+alias panic='rm -rfv ~/.cache/thumbnails/*; \
+                        rm -rfv ~/.thumbnails/*; \
+                        rm -rfv ~/.cache/mozilla/firefox/022ivwuz.default/cache2/*; \
+                        rm -rfv ~/.cache/mozilla/firefox/022ivwuz.default/startupCache/*; \
+                        rm -rfv ~/.cache/vlc/*; \
+                        sleep 1; kill -9 $$'
 alias df='df -h'
 alias progress='progress -w'
 alias fuck_censorship='ssh -p 443 -ND 8080 fuck@censorship.1984; \
@@ -37,6 +42,7 @@ alias hr=$'hr \'#\' \'#\' \'#\''
 alias ydl='youtube-dl --proxy socks5://127.0.0.1:8080'
 alias feh='feh --scale'
 alias cal='cal -3'
+alias emacs='emacs -nw'
 alias hotkeys='cat ~/.hotkeys.txt'
 
 # Mistypes
@@ -92,8 +98,8 @@ alias mvndep='mvn dependency:tree'
 
 # Tmux
 alias txl='tmux ls'
-alias txa='tmux a -2 -t'
-alias txn='tmux new -2 -s'
+alias txa='tmux -2 a -t'
+alias txn='tmux -2 new -s'
 alias tmux='tmux -2'
 
 # Xclip
@@ -102,4 +108,9 @@ alias xpaste='xclip -selection clipboard -o'
 
 # Docker
 alias docklc=$'docker ps -l | tail -n 1 | awk \'{print $NF}\''
+
+# Gentoo aliases
+alias emerge-update='sudo emerge-webrsync; \
+                    read -p "Press Enter " NOTUSING; \
+                    sudo emerge --ask -uDU --keep-going --with-bdeps=y @world'
 
