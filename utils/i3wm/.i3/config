@@ -178,8 +178,10 @@ bar {
         background #ffffff
         statusline #222222
         separator  #000000
+        # color-class      border  backgr  text
+        active_workspace   #000000 #ffffff #000000
         inactive_workspace #ffffff #ffffff #000000
-        focused_workspace  #000000 #ffffff #000000
+        focused_workspace  #000000 #000000 #ffffff
     }
     status_command i3status --config ~/.i3status.conf
 }
