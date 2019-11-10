@@ -18,6 +18,11 @@
 ;loading Preview-LaTeX
 ;(require 'preview-latex)
 
+
+(add-hook 'LaTeX-mode-hook '(lambda () (set-fill-column 80)))
+(add-hook 'LaTeX-mode-hook 'auto-fill-mode)
+(add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
+
 ;;allow document parsing
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
