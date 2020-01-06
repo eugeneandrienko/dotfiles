@@ -54,7 +54,7 @@ bindsym $mod+Return exec mate-terminal
 bindsym $mod+Shift+q kill
 
 # start i3lock
-bindsym $mod+Shift+x exec i3lock -beu -c 000000
+bindsym $mod+Shift+x exec ~/.i3/lock.sh
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec ~/.i3/goodmenu.sh
