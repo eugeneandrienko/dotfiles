@@ -1,5 +1,5 @@
 text/html; lynx -assume_charset=%{charset} -display_charset=utf-8 -dump %s;  nametemplate=%s.html; copiousoutput
-application/pdf; evince %s &
+application/pdf; zathura %s &
 image/jpeg; feh --scale-down %s &
 image/gif; feh --scale-down %s &
 image/GIF; feh --scale-down %s &

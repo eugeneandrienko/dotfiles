@@ -27,8 +27,8 @@
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 ;;setup Apvlv as default document viewer
-(setq TeX-view-program-list '(("EvincE" "evince %o")))
-(setq TeX-view-program-selection '((output-pdf "EvincE")))
+(setq TeX-view-program-list '(("ZathurA" "zathura %o")))
+(setq TeX-view-program-selection '((output-pdf "ZathurA")))
 (setq LaTeX-command "latex")
 ;use pdflatex unstead of latex
 (setq TeX-PDF-mode t)
