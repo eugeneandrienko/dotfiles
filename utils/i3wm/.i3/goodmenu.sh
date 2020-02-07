@@ -3,7 +3,7 @@
 FONT='-xos4-terminus-*-*-*-*-14-*-*-*-*-*-*-u'
 COLORS='-sb #000000 -sf #ffffff -nb #ffffff -nf #000000'
 DMENU_CMD="dmenu -p Execute: -l 5 -i -b -fn $FONT $COLORS"
-DMENU_ITEMS="firefox:firefox_unsec:telegram:keepassxc:qbittorrent:idea:virtualbox:guitarpro:krita:simple_scan:android-file-transfer"
+DMENU_ITEMS="firefox:firefox_unsec:telegram:keepassxc:qbittorrent:idea:virtualbox:musescore:guitarpro:gimp:simple_scan:android-file-transfer"
 
 case $(echo $DMENU_ITEMS | tr ':' '\n' | $DMENU_CMD) in
     'firefox')
@@ -27,11 +27,14 @@ case $(echo $DMENU_ITEMS | tr ':' '\n' | $DMENU_CMD) in
     'virtualbox')
         /opt/bin/VirtualBox &
         ;;
+    'musescore')
+        /usr/bin/musescore &
+        ;;
     'guitarpro')
         wine /home/drag0n/.wine/drive_c/Program\ Files\ \(x86\)/Arobas\ Music/Guitar\ Pro\ 7/GuitarPro7.exe &
         ;;
-    'krita')
-        /usr/bin/krita &
+    'gimp')
+        /usr/bin/gimp &
         ;;
     'simple_scan')
         /usr/bin/simple-scan &
