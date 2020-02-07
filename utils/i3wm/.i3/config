@@ -48,7 +48,7 @@ hide_edge_borders both
 force_xinerama yes
 
 # start a terminal
-bindsym $mod+Return exec mate-terminal
+bindsym $mod+Return exec st
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -208,5 +208,5 @@ client.background       #ffffff
 
 # Autostart terminal on startup:
 exec_always --no-startup-id i3-msg 'shmlog off'
-exec i3-msg 'workspace 1; exec mate-terminal -e tmux'
+exec i3-msg 'workspace 1; exec st -e tmux'
 
