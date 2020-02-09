@@ -7,3 +7,4 @@ utils/i3wm
 utils/urxvt
 utils/mplayer
 utils/mutt
+utils/rtorrent

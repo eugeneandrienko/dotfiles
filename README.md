@@ -14,6 +14,7 @@ have been writing since 2005.
 * vim
 * wget
 * xclip
+* rtorrent
 
 Also, you may be need to install some fonts, like Terminus and Droid Sans Mono.
 

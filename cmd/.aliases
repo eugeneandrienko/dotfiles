@@ -44,6 +44,7 @@ alias feh='feh --scale'
 alias cal='cal -3'
 alias emacs='emacs -nw'
 alias hotkeys='cat ~/.hotkeys.txt'
+alias rtorrent='~/.rtorrent/download_blocklist.sh && rtorrent'
 
 # Mistypes
 alias xs='cd'
