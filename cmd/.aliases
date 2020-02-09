@@ -39,7 +39,6 @@ alias fuck_censorship='ssh -p 443 -ND 8080 fuck@censorship.1984; \
 alias ddg='ddgr --expand --colors fcegxy'
 alias top='htop'
 alias hr=$'hr \'#\' \'#\' \'#\''
-alias ydl='youtube-dl --proxy socks5://127.0.0.1:8080'
 alias feh='feh --scale'
 alias cal='cal -3'
 alias emacs='emacs -nw'
@@ -114,4 +113,10 @@ alias docklc=$'docker ps -l | tail -n 1 | awk \'{print $NF}\''
 alias emerge-update='sudo emerge-webrsync; \
                     read -p "Press Enter " NOTUSING; \
                     sudo emerge --ask -uDU --keep-going --with-bdeps=y @world'
+
+# youtube-dl aliases
+alias ydl='youtube-dl --proxy socks5://127.0.0.1:8080'
+alias ydl_podcast="youtube-dl --proxy socks5://127.0.0.1:8080 --continue \
+                  --write-description --extract-audio --audio-format mp3 \
+                  --embed-thumbnail --output '%(autonumber)s_%(title)s.%(ext)s'"
 
