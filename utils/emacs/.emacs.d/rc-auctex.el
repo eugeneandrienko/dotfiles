@@ -26,9 +26,14 @@
 ;;allow document parsing
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
-;;setup Apvlv as default document viewer
-(setq TeX-view-program-list '(("ZathurA" "zathura %o")))
-(setq TeX-view-program-selection '((output-pdf "ZathurA")))
+;;activate forward/reverse search
+(TeX-source-correlate-mode)
+;;setup Zathura as default document viewer
+(add-to-list 'TeX-view-program-list '("Zathura"
+				      ("zathura %o"
+				       (mode-io-correlate " --synctex-forward %n:0:%b -x \"emacsclient +%{line} %{input}\" "))
+				      "zathura"))
+(add-to-list 'TeX-view-program-selection '(output-pdf "Zathura"))
 (setq LaTeX-command "latex")
 ;use pdflatex unstead of latex
 (setq TeX-PDF-mode t)
