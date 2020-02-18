@@ -70,21 +70,22 @@ Vim
 rtorrent
 --------
 
-* C-d - stop or remove stopped torrent
-* C-s - start download
-* +   - increase priority
-* -   - decrease priority
-* C-r - hash check of torrent
-* a   - increase the upload throttle by 1 KB
-* s   - increase the upload throttle by 5 KB
-* d   - increase the upload throttle by 50 KB
-* z   - decrease the upload throttle by 1 KB
-* x   - decrease the upload throttle by 5 KB
-* c   - decrease the upload throttle by 50 KB
-* A   - increase the download throttle by 1 KB
-* S   - increase the download throttle by 5 KB
-* D   - increase the download throttle by 50 KB
-* Z   - decrease the download throttle by 1 KB
-* X   - decrease the download throttle by 5 KB
-* C   - decrease the download throttle by 50 KB
+* C-d   - stop or remove stopped torrent
+* C-s   - start download
+* +     - increase priority
+* -     - decrease priority
+* Space - change file priority
+* C-r   - hash check of torrent
+* a     - increase the upload throttle by 1 KB
+* s     - increase the upload throttle by 5 KB
+* d     - increase the upload throttle by 50 KB
+* z     - decrease the upload throttle by 1 KB
+* x     - decrease the upload throttle by 5 KB
+* c     - decrease the upload throttle by 50 KB
+* A     - increase the download throttle by 1 KB
+* S     - increase the download throttle by 5 KB
+* D     - increase the download throttle by 50 KB
+* Z     - decrease the download throttle by 1 KB
+* X     - decrease the download throttle by 5 KB
+* C     - decrease the download throttle by 50 KB
 
