@@ -44,6 +44,25 @@ alias cal='cal -3'
 alias emacs='emacs -nw'
 alias hotkeys='cat ~/.hotkeys.txt'
 alias rtorrent='~/.rtorrent/download_blocklist.sh && rtorrent'
+alias rclone_nextcloud='echo "1) Sync local with remote"; \
+                        echo "2) Sync remote with local"; \
+                        echo ""; \
+                        read -p "Select sync type: " SYNC_TYPE; \
+                        case "$SYNC_TYPE" in \
+                            "1") \
+                                rclone sync ~/nextcloud/ nextcloud: --create-empty-src-dirs --dry-run; \
+                                read -p "Press Enter if all is OK " NOTUSING; \
+                                rclone sync ~/nextcloud/ nextcloud: --create-empty-src-dirs --progress; \
+                            ;; \
+                            "2") \
+                                rclone sync nextcloud: ~/nextcloud/ --create-empty-src-dirs --dry-run; \
+                                read -p "Press Enter if all is OK " NOTUSING; \
+                                rclone sync nextcloud: ~/nextcloud/ --create-empty-src-dirs --progress; \
+                            ;; \
+                            *) \
+                                echo "Unknown sync type!"; \
+                            ;; \
+                        esac'
 
 # Mistypes
 alias xs='cd'
