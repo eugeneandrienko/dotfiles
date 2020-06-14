@@ -10,3 +10,98 @@ function video2gif() {
     rm $PNG_PALLETE
 }
 
+function hotkeys() {
+    exec 3>&1
+    HOTKEYS_COMMON_OPTIONS="--backtitle Hotkeys --title Hotkeys --no-collapse --no-shadow --no-tags --scrollbar"
+    HOTKEYS_LIST_OF_PROGRAMS="emacs Emacs i3wm I3WM mutt Mutt vim Vim rtorrent RTorrent"
+    RESULT=$(dialog $HOTKEYS_COMMON_OPTIONS --menu "Select a program to show it's hotkeys" 20 30 15 $HOTKEYS_LIST_OF_PROGRAMS 2>&1 1>&3)
+    RETVAL=$?
+    exec 3>&-
+
+    if [ "$RETVAL" -eq "0" ]; then
+        case "$RESULT" in
+            "emacs")
+                 HOTKEYS_TEXT="C-z   - switch keyboard language\n
+M-g   - go to line\n
+C-x 2 - horizontal split\n
+C-x 3 - vertical split\n
+\n
+M-x template-latex-report       - create LaTeX report in current catalog\n
+M-x template-latex-presentation - create LaTeX presentation in current\n
+                                  catalog\n
+C-c C-c                         - build or view LaTeX source\n
+\n
+M-x cider-jack-in     - jump into REPL in current directory\n
+C-u M-x cider-jack-in - jump into REPL in given directory\n
+C-c C-z               - switch between REPL and Clojure file\n
+C-c C-e               - eval last S-expression\n
+C-c C-k               - eval current buffer\n
+C-c C-l               - eval Clojure file\n
+C-c M-:               - fast eval Clojure S-expression\n
+C-c M-;               - fast eval S-expression and paste result in buffer\n
+C-c C-v .             - fast eval function under the cursor\n
+C-c C-q               - Close REPL connection\n
+C-c M-n r             - reload modified Clojure files in classpath\n
+\n
+M-x cider-classpath   - list classpath\n
+C-u C-M-x             - activate debugger on the current S-expression\n
+C-c M-t v             - toggle function tracing\n
+C-c M-t n             - toggle function tracing in entire namespace\n
+\n
+C-q (     - add ( bracket without bracket autocomplete\n
+C-q )     - add ) bracket without bracket autocomplete\n
+C-u <DEL> - delete bracket without autocomplete\n"
+                ;;
+			"i3wm")
+                HOTKEYS_TEXT="Win+z - split in horizontal orientation\n
+Win+v - split in vertical orientation\n
+Win+a - focus parent container\n
+Win+c - focus child container\n
+\n
+Win+s - stacking container layout\n
+Win+w - tabbed container layout\n
+Win+e - toggle split layout\n
+\n
+Win+Right_arrow - move window to right display\n
+Win+Left_arrow  - move window to left display\n
+\n
+Win+Shift+Space - toggle tiling / floating\n
+Win+Space       - change focus between tiling / floating\n
+\n
+Win+q       - open scratchpad\n
+Win+Shift+- - move to scratchpad\n
+\n
+Win+Shift+x - lock screen\n"
+			;;
+            "mutt")
+                HOTKEYS_TEXT="Under construction"
+                ;;
+            "vim")
+                HOTKEYS_TEXT="C-c n - show line numbers\n
+C-c c - show 80th symbol line\n"
+                ;;
+            "rtorrent")
+                HOTKEYS_TEXT="C-d   - stop or remove stopped torrent\n
+C-s   - start download\n
++     - increase priority\n
+-     - decrease priority\n
+Space - change file priority\n
+C-r   - hash check of torrent\n
+a     - increase the upload throttle by 1 KB\n
+s     - increase the upload throttle by 5 KB\n
+d     - increase the upload throttle by 50 KB\n
+z     - decrease the upload throttle by 1 KB\n
+x     - decrease the upload throttle by 5 KB\n
+c     - decrease the upload throttle by 50 KB\n
+A     - increase the download throttle by 1 KB\n
+S     - increase the download throttle by 5 KB\n
+D     - increase the download throttle by 50 KB\n
+Z     - decrease the download throttle by 1 KB\n
+X     - decrease the download throttle by 5 KB\n
+C     - decrease the download throttle by 50 KB\n"
+                ;;
+        esac
+		dialog $HOTKEYS_COMMON_OPTIONS --infobox "$HOTKEYS_TEXT" 30 80
+    fi
+}
+
