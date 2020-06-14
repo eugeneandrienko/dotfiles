@@ -22,9 +22,15 @@ Also, you may be need to install some fonts, like Terminus and Droid Sans Mono.
 
 * `cmd/` - shell-related configuration files.
 * `utils/` - configuration files for different utilities, like vim or tmux.
+* `noauto/` - different system configuration files, not for automatic installation. Described below.
 * `config_directories.txt` - list of catalogs with our dotfiles - one catalog for one program's configs.
 * `deploy.sh` - main deployment script.
 * `deploy.py` - Python 3 program, which copies dotfiles from our catalogs to user $HOME catalog.
+
+#### noauto/ contents
+
+* `hosts` - `/etc/hosts` file.
+* `st-0.8.2` - configuration file for st terminal emulator.
 
 ### Install
 
