@@ -37,7 +37,6 @@ alias progress='progress -w'
 alias fuck_censorship='ssh -p 443 -ND 8080 fuck@censorship.1984; \
                        notify-send -u critical -t 5000 "Warning" "SSH tunnel is down"'
 alias ddg='ddgr --expand --colors fcegxy'
-alias top='htop'
 alias hr=$'hr \'#\' \'#\' \'#\''
 alias feh='feh --scale'
 alias cal='cal -3'
@@ -108,7 +107,7 @@ alias reload='exec $SHELL -l'
 # Shortcuts
 alias g='cd ~/git_repos'
 alias dw='cd ~/downloads'
-alias dr='cd ~/Dropbox'
+alias ne='cd ~/nextcloud'
 
 # Maven
 alias mvnci='mvn clean install'
@@ -138,4 +137,7 @@ alias ydl='youtube-dl --proxy socks5://127.0.0.1:8080'
 alias ydl_podcast="youtube-dl --proxy socks5://127.0.0.1:8080 --continue \
                   --write-description --extract-audio --audio-format mp3 \
                   --embed-thumbnail --output '%(autonumber)s_%(title)s.%(ext)s'"
+
+# Make gifs
+alias img2gif='convert -delay 15 -loop 0 '
 
