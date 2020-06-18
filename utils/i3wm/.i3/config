@@ -199,7 +199,7 @@ for_window [title="VK | Share Link - Chromium"] floating enable
 for_window [class="Chromium" window_role="app"] floating enable
 for_window [class="MPlayer"] floating enable
 # Assign workspaces to monitors:
-workspace web output left
+exec i3-msg 'workspace web; move workspace to output left'
 
 # Colors
 # color-class           border  backgr  text    indicator
