@@ -5,5 +5,5 @@ xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
 xrandr --output DVI-D-2 --auto --right-of DVI-D-1
 redshift -l 59.9386300:30.3141300 -m vidmode &
 numlockx
-exec /usr/bin/i3 -c ~/.i3/config
+exec /usr/bin/i3
 
