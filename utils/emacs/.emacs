@@ -25,7 +25,7 @@
  '(highlight-symbol-face ((((class color) (background dark)) (:background "OliveDrab")))))
 
 (require 'site-gentoo)
-(package-initialize)
+;(package-initialize)
 
 ; ELPA and MELPA repositories with elisp packages:
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
@@ -44,6 +44,7 @@
 (load "~/.emacs.d/rc-aspell.el")
 (load "~/.emacs.d/rc-auctex.el")
 (load "~/.emacs.d/rc-colortheme.el")
+(load "~/.emacs.d/rc-rst-mode.el")
 (load "~/.emacs.d/rc-slime.el")
 (load "~/.emacs.d/rc-paredit.el")
 (load "~/.emacs.d/rc-clojure-mode.el")
