@@ -44,9 +44,6 @@ workspace_layout stacking
 # Hide both borders
 hide_edge_borders both
 
-# Force using Xinerama
-force_xinerama yes
-
 # start a terminal
 bindsym $mod+Return exec st
 
@@ -193,13 +190,16 @@ bar {
 
 # Workspace-mapped windows:
 assign [class="Firefox"] web
-assign [class="Navigator"] web
+assign [class="firefox"] web
+assign [class="tmux"]    1
 # Floating windows:
 for_window [title="VK | Share Link - Chromium"] floating enable
 for_window [class="Chromium" window_role="app"] floating enable
-for_window [class="MPlayer"] floating enable
+for_window [class="MPlayer"]                    floating enable
 # Assign workspaces to monitors:
-workspace web output left
+workspace 1   output DVI-D-1
+workspace web output DVI-D-1
+workspace 3   output DVI-D-2
 
 # Colors
 # color-class           border  backgr  text    indicator
@@ -212,5 +212,5 @@ client.background       #ffffff
 
 # Autostart terminal on startup:
 exec_always --no-startup-id i3-msg 'shmlog off'
-exec i3-msg 'workspace 1; exec st -e tmux'
+exec i3-msg 'exec st -c tmux -e tmux'
 
