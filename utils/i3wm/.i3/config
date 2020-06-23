@@ -32,11 +32,15 @@ focus_follows_mouse yes
 # Wrap focus between containers
 focus_wrapping force
 
+# Window will always be marked urgent, but the focus will not be stolen.
+focus_on_window_activation urgent
+no_focus [tiling]
+
 # Show popup if it belongs to current window in fullscreen
 popup_during_fullscreen smart
 
 # Auto back for workspaces
-workspace_auto_back_and_forth yes
+workspace_auto_back_and_forth no
 
 # default layout
 workspace_layout stacking
@@ -102,6 +106,11 @@ bindsym $mod+c focus child
 bindsym $mod+q scratchpad show
 # Move to scratchpad
 bindsym $mod+Shift+minus move scratchpad
+
+# Mark window
+bindsym $mod+m exec ~/.i3/set_mark.sh
+# Goto marked window
+bindsym $mod+g exec ~/.i3/goto_mark.sh
 
 # switch to workspace
 bindsym $mod+1 workspace 1
