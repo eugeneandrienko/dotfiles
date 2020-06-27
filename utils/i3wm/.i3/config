@@ -34,7 +34,6 @@ focus_wrapping force
 
 # Window will always be marked urgent, but the focus will not be stolen.
 focus_on_window_activation urgent
-no_focus [tiling]
 
 # Show popup if it belongs to current window in fullscreen
 popup_during_fullscreen smart
