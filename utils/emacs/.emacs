@@ -1,3 +1,6 @@
+; Increase GC limit to boot speedup
+(setq gc-cons-threshold 100000000)
+
 ;;start Emacs server
 ;(server-start)
 ;(remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function)
