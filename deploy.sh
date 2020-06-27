@@ -22,8 +22,6 @@ if [ "$?" -ne "0" ]; then
     exit 1
 fi
 
-git submodule init
-git submodule update
 python3 ./deploy.py --deploy
 if [ "$?" -ne "0" ]; then
     exit 1
