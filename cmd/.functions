@@ -30,6 +30,7 @@ M-x template-latex-report       - create LaTeX report in current catalog\n
 M-x template-latex-presentation - create LaTeX presentation in current\n
                                   catalog\n
 C-c C-c                         - build or view LaTeX source\n
+F12                             - enable syntax checking (by aspell)\n
 \n
 M-x cider-jack-in     - jump into REPL in current directory\n
 C-u M-x cider-jack-in - jump into REPL in given directory\n
