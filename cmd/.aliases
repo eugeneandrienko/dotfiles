@@ -140,3 +140,5 @@ alias ydl_podcast="youtube-dl --proxy socks5://127.0.0.1:8080 --continue \
 # Make gifs
 alias img2gif='convert -delay 15 -loop 0 '
 
+alias webm2mp4='ffmpeg -i '
+
