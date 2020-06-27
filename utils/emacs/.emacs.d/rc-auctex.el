@@ -13,15 +13,16 @@
 (require 'tex-site)
 (require 'auctex-latexmk)
 (auctex-latexmk-setup)
+(setq TeX-PDF-mode t)
 (setq auctex-latexmk-inherit-TeX-PDF-mode t)
-
-;loading Preview-LaTeX
-;(require 'preview-latex)
 
 
 (add-hook 'LaTeX-mode-hook '(lambda () (set-fill-column 80)))
 (add-hook 'LaTeX-mode-hook 'auto-fill-mode)
 (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
+
+(setq TeX-open-quote "<<")
+(setq TeX-close-quote ">>")
 
 ;;allow document parsing
 (setq TeX-auto-save t)
