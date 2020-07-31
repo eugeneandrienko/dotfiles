@@ -32,7 +32,7 @@ Also, you may be need to install some fonts, like Terminus and Droid Sans Mono.
 #### noauto/ contents
 
 * `hosts` - `/etc/hosts` file.
-* `st-0.8.2` - configuration file for st terminal emulator.
+* `st` - configuration file for st terminal emulator.
 
 ### Install
 
