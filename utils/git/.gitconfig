@@ -18,6 +18,7 @@
     pager =
     autocrlf = input
     whitespace = trailing-space,space-before-tab
+    quotepath = false
 [merge]
     conflictstyle = diff3
 
