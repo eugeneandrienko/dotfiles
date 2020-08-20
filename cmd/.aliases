@@ -61,6 +61,7 @@ alias rclone_nextcloud='echo "1) Sync local with remote"; \
                                 echo "Unknown sync type!"; \
                             ;; \
                         esac'
+alias mc='mc --nocolor'
 
 # Mistypes
 alias xs='cd'
