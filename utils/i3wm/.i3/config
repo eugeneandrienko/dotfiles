@@ -172,7 +172,7 @@ bindsym $mod+r mode "resize"
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -c 0 -- sset Master 1-
 bindsym XF86AudioMute exec --no-startup-id amixer -c 0 -- sset Master toggle
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -c 0 -- sset Master 1+
-bindsym XF86HomePage exec --no-startup-id firefox-bin
+bindsym XF86HomePage exec --no-startup-id /home/drag0n/.i3/firefox.sh
 bindsym XF86AudioMedia exec --no-startup-id /usr/bin/audacious
 bindsym XF86AudioPlay exec --no-startup-id /usr/bin/audacious -t
 bindsym XF86AudioStop exec --no-startup-id /usr/bin/audacious -s

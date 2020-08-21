@@ -10,7 +10,7 @@ DMENU_ITEMS+=":android-file-transfer:qmapshack"
 
 case $(echo $DMENU_ITEMS | tr ':' '\n' | $DMENU_CMD) in
     'firefox')
-        /usr/bin/apulse /usr/bin/firefox-bin &
+        /home/drag0n/.i3/firefox.sh
         ;;
     'firefox_unsec')
         /usr/bin/apulse /usr/bin/firefox-bin -P unsecure &
