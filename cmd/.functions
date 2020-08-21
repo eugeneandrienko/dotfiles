@@ -1,13 +1,13 @@
 # Create a new directory and enter it
 function mkd() {
-    mkdir -p "$@" && cd "$_";
+    mkdir -p "$@" && cd "$_" || return;
 }
 
 function video2gif() {
     PNG_PALLETE=$(mktemp --suffix=.png)
-    ffmpeg -i $1 -filter_complex "[0:v] palettegen" $PNG_PALLETE
-    ffmpeg -i $1 -i $PNG_PALLETE -r 12 -s 320x180 -filter_complex "[0:v][1:v] paletteuse" $2
-    rm $PNG_PALLETE
+    ffmpeg -i "$1" -filter_complex "[0:v] palettegen" "$PNG_PALLETE"
+    ffmpeg -i "$1" -i "$PNG_PALLETE" -r 12 -s 320x180 -filter_complex "[0:v][1:v] paletteuse" "$2"
+    rm "$PNG_PALLETE"
 }
 
 function hotkeys() {
@@ -72,7 +72,10 @@ Win+Space       - change focus between tiling / floating
 Win+q       - open scratchpad
 Win+Shift+- - move to scratchpad
 
-Win+Shift+x - lock screen"
+Win+Shift+x - lock screen
+
+Win+m - set mark
+Win+g - goto mark"
 			;;
             "mutt")
                 HOTKEYS_TEXT="Under construction"
