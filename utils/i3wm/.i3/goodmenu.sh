@@ -5,7 +5,7 @@ COLORS='-sb #000000 -sf #ffffff -nb #ffffff -nf #000000'
 DMENU_CMD="dmenu -p Execute: -i -b -fn $FONT $COLORS"
 
 DMENU_ITEMS="firefox:firefox_unsec:telegram:keepassxc"
-DMENU_ITEMS+=":audacious:idea:gimp:openshot:simple_scan"
+DMENU_ITEMS+=":audacious:idea:gimp:openshot"
 DMENU_ITEMS+=":android-file-transfer:qmapshack"
 
 case $(echo $DMENU_ITEMS | tr ':' '\n' | $DMENU_CMD) in
@@ -32,9 +32,6 @@ case $(echo $DMENU_ITEMS | tr ':' '\n' | $DMENU_CMD) in
         ;;
     'openshot')
         /usr/bin/openshot-qt &
-        ;;
-    'simple_scan')
-        /usr/bin/simple-scan &
         ;;
     'android-file-transfer')
         /usr/bin/android-file-transfer &

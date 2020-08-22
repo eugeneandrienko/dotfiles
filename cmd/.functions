@@ -161,3 +161,26 @@ function cloudsync_force_remote() {
     _umount_rsync
 }
 
+###############################################################################
+###############################################################################
+
+function scanphoto_10x15() {
+    if [ "$#" -ne 2 ]; then
+        echo "scanphoto_10x15 PADDING_ZEROES_COUNT START_FROM"
+        return
+    fi
+    START_FROM="$2"
+    while true; do
+        printf -v FILENAME "%0$1d" "$START_FROM"
+        read -p "Press Enter or write photo description for scan new photo to $FILENAME.png " DESCRIPTION
+
+        if [ "$DESCRIPTION" ]; then
+            FILENAME="$FILENAME - $DESCRIPTION"
+            echo "Photo will be saved to $FILENAME.png"
+        fi
+        scanimage --progress --resolution 1200 --mode Color -x 100 -y 150 --format png -o "$FILENAME.png"
+
+        START_FROM=$((START_FROM+1))
+    done
+}
+
