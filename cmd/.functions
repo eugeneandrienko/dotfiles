@@ -109,3 +109,55 @@ C     - decrease the download throttle by 50 KB"
     fi
 }
 
+function _mount_rsync() {
+    ssh -i ~/.ssh/sync -t sync@eugene-andrienko.com 'pefs mount /home/sync/rsync /home/sync/rsync && pefs addkey -a aes256 -c /home/sync/rsync || pefs umount /home/sync/rsync'
+}
+
+function _umount_rsync() {
+    ssh -i ~/.ssh/sync sync@eugene-andrienko.com 'pefs umount /home/sync/rsync'
+}
+
+function _safe_rsync() {
+    OPTIONS="-azPh --exclude=.pefs.db"
+
+    rsync $OPTIONS -e 'ssh -i ~/.ssh/sync' $1 -n $2 $3
+
+    echo "$2" | grep -q 'sync@'
+    if [ "$?" -eq 0 ]; then
+        ASK="Sync these files from remote to local? [y/n] "
+    else
+        ASK="Sync these files from local to remote? [y/n] "
+    fi
+
+    read -p "$ASK" ANSWER
+    if [ "$ANSWER" == "y" ]; then
+        rsync $OPTIONS -e 'ssh -i ~/.ssh/sync' $1 $2 $3
+    fi
+}
+
+function cloudsync() {
+    OPTIONS="--update"
+    _mount_rsync
+
+    # remote -> local
+    _safe_rsync "$OPTIONS" sync@eugene-andrienko.com:/home/sync/rsync/ ~/rsync
+    # local -> remote
+    _safe_rsync "$OPTIONS" ~/rsync/ sync@eugene-andrienko.com:/home/sync/rsync
+
+    _umount_rsync
+}
+
+function cloudsync_force_local() {
+    OPTIONS="--delete"
+    _mount_rsync
+    _safe_rsync "$OPTIONS" ~/rsync/ sync@eugene-andrienko.com:/home/sync/rsync
+    _umount_rsync
+}
+
+function cloudsync_force_remote() {
+    OPTIONS="--delete"
+    _mount_rsync
+    _safe_rsync "$OPTIONS" sync@eugene-andrienko.com:/home/sync/rsync/ ~/rsync
+    _umount_rsync
+}
+
