@@ -109,6 +109,10 @@ C     - decrease the download throttle by 50 KB"
     fi
 }
 
+###############################################################################
+# Sync functions
+###############################################################################
+
 function _mount_rsync() {
     ssh -i ~/.ssh/sync -t sync@eugene-andrienko.com 'pefs mount /home/sync/rsync /home/sync/rsync && pefs addkey -a aes256 -c /home/sync/rsync || pefs umount /home/sync/rsync'
 }
@@ -120,7 +124,7 @@ function _umount_rsync() {
 function _safe_rsync() {
     OPTIONS="-azPh --exclude=.pefs.db"
 
-    rsync $OPTIONS -e 'ssh -i ~/.ssh/sync' $1 -n $2 $3
+    rsync $OPTIONS -e 'ssh -i ~/.ssh/sync' $1 -ni $2 $3
 
     echo "$2" | grep -q 'sync@'
     if [ "$?" -eq 0 ]; then
