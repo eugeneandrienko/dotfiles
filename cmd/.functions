@@ -122,7 +122,7 @@ function _umount_rsync() {
 }
 
 function _safe_rsync() {
-    OPTIONS="-azPh --exclude=.pefs.db"
+    OPTIONS="-azPh --exclude-from=$HOME/rsync/.rsyncignore"
 
     rsync $OPTIONS -e 'ssh -i ~/.ssh/sync' $1 -ni $2 $3
 
