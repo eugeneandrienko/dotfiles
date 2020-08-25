@@ -9,7 +9,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-set -o vi
+set -o emacs
 
 shopt -s histappend
 shopt -s cmdhist
