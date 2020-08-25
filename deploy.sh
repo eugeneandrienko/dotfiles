@@ -27,11 +27,21 @@ echo
 
 
 # Making necessary (empty) directories for vim.
-mkdir -pv "$HOME"/.vim/swapfiles
-mkdir -pv "$HOME"/.vim/undodir
+mkdir -pv "$HOME/.vim/swapfiles"
+mkdir -pv "$HOME/.vim/undodir"
 # Making directory for mutt.
-mkdir -pv "$HOME"/.mutt/cache/{headers,bodies}
-mkdir -pv "$HOME"/.mutt/certificates
+mkdir -pv "$HOME/.mail/logs"
 
-echo "Done!"
+# Changing access rights
+chmod -v 600 ~/.fetchmailrc
+chmod -v 600 ~/.msmtprc
+
+# Warn user what he need to change some files:
+echo "Place valid data instead of placeholders in next files:"
+echo "~/.fetchmailrc"
+echo "~/.msmtprc"
+echo "~/.signature"
+
+echo
+echo "Almost done!"
 

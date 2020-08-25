@@ -1,0 +1,17 @@
+MAILDIR=$HOME/.mail
+LOGFILE=$HOME/.mail/logs/procmaillog
+LOGABSTRACT=no
+VERBOSE=off
+
+:0
+* ^From:.*ofdreceipt@beeline.ru
+checks
+
+:0
+* ^From:.*robot@konturcheck.ru
+checks
+
+:0
+* .*
+default
+
