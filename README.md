@@ -15,7 +15,6 @@ have been writing since 2005.
 * wget
 * xclip
 * rtorrent
-* dialog
 * aspell
 
 Also, you may be need to install some fonts, like Terminus and Droid Sans Mono.

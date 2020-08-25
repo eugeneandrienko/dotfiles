@@ -37,6 +37,10 @@ if [ -e ~/.functions ]; then
     . ~/.functions
 fi
 
+if [ -e ~/.hotkeys ]; then
+    . ~/.hotkeys
+fi
+
 if [ -e ~/.userconfig ]; then
     . ~/.userconfig
 fi

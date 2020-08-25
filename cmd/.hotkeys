@@ -1,0 +1,119 @@
+###############################################################################
+# Emacs
+###############################################################################
+#
+HOTKEYS_TEXT_EMACS="C-z   - switch keyboard language
+M-g   - go to line
+C-x 2 - horizontal split
+C-x 3 - vertical split
+
+M-x template-latex-report       - create LaTeX report in current catalog
+M-x template-latex-presentation - create LaTeX presentation in current
+                                  catalog
+C-c C-c                         - build or view LaTeX source
+F12                             - enable syntax checking (by aspell)
+
+M-x cider-jack-in     - jump into REPL in current directory
+C-u M-x cider-jack-in - jump into REPL in given directory
+C-c C-z               - switch between REPL and Clojure file
+C-c C-e               - eval last S-expression
+C-c C-k               - eval current buffer
+C-c C-l               - eval Clojure file
+C-c M-:               - fast eval Clojure S-expression
+C-c M-;               - fast eval S-expression and paste result in buffer
+C-c C-v .             - fast eval function under the cursor
+C-c C-q               - Close REPL connection
+C-c M-n r             - reload modified Clojure files in classpath
+
+M-x cider-classpath   - list classpath
+C-u C-M-x             - activate debugger on the current S-expression
+C-c M-t v             - toggle function tracing
+C-c M-t n             - toggle function tracing in entire namespace
+
+C-q (     - add ( bracket without bracket autocomplete
+C-q )     - add ) bracket without bracket autocomplete
+C-u <DEL> - delete bracket without autocomplete"
+
+################################################################################
+# I3WM
+################################################################################
+#
+HOTKEYS_TEXT_I3WM="Win+z - split in horizontal orientation
+Win+v - split in vertical orientation
+Win+a - focus parent container
+Win+c - focus child container
+
+Win+s - stacking container layout
+Win+w - tabbed container layout
+Win+e - toggle split layout
+
+Win+Right_arrow - move window to right display
+Win+Left_arrow  - move window to left display
+
+Win+Shift+Space - toggle tiling / floating
+Win+Space       - change focus between tiling / floating
+
+Win+q       - open scratchpad
+Win+Shift+- - move to scratchpad
+
+Win+Shift+x - lock screen
+
+Win+m - set mark
+Win+g - goto mark"
+
+################################################################################
+# Mutt
+################################################################################
+#
+HOTKEYS_TEXT_MUTT="Under construction"
+
+################################################################################
+# Vim
+################################################################################
+#
+HOTKEYS_TEXT_VIM="C-c n - show line numbers
+C-c c - show 80th symbol line"
+
+################################################################################
+# Rtorrent
+################################################################################
+#
+HOTKEYS_TEXT_RTORRENT="C-d   - stop or remove stopped torrent
+C-s   - start download
++     - increase priority
+-     - decrease priority
+Space - change file priority
+C-r   - hash check of torrent
+a     - increase the upload throttle by 1 KB
+s     - increase the upload throttle by 5 KB
+d     - increase the upload throttle by 50 KB
+z     - decrease the upload throttle by 1 KB
+x     - decrease the upload throttle by 5 KB
+c     - decrease the upload throttle by 50 KB
+A     - increase the download throttle by 1 KB
+S     - increase the download throttle by 5 KB
+D     - increase the download throttle by 50 KB
+Z     - decrease the download throttle by 1 KB
+X     - decrease the download throttle by 5 KB
+C     - decrease the download throttle by 50 KB"
+
+################################################################################
+################################################################################
+
+function hotkeys() {
+    ANSWER="-1"
+    readarray -d ' ' -t HOTKEYS_LIST < <((set -o posix; set) | grep '^HOTKEYS_TEXT_' | sed -r 's/HOTKEYS_TEXT_(.*)=.*/\1/g' | tr '\n' ' ')
+    until [ "$ANSWER" -ge 0 ] && [ "$ANSWER" -lt "${#HOTKEYS_LIST[*]}" ]
+    do
+        echo "List of available hotkeys:"
+        for (( i = 0; i < ${#HOTKEYS_LIST[*]}; i++ ))
+        do
+            echo "$i) ${HOTKEYS_LIST[$i]}"
+        done
+        echo
+        read -p "Select which hotkeys to show: " ANSWER
+    done
+    HOTKEY_ELEMENT_NAME="HOTKEYS_TEXT_${HOTKEYS_LIST[$ANSWER]}"
+    eval "echo \"\$$HOTKEY_ELEMENT_NAME\""
+}
+
