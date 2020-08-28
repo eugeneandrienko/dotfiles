@@ -33,7 +33,7 @@ Also, you may be need to install some fonts, like Terminus and Droid Sans Mono.
 
 #### noauto/ contents
 
-* `hosts` - `/etc/hosts` file.
+* `hosts` - `/etc/hosts` file. This is not a valid `hosts` file! You should review it and add useful entries to your `/etc/hosts` by hands!
 * `st` - configuration file for st terminal emulator.
 
 ### Install
