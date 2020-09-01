@@ -1,9 +1,9 @@
 cmd
-utils/git
 utils/emacs
-utils/tmux
-utils/vim
+utils/git
 utils/i3wm
 utils/mplayer
 utils/mutt
 utils/rtorrent
+utils/tmux
+utils/vim

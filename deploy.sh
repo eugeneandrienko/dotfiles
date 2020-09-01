@@ -3,6 +3,7 @@
 
 # Settings:
 GITREPO_NAME="dotfiles"
+CONFIG_DIRECTORIES_FILE="config_directories.txt"
 
 
 # Are we in the directory with cloned dotfiles repository?
@@ -12,18 +13,10 @@ if [ "$(basename "$PWD")" != "$GITREPO_NAME" ] || [ ! -d ".git/" ]; then
 fi
 
 
-# Are we have Python3 installed?
-if ! python3 -c 'quit()'; then
-    echo "You do not have Python 3 on the machine!"
-    echo "Install Python 3 first."
-    exit 1
-fi
-
-if ! python3 ./deploy.py --deploy; then
-    exit 1
-fi
-echo "Done!"
-echo
+# Copying dotfiles to $HOME
+for directory in $(cat "$CONFIG_DIRECTORIES_FILE"); do
+    cp -Rv $directory/ ~
+done
 
 
 # Making necessary (empty) directories for vim.
@@ -40,7 +33,6 @@ chmod -v 600 ~/.msmtprc
 echo "Place valid data instead of placeholders in next files:"
 echo "~/.fetchmailrc"
 echo "~/.msmtprc"
-echo "~/.signature"
 
 echo
 echo "Almost done!"

@@ -5,20 +5,20 @@ have been writing since 2005.
 
 ### Dependencies
 
+* aspell
 * ctags
+* fetchmail
 * git
 * lynx
-* fetchmail
-* procmail
 * msmtp
 * mutt
+* procmail
+* rtorrent
 * sudo
 * tmux
 * vim
 * wget
 * xclip
-* rtorrent
-* aspell
 
 Also, you may be need to install some fonts, like Terminus and Droid Sans Mono.
 
@@ -29,7 +29,6 @@ Also, you may be need to install some fonts, like Terminus and Droid Sans Mono.
 * `noauto/` - different system configuration files, not for automatic installation. Described below.
 * `config_directories.txt` - list of catalogs with our dotfiles - one catalog for one program's configs.
 * `deploy.sh` - main deployment script.
-* `deploy.py` - Python 3 program, which copies dotfiles from our catalogs to user $HOME catalog.
 
 #### noauto/ contents
 
@@ -41,8 +40,6 @@ Also, you may be need to install some fonts, like Terminus and Droid Sans Mono.
 Clone this repository to some suitable directory.
 
 You **mustn't** clone it to your `~` directory!
-
-You need to have a Python 3 on your machine, to deploy dotfiles!
 
 Checkout next branch:
 * `master` - for Linux (Gentoo).
