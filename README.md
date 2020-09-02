@@ -7,12 +7,14 @@ have been writing since 2005.
 
 * aspell
 * ctags
+* emacs
 * fetchmail
 * git
 * lynx
 * msmtp
 * mutt
 * procmail
+* rsync
 * rtorrent
 * sudo
 * tmux

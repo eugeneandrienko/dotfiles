@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 FONT='-xos4-terminus-*-*-*-*-14-*-*-*-*-*-*-u'
 COLORS='-sb #000000 -sf #ffffff -nb #ffffff -nf #000000'

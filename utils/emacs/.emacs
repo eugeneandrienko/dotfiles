@@ -27,8 +27,7 @@
  '(font-latex-sectioning-5-face ((((class color) (background dark)) (:inherit variable-pitch :foreground "green" :weight bold))))
  '(highlight-symbol-face ((((class color) (background dark)) (:background "OliveDrab")))))
 
-(require 'site-gentoo)
-;(package-initialize)
+(when (version< emacs-version "27.0") (package-initialize))
 
 ; ELPA and MELPA repositories with elisp packages:
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")

@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Droid Sans Mono Dotted:pixelsize=16:antialias=true:autohint=true";
+static char *font = "Droid Sans Mono:pixelsize=16:antialias=true:autohint=true";
 static int borderpx = 1;
 
 /*
@@ -16,7 +16,7 @@ static int borderpx = 1;
  * 4: value of shell in /etc/passwd
  * 5: value of shell in config.h
  */
-static char *shell = "/bin/bash";
+static char *shell = "/usr/bin/env bash";
 char *utmp = NULL;
 /* scroll program: to enable use a string like "scroll" */
 char *scroll = NULL;

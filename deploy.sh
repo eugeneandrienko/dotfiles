@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 
 # Settings:
@@ -24,7 +24,7 @@ cat "$CONFIG_DIRECTORIES" | while IFS= read -r directory
 do
     while IFS= read -r -d '' from_file
     do
-        to_file=$(echo "$from_file" | sed -r "s!$directory/(.*)!\1!g")
+        to_file=$(echo "$from_file" | sed -r "s#$directory/(.*)#\1#g")
         if [ -e "$HOME/$to_file" ] && grep -q "$to_file" "$PROTECTED_FILES"; then
             echo "File $to_file already exists in $HOME and protected!"
             echo
@@ -33,6 +33,8 @@ do
             echo "Skipping $from_file"
             echo
         else
+            catalog=$(dirname "$HOME/$to_file")
+            mkdir -p "$catalog"
             cp -v "$from_file" "$HOME/$to_file"
         fi
     done < <(find "$directory" -type f -print0)
@@ -44,6 +46,9 @@ mkdir -pv "$HOME/.vim/swapfiles"
 mkdir -pv "$HOME/.vim/undodir"
 # Making directory for mutt.
 mkdir -pv "$HOME/.mail/logs"
+# Making directory for rsync
+mkdir -pv "$HOME/rsync"
+touch "$HOME/rsync/.rsyncignore"
 
 # Changing access rights
 chmod -v 600 ~/.fetchmailrc

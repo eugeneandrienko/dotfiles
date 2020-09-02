@@ -214,6 +214,8 @@ let g:startify_files_number = 8
 let g:startify_skiplist = ['vimrc',]
 " Gitgutter settings
 set updatetime=100
+" Set gitgutter background color as line number column background
+highlight clear SignColumn
 
 
 

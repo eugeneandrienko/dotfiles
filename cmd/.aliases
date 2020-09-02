@@ -9,17 +9,17 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
 # for comfortable system using
-alias ls='ls -Fh --color=always --quoting-style=literal'
+alias ls='ls -Fh --color=always'
+alias ll='ls -lFh --color=always'
+alias lsa='ls -aFh --color=always'
+alias la='ls -aFh --color=always'
+alias lal='ls -laFh --color=always'
+alias lla='ls -laFh --color=always'
 alias grep='grep --color=auto'
 alias bc='bc -l'
 alias rm='rm -v'
 alias du='du -hs'
 alias bk='cd "$OLDPWD"'
-alias ll='ls -lFh --color=always --quoting-style=literal'
-alias lsa='ls -aFh --color=always --quoting-style=literal'
-alias la='ls -aFh --color=always --quoting-style=literal'
-alias lal='ls -laFh --color=always --quoting-style=literal'
-alias lla='ls -laFh --color=always --quoting-style=literal'
 alias mplayer='mplayer -nojoystick -nolirc -vo xv -subcp cp1251'
 alias pingya='ping -c3 ya.ru'
 alias s='sudo'
@@ -33,15 +33,13 @@ alias panic='rm -rfv ~/.cache/thumbnails/*; \
              rm -rfv ~/.cache/vlc/*; \
              sleep 1; kill -9 $$'
 alias df='df -h'
-alias progress='progress -w'
 alias fuck_censorship='ssh -p 443 -ND 8080 fuck@censorship.1984; \
                        notify-send -u critical -t 5000 "Warning" "SSH tunnel is down"'
-alias ddg='ddgr --expand --colors fcegxy'
-alias hr=$'hr \'#\' \'#\' \'#\''
 alias feh='feh --scale'
 alias cal='cal -3'
 alias emacs='emacs -nw'
 alias rtorrent='~/.rtorrent/download_blocklist.sh && rtorrent'
+alias vi='vim'
 
 # Mistypes
 alias xs='cd'
@@ -67,27 +65,10 @@ alias gitsl='git stash list'
 alias gitss='git stash save'
 alias gitsp='git stash pop'
 
-# apt aliases
-alias apts='apt-cache search'
-alias apti='sudo apt-get install'
-alias aptupd='sudo apt-get update && sudo apt-get upgrade && sudo apt-get autoremove'
-
-# Python aliases
-alias makevenv2='virtualenv --python=python2 --system-site-packages --prompt=venv2 virtualenv'
-alias makevenv='virtualenv --python=python3 --system-site-packages --prompt=venv virtualenv'
-alias activate='source virtualenv/bin/activate'
-alias ipython='ipython3'
-
-# Enable aliases to be sudo’ed
-alias sudo='sudo '
-
-# Reload shell
-alias reload='exec $SHELL -l'
-
 # Shortcuts
 alias g='cd ~/git_repos'
 alias dw='cd ~/downloads'
-alias ne='cd ~/nextcloud'
+alias rs='cd ~/rsync'
 
 # Maven
 alias mvnci='mvn clean install'
@@ -104,9 +85,6 @@ alias tmux='tmux -2'
 alias xcopy='xclip -selection clipboard'
 alias xpaste='xclip -selection clipboard -o'
 
-# Docker
-alias docklc=$'docker ps -l | tail -n 1 | awk \'{print $NF}\''
-
 # Gentoo aliases
 alias emerge-update='sudo emerge-webrsync; \
                      read -p "Press Enter " NOTUSING; \
@@ -118,8 +96,7 @@ alias ydl_podcast="youtube-dl --proxy socks5://127.0.0.1:8080 --continue \
                   --write-description --extract-audio --audio-format mp3 \
                   --embed-thumbnail --output '%(autonumber)s_%(title)s.%(ext)s'"
 
-# Make gifs
+# Media-related aliases
 alias img2gif='convert -delay 15 -loop 0 '
-
 alias webm2mp4='ffmpeg -i '
 
