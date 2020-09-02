@@ -20,8 +20,10 @@ if [ ! -e "$CONFIG_DIRECTORIES" ] || [ ! -e "$PROTECTED_FILES" ]; then
 fi
 
 # Copying dotfiles to $HOME
-for directory in $(cat "$CONFIG_DIRECTORIES"); do
-    for from_file in $(find "$directory" -type f); do
+cat "$CONFIG_DIRECTORIES" | while IFS= read -r directory
+do
+    while IFS= read -r -d '' from_file
+    do
         to_file=$(echo "$from_file" | sed -r "s!$directory/(.*)!\1!g")
         if [ -e "$HOME/$to_file" ] && grep -q "$to_file" "$PROTECTED_FILES"; then
             echo "File $to_file already exists in $HOME and protected!"
@@ -33,7 +35,7 @@ for directory in $(cat "$CONFIG_DIRECTORIES"); do
         else
             cp -v "$from_file" "$HOME/$to_file"
         fi
-    done
+    done < <(find "$directory" -type f -print0)
 done
 
 
