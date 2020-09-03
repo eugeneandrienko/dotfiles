@@ -221,7 +221,3 @@ client.urgent           #900000 #900000 #ffffff #900000
 #client.placeholder     #000000 #9f9f9f #333333 #000000
 client.background       #ffffff
 
-# Autostart terminal on startup:
-exec_always --no-startup-id i3-msg 'shmlog off'
-exec i3-msg 'exec st -c tmux -e tmux'
-
