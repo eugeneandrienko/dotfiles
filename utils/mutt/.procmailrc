@@ -12,6 +12,10 @@ checks
 checks
 
 :0
+* ^To:.*Cataclysm-DDA@noreply.github.com
+maillists
+
+:0
 * .*
 default
 
