@@ -65,7 +65,8 @@ Win+g - goto mark"
 # Mutt
 ################################################################################
 #
-HOTKEYS_TEXT_MUTT="Under construction"
+HOTKEYS_TEXT_MUTT="Shift+g - check for new e-mails
+y       - switch between mailboxes"
 
 ################################################################################
 # Vim

@@ -22,6 +22,12 @@ set record="~/.mail/sent"
 
 
 #
+# Mailing lists settings
+#
+lists Cataclysm-DDA
+
+
+#
 # Mail headers visibility settings
 #
 ignore *
