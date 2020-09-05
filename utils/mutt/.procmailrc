@@ -12,6 +12,25 @@ checks
 checks
 
 :0
+* ^From:.*reestr@interrao.ru
+checks
+
+:0
+* ^From:.*no-reply-aws@amazon.com
+* ^Subject: Thank you for your payment
+checks
+
+:0
+* ^From:.*aws-receivables-support@email.amazon.com
+* ^Subject: Amazon Web Services Invoice.*
+checks
+
+:0
+* ^From:.*no-reply-aws@amazon.com
+* ^Subject: Amazon Web Services VAT Invoice.*
+checks
+
+:0
 * ^To:.*Cataclysm-DDA@noreply.github.com
 maillists
 
