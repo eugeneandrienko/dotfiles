@@ -99,6 +99,51 @@ X     - decrease the download throttle by 5 KB
 C     - decrease the download throttle by 50 KB"
 
 ################################################################################
+# Cataclysm-DDA
+################################################################################
+HOTKEYS_TEXT_CATACLYSM="@            - watch the stats
+.            - wait in place
+s<direction> - smashing item in direction
+!            - toggle safe-movement mode
+;            - look-around mode
+Shift+v      - list of nearby visible items
+a            - list of items to use
+Shift+m      - list of missions
+
+Shift+b      - butcher animal to meat
+g            - collect water to watertight container
+a<direction> - set up the trap
+$            - sleep
+&            - craft
+e            - investigate the trap
+
+g            - pick up the item
+e<direction> - open the container ({)
+Shift+e      - consume item (in container or not)
+Shift+i      - compare the items
+Shift+c      - compare items in Shift+v mode
+i            - open inventory
+w            - take item as weapon
+Shift+r      - read book or magazine
+
+Shift+w<letter> - wear some clothes
+Shift+t<letter> - remove some weared clothes
++               - look to the list of weared clothes
+
+Shift+u         - remove the magazine from weapon
+f               - fire
+F               - switch between fire modes
+_               - select fighting style of martial arts
+w<letter>       - take weapon in hands
+t               - throw grenade
+
+^ - sit to the vehicle/open vehicle controls menu
+. - maintain course and speed
+s - enable handbrake
+e - examine vehicle"
+
+
+################################################################################
 ################################################################################
 
 function hotkeys() {
