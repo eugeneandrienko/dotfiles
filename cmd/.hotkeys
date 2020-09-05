@@ -66,7 +66,9 @@ Win+g - goto mark"
 ################################################################################
 #
 HOTKEYS_TEXT_MUTT="Shift+g - check for new e-mails
-y       - switch between mailboxes"
+y       - switch between mailboxes
+Ctrl+r  - mark thread as read
+Tab     - go to next new message"
 
 ################################################################################
 # Vim
