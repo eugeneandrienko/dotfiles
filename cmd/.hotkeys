@@ -13,26 +13,38 @@ M-x template-latex-presentation - create LaTeX presentation in current
 C-c C-c                         - build or view LaTeX source
 F12                             - enable syntax checking (by aspell)
 
-M-x cider-jack-in     - jump into REPL in current directory
-C-u M-x cider-jack-in - jump into REPL in given directory
-C-c C-z               - switch between REPL and Clojure file
-C-c C-e               - eval last S-expression
-C-c C-k               - eval current buffer
-C-c C-l               - eval Clojure file
-C-c M-:               - fast eval Clojure S-expression
-C-c M-;               - fast eval S-expression and paste result in buffer
-C-c C-v .             - fast eval function under the cursor
-C-c C-q               - Close REPL connection
-C-c M-n r             - reload modified Clojure files in classpath
+M-x haskell-debug               - start debugger
+M-x haskell-mode-stylish-buffer - format Haskell file
 
-M-x cider-classpath   - list classpath
-C-u C-M-x             - activate debugger on the current S-expression
-C-c M-t v             - toggle function tracing
-C-c M-t n             - toggle function tracing in entire namespace
+F8          - jump to imports
+M-.         - jump to definition
+C-c C-,     - sort and align imports
+C-c C-l     - load file in Haskell interpreter
+C-c C-z     - navigate between errors
+M-n         - go to next error or warning
+M-p         - go to previous error or warning
+M-?         - show error or warning information
+C-c C-o     - run Haskell compiler for current file
+C-c C-n C-c - run Cabal build
+C-c C-n c   - run Cabal command
 
-C-q (     - add ( bracket without bracket autocomplete
-C-q )     - add ) bracket without bracket autocomplete
-C-u <DEL> - delete bracket without autocomplete"
+C-c C-n C-t - query type of expression
+C-c C-n C-i - query external info about expression
+M-C-d       - show documentation of expression
+M-C-i       - auto-completion
+M-C-m       - insert module import
+
+C-u M-t     - initial code generation
+C-c M-n     - go to next hole
+C-c M-p     - go to previous hole
+C-c C-f     - refine hole
+C-c C-a     - automatically fill hole
+
+C-\`        - open REPL
+C-c C-c     - cancel a running REPL command
+C-c C-k     - clear the REPL
+M-n         - down in the REPL history
+M-p         - up in the REPL history"
 
 ################################################################################
 # I3WM
