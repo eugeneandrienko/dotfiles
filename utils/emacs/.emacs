@@ -47,12 +47,9 @@
 (load "~/.emacs.d/rc-auctex.el")
 (load "~/.emacs.d/rc-colortheme.el")
 (load "~/.emacs.d/rc-rst-mode.el")
-(load "~/.emacs.d/rc-slime.el")
 (load "~/.emacs.d/rc-paredit.el")
-(load "~/.emacs.d/rc-clojure-mode.el")
 (load "~/.emacs.d/rc-haskell-mode.el")
 (load "~/.emacs.d/rc-fill-column-indicator.el")
-(load "~/.emacs.d/rc-elein.el")
 (load "~/.emacs.d/rc-auto-complete.el")
 
 ;;default cyr/latin input method
