@@ -80,7 +80,10 @@ Win+g - goto mark"
 HOTKEYS_TEXT_MUTT="Shift+g - check for new e-mails
 y       - switch between mailboxes
 Ctrl+r  - mark thread as read
-Tab     - go to next new message"
+Tab     - go to next new message
+Shift+t - tag messages by regular expression
+Shift+d - delete messages by regular expression
+Ctrl+t  - untag messages by regular expression"
 
 ################################################################################
 # Vim
