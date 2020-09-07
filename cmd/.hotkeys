@@ -122,16 +122,21 @@ HOTKEYS_TEXT_CATACLYSM="@            - watch the stats
 .            - wait in place
 s<direction> - smashing item in direction
 !            - toggle safe-movement mode
+\"           - movement mode
 ;            - look-around mode
 Shift+v      - list of nearby visible items
 a            - list of items to use
+m            - view map
 Shift+m      - list of missions
++            - list of worn clothes
+v            - morale menu
 
 Shift+b      - butcher animal to meat
 g            - collect water to watertight container
 a<direction> - set up the trap
 $            - sleep
 &            - craft
+%            - execute some action
 e            - investigate the trap
 
 g            - pick up the item
@@ -157,7 +162,8 @@ t               - throw grenade
 ^ - sit to the vehicle/open vehicle controls menu
 . - maintain course and speed
 s - enable handbrake
-e - examine vehicle"
+e - examine vehicle
+c - open/close the door"
 
 
 ################################################################################
