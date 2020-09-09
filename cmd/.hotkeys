@@ -40,7 +40,7 @@ C-c M-p     - go to previous hole
 C-c C-f     - refine hole
 C-c C-a     - automatically fill hole
 
-C-\`        - open REPL
+C-\`         - open REPL
 C-c C-c     - cancel a running REPL command
 C-c C-k     - clear the REPL
 M-n         - down in the REPL history
