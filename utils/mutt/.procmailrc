@@ -35,6 +35,22 @@ checks
 maillists
 
 :0
+* ^To: haskell@haskell.org
+maillists
+
+:0
+* ^To: freebsd-haskell@haskell.org
+maillists
+
+:0
+* ^To: xmonad@haskell.org
+maillists
+
+:0
+* ^To: beginners@haskell.org
+maillists
+
+:0
 * .*
 default
 
