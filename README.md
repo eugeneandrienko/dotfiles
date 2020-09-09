@@ -10,6 +10,7 @@ have been writing since 2005.
 * emacs
 * fetchmail
 * git
+* jq
 * lynx
 * msmtp
 * mutt
