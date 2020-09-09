@@ -89,6 +89,10 @@ alias xpaste='xclip -selection clipboard -o'
 alias emerge-update='sudo emerge-webrsync; \
                      read -p "Press Enter " NOTUSING; \
                      sudo emerge --ask -uDU --keep-going --with-bdeps=y @world'
+# FreeBSD aliases
+alias wifi-connect='sudo wpa_supplicant -i wlan0 -c /etc/wpa_supplicant.conf -B && \
+                    sudo dhclient wlan0'
+alias wifi-disconnect='sudo pkill wpa_supplicant'
 
 # youtube-dl aliases
 alias ydl='youtube-dl --proxy socks5://127.0.0.1:8080'
