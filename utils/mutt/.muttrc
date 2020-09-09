@@ -25,6 +25,10 @@ set record="~/.mail/sent"
 # Mailing lists settings
 #
 lists Cataclysm-DDA
+lists haskell
+lists freebsd-haskell
+lists xmonad
+lists beginners
 
 
 #
