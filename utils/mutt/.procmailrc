@@ -16,6 +16,18 @@ checks
 checks
 
 :0
+* ^From:.*info@ecom.sberbank.ru
+checks
+
+:0
+* ^From:.*noreply@chek.pofd.ru
+checks
+
+:0
+* ^From:.*online@raiffeisen.ru
+checks
+
+:0
 * ^From:.*no-reply-aws@amazon.com
 * ^Subject: Thank you for your payment
 checks
@@ -31,23 +43,23 @@ checks
 checks
 
 :0
-* ^To:.*Cataclysm-DDA@noreply.github.com
+* ^To:.*haskell@haskell.org
 maillists
 
 :0
-* ^To: haskell@haskell.org
+* ^Cc:.*haskell@haskell.org
 maillists
 
 :0
-* ^To: freebsd-haskell@haskell.org
+* ^To:.*xmonad@haskell.org
 maillists
 
 :0
-* ^To: xmonad@haskell.org
+* ^Cc:.*xmonad@haskell.org
 maillists
 
 :0
-* ^To: beginners@haskell.org
+* ^To:*.beginners@haskell.org
 maillists
 
 :0
