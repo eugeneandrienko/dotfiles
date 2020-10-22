@@ -200,9 +200,10 @@ bar {
 }
 
 # Workspace-mapped windows:
-assign [class="Firefox"] web
-assign [class="firefox"] web
-assign [class="tmux"]    1
+assign [class="Firefox"]   web
+assign [class="firefox"]   web
+assign [class="tmux"]      1
+assign [class="Vncviewer"] 10
 # Floating windows:
 for_window [title="VK | Share Link - Chromium"] floating enable
 for_window [class="Chromium" window_role="app"] floating enable
