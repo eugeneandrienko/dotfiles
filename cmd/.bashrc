@@ -43,3 +43,7 @@ if [ -e ~/.hotkeys ]; then
     . ~/.hotkeys
 fi
 
+if [ -e ~/.userconfig ]; then
+    . ~/.userconfig
+fi
+
