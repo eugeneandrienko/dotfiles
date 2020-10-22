@@ -43,6 +43,18 @@ checks
 checks
 
 :0
+* ^From:.*noreply@ozon.ru
+checks
+
+:0
+* ^From:.*no-reply@taxi.yandex.ru
+checks
+
+:0
+* ^From:.*no-reply@xn--80ahmohdapg.xn--80asehdb
+checks
+
+:0
 * ^To:.*haskell@haskell.org
 maillists
 
@@ -59,8 +71,20 @@ maillists
 maillists
 
 :0
-* ^To:*.beginners@haskell.org
+* ^To:.*beginners@haskell.org
 maillists
+
+:0
+* ^To:.*yazan.mualla@utbm.fr
+maillists
+
+:0
+* ^From:.*yazan.mualla@utbm.fr
+maillists
+
+:0
+* ^From:.*news@news.ozon.ru
+/dev/null
 
 :0
 * .*
