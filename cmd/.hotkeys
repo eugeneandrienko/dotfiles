@@ -83,7 +83,8 @@ Ctrl+r  - mark thread as read
 Tab     - go to next new message
 Shift+t - tag messages by regular expression
 Shift+d - delete messages by regular expression
-Ctrl+t  - untag messages by regular expression"
+Ctrl+t  - untag messages by regular expression
+Shift+n - mark e-mail as new"
 
 ################################################################################
 # Vim
