@@ -87,6 +87,14 @@ maillists
 /dev/null
 
 :0
+* ^From:.*mail@no-muggles.ru
+/dev/null
+
+:0
+* ^From:.*alena@getmeit.ru
+/dev/null
+
+:0
 * .*
 default
 
