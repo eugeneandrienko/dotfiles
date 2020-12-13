@@ -55,6 +55,14 @@ checks
 checks
 
 :0
+* ^From:.*noreply@taxcom.ru
+checks
+
+:0
+* ^From:.*robot@robokassa.ru
+checks
+
+:0
 * ^To:.*haskell@haskell.org
 maillists
 
