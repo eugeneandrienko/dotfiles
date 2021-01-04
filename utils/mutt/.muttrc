@@ -11,9 +11,13 @@
 set mbox_type = mbox
 set folder = $HOME/.mail
 set spoolfile = +/default
+mailboxes = banks
 mailboxes = default
 mailboxes = checks
 mailboxes = sent
+mailboxes = social
+mailboxes = state
+mailboxes = stores
 mailboxes = keep
 # default mbox to (s)ave mail is =keep
 save-hook .* =keep
