@@ -4,6 +4,18 @@ LOGABSTRACT=no
 VERBOSE=off
 
 :0
+* ^From:.*inform@emails.tinkoff.ru
+banks
+
+:0
+* ^From:.*raiffeisen@email.raiffeisen.ru
+banks
+
+:0
+* ^From:.*@bspb.ru
+banks
+
+:0
 * ^From:.*ofdreceipt@beeline.ru
 checks
 
@@ -67,6 +79,30 @@ checks
 checks
 
 :0
+* ^From:.*bingo@patreon.com
+checks
+
+:0
+* ^From:.*noreply@rbkmoney.com
+checks
+
+:0
+* ^From:.*ikus@pesc.ru
+checks
+
+:0
+* ^From:.*kfl@mrg.spb.ru
+checks
+
+:0
+* ^From:.*inform@yamoney.ru
+checks
+
+:0
+* ^From:.*homeinternet@beeline.ru
+checks
+
+:0
 * ^To:.*haskell@haskell.org
 maillists
 
@@ -87,12 +123,192 @@ maillists
 maillists
 
 :0
+* ^Cc:.*beginners@haskell.org
+maillists
+
+:0
 * ^To:.*yazan.mualla@utbm.fr
 maillists
 
 :0
 * ^From:.*yazan.mualla@utbm.fr
 maillists
+
+:0
+* ^From:.*mailman-owner@haskell.org
+maillists
+
+:0
+* ^From:.*@bumble.com
+social
+
+:0
+* ^From:.*noreply@habr.com
+social
+
+:0
+* ^From:.*no-reply@mail.instagram.com
+social
+
+:0
+* ^From:.*notification@facebookmail.com
+social
+
+:0
+* ^From:.*@account.tiktok.com
+social
+
+:0
+* ^From:.*@gotinder.com
+social
+
+:0
+* ^From:.*@twitter.com
+social
+
+:0
+* ^From:.*no-reply@dropboxmail.com
+social
+
+:0
+* ^From:.*noreply@notify.docker.com
+social
+
+:0
+* ^From:.*@linkedin.com
+social
+
+:0
+* ^From:.*noreply@steampowered.com
+social
+
+:0
+* ^From:.*no-reply@gosuslugi.ru
+state
+
+:0
+* ^From:.*noreply@fcod.nalog.ru
+state
+
+:0
+* ^From:.*info@gu.spb.ru
+state
+
+:0
+* ^From:.*noreply@gorod.gov.spb.ru
+state
+
+:0
+* ^From:.*no-reply@mvd.ru
+state
+
+:0
+* ^From:.*notification@russianpost.ru
+state
+
+:0
+* ^From:.*@pickpoint.ru
+stores
+
+:0
+* ^From:.*@tochkalubvi.ru
+stores
+
+:0
+* ^From:.*@leroymerlin.ru
+stores
+
+:0
+* ^From:.*@leroy-merlin.ru
+stores
+
+:0
+* ^From:.*@chernaya100.com
+stores
+
+:0
+* ^From:.*@chillengrillen.ru
+stores
+
+:0
+* ^From:.*@ozon.ru
+stores
+
+:0
+* ^From:.*@vsexshop.ru
+stores
+
+:0
+* ^From:.*informer.vsexshop@gmail.com
+stores
+
+:0
+* ^From:.*@ishooter.ru
+stores
+
+:0
+* ^From:.*@lentamail.com
+stores
+
+:0
+* ^From:.*@citilink.ru
+stores
+
+:0
+* ^From:.*@bars-guns.ru
+stores
+
+:0
+* ^From:.*@mountainpeaks.ru
+stores
+
+:0
+* ^From:.*noreply@cdek.ru
+stores
+
+:0
+* ^From:.*@huntline.ru
+stores
+
+:0
+* ^From:.*@yarkiy.ru
+stores
+
+:0
+* ^From:.*@photolubitel.com
+stores
+
+:0
+* ^From:.*@bookvoed.ru
+stores
+
+:0
+* ^From:.*@lavka.yandex.ru
+stores
+
+:0
+* ^From:.*@papajohns.ru
+stores
+
+:0
+* ^From:.*papatalk@smg.com
+stores
+
+:0
+* ^From:.*@roboparts.ru
+stores
+
+:0
+* ^From:.*@my.store-emails.com
+stores
+
+:0
+* ^From:.*@6030000.ru
+stores
+
+:0
+* ^From:.*@d-76.ru
+stores
 
 :0
 * ^From:.*news@news.ozon.ru
@@ -104,6 +320,62 @@ maillists
 
 :0
 * ^From:.*alena@getmeit.ru
+/dev/null
+
+:0
+* ^From:.*company@isu.ifmo.ru
+/dev/null
+
+:0
+* ^From:.*documents@isu.ifmo.ru
+/dev/null
+
+:0
+* ^From:.*info@isu.ifmo.ru
+/dev/null
+
+:0
+* ^From:.*alumni@isu.ifmo.ru
+/dev/null
+
+:0
+* ^From:.*letter@mpi.pes.spb.ru
+/dev/null
+
+:0
+* ^From:.*no-reply@maybe.ru
+/dev/null
+
+:0
+* ^From:.*sendmail@katushkin.ru
+/dev/null
+
+:0
+* ^From:.*mail@evildating.net
+/dev/null
+
+:0
+* ^From:.*mailer@market.yandex.ru
+/dev/null
+
+:0
+* ^From:.*news@pochta.ru
+/dev/null
+
+:0
+* ^From:.*no-reply@2gis.ru
+/dev/null
+
+:0
+* ^From:.*achievements@2gis.com
+/dev/null
+
+:0
+* ^From:.*agentstvo.rizoma@yandex.ru
+/dev/null
+
+:0
+* ^From:.*hello@music.yandex.ru
 /dev/null
 
 :0
