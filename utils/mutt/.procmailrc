@@ -63,6 +63,10 @@ checks
 checks
 
 :0
+* ^From:.*no-reply@ofd.yandex.ru
+checks
+
+:0
 * ^To:.*haskell@haskell.org
 maillists
 
