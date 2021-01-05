@@ -84,7 +84,13 @@ Tab     - go to next new message
 Shift+t - tag messages by regular expression
 Shift+d - delete messages by regular expression
 Ctrl+t  - untag messages by regular expression
-Shift+n - mark e-mail as new"
+;s      - move tagged messages to another mailbox
+;d      - delete tagged messages
+Shift+n - mark e-mail as new
+
+Ctrl+Left - open selected mailbox
+Ctrl+Up   - move cursor up in sidebar
+Ctrl+Down - move cursor down in sidebar"
 
 ################################################################################
 # Vim
