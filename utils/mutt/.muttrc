@@ -11,18 +11,18 @@
 set mbox_type = mbox
 set folder = $HOME/.mail
 set spoolfile = +/default
-mailboxes = banks
-mailboxes = default
-mailboxes = checks
-mailboxes = sent
-mailboxes = social
-mailboxes = state
-mailboxes = stores
-mailboxes = keep
+mailboxes = =banks
+mailboxes = =default
+mailboxes = =checks
+mailboxes = =sent
+mailboxes = =social
+mailboxes = =state
+mailboxes = =stores
+mailboxes = =keep
 # default mbox to (s)ave mail is =keep
 save-hook .* =keep
 # file into which your outgoing messages should be appended
-set record="~/.mail/sent"
+set record = +/sent
 
 
 #
@@ -55,16 +55,26 @@ macro index 'c' '<change-folder>?<change-dir><home>^K=<enter>'
 macro index G "!fetchmail -k -m 'procmail -d %T'\r"
 macro pager G "!fetchmail -k -m 'procmail -d %T'\r"
 
-bind index,pager J sidebar-next
-bind index,pager K sidebar-prev
-bind index,pager B sidebar-toggle-visible
-bind index,pager O sidebar-open
+#
+# Sidebar
+#
+bind index,pager \e[1\;5B sidebar-next
+bind index,pager \e[1\;5A sidebar-prev
+#bind index,pager B sidebar-toggle-visible
+bind index,pager \e[1\;5D sidebar-open
+set sidebar_width=20
+set sidebar_visible=yes
+set mail_check_stats
+set sidebar_format='%B%?F? [%F]?%* %?N?%N/?%S'
+set sidebar_sort_method='unsorted'
+set sidebar_on_right=yes
+color sidebar_new blue default
+color sidebar_highlight underline black white
 
 
 #
 # Different appearance settings
 #
-set sidebar_width=30
 # number of lines of context that are given when displaying the next or
 # previous page in the internal pager.
 set pager_context=1
