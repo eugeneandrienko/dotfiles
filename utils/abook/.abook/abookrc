@@ -1,0 +1,48 @@
+#
+# Fields and views
+#
+field group = Group
+
+view CONTACT = name, group, email, mobile
+view ADDRESS = address, city, state, zip, country
+view PHONE = phone, workphone, fax
+view OTHER = nick, url, notes, anniversary
+
+#
+# General settings
+#
+set add_email_prevent_duplicates=true
+set show_cursor=true
+set use_mouse=false
+set preserve_fields=all
+set sort_field=name
+set index_format="{name:22} {group:13} {email:40} {mobile:12|phone|workphone}"
+
+#
+# Color definitions
+#
+set use_colors=true
+
+set color_header_fg=white
+set color_header_bg=black
+set color_footer_fg=black
+set color_footer_bg=default
+set color_list_header_fg=black
+set color_list_header_bg=white
+
+set color_list_even_fg=black
+set color_list_even_bg=default
+set color_list_odd_fg=black
+set color_list_odd_bg=default
+set color_list_highlight_fg=white
+set color_list_highlight_bg=black
+
+set color_tab_border_fg=black
+set color_tab_border_bg=default
+set color_tab_label_fg=black
+set color_tab_label_bg=white
+set color_field_name_fg=black
+set color_field_name_bg=default
+set color_field_value_fg=black
+set color_field_value_bg=default
+
