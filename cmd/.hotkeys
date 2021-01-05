@@ -87,6 +87,12 @@ Ctrl+t  - untag messages by regular expression
 ;s      - move tagged messages to another mailbox
 ;d      - delete tagged messages
 Shift+n - mark e-mail as new
+w       - set flag to message
+w!      - make message flagged
+W       - unset flag from message
+l       - limit mails' view
+l~F     - limit view to flagged messages
+/~F     - search for flagged messages
 
 Ctrl+Left - open selected mailbox
 Ctrl+Up   - move cursor up in sidebar
