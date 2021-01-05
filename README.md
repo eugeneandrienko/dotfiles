@@ -5,6 +5,7 @@ have been writing since 2005.
 
 ### Dependencies
 
+* abook
 * aspell
 * ctags
 * emacs
@@ -45,7 +46,8 @@ Clone this repository to some suitable directory.
 You **mustn't** clone it to your `~` directory!
 
 Checkout next branch:
-* `master` - for Linux (Gentoo).
+* `master` - for Linux (Gentoo)
+* `freebsd-thinkpad` - for FreeBSD
 
 Run *deploy.sh* script, which do the next:
 * Copy dotfiles from our catalog to the user $HOME catalog.

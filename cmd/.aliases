@@ -40,6 +40,7 @@ alias cal='cal -3'
 alias emacs='emacs -nw'
 alias rtorrent='~/.rtorrent/download_blocklist.sh && rtorrent'
 alias vi='vim'
+alias abook='abook --datafile ~/rsync/filez/abook/addressbook'
 
 # Mistypes
 alias xs='cd'

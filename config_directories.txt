@@ -1,4 +1,5 @@
 cmd
+utils/abook
 utils/emacs
 utils/git
 utils/i3wm

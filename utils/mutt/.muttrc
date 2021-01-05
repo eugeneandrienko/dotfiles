@@ -121,14 +121,13 @@ set use_domain=no
 # Paths
 #
 set sendmail="/usr/bin/msmtp"
-set alias_file="~/.muttrc"
 set mailcap_path="~/.mailcap"
 
 
 
 
 # Query emails from abook
-set query_command="abook --mutt-query '%s'"
+set query_command="abook --datafile ~/rsync/filez/abook/addressbook --mutt-query '%s'"
 
 set crypt_use_gpgme = yes
 set pgp_verify_sig=yes
