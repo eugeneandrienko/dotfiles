@@ -1,4 +1,4 @@
-text/html; lynx -assume_charset=%{charset} -display_charset=utf-8 -dump %s; nametemplate=%s.html; copiousoutput
+text/html; lynx -assume_charset=%{charset} -display_charset=utf-8 -collapse_br_tags -dump %s; nametemplate=%s.html; copiousoutput
 application/pdf; zathura %s &>/dev/null &; nametemplate=%s.pdf; copiousoutput
 image/jpeg; feh --scale-down %s &>/dev/null &
 image/gif; feh --scale-down %s &>/dev/null &
