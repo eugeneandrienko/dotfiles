@@ -87,6 +87,10 @@ autocmd BufReadPost *
   \ endif
 " To fix bug with executing code from modeline
 set modelines=0
+" Use filetype=mail with mutt
+augroup filetypedetect
+    autocmd BufRead,BufNewFile *mutt-* setfiletype mail
+augroup END
 
 
 
