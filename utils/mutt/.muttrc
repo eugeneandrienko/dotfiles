@@ -45,7 +45,7 @@ hdr_order date from to cc subject
 #
 # Keybindings
 #
-macro index,pager  a "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
+macro index,pager  a "<pipe-message>abook --datafile ~/rsync/filez/abook/addressbook --add-email-quiet<return>" "Add this sender to Abook"
 # imitate the old search-body function
 macro index \eb "<search>~b " "search in message bodies"
 bind editor        <Tab> complete-query
