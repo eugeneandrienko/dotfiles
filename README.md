@@ -1,12 +1,12 @@
 ### About this repository
 
-This repository contains different configuration files, which I
-have been writing since 2005.
+This repository contains different configuration files, which I have been writing since 2005.
 
 ### Dependencies
 
 * abook
 * aspell
+* bash-completion
 * ctags
 * emacs
 * fetchmail
@@ -58,4 +58,13 @@ Run *deploy.sh* script, which do the next:
 After deployment do the next to install Vim plugins:
 * First, install Vundle plugin: `git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim`.
 * Second, in Vim execute `:BundleInstall command`.
+
+#### Emacs plugins installation
+
+Just run Emacs first time - it will install all necessary plugins itself
+
+#### File synchronization
+
+To work with file synchronization via rsync you need to have `sync` SSH-key with empty passphrase. This key should be added to remote server to rsync account into
+`~/.ssh/authorized_keys`.
 
