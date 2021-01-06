@@ -61,13 +61,12 @@ macro pager G "!fetchmail -k -m 'procmail -d %T'\r"
 bind index,pager \e[1\;5B sidebar-next
 bind index,pager \e[1\;5A sidebar-prev
 #bind index,pager B sidebar-toggle-visible
-bind index,pager \e[1\;5D sidebar-open
+bind index,pager \e[1\;5C sidebar-open
 set sidebar_width=20
 set sidebar_visible=yes
 set mail_check_stats
 set sidebar_format='%B%?F? [%F]?%* %?N?%N/?%S'
 set sidebar_sort_method='unsorted'
-set sidebar_on_right=yes
 color sidebar_new blue default
 color sidebar_highlight underline black white
 
