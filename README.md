@@ -33,6 +33,7 @@ Also, you may be need to install some fonts, like Terminus and Droid Sans Mono.
 * `noauto/` - different system configuration files, not for automatic installation. Described below.
 * `config_directories.txt` - list of catalogs with our dotfiles - one catalog for one program's configs.
 * `deploy.sh` - main deployment script.
+* `propagate_changes.sh` - script to propagate commits to other branches in repository.
 
 #### noauto/ contents
 
