@@ -1,5 +1,5 @@
-MAILDIR=$HOME/.mail
-LOGFILE=$HOME/.mail/logs/procmaillog
+MAILDIR=$HOME/rsync/mail
+LOGFILE=$HOME/rsync/mail/logs/procmaillog
 LOGABSTRACT=no
 VERBOSE=off
 

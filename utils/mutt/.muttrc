@@ -9,7 +9,7 @@
 # Mailboxes settings
 #
 set mbox_type = mbox
-set folder = $HOME/.mail
+set folder = $HOME/rsync/mail
 set spoolfile = +/default
 mailboxes = =banks
 mailboxes = =default
