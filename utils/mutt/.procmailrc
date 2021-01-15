@@ -311,6 +311,10 @@ stores
 stores
 
 :0
+* ^From:.*@aloea.ru
+stores
+
+:0
 * ^From:.*news@news.ozon.ru
 /dev/null
 
