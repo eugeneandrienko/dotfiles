@@ -115,6 +115,10 @@ set sleep_time=0
 set send_charset="utf-8"
 # no addresses will be qualified with localhost
 set use_domain=no
+# Edit headers when composing message
+set edit_headers=yes
+# Default FROM value
+set from="Eugene Andrienko <evg.andrienko@gmail.com>"
 
 
 #
