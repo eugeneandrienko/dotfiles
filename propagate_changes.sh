@@ -10,6 +10,7 @@ BRANCHES=$(git branch --format='%(refname:short)' | grep -v "$CURRENT_BRANCH")
 
 for branch in $BRANCHES; do
     git checkout "$branch"
+    git pull --rebase
     git cherry-pick "$@"
     git push origin
     git push e
