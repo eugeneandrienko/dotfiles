@@ -17,7 +17,7 @@ case $(echo $DMENU_ITEMS | tr ':' '\n' | $DMENU_CMD) in
         /usr/bin/apulse /usr/bin/firefox-bin -P unsecure &
         ;;
     'telegram')
-        /home/drag0n/telegram/Telegram &
+        /home/drag0n/bin/telegram/Telegram &
         ;;
     'keepassxc')
         /usr/bin/keepassxc &
@@ -26,7 +26,7 @@ case $(echo $DMENU_ITEMS | tr ':' '\n' | $DMENU_CMD) in
         /usr/bin/audacious &
         ;;
     'idea')
-        /home/drag0n/idea/bin/idea.sh
+        /home/drag0n/bin/idea/bin/idea.sh
         ;;
     'gimp')
         /usr/bin/gimp &
