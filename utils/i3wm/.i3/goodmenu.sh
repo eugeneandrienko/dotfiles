@@ -7,6 +7,7 @@ DMENU_CMD="dmenu -p Execute: -i -b -fn $FONT $COLORS"
 DMENU_ITEMS="firefox:firefox_unsec:telegram:keepassxc"
 DMENU_ITEMS+=":audacious:idea:gimp:openshot"
 DMENU_ITEMS+=":android-file-transfer:qmapshack"
+DMENU_ITEMS+=":audacity"
 
 case $(echo $DMENU_ITEMS | tr ':' '\n' | $DMENU_CMD) in
     'firefox')
@@ -38,6 +39,9 @@ case $(echo $DMENU_ITEMS | tr ':' '\n' | $DMENU_CMD) in
         ;;
     'qmapshack')
          LC_MESSAGES="ru_RU.utf8" /usr/bin/qmapshack &
+        ;;
+    'audacity')
+        /usr/bin/audacity &
         ;;
     *)
         exit 1
