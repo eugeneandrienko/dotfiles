@@ -29,7 +29,7 @@ case $(echo $DMENU_ITEMS | tr ':' '\n' | $DMENU_CMD) in
          LC_MESSAGES="ru_RU.utf8" /usr/local/bin/qmapshack &
         ;;
     'josm')
-        /usr/bin/java -jar /home/drag0n/bin/josm/josm-tested.jar &
+        /usr/local/bin/java -jar /home/drag0n/bin/josm/josm-tested.jar &
         ;;
     'android-file-transfer')
         /usr/local/bin/android-file-transfer &
