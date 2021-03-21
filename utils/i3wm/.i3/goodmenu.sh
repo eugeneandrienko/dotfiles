@@ -5,9 +5,9 @@ COLORS='-sb #000000 -sf #ffffff -nb #ffffff -nf #000000'
 DMENU_CMD="dmenu -p Execute: -i -b -fn $FONT $COLORS"
 
 DMENU_ITEMS="firefox:firefox_unsec:telegram:keepassxc"
-DMENU_ITEMS+=":audacious:idea:gimp:openshot"
-DMENU_ITEMS+=":android-file-transfer:qmapshack"
-DMENU_ITEMS+=":audacity"
+DMENU_ITEMS+=":audacious:gimp:openshot:audacity"
+DMENU_ITEMS+=":qmapshack:josm"
+DMENU_ITEMS+=":idea:android-file-transfer"
 
 case $(echo $DMENU_ITEMS | tr ':' '\n' | $DMENU_CMD) in
     'firefox')
@@ -25,23 +25,26 @@ case $(echo $DMENU_ITEMS | tr ':' '\n' | $DMENU_CMD) in
     'audacious')
         /usr/bin/audacious &
         ;;
-    'idea')
-        /home/drag0n/bin/idea/bin/idea.sh
-        ;;
     'gimp')
         /usr/bin/gimp &
         ;;
     'openshot')
         /usr/bin/openshot-qt &
         ;;
-    'android-file-transfer')
-        /usr/bin/android-file-transfer &
+    'audacity')
+        /usr/bin/audacity &
         ;;
     'qmapshack')
          LC_MESSAGES="ru_RU.utf8" /usr/bin/qmapshack &
         ;;
-    'audacity')
-        /usr/bin/audacity &
+    'josm')
+        /usr/bin/java -jar /home/drag0n/bin/josm/josm-tested.jar &
+        ;;
+    'idea')
+        /home/drag0n/bin/idea/bin/idea.sh
+        ;;
+    'android-file-transfer')
+        /usr/bin/android-file-transfer &
         ;;
     *)
         exit 1
