@@ -6,5 +6,6 @@ utils/i3wm
 utils/mplayer
 utils/mutt
 utils/rtorrent
+utils/telegram
 utils/tmux
 utils/vim
