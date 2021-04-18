@@ -17,7 +17,7 @@ case $(echo $DMENU_ITEMS | tr ':' '\n' | $DMENU_CMD) in
         /usr/local/bin/firefox -P unsecure &
         ;;
     'telegram')
-        /home/drag0n/bin/telegram/Telegram &
+        /usr/local/bin/telegram-desktop &
         ;;
     'keepassxc')
         /usr/local/bin/keepassxc &
