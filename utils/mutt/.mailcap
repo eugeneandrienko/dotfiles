@@ -5,4 +5,5 @@ image/gif; feh --scale-down %s &>/dev/null &
 image/GIF; feh --scale-down %s &>/dev/null &
 image/JPG; feh --scale-down %s &>/dev/null &
 image/jpg; feh --scale-down %s &>/dev/null &
+video/mp4; mplayer -loop 0 %s &>/dev/null &
 
