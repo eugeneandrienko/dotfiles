@@ -18,6 +18,7 @@ This repository contains different configuration files, which I have been writin
 * procmail
 * rsync
 * rtorrent
+* stow
 * sudo
 * tmux
 * vim
