@@ -1,7 +1,0 @@
-default_profile = "default"
-
-default = {
-    config_directory = ".telegram-cli";
-    msg_num = true;
-};
-

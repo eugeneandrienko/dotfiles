@@ -1,11 +1,7 @@
-#!/usr/bin/env bash
-
+#!/usr/bin/env sh
 
 # Settings:
 GITREPO_NAME="dotfiles"
-CONFIG_DIRECTORIES="config_directories.txt"
-PROTECTED_FILES="protected_files.txt"
-
 
 # Are we in the directory with cloned dotfiles repository?
 if [ "$(basename "$PWD")" != "$GITREPO_NAME" ] || [ ! -d ".git/" ]; then
@@ -13,41 +9,27 @@ if [ "$(basename "$PWD")" != "$GITREPO_NAME" ] || [ ! -d ".git/" ]; then
     exit 1
 fi
 
-# Are necessary configuration files exists?
-if [ ! -e "$CONFIG_DIRECTORIES" ] || [ ! -e "$PROTECTED_FILES" ]; then
-    echo "Configuration files: $CONFIG_DIRECTORIES, $PROTECTED_FILES - does not exists!"
-    exit 2
-fi
+# Copying shell configuration to $HOME
+export STOW_DIR=.
+stow cmd
 
 # Copying dotfiles to $HOME
-cat "$CONFIG_DIRECTORIES" | while IFS= read -r directory
-do
-    while IFS= read -r -d '' from_file
-    do
-        to_file=$(echo "$from_file" | sed -r "s#$directory/(.*)#\1#g")
-        if [ -e "$HOME/$to_file" ] && grep -q "$to_file" "$PROTECTED_FILES"; then
-            echo "File $to_file already exists in $HOME and protected!"
-            echo
-            diff "$from_file" "$HOME/$to_file"
-            echo
-            echo "Skipping $from_file"
-            echo
-        else
-            catalog=$(dirname "$HOME/$to_file")
-            mkdir -p "$catalog"
-            cp -v "$from_file" "$HOME/$to_file"
-        fi
-    done < <(find "$directory" -type f -print0)
-done
+export STOW_DIR=./utils
+stow abook emacs git i3wm mplayer mutt rtorrent tmux vim
+if [ ! -f "~/.fetchmailrc" ]; then
+    cp -v "$STOW_DIR"/mutt/.fetchmailrc ~
+fi
+if [ ! -f "~/.msmtprc" ]; then
+    cp -v "$STOW_DIR"/mutt/.msmtprc ~
+fi
 
-
-# Making necessary (empty) directories for vim.
+# Making necessary (empty) directories
 mkdir -pv "$HOME/.vim/swapfiles"
 mkdir -pv "$HOME/.vim/undodir"
-# Making directory for mutt.
 mkdir -pv "$HOME/.mail/logs"
-# Making directory for rsync
 mkdir -pv "$HOME/rsync"
+
+# Create empty .rsyncignore to bootstrap run of sync system
 touch "$HOME/rsync/.rsyncignore"
 
 # Changing access rights
