@@ -12,6 +12,10 @@ banks
 banks
 
 :0
+* ^From:.*Darya.KOMAROVA@raiffeisen.ru
+banks
+
+:0
 * ^From:.*@bspb.ru
 banks
 
@@ -103,6 +107,30 @@ checks
 checks
 
 :0
+* ^From:.*robot@peterburgregiongaz.ru
+checks
+
+:0
+* ^From:.*check@uniteller.ru
+checks
+
+:0
+* ^From:.*noreply@1-ofd.ru
+checks
+
+:0
+* ^From:.*noreply@cloudkassir.ru
+checks
+
+:0
+* ^From:.*noreply@sbis.ru
+checks
+
+:0
+* ^From:.*noreply@ofd.ru
+checks
+
+:0
 * ^To:.*haskell@haskell.org
 maillists
 
@@ -180,6 +208,14 @@ social
 
 :0
 * ^From:.*noreply@steampowered.com
+social
+
+:0
+* ^From:.*no-reply@escapefromtarkov.com
+social
+
+:0
+* ^From:.*@gaijin.net
 social
 
 :0
@@ -315,6 +351,10 @@ stores
 stores
 
 :0
+* ^From:.*@vkusnyesushi.ru
+stores
+
+:0
 * ^From:.*news@news.ozon.ru
 /dev/null
 
@@ -380,6 +420,18 @@ stores
 
 :0
 * ^From:.*hello@music.yandex.ru
+/dev/null
+
+:0
+* ^From:.*@psycheforum.ru
+/dev/null
+
+:0
+* ^From:.*@turing.com
+/dev/null
+
+:0
+* ^Subject:.*\[Haskell\] \[.*
 /dev/null
 
 :0
