@@ -10,6 +10,16 @@ function video2gif() {
     rm "$PNG_PALLETE"
 }
 
+function video_rotate() {
+    ffmpeg -i "$1" -vf "transpose=1,transpose=1" $2
+}
+
+function videos_rotate() {
+    for i in "$@"; do
+        ffmpeg -i "$i" -vf "transpose=1,transpose=1" "rot_$i"
+    done
+}
+
 ###############################################################################
 # Sync functions
 ###############################################################################
