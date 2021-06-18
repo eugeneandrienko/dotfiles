@@ -61,7 +61,7 @@ macro pager G "!fetchmail -k -m 'procmail -d %T'\r"
 #
 bind index,pager \e[1\;5B sidebar-next
 bind index,pager \e[1\;5A sidebar-prev
-#bind index,pager B sidebar-toggle-visible
+bind index,pager \e[1\;5D sidebar-toggle-visible
 bind index,pager \e[1\;5C sidebar-open
 set sidebar_width=20
 set sidebar_visible=yes
