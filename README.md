@@ -22,7 +22,7 @@ This repository contains different configuration files, which I have been writin
 * stow
 * sudo
 * sxiv
-* tmux
+* tmux (>= 3.2)
 * urlview
 * vim
 * wget
