@@ -10,6 +10,7 @@ This repository contains different configuration files, which I have been writin
 * ctags
 * emacs
 * fdm
+* feh
 * git
 * jq
 * lynx
@@ -20,6 +21,7 @@ This repository contains different configuration files, which I have been writin
 * rtorrent
 * stow
 * sudo
+* sxiv
 * tmux
 * urlview
 * vim

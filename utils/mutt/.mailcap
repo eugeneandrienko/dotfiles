@@ -1,10 +1,10 @@
 text/html; lynx -assume_charset=%{charset} -display_charset=utf-8 -collapse_br_tags -dump %s; nametemplate=%s.html; copiousoutput
 application/pdf; zathura %s &>/dev/null &; nametemplate=%s.pdf; copiousoutput
-image/jpeg; feh --scale-down %s &>/dev/null &; nametemplate=%s.jpeg; copiousoutput
-image/gif; feh --scale-down %s &>/dev/null &; nametemplate=%s.gif; copiousoutput
-image/GIF; feh --scale-down %s &>/dev/null &; nametemplate=%s.GIF; copiousoutput
-image/JPG; feh --scale-down %s &>/dev/null &; nametemplate=%s.JPG; copiousoutput
-image/jpg; feh --scale-down %s &>/dev/null &; nametemplate=%s.jpg; copiousoutput
-image/png; feh --scale-down %s &>/dev/null &; nametemplate=%s.png; copiousoutput
+image/jpeg; sxiv -bp -s d %s &>/dev/null &; nametemplate=%s.jpeg; copiousoutput
+image/gif; sxiv -bp -s d %s &>/dev/null &; nametemplate=%s.gif; copiousoutput
+image/GIF; sxiv -bp -s d %s &>/dev/null &; nametemplate=%s.GIF; copiousoutput
+image/JPG; sxiv -bp -s d %s &>/dev/null &; nametemplate=%s.JPG; copiousoutput
+image/jpg; sxiv -bp -s d %s &>/dev/null &; nametemplate=%s.jpg; copiousoutput
+image/png; sxiv -bp -s d %s &>/dev/null &; nametemplate=%s.png; copiousoutput
 video/mp4; mplayer -msglevel all=1 -loop 0 %s &>/dev/null &; nametemplate=%s.mp4; copiousoutput
 

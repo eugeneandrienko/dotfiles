@@ -35,7 +35,7 @@ alias panic='rm -rfv ~/.cache/thumbnails/*; \
 alias df='df -h'
 alias fuck_censorship='ssh -p 443 -ND 8080 fuck@censorship.1984; \
                        notify-send -u critical -t 5000 "Warning" "SSH tunnel is down"'
-alias feh='feh --scale'
+alias sxiv='sxiv -s d -bp'
 alias cal='cal -3'
 alias emacs='emacs -nw'
 alias rtorrent='~/.rtorrent/download_blocklist.sh && rtorrent'
