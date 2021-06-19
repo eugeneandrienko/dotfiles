@@ -11,7 +11,7 @@ fi
 
 # Copying shell configuration to $HOME
 export STOW_DIR=.
-stow cmd
+stow bin cmd
 
 # Copying dotfiles to $HOME
 export STOW_DIR=./utils

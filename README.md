@@ -21,6 +21,7 @@ This repository contains different configuration files, which I have been writin
 * stow
 * sudo
 * tmux
+* urlview
 * vim
 * wget
 * xclip
@@ -69,4 +70,8 @@ Just run Emacs first time - it will install all necessary plugins itself
 
 To work with file synchronization via rsync you need to have `sync` SSH-key with empty passphrase. This key should be added to remote server to rsync account into
 `~/.ssh/authorized_keys`.
+
+#### Passwords
+
+For using Mutt with GMail mailboxes you should specify application passwords in `~/.netrc`.
 

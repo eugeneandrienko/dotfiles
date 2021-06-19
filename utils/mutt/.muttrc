@@ -12,7 +12,7 @@ set mbox_type = maildir
 set folder = $HOME/rsync/mail
 set postponed = =postponed
 set spoolfile = =default
-set record = =sent-`date "+%Y-%m"`
+set record = =sent
 mailboxes =banks \
           =default \
           =checks \
@@ -33,6 +33,10 @@ lists haskell@haskell.org
 lists freebsd-haskell@haskell.org
 lists xmonad@haskell.org
 lists beginners@haskell.org
+subscribe haskell@haskell.org
+subscribe freebsd-haskell@haskell.org
+subscribe xmonad@haskell.org
+subscribe beginners@haskell.org
 
 
 #
@@ -55,6 +59,12 @@ macro index 'c' '<change-folder>?<change-dir><home>^K=<enter>'
 # run fetchmail by hitting key of G
 macro index G "!fdm -v fetch\r"
 macro pager G "!fdm -v fetch\r"
+macro pager \cu "<pipe-entry>urlview<return>"
+# Enable scroll
+macro index \ce <next-entry>
+macro index \cy <previous-entry>
+macro pager \ce <next-line>
+macro pager \cy <previous-line>
 
 #
 # Sidebar
@@ -127,6 +137,8 @@ set reply_to
 set attribution = "*** %n [%{%Y-%m-%d %H:%M}]:"
 # Set User-Agent field for outgoing messages
 set user_agent=yes
+# Decode mail before send it to pipe
+set pipe_decode=yes
 
 
 #

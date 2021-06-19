@@ -20,6 +20,19 @@ function videos_rotate() {
     done
 }
 
+function ms()
+{
+    MAILDIR="$HOME/rsync/mail"
+    DEFAULT_QTY=$(ls "$MAILDIR/default/new" | wc -l)
+    HASKELL_QTY=$(ls "$MAILDIR/haskell/new" | wc -l)
+    MAILLISTS_QTY=$(ls "$MAILDIR/maillists/new" | wc -l)
+    STATE_QTY=$(ls "$MAILDIR/state/new" | wc -l)
+    STORES_QTY=$(ls "$MAILDIR/stores/new" | wc -l)
+    echo -n "d: $DEFAULT_QTY h: $HASKELL_QTY m: $MAILLISTS_QTY "
+    echo -n "st: $STATE_QTY stor: $STORES_QTY"
+    echo
+}
+
 ###############################################################################
 # Sync functions
 ###############################################################################
