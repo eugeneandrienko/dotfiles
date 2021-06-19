@@ -1,0 +1,2 @@
+*/10 * * * * /usr/bin/env fdm -l fetch
+

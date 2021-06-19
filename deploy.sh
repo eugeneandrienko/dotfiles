@@ -40,6 +40,10 @@ chmod -v 600 ~/.mailfilter
 chmod -v 600 ~/.msmtprc
 chmod -v 600 ~/.netrc
 
+# Installing right crontab
+echo "Installing crontab"
+crontab ./utils/crontab/crontab
+
 echo
 echo "Done!"
 
