@@ -6,21 +6,39 @@
     # Make `git push` push relevant annotated tags when pushing
     # branches out.
     followTags = true
+[pull]
+    # No merge after pull
+    ff = only
 [alias]
     remotes = remote -v
     amend = commit --amend --reuse-message=HEAD
 [color]
+    branch = auto
+    diff = auto
+    interactive = auto
+    status = auto
     ui = auto
 [help]
-    # Automatically correct and execute mistyped commands
-    autocorrect = 1
+    autocorrect = never
 [core]
     pager =
     autocrlf = input
-    whitespace = trailing-space,space-before-tab
+    whitespace = trailing-space,space-before-tab,blank-at-eol,tab-in-indent,blank-at-eof
     quotepath = false
+    # For git diff more colored output
+    pager = diff-highlight | $PAGER
 [merge]
     conflictstyle = diff3
+[grep]
+    linenumber = true
+[diff]
+    algorithm = histogram
+    colormoved = default
+    colormovedws = allow-indentation-change
+[init]
+    defaultbranch = master
+[log]
+    date = iso8601
 
 [color "branch"]
     current = yellow reverse
