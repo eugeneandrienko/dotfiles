@@ -1,0 +1,241 @@
+logfile $HOME/rsync/mail/logs/procmaillog
+
+MAILDIR=$HOME/rsync/mail
+
+BANKS=$MAILDIR/banks
+CHECKS=$MAILDIR/checks
+DEFAULT=$MAILDIR/default
+HASKELL=$MAILDIR/haskell
+MAILLISTS=$MAILDIR/maillists
+SOCIAL=$MAILDIR/social
+STATE=$MAILDIR/state
+STORES=$MAILDIR/stores
+
+
+if (/^From:.*inform@emails.tinkoff.ru/)
+    to $BANKS
+if (/^From:.*raiffeisen@email.raiffeisen.ru/)
+    to $BANKS
+if (/^From:.*Darya.KOMAROVA@raiffeisen.ru/)
+    to $BANKS
+if (/^From:.*@bspb.ru/)
+    to $BANKS
+
+if (/^From:.*ofdreceipt@beeline.ru/)
+    to $CHECKS
+if (/^From:.*robot@konturcheck.ru/)
+    to $CHECKS
+if (/^From:.*reestr@interrao.ru/)
+    to $CHECKS
+if (/^From:.*info@ecom.sberbank.ru/)
+    to $CHECKS
+if (/^From:.*noreply@chek.pofd.ru/)
+    to $CHECKS
+if (/^From:.*online@raiffeisen.ru/)
+    to $CHECKS
+if (/^From:.*no-reply-aws@amazon.com/ && \
+    /^Subject: Thank you for your payment/ )
+    to $CHECKS
+if (/^From:.*aws-receivables-support@email.amazon.com/ && \
+    /^Subject: Amazon Web Services Invoice.*/ )
+    to $CHECKS
+if (/^From:.*no-reply-aws@amazon.com/ && \
+    /^Subject: Amazon Web Services VAT Invoice.*/ )
+    to $CHECKS
+if (/^From:.*noreply@ozon.ru/)
+    to $CHECKS
+if (/^From:.*no-reply@taxi.yandex.ru/)
+    to $CHECKS
+if (/^From:.*no-reply@xn--80ahmohdapg.xn--80asehdb/)
+    to $CHECKS
+if (/^From:.*noreply@taxcom.ru/)
+    to $CHECKS
+if (/^From:.*robot@robokassa.ru/)
+    to $CHECKS
+if (/^From:.*no-reply@ofd.yandex.ru/)
+    to $CHECKS
+if (/^From:.*bingo@patreon.com/)
+    to $CHECKS
+if (/^From:.*noreply@rbkmoney.com/)
+    to $CHECKS
+if (/^From:.*ikus@pesc.ru/)
+    to $CHECKS
+if (/^From:.*kfl@mrg.spb.ru/)
+    to $CHECKS
+if (/^From:.*inform@yamoney.ru/)
+    to $CHECKS
+if (/^From:.*homeinternet@beeline.ru/)
+    to $CHECKS
+if (/^From:.*robot@peterburgregiongaz.ru/)
+    to $CHECKS
+if (/^From:.*check@uniteller.ru/)
+    to $CHECKS
+if (/^From:.*noreply@1-ofd.ru/)
+    to $CHECKS
+if (/^From:.*noreply@cloudkassir.ru/)
+    to $CHECKS
+if (/^From:.*noreply@sbis.ru/)
+    to $CHECKS
+if (/^From:.*noreply@ofd.ru/)
+    to $CHECKS
+
+if (/^To:.*haskell@haskell.org/)
+    to $HASKELL
+if (/^Cc:.*haskell@haskell.org/)
+    to $HASKELL
+if (/^To:.*xmonad@haskell.org/)
+    to $HASKELL
+if (/^Cc:.*xmonad@haskell.org/)
+    to $HASKELL
+if (/^To:.*beginners@haskell.org/)
+    to $HASKELL
+if (/^Cc:.*beginners@haskell.org/)
+    to $HASKELL
+if (/^To:.*yazan.mualla@utbm.fr/)
+    to $MAILLISTS
+if (/^From:.*yazan.mualla@utbm.fr/)
+    to $MAILLISTS
+if (/^From:.*mailman-owner@haskell.org/)
+    to $MAILLISTS
+
+if (/^From:.*@bumble.com/)
+    to $SOCIAL
+if (/^From:.*noreply@habr.com/)
+    to $SOCIAL
+if (/^From:.*no-reply@mail.instagram.com/)
+    to $SOCIAL
+if (/^From:.*notification@facebookmail.com/)
+    to $SOCIAL
+if (/^From:.*@account.tiktok.com/)
+    to $SOCIAL
+if (/^From:.*@gotinder.com/)
+    to $SOCIAL
+if (/^From:.*@twitter.com/)
+    to $SOCIAL
+if (/^From:.*no-reply@dropboxmail.com/)
+    to $SOCIAL
+if (/^From:.*noreply@notify.docker.com/)
+    to $SOCIAL
+if (/^From:.*@linkedin.com/)
+    to $SOCIAL
+if (/^From:.*noreply@steampowered.com/)
+    to $SOCIAL
+if (/^From:.*no-reply@escapefromtarkov.com/)
+    to $SOCIAL
+if (/^From:.*@gaijin.net/)
+    to $SOCIAL
+
+if (/^From:.*no-reply@gosuslugi.ru/)
+    to $STATE
+if (/^From:.*noreply@fcod.nalog.ru/)
+    to $STATE
+if (/^From:.*info@gu.spb.ru/)
+    to $STATE
+if (/^From:.*noreply@gorod.gov.spb.ru/)
+    to $STATE
+if (/^From:.*no-reply@mvd.ru/)
+    to $STATE
+if (/^From:.*notification@russianpost.ru/)
+    to $STATE
+
+if (/^From:.*@pickpoint.ru/)
+    to $STORES
+if (/^From:.*@tochkalubvi.ru/)
+    to $STORES
+if (/^From:.*@leroymerlin.ru/)
+    to $STORES
+if (/^From:.*@leroy-merlin.ru/)
+    to $STORES
+if (/^From:.*@chernaya100.com/)
+    to $STORES
+if (/^From:.*@chillengrillen.ru/)
+    to $STORES
+if (/^From:.*@ozon.ru/)
+    to $STORES
+if (/^From:.*@vsexshop.ru/)
+    to $STORES
+if (/^From:.*informer.vsexshop@gmail.com/)
+    to $STORES
+if (/^From:.*@ishooter.ru/)
+    to $STORES
+if (/^From:.*@lentamail.com/)
+    to $STORES
+if (/^From:.*@citilink.ru/)
+    to $STORES
+if (/^From:.*@bars-guns.ru/)
+    to $STORES
+if (/^From:.*@mountainpeaks.ru/)
+    to $STORES
+if (/^From:.*noreply@cdek.ru/)
+    to $STORES
+if (/^From:.*@huntline.ru/)
+    to $STORES
+if (/^From:.*@yarkiy.ru/)
+    to $STORES
+if (/^From:.*@photolubitel.com/)
+    to $STORES
+if (/^From:.*@bookvoed.ru/)
+    to $STORES
+if (/^From:.*@lavka.yandex.ru/)
+    to $STORES
+if (/^From:.*@papajohns.ru/)
+    to $STORES
+if (/^From:.*papatalk@smg.com/)
+    to $STORES
+if (/^From:.*@roboparts.ru/)
+    to $STORES
+if (/^From:.*@my.store-emails.com/)
+    to $STORES
+if (/^From:.*@6030000.ru/)
+    to $STORES
+if (/^From:.*@d-76.ru/)
+    to $STORES
+if (/^From:.*@aloea.ru/)
+    to $STORES
+if (/^From:.*@vkusnyesushi.ru/)
+    to $STORES
+
+if (/^From:.*news@news.ozon.ru/)
+    to /dev/null
+if (/^From:.*mail@no-muggles.ru/)
+    to /dev/null
+if (/^From:.*alena@getmeit.ru/)
+    to /dev/null
+if (/^From:.*company@isu.ifmo.ru/)
+    to /dev/null
+if (/^From:.*documents@isu.ifmo.ru/)
+    to /dev/null
+if (/^From:.*info@isu.ifmo.ru/)
+    to /dev/null
+if (/^From:.*alumni@isu.ifmo.ru/)
+    to /dev/null
+if (/^From:.*letter@mpi.pes.spb.ru/)
+    to /dev/null
+if (/^From:.*no-reply@maybe.ru/)
+    to /dev/null
+if (/^From:.*sendmail@katushkin.ru/)
+    to /dev/null
+if (/^From:.*mail@evildating.net/)
+    to /dev/null
+if (/^From:.*mailer@market.yandex.ru/)
+    to /dev/null
+if (/^From:.*news@pochta.ru/)
+    to /dev/null
+if (/^From:.*no-reply@2gis.ru/)
+    to /dev/null
+if (/^From:.*achievements@2gis.com/)
+    to /dev/null
+if (/^From:.*agentstvo.rizoma@yandex.ru/)
+    to /dev/null
+if (/^From:.*hello@music.yandex.ru/)
+    to /dev/null
+if (/^From:.*@psycheforum.ru/)
+    to /dev/null
+if (/^From:.*@turing.com/)
+    to /dev/null
+if (/^Subject:.*\[Haskell\] \[.*/)
+    to /dev/null
+
+if (/.*/)
+    to $DEFAULT
+

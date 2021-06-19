@@ -16,25 +16,29 @@ stow cmd
 # Copying dotfiles to $HOME
 export STOW_DIR=./utils
 stow abook emacs git i3wm mplayer mutt rtorrent tmux vim
-if [ ! -f "~/.fetchmailrc" ]; then
-    cp -v "$STOW_DIR"/mutt/.fetchmailrc ~
-fi
-if [ ! -f "~/.msmtprc" ]; then
-    cp -v "$STOW_DIR"/mutt/.msmtprc ~
-fi
 
 # Making necessary (empty) directories
 mkdir -pv "$HOME/.vim/swapfiles"
 mkdir -pv "$HOME/.vim/undodir"
-mkdir -pv "$HOME/.mail/logs"
-mkdir -pv "$HOME/rsync"
+mkdir -pv "$HOME/rsync/mail"
+mkdir -pv "$HOME/rsync/mail/logs"
+maildirmake "$HOME/rsync/mail/banks"
+maildirmake "$HOME/rsync/mail/checks"
+maildirmake "$HOME/rsync/mail/default"
+maildirmake "$HOME/rsync/mail/haskell"
+maildirmake "$HOME/rsync/mail/maillists"
+maildirmake "$HOME/rsync/mail/social"
+maildirmake "$HOME/rsync/mail/state"
+maildirmake "$HOME/rsync/mail/stores"
 
 # Create empty .rsyncignore to bootstrap run of sync system
 touch "$HOME/rsync/.rsyncignore"
 
 # Changing access rights
-chmod -v 600 ~/.fetchmailrc
+chmod -v 600 ~/.fdm.conf
+chmod -v 600 ~/.mailfilter
 chmod -v 600 ~/.msmtprc
+chmod -v 600 ~/.netrc
 
 echo
 echo "Done!"

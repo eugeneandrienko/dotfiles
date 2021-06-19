@@ -9,13 +9,13 @@ This repository contains different configuration files, which I have been writin
 * bash-completion
 * ctags
 * emacs
-* fetchmail
+* fdm
 * git
 * jq
 * lynx
+* maildrop
 * msmtp
 * mutt
-* procmail
 * rsync
 * rtorrent
 * stow
@@ -32,9 +32,7 @@ Also, you may be need to install some fonts, like Terminus and Droid Sans Mono.
 * `cmd/` - shell-related configuration files.
 * `utils/` - configuration files for different utilities, like vim or tmux.
 * `noauto/` - different system configuration files, not for automatic installation. Described below.
-* `config_directories.txt` - list of catalogs with our dotfiles - one catalog for one program's configs.
 * `deploy.sh` - main deployment script.
-* `propagate_changes.sh` - script to propagate commits to other branches in repository.
 
 #### noauto/ contents
 
@@ -52,7 +50,10 @@ Checkout next branch:
 * `freebsd-thinkpad` - for FreeBSD
 
 Run *deploy.sh* script, which do the next:
-* Copy dotfiles from our catalog to the user $HOME catalog.
+* Make soft links from our catalog to the user $HOME catalog.
+* Create necessary empty directories.
+* Create mail directories.
+* Set right access rights to some configuration files.
 
 #### Vim plugins installation
 

@@ -6,33 +6,33 @@
 
 
 #
-# Mailboxes settings
+# Maildirs settings
 #
-set mbox_type = mbox
+set mbox_type = maildir
 set folder = $HOME/rsync/mail
-set spoolfile = +/default
-mailboxes = =banks
-mailboxes = =default
-mailboxes = =checks
-mailboxes = =maillists
-mailboxes = =sent
-mailboxes = =social
-mailboxes = =state
-mailboxes = =stores
-mailboxes = =keep
-# default mbox to (s)ave mail is =keep
-save-hook .* =keep
-# file into which your outgoing messages should be appended
-set record = +/sent
+set postponed = =postponed
+set spoolfile = =default
+set record = =sent-`date "+%Y-%m"`
+mailboxes =banks \
+          =default \
+          =checks \
+          =haskell \
+          =maillists \
+          =postponed \
+          =sent \
+          =social \
+          =state \
+          =stores \
+          =keep
 
 
 #
 # Mailing lists settings
 #
-lists haskell
-lists freebsd-haskell
-lists xmonad
-lists beginners
+lists haskell@haskell.org
+lists freebsd-haskell@haskell.org
+lists xmonad@haskell.org
+lists beginners@haskell.org
 
 
 #
@@ -53,8 +53,8 @@ bind editor        <Tab> complete-query
 # Go to directory with mailboxes when press 'c'
 macro index 'c' '<change-folder>?<change-dir><home>^K=<enter>'
 # run fetchmail by hitting key of G
-macro index G "!fetchmail -k -m 'procmail -d %T'\r"
-macro pager G "!fetchmail -k -m 'procmail -d %T'\r"
+macro index G "!fdm -v fetch\r"
+macro pager G "!fdm -v fetch\r"
 
 #
 # Sidebar
@@ -117,8 +117,16 @@ set send_charset="utf-8"
 set use_domain=no
 # Edit headers when composing message
 set edit_headers=yes
+# Work with non-Latin filenames
+set rfc2047_parameters
 # Default FROM value
 set from="Eugene Andrienko <evg.andrienko@gmail.com>"
+# Correct use of Reply-To field
+set reply_to
+# String before cited message
+set attribution = "*** %n [%{%Y-%m-%d %H:%M}]:"
+# Set User-Agent field for outgoing messages
+set user_agent=yes
 
 
 #
