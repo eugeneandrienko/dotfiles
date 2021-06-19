@@ -8,6 +8,7 @@ This repository contains different configuration files, which I have been writin
 * aspell
 * bash-completion
 * ctags
+* doas
 * emacs
 * fdm
 * feh
@@ -20,7 +21,6 @@ This repository contains different configuration files, which I have been writin
 * rsync
 * rtorrent
 * stow
-* sudo
 * sxiv
 * tmux (>= 3.2)
 * urlview
