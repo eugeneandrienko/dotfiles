@@ -1,8 +1,9 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
-FONT='-xos4-terminus-*-*-*-*-14-*-*-*-*-*-*-u'
-COLORS='-sb #000000 -sf #ffffff -nb #ffffff -nf #000000'
+FONT="'-xos4-terminus-*-*-*-*-14-*-*-*-*-*-*-u'"
+COLORS="-sb '#000000' -sf '#ffffff' -nb '#ffffff' -nf '#000000'"
 DMENU_CMD="dmenu -i -b -fn $FONT $COLORS"
+echo $DMENU_CMD
 
 DMENU_ITEMS="firefox:firefox_unsec:telegram:keepassxc"
 DMENU_ITEMS+=":audacious:gimp:openshot:audacity"
@@ -10,7 +11,7 @@ DMENU_ITEMS+=":qmapshack:josm"
 DMENU_ITEMS+=":idea:android-file-transfer"
 DMENU_ITEMS+=":modes"
 
-case $(echo $DMENU_ITEMS | tr ':' '\n' | $DMENU_CMD -p Execute:) in
+case $(echo $DMENU_ITEMS | tr ':' '\n' | eval "$DMENU_CMD -p Execute:") in
     'firefox')
         /home/drag0n/.i3/firefox.sh
         ;;
@@ -49,7 +50,7 @@ case $(echo $DMENU_ITEMS | tr ':' '\n' | $DMENU_CMD -p Execute:) in
         ;;
     'modes')
         MODES_ITEMS="normal:theatre:night"
-        case $(echo $MODES_ITEMS | tr ':' '\n' | $DMENU_CMD -p Mode:) in
+        case $(echo $MODES_ITEMS | tr ':' '\n' | eval "$DMENU_CMD -p Mode:") in
             'normal')
                 xset +dpms
                 rm -f ~/.mode-theatre

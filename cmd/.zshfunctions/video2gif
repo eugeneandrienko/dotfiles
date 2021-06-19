@@ -1,0 +1,5 @@
+PNG_PALLETE=$(mktemp --suffix=.png)
+ffmpeg -i "$1" -filter_complex "[0:v] palettegen" "$PNG_PALLETE"
+ffmpeg -i "$1" -i "$PNG_PALLETE" -r 12 -s 320x180 -filter_complex "[0:v][1:v] paletteuse" "$2"
+rm "$PNG_PALLETE"
+

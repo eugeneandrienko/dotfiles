@@ -138,19 +138,20 @@ C-b t - open menu with additional actions"
 ################################################################################
 
 function hotkeys() {
-    ANSWER="-1"
-    readarray -d ' ' -t HOTKEYS_LIST < <((set -o posix; set) | grep '^HOTKEYS_TEXT_' | sed -r 's/HOTKEYS_TEXT_(.*)=.*/\1/g' | tr '\n' ' ')
-    until [ "$ANSWER" -ge 0 ] && [ "$ANSWER" -lt "${#HOTKEYS_LIST[*]}" ]
-    do
-        echo "List of available hotkeys:"
-        for (( i = 0; i < ${#HOTKEYS_LIST[*]}; i++ ))
-        do
-            echo "$i) ${HOTKEYS_LIST[$i]}"
-        done
-        echo
-        read -p "Select which hotkeys to show: " ANSWER
+    declare -A HOTKEYS_LIST
+    for i in $(set | grep '^HOTKEYS_TEXT_' | sed -r 's/HOTKEYS_TEXT_(.*)=.*/\1/g'); do
+        INDEX="$(echo $i | head -c 1 | tr '[:upper:]' '[:lower:]')"
+        HOTKEYS_LIST["$INDEX"]="$i"
     done
-    HOTKEY_ELEMENT_NAME="HOTKEYS_TEXT_${HOTKEYS_LIST[$ANSWER]}"
+
+    echo "List of available hotkeys:"
+    for key value in ${(@kv)HOTKEYS_LIST}; do
+        echo "$key) $value"
+    done
+    echo
+    read  'ANSWER?Select which hotkeys to show: '
+
+    HOTKEY_ELEMENT_NAME=HOTKEYS_TEXT_${HOTKEYS_LIST["$ANSWER"]}
     eval "echo \"\$$HOTKEY_ELEMENT_NAME\""
 }
 

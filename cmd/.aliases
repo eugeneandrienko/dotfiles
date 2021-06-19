@@ -3,19 +3,19 @@ alias :q='exit'
 alias :Q='exit'
 
 # Navigation
-alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
 # for comfortable system using
-alias ls='ls -Fh --color=always'
-alias ll='ls -lFh --color=always'
-alias lsa='ls -aFh --color=always'
-alias la='ls -aFh --color=always'
-alias lal='ls -laFh --color=always'
-alias lla='ls -laFh --color=always'
-alias grep='grep --color=auto'
+alias -g ls='ls -Fh --color=always'
+alias -g ll='ls -lFh --color=always'
+alias -g lsa='ls -aFh --color=always'
+alias -g la='ls -aFh --color=always'
+alias -g lal='ls -laFh --color=always'
+alias -g lla='ls -laFh --color=always'
+alias -g grep='grep --color=auto --with-filename --line-number \
+              --binary-files=without-match --exclude-dir=.git'
 alias bc='bc -l'
 alias rm='rm -v'
 alias du='du -hs'
@@ -36,18 +36,18 @@ alias df='df -h'
 alias fuck_censorship='ssh -p 443 -ND 8080 fuck@censorship.1984; \
                        notify-send -u critical -t 5000 "Warning" "SSH tunnel is down"'
 alias sxiv='sxiv -s d -bp'
-alias emacs='emacs -nw'
+alias -g emacs='emacs -nw'
 alias rtorrent='~/.rtorrent/download_blocklist.sh && rtorrent'
-alias vi='vim'
+alias -g vi='vim'
 alias abook='abook --datafile ~/rsync/filez/abook/addressbook'
 
 # Mistypes
-alias xs='cd'
-alias vf='cd'
-alias sl='ls'
-alias cd..='cd ..'
+alias -g xs='cd'
+alias -g vf='cd'
+alias -g sl='ls'
+alias -g cd..='cd ..'
 alias gut='git'
-alias ks='ls'
+alias -g ks='ls'
 
 # Git aliases
 alias gits='git status -s'

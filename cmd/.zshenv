@@ -30,11 +30,16 @@ HISTCONTROL=ignorespace
 export HISTCONTROL
 
 # Don't clear the screen after quitting a manual page
-export MANPAGER='less -FX'
+export MANPAGER='less -RFX'
 
 # Don't clear the screen after quitting pager
-export PAGER='less -FX'
+export PAGER='less -RFX'
 
 # For correct colors in console
 export TERM=screen-256color
+
+export LESS=RFXj2
+export LESS=${LESS}"Ps?f%f .?m(%i/%m) .%lt-%lb?L/%L. [%bB?B/%B.]?B %pB\%.?x N\:%x.%t"
+
+export MAILDIR=$HOME/rsync/mail
 

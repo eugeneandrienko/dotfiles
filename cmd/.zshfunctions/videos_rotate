@@ -1,0 +1,4 @@
+for i in "$@"; do
+    ffmpeg -i "$i" -vf "transpose=1,transpose=1" "rot_$i"
+done
+

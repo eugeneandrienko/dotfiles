@@ -1,0 +1,18 @@
+if [ "$#" -ne 2 ]; then
+    echo "scana4 PADDING_ZEROES_COUNT START_FROM"
+    return
+fi
+START_FROM="$2"
+while true; do
+    printf -v FILENAME "%0$1d" "$START_FROM"
+    read -p "Press Enter or document description for scan new document to $FILENAME.png " DESCRIPTION
+
+    if [ "$DESCRIPTION" ]; then
+        FILENAME="$FILENAME - $DESCRIPTION"
+        echo "Document will be saved to $FILENAME.png"
+    fi
+    scanimage --progress --resolution 300 --mode Color -x 210 -y 297 --format png -o "$FILENAME.png"
+
+    START_FROM=$((START_FROM+1))
+done
+
