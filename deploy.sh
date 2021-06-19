@@ -15,7 +15,7 @@ stow bin cmd
 
 # Copying dotfiles to $HOME
 export STOW_DIR=./utils
-stow abook emacs git i3wm mplayer mutt rtorrent tmux vim
+stow abook emacs git i3wm mplayer mutt rtorrent tmux vim zathura
 
 # Making necessary (empty) directories
 mkdir -pv "$HOME/.vim/swapfiles"
