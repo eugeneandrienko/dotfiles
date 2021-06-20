@@ -22,17 +22,26 @@ mkdir -pv "$HOME/.vim/swapfiles"
 mkdir -pv "$HOME/.vim/undodir"
 mkdir -pv "$HOME/rsync/mail"
 mkdir -pv "$HOME/rsync/mail/logs"
-maildirmake "$HOME/rsync/mail/banks"
-maildirmake "$HOME/rsync/mail/checks"
-maildirmake "$HOME/rsync/mail/default"
-maildirmake "$HOME/rsync/mail/haskell"
-maildirmake "$HOME/rsync/mail/maillists"
-maildirmake "$HOME/rsync/mail/social"
-maildirmake "$HOME/rsync/mail/state"
-maildirmake "$HOME/rsync/mail/stores"
+
+if [ -x /usr/bin/maildirmake ]; then
+    MAILDIRMAKE="/usr/bin/maildirmake"
+elif [ -x /usr/local/bin/maildrop-maildirmake ]; then
+    MAILDIRMAKE="/usr/local/bin/maildrop-maildirmake"
+fi
+$MAILDIRMAKE "$HOME/rsync/mail/banks"
+$MAILDIRMAKE "$HOME/rsync/mail/checks"
+$MAILDIRMAKE "$HOME/rsync/mail/default"
+$MAILDIRMAKE "$HOME/rsync/mail/haskell"
+$MAILDIRMAKE "$HOME/rsync/mail/maillists"
+$MAILDIRMAKE "$HOME/rsync/mail/social"
+$MAILDIRMAKE "$HOME/rsync/mail/state"
+$MAILDIRMAKE "$HOME/rsync/mail/stores"
 
 # Create empty .rsyncignore to bootstrap run of sync system
 touch "$HOME/rsync/.rsyncignore"
+
+# Create empty ~/.netrc if it not exists
+touch $HOME/.netrc
 
 # Changing access rights
 chmod -v 600 ~/.fdm.conf
