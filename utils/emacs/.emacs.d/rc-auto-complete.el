@@ -1,8 +1,3 @@
-(if (not (package-installed-p 'auto-complete))
- (progn
-  (package-refresh-contents)
-  (package-install 'auto-complete)))
-
 (require 'auto-complete-config)
 (ac-config-default)
 ;(add-to-list 'ac-dictionary-directories "~/.emacs.d/elisp/auto-complete/ac-dict")

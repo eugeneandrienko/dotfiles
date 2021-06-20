@@ -1,9 +1,5 @@
-(if (not (package-installed-p 'color-theme-modern))
-  (progn
-     (package-refresh-contents)
-     (package-install 'color-theme-modern)))
-
 (require 'color-theme-modern)
+(add-to-list 'custom-theme-load-path "~/.emacs.d/plugins/color-theme-modern/")
 (load-theme 'vim-colors t t)
 (enable-theme 'vim-colors)
 

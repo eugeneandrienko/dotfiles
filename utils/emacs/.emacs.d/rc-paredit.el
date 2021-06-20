@@ -1,8 +1,3 @@
-(if (not (package-installed-p 'paredit))
-  (progn
-     (package-refresh-contents)
-     (package-install 'paredit)))
-
 (require 'paredit)
 
 ;(autoload 'enable-paredit-mode "paredit"

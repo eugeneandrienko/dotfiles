@@ -17,9 +17,7 @@
  '(haskell-process-suggest-remove-import-lines t)
  '(haskell-process-type 'cabal-repl)
  '(ido-mode 'buffer nil (ido))
- '(initial-scratch-message nil)
- '(package-selected-packages
-   '(auto-complete fill-column-indicator highlight-symbol haskell-mode paredit color-theme-modern auctex-latexmk auctex)))
+ '(initial-scratch-message nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -34,18 +32,12 @@
  '(font-latex-sectioning-5-face ((((class color) (background dark)) (:inherit variable-pitch :foreground "green" :weight bold))))
  '(highlight-symbol-face ((((class color) (background dark)) (:background "OliveDrab")))))
 
-(package-initialize)
-
-; ELPA and MELPA repositories with elisp packages:
-(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-                         ("melpa" . "https://melpa.org/packages/")))
-
-(defun install-missing-package (package-name)
-  "Install missing package"
-  (if (not (package-installed-p package-name))
-      (progn
-	(package-refresh-contents)
-	(package-install package-name))))
+(let ((default-directory  "~/.emacs.d/plugins/"))
+  (setq load-path
+        (append
+         (let ((load-path  (copy-sequence load-path))) ;; Shadow
+           (normal-top-level-add-subdirs-to-load-path))
+         load-path)))
 
 (load "~/.emacs.d/rc-emacs.el")
 (load "~/.emacs.d/rc-ido.el")

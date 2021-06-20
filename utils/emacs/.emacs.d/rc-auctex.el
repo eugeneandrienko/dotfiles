@@ -1,15 +1,3 @@
-;Installing AUCTeX
-(if (not (package-installed-p 'auctex))
- (progn
-  (package-refresh-contents)
-  (package-install 'auctex)))
-;Installing AUCTeX-latexmk
-(if (not (package-installed-p 'auctex-latexmk))
- (progn
-  (package-refresh-contents)
-  (package-install 'auctex-latexmk)))
-
-;loading AuCTeX
 (require 'tex-site)
 (require 'auctex-latexmk)
 (auctex-latexmk-setup)

@@ -1,6 +1,3 @@
-(install-missing-package 'haskell-mode)
-(install-missing-package 'highlight-symbol)
-
 (require 'haskell-mode)
 (require 'haskell-interactive-mode)
 (require 'haskell-process)

@@ -58,9 +58,9 @@ Run *deploy.sh* script, which do the next:
 * Create mail directories.
 * Set right access rights to some configuration files.
 
-#### Emacs plugins installation
+#### Emacs plugins compilation
 
-Just run Emacs first time - it will install all necessary plugins itself
+Run `C-u 0 M-x byte-recompile-directory` to recomplile contents of `~/.emacs.d/plugins`.
 
 #### File synchronization
 

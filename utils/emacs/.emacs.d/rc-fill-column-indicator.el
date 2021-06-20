@@ -1,8 +1,3 @@
-(if (not (package-installed-p 'fill-column-indicator))
-  (progn
-     (package-refresh-contents)
-     (package-install 'fill-column-indicator)))
-
 (require 'fill-column-indicator)
 
 (setq fci-rule-width 1)
