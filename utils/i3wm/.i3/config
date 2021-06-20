@@ -48,7 +48,7 @@ workspace_layout stacking
 hide_edge_borders both
 
 # start a terminal
-bindsym $mod+Return exec st -e tmux
+bindsym $mod+Return exec st -e zsh -c tmux
 
 # kill focused window
 bindsym $mod+Shift+q kill

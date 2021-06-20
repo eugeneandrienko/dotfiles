@@ -14,8 +14,13 @@ alias -g lsa='ls -aFh --color=always'
 alias -g la='ls -aFh --color=always'
 alias -g lal='ls -laFh --color=always'
 alias -g lla='ls -laFh --color=always'
-alias -g grep='grep --color=auto --with-filename --line-number \
-              --binary-files=without-match --exclude-dir=.git'
+if [ -f ~/.gentoo ]; then
+    alias grep='grep --color=auto --with-filename --line-number \
+                  --binary-files=without-match --exclude-dir=.git'
+elif [ -f ~/.freebsd-thinkpad ]; then
+    alias grep='grep --color=auto --with-filename --line-number \
+                  --binary-files=without-match'
+fi
 alias bc='bc -l'
 alias rm='rm -v'
 alias du='du -hs'
