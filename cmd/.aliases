@@ -104,7 +104,8 @@ alias ydl_podcast="youtube-dl --proxy socks5://127.0.0.1:8080 --continue \
                   --embed-thumbnail --output '%(autonumber)s_%(title)s.%(ext)s'"
 youtube() {
     mplayer -cookies -cookies-file /tmp/cookies.txt \
-    $(youtube-dl -gf 22 --cookies /tmp/cookies.txt "$1"); \
+    $(youtube-dl -gf 22 --proxy socks5://127.0.0.1:8080 \
+        --cookies /tmp/cookies.txt "$1"); \
     rm -f /tmp/cookies.txt
 }
 
