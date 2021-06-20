@@ -20,9 +20,9 @@ function _umount_rsync() {
 }
 
 function _safe_rsync() {
-    OPTIONS="-azPh --exclude-from=$HOME/rsync/.rsyncignore"
+    opts=(-azPh --exclude-from=$HOME/rsync/.rsyncignore)
 
-    rsync $OPTIONS -e 'ssh -i ~/.ssh/sync' $1 -ni $2 $3
+    rsync $opts -e 'ssh -i ~/.ssh/sync' $1 -ni $2 $3
 
     echo "$2" | grep -q 'sync@'
     if [ "$?" -eq 0 ]; then
@@ -31,9 +31,9 @@ function _safe_rsync() {
         ASK="Sync these files from local to remote? [y/n] "
     fi
 
-    read -p "$ASK" ANSWER
+    read ANSWER?"$ASK"
     if [ "$ANSWER" == "y" ]; then
-        rsync $OPTIONS -e 'ssh -i ~/.ssh/sync' $1 $2 $3
+        rsync $opts -e 'ssh -i ~/.ssh/sync' $1 $2 $3
     fi
 }
 
