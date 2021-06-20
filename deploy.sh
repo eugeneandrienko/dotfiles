@@ -49,10 +49,6 @@ chmod -v 600 ~/.mailfilter
 chmod -v 600 ~/.msmtprc
 chmod -v 600 ~/.netrc
 
-# Installing right crontab
-echo "Installing crontab"
-crontab ./utils/crontab/crontab
-
 # Select target system if not selected yet
 if [ ! -f ~/.gentoo ] && \
     [ ! -f ~/.freebsd-thinkpad ]; then
@@ -78,6 +74,12 @@ if [ ! -f ~/.gentoo ] && \
             exit 2
             ;;
     esac
+fi
+
+# Installing crontab
+if [ -f ~/.gentoo ]; then
+    echo "Installing crontab"
+    crontab ./utils/crontab/crontab
 fi
 
 echo
