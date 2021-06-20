@@ -19,7 +19,7 @@ alias -g grep='grep --color=auto --with-filename --line-number \
 alias bc='bc -l'
 alias rm='rm -v'
 alias du='du -hs'
-alias bk='cd "$OLDPWD"'
+alias bk='popd'
 alias mplayer='mplayer -nojoystick -nolirc -vo xv -subcp cp1251'
 alias pingya='ping -c3 ya.ru'
 alias s='doas'
@@ -86,9 +86,11 @@ alias xcopy='xclip -selection clipboard'
 alias xpaste='xclip -selection clipboard -o'
 
 # Gentoo aliases
-alias emerge-update='doas emerge-webrsync; \
-                     read -p "Press Enter " NOTUSING; \
-                     doas emerge --ask -uDU --keep-going --with-bdeps=y @world'
+if [ -f ~/.gentoo ]; then
+    alias emerge-update='doas emerge-webrsync; \
+                         read -p "Press Enter " NOTUSING; \
+                         doas emerge --ask -uDU --keep-going --with-bdeps=y @world'
+ fi
 
 # youtube-dl aliases
 alias ydl='youtube-dl --proxy socks5://127.0.0.1:8080'

@@ -1,4 +1,4 @@
 --no-folding
---verbose=2
+--verbose=1
 --target=~
 

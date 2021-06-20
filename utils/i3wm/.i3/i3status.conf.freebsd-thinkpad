@@ -1,7 +1,7 @@
 general {
        output_format = "i3bar"
        colors = true
-       interval = 1
+       interval = 10
        color_good = "#7f9f7f"
        color_degraded = "#907f4f"
        color_bad  = "#cc9393"
@@ -9,7 +9,10 @@ general {
 
 order = "path_exists THEATRE"
 order += "cpu_usage"
-order += "ethernet enp5s0"
+order += "cpu_temperature 0"
+order += "battery 0"
+order += "ethernet em0"
+order += "wireless wlan0"
 order += "volume master"
 order += "tztime local"
 
@@ -27,16 +30,37 @@ cpu_usage {
     format_above_degraded_threshold = "DEGRADED: %usage"
 }
 
-ethernet enp5s0 {
+cpu_temperature 0 {
+    format = "%degrees °C"
+}
+
+battery 0 {
+    format = "%status %percentage %remaining"
+    format_down = "No battery"
+    status_chr = "⚡CHR"
+    status_bat = "B"
+    status_unk = "UNK"
+    status_full = "FULL"
+    threshold_type = "time"
+    low_threshold = 10
+}
+
+ethernet em0 {
     format_up = "E: %ip"
-    format_down = "E: down"
+    format_down = "Eth: down"
+}
+
+wireless wlan0 {
+    format_up = "W: %ip %essid"
+    format_down = "Wifi: down"
+    format_quality = "%03d%s"
 }
 
 volume master {
     format = "♪: %volume"
     format_muted = "✕: %volume"
-    device = "hw:0"
-    mixer = "Master"
+    device = "pcm0"
+    mixer = "vol"
 }
 
 tztime local {

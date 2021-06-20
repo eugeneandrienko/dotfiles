@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 
 # Settings:
 GITREPO_NAME="dotfiles"
@@ -44,6 +44,33 @@ chmod -v 600 ~/.netrc
 echo "Installing crontab"
 crontab ./utils/crontab/crontab
 
+# Select target system if not selected yet
+if [ ! -f ~/.gentoo ] && \
+    [ ! -f ~/.freebsd-thinkpad ]; then
+    echo
+    echo 'OS and machines:'
+    echo
+    echo 'g) Gentoo (GNU/Linux)'
+    echo 'ft) FreeBSD on the Thinkpad'
+    echo
+    read 'SELECTED_OS?Select OS: '
+
+    case "$SELECTED_OS" in
+        'g')
+            touch ~/.gentoo
+            echo 'Selected Gentoo (GNU/Linux)'
+            ;;
+        'ft')
+            touch ~/.freebsd-thinkpad
+            echo 'Selected FreeBSD on the Thinkpad'
+            ;;
+        '*')
+            echo 'Wrong input! Cannot determine OS - system may work incorrectly!'
+            exit 2
+            ;;
+    esac
+fi
+
 echo
-echo "Done!"
+echo 'Done!'
 

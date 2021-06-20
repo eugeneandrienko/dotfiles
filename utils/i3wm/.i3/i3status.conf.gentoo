@@ -1,0 +1,45 @@
+general {
+       output_format = "i3bar"
+       colors = true
+       interval = 1
+       color_good = "#7f9f7f"
+       color_degraded = "#907f4f"
+       color_bad  = "#cc9393"
+}
+
+order = "path_exists THEATRE"
+order += "cpu_usage"
+order += "ethernet enp5s0"
+order += "volume master"
+order += "tztime local"
+
+path_exists THEATRE {
+    path = "/home/drag0n/.mode-theatre"
+    format = "TM"
+    format_down = ""
+}
+
+cpu_usage {
+    format = "C: %usage"
+    max_threshold = 75
+    degraded_threshold = 25
+    format_above_threshold = "WARNING: %usage"
+    format_above_degraded_threshold = "DEGRADED: %usage"
+}
+
+ethernet enp5s0 {
+    format_up = "%ip"
+    format_down = "Eth: down"
+}
+
+volume master {
+    format = "♪: %volume"
+    format_muted = "✕: %volume"
+    device = "hw:0"
+    mixer = "Master"
+}
+
+tztime local {
+    format = "%d-%m-%Y %H:%M:%S %a"
+}
+
