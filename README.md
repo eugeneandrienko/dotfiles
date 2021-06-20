@@ -67,3 +67,7 @@ To work with file synchronization via rsync you need to have `sync` SSH-key with
 
 For using Mutt with GMail mailboxes you should specify mail server passwords in `~/.netrc`.
 
+#### /etc/hosts
+
+You should update your `/etc/hosts` with data from `noauto/hosts`.
+

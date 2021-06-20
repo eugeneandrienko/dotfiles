@@ -144,7 +144,7 @@ set pipe_decode=yes
 #
 # Paths
 #
-set sendmail="/usr/bin/msmtp"
+set sendmail="/usr/bin/env msmtp"
 set mailcap_path="~/.mailcap"
 
 
