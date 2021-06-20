@@ -108,7 +108,7 @@ if (/^From:.*notification@facebookmail.com/)
     to $SOCIAL
 if (/^From:.*@account.tiktok.com/)
     to $SOCIAL
-if (/^From:.*@gotinder.com/)
+if (/^From:.*@gotinder.com/ || /^From:.*tinder@mail.tinder.com/)
     to $SOCIAL
 if (/^From:.*@twitter.com/)
     to $SOCIAL
