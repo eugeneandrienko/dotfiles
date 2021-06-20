@@ -1,47 +1,4 @@
-﻿"после установки под Win7, надо не забыть переименовать директорию lang
-"в lang_orig, в каталоге установки vim'а!
-"
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" YOU SHOULD INSTALL Vundle first!!!
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-
-set runtimepath+=~/.vim
-set nocompatible                        "Не нужна мне совместимость с vi!
-
-
-
-" Install plugin manager
-" Usage - :Bundle<TAB>
-" Launch this to install:
-"    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" List of installed plugins:
-Plugin 'gmarik/Vundle.vim'
-Plugin 'a.vim'
-Plugin 'errormarker.vim'
-Plugin 'taglist.vim'
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'Townk/vim-autoclose'
-Plugin 'snipMate'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'kien/ctrlp.vim'
-Plugin 'tacahiroy/ctrlp-funky'
-Plugin 'mhinz/vim-startify'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'ntpeters/vim-better-whitespace'
-
-call vundle#end()
-filetype plugin indent on
-
-
-"" CONTENTS:
+﻿"" CONTENTS:
 """ *) General
 """ *) Encoding
 """ *) Files
@@ -52,8 +9,6 @@ filetype plugin indent on
 """ *) GUI Settings
 """ *) Coding
 """ *) TagList
-""" *) Python-mode
-""" *) Conque-term settings
 """ *) vim-better-whitespace
 """ *) Keybindings
 
@@ -62,6 +17,9 @@ filetype plugin indent on
 ""
 "" General
 ""
+set runtimepath+=~/.vim
+set nocompatible
+filetype plugin indent on
 " Save 50 lines in cmdline history
 set history=50
 " Backspace works through EOL, TABs, etc...
@@ -74,8 +32,6 @@ set whichwrap=<,>,[,],h,l
 set autochdir
 " Do not read config-file from current directory
 set noex
-" Unknown magic
-map Q gq
 " Enable syntax highlighting
 syntax on
 " Reread .vimrc after write
@@ -134,8 +90,9 @@ set undofile
 set incsearch
 " Do not highlight matching words
 set nohlsearch
-"
+" Ignore case, but not ignore when capital letter meets
 set ignorecase
+set smartcase
 
 
 
@@ -177,8 +134,8 @@ set t_Co=256
 set visualbell
 " Show matching brackets
 set showmatch
-" Disable text about Uganda childs in start
-set shortmess+=tToOI
+" Disable text about Uganda children at start
+set shortmess+=atToOI
 " Do not wrap string near end of screen
 set wrap
 " Do not wrap word - all hyphenation just between words.
@@ -197,12 +154,19 @@ set wak=yes
 set ssop+=resize
 " 0-symbol column separator
 set colorcolumn=0
+" Highlight by invert colors
+set highlight-=v:Visual
+set highlight+=vr
+set highlight+=sr
 " Settings for popup menu
 set completeopt=menuone,menu,longest,preview
 set wrapmargin=5                        "отступ от текста до правой границы окна
 set scrolloff=3                         "Сколько строк показывать при скроллинге сверху и снизу
+" Show changing text
+set cpoptions+=$
+" Use nicer algorithm for diff
+set diffopt+=indent-heuristic,algorithm:histogram
 " Color theme
-Bundle 'dim13/xedit.vim'
 color xedit
 function! ToggleBg()
     if &background == 'dark'
@@ -211,15 +175,16 @@ function! ToggleBg()
         set bg=dark
     endif
 endfunc
-" Startify settings
-let g:startify_bookmarks = ['~/.vimrc',]
-let g:startify_change_to_vcs_root = 1
-let g:startify_files_number = 8
-let g:startify_skiplist = ['vimrc',]
 " Gitgutter settings
 set updatetime=100
 " Set gitgutter background color as line number column background
 highlight clear SignColumn
+" Fix window sizes when window manager resize it
+autocmd VimResized * wincmd =
+" Update vim title for X11 and tmux
+set titleold = ""
+set title
+autocmd BufEnter * let &titlestring = expand("%:t")
 
 
 
@@ -233,10 +198,10 @@ set noshowmode
 " Show statusline
 set laststatus=2
 "g:airline_section_a - show mode by default
-let g:airline_section_b = '[FORMAT=%{&ff}] [TYPE=%Y]'
+let g:airline_section_b = '[FMT=%{&ff}] [TYPE=%Y]'
 let g:airline_section_c = '%f'
-let g:airline_section_x = '%{fugitive#statusline()}'
-let g:airline_section_y = '[POS=%04l,%04v] %p%%'
+let g:airline_section_x = ''
+let g:airline_section_y = '[%04l,%04v] %p%%'
 let g:airline_section_z = '[LEN=%L]'
 let g:airline_theme = 'papercolor'
 " Disable info about trailing whitespace
@@ -278,14 +243,9 @@ if has ("gui_running")
     " Highlight current line
     set cursorline
 
-    " Set default font and setup window-maximize method for different OSes
-    if has("gui_gtk2")
-        set guifont=Droid\ Sans\ Mono\ 12
-        au GUIEnter * :set lines=99999 columns=99999
-    elseif has("gui_win32")
-        set guifont=Droid\ Sans\ Mono:h10
-        au GUIEnter * :set lines=50 columns=120
-    endif
+    " Set default font and setup window-maximize method
+    set guifont=Droid\ Sans\ Mono\ 12
+    au GUIEnter * :set lines=99999 columns=99999
     " Disable cursor blinking
     set guicursor+=a:blinkon0
     " Show tab number
@@ -302,12 +262,7 @@ endif
 " <C-c>m -- compile C, C++ or LaTeX source
 " <C-c>np -- create new project
 " gc -- (un)comment source code
-" <C-p>f -- fuzzy search in files
-" <C-p>b -- fuzzy search in buffers
-" <C-p>c -- fuzzy search in code
 "
-" format of error string for gcc and sdcc (for errormarker plugin)
-let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
 " Create new project
 menu NewProj.C :!cp -r ~/.vim/mproj/c/* .<CR>:e ./main.c<CR>
 menu NewProj.LaTeX_report :!cp -r ~/.vim/mproj/latex-report/* .<CR>:e ./report.tex<CR>
@@ -322,8 +277,6 @@ function MakeOurProject()
     endif
     if &filetype == "TEX"
         set makeprg=latexmk\ -norc\ -pdf\ -time\ %
-    elseif &filetype == "MARKDOWN"
-        set makeprg=chrome\ %
     endif
     make!
 endfunction
@@ -349,13 +302,12 @@ autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 " Pass *.md files as markdown files
 autocmd BufNewFile,BufRead *.md set filetype=markdown
-" Plugin for CtrlP - can work with functions
-let g:ctrlp_extensions = ['ctrlp-funky']
-let g:ctrlp_map='<c-p>f'
-nmap <C-p>b :CtrlPBuffer<CR>
-nmap <C-p>c :CtrlPFunky<CR>
 " Curly braces indentation
 au BufRead,BufNewFile,BufEnter,BufWinEnter *.c,*.h,*.java inoremap {<CR> {<CR>}<Esc>O
+" Smart work with comments:
+"  Append comments symbol
+"  Proper concatenate comments with J
+set formatoptions=croqlnj
 
 
 
@@ -380,43 +332,6 @@ let tlist_make_settings  = 'make;m:macros;t:targets'
 let tlist_markdown_settings = 'markdown;h:headings'
 let Tlist_Use_Right_Window = 0
 
-
-
-""
-"" Python-mode
-""
-"
-" \b -- set breakpoint
-" <C-w>o -- maximize current window
-" <C-c>rr -- refactor function/method/variable under the cursor
-" <C-c>td -- show all TODOs in Python files
-"
-" Disable line numbers and 80th symbol color column
-"let g:pymode_options = 0
-"let g:pymode_lint = 1
-"let g:pymode_lint_checker = "pyflakes,pep8"
-"let g:pymode_lint_ignore = "E501"
-"" When user save a file - check code
-"let g:pymode_lint_write = 1
-"" Disable window with errors and warnings
-"let g:pymode_lint_cwindow = 0
-"" VirtualEnv support
-"let g:pymode_virtualenv = 1
-"let g:pymode_breakpoint = 1
-"let g:pymode_breakpoint_key = '<leader>b'
-"let g:pymode_syntax = 1
-"let g:pymode_syntax_all = 1
-"let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-"let g:pymode_syntax_space_errors = g:pymode_syntax_all
-"" Disable autofolding
-"let g:pymode_folding = 0
-"let g:pymode_python = 'python'
-"let g:pymode_indent = 1
-"let g:pymode_rope_completion = 1
-"let g:pymode_rope_complete_on_dot = 1
-"" Find and show all TODOs
-"imap <C-c>td <Esc>:noautocmd vimgrep /TODO/j **/*.py<CR>:cw<CR>a
-"nmap <C-c>td :noautocmd vimgrep /TODO/j **/*.py<CR>:cw<CR>
 
 
 ""
@@ -460,8 +375,13 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 noremap <F1> <NOP>
-" Open terminal
-map <C-c>i :emenu CMD.<TAB>
-
+" Fix typos
+map q: :
+command! W w
+" Jump over spaces
+nmap <space> f<space>
+" Jump over _
+nmap _ f_l
 
 """EOF
+

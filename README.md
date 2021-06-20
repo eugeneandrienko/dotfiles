@@ -58,12 +58,6 @@ Run *deploy.sh* script, which do the next:
 * Create mail directories.
 * Set right access rights to some configuration files.
 
-#### Vim plugins installation
-
-After deployment do the next to install Vim plugins:
-* First, install Vundle plugin: `git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim`.
-* Second, in Vim execute `:BundleInstall command`.
-
 #### Emacs plugins installation
 
 Just run Emacs first time - it will install all necessary plugins itself
@@ -75,5 +69,5 @@ To work with file synchronization via rsync you need to have `sync` SSH-key with
 
 #### Passwords
 
-For using Mutt with GMail mailboxes you should specify application passwords in `~/.netrc`.
+For using Mutt with GMail mailboxes you should specify mail server passwords in `~/.netrc`.
 
