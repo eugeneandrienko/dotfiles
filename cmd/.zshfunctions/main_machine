@@ -1,0 +1,7 @@
+read 'ANSWER?Is this main machine? [y/n]: '
+if [ "y" == "$ANSWER" ]; then
+    touch ~/.main-machine
+else
+    rm -f ~/.main-machine
+fi
+

@@ -1,2 +1,2 @@
-*/10 * * * * /usr/bin/env fdm -l fetch
+*/10 * * * * /home/drag0n/.bin/get_mail.sh
 
