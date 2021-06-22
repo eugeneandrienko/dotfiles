@@ -47,11 +47,11 @@ battery 0 {
 
 ethernet em0 {
     format_up = "E: %ip"
-    format_down = "Eth: down"
+    format_down = "E: -"
 }
 
 wireless wlan0 {
-    format_up = "W: %ip %essid"
+    format_up = "%essid"
     format_down = "Wifi: down"
     format_quality = "%03d%s"
 }
