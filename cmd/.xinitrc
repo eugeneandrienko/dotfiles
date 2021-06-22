@@ -21,7 +21,9 @@ elif [ -f ~/.freebsd-thinkpad ]; then
 fi
 
 if [ -f ~/.freebsd-thinkpad ]; then
-    doas sysctl hw.acpi.video.lcd0.brightness=65
+    doas sysctl hw.acpi.video.lcd0.brightness=70
+    xset s off
+    xset s noblank
 fi
 
 if [ -f ~/.gentoo ]; then
