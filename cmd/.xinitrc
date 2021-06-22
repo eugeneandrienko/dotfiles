@@ -20,6 +20,10 @@ elif [ -f ~/.freebsd-thinkpad ]; then
     redshift -l 59.9386300:30.3141300 -m randr &
 fi
 
+if [ -f ~/.freebsd-thinkpad ]; then
+    doas sysctl hw.acpi.video.lcd0.brightness=65
+fi
+
 if [ -f ~/.gentoo ]; then
     exec /usr/bin/i3 -c ~/.i3/config
 elif [ -f ~/.freebsd-thinkpad ]; then

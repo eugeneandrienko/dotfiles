@@ -71,3 +71,11 @@ For using Mutt with GMail mailboxes you should specify mail server passwords in 
 
 You should update your `/etc/hosts` with data from `noauto/hosts`.
 
+#### doas setup
+
+If you need to control brightness of display when starting X-server — add next line to `doas.conf`:
+
+```
+permit nopass  drag0n as root cmd sysctl args hw.acpi.video.lcd0.brightness=65
+```
+
