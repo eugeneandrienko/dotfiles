@@ -18,8 +18,9 @@ export STOW_DIR=./utils
 stow abook emacs git i3wm mplayer mutt rtorrent tmux vim zathura
 
 # Making necessary (empty) directories
-mkdir -pv "$HOME/.vim/swapfiles"
-mkdir -pv "$HOME/.vim/undodir"
+mkdir -pv "$HOME/secure/.emacs.d"
+mkdir -pv "$HOME/secure/.vim/swapfiles"
+mkdir -pv "$HOME/secure/.vim/undodir"
 mkdir -pv "$HOME/rsync/mail"
 mkdir -pv "$HOME/rsync/mail/logs"
 
@@ -41,7 +42,8 @@ $MAILDIRMAKE "$HOME/rsync/mail/stores"
 touch "$HOME/rsync/.rsyncignore"
 
 # Create empty ~/.netrc if it not exists
-touch $HOME/.netrc
+touch $HOME/secure/.netrc
+ln -s "$HOME/secure/.netrc" "$HOME/.netrc"
 
 # Changing access rights
 chmod -v 600 ~/.fdm.conf
