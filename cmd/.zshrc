@@ -56,6 +56,8 @@ autoload -z scanphoto_10x15
 autoload -z scana4
 autoload -z hotkeys && hotkeys
 autoload -z main_machine
+autoload -z secure
+autoload -z unsecure
 
 if [ -e ~/.aliases ]; then
     . ~/.aliases

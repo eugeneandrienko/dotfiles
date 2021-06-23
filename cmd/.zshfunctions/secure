@@ -1,0 +1,4 @@
+if [ -f ~/.freebsd-thinkpad ]; then
+    pefs umount $HOME/secure
+fi
+

@@ -42,6 +42,21 @@ Also, you may be need to install some fonts, like Terminus and Droid Sans Mono.
 * `hosts` - `/etc/hosts` file. This is not a valid `hosts` file! You should review it and add useful entries to your `/etc/hosts` by hands!
 * `st` - configuration file for st terminal emulator.
 
+### Before install
+
+In the `$HOME` should exists `secure/` catalog which should be encrypted.
+
+#### Encryption in FreeBSD
+
+```
+pefs addchain -a aes256 -fZ /home/secure
+pefs mount /home/secure /home/secure
+pefs addkey -a aes256 -c /home/secure
+pefs umount /home/secure
+```
+
+To open encrypted directory use `unsecure` alias, to encrypt directory again - `secure` alias.
+
 ### Install
 
 Clone this repository to some suitable directory.
