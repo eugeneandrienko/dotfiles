@@ -30,6 +30,8 @@ This repository contains different configuration files, which I have been writin
 
 Also, you may be need to install some fonts, like Terminus and Droid Sans Mono.
 
+For the FreeBSD `pefs-kmod` should be installed and `pefs` module should be loaded into the kernel.
+
 ### Contents
 
 * `cmd/` - shell-related configuration files.
@@ -49,10 +51,10 @@ In the `$HOME` should exists `secure/` catalog which should be encrypted.
 #### Encryption in FreeBSD
 
 ```
-pefs addchain -a aes256 -fZ /home/secure
-pefs mount /home/secure /home/secure
-pefs addkey -a aes256 -c /home/secure
-pefs umount /home/secure
+pefs addchain -a aes256 -fZ $HOME/secure
+pefs mount $HOME/secure $HOME/secure
+pefs addkey -a aes256 -c $HOME/secure
+pefs umount $HOME/secure
 ```
 
 To open encrypted directory use `unsecure` alias, to encrypt directory again - `secure` alias.
