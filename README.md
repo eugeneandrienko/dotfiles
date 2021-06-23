@@ -76,6 +76,6 @@ You should update your `/etc/hosts` with data from `noauto/hosts`.
 If you need to control brightness of display when starting X-server — add next line to `doas.conf`:
 
 ```
-permit nopass  drag0n as root cmd sysctl args hw.acpi.video.lcd0.brightness=65
+permit nopass  drag0n as root cmd sysctl args hw.acpi.video.lcd0.brightness=70
 ```
 
