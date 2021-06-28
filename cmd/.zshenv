@@ -43,3 +43,7 @@ export LESS=${LESS}"Ps?f%f .?m(%i/%m) .%lt-%lb?L/%L. [%bB?B/%B.]?B %pB\%.?x N\:%
 
 export MAILDIR=$HOME/rsync/mail
 
+# For pass
+export PASSWORD_STORE_ENABLE_EXTENSIONS="true"
+export PASSWORD_STORE_DIR="$HOME/rsync/filez/pass"
+

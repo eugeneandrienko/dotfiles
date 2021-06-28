@@ -12,11 +12,15 @@ This repository contains different configuration files, which I have been writin
 * fdm
 * feh
 * git
+* gpg
 * jq
 * lynx
 * maildrop
 * msmtp
 * mutt
+* pass
+* python3
+* perl
 * rsync
 * rtorrent
 * stow
