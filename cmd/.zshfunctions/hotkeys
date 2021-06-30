@@ -139,7 +139,7 @@ C-b t - open menu with additional actions"
 
 function hotkeys() {
     declare -A HOTKEYS_LIST
-    for i in $(set | grep '^HOTKEYS_TEXT_' | sed -r 's/HOTKEYS_TEXT_(.*)=.*/\1/g'); do
+    for i in $(set | /usr/bin/env grep '^HOTKEYS_TEXT_' | sed -r 's/HOTKEYS_TEXT_(.*)=.*/\1/g'); do
         INDEX="$(echo $i | head -c 1 | tr '[:upper:]' '[:lower:]')"
         HOTKEYS_LIST["$INDEX"]="$i"
     done
