@@ -1,6 +1,4 @@
-(require 'haskell-mode)
-(require 'haskell-interactive-mode)
-(require 'haskell-process)
+(require 'haskell-mode-autoloads)
 (require 'highlight-symbol)
 
 (set 'tab-width 4)

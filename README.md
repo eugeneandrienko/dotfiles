@@ -75,7 +75,11 @@ Run *deploy.sh* script, which do the next:
 * Create mail directories.
 * Set right access rights to some configuration files.
 
+### After install
+
 #### Emacs plugins compilation
+
+Run `cd ~/.emacs.d/plugins/haskell-mode && make`.
 
 Run `C-u 0 M-x byte-recompile-directory` to recomplile contents of `~/.emacs.d/plugins`.
 
