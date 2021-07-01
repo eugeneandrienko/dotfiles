@@ -1,9 +1,7 @@
-utils/mutt/.muttrc-private
-utils/vim/.vim/bundle
-utils/vim/.vim/swapfiles
-utils/vim/.vim/undodir
-utils/vim/.vim/.netrwhist
-.ropeproject/
 cmd/.userconfig
+utils/emacs/.emacs.d/plugins/haskell-mode/build*/
+utils/emacs/.emacs.d/plugins/haskell-mode/dir
+utils/emacs/.emacs.d/plugins/haskell-mode/haskell-mode-autoloads.el
+utils/emacs/.emacs.d/plugins/haskell-mode/haskell-mode.info
 *.tar.bz2
 

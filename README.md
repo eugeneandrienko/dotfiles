@@ -6,11 +6,13 @@ This repository contains different configuration files, which I have been writin
 
 * abook
 * aspell
+* cabal
 * ctags
 * doas
 * emacs
 * fdm
 * feh
+* ghc
 * git
 * gpg
 * jq
@@ -76,6 +78,12 @@ Run *deploy.sh* script, which do the next:
 * Set right access rights to some configuration files.
 
 ### After install
+
+#### Haskell programs
+
+Install next programs via `cabal install`:
+* hasktags
+* stylish-haskell
 
 #### Emacs plugins compilation
 

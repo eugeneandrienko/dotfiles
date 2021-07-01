@@ -1,40 +1,43 @@
 (require 'haskell-mode-autoloads)
-(require 'highlight-symbol)
 
-(set 'tab-width 4)
-(set 'haskell-font-lock-symbols t)
+;;
+;; Configuration:
+;;
+(custom-set-variables
+  ; Ask user to remove redundant imports when building/loading modules:
+  '(haskell-process-suggest-remove-import-lines t)
+  ; Auto-import loaded module:
+  '(haskell-process-auto-import-loaded-modules t)
+  ; Add more logging info to the same named buffer:
+  '(haskell-process-log t)
+  ; Auto recognition of Haskell interpreter type:
+  '(haskell-process-type 'auto)
+  ; Auto reindentation when insertion of some characters like: ,;)}]
+  '(haskell-indentation-electric-flag t)
+  '(haskell-stylish-on-save t)
+  ; Generate tags by hasktags on the file save:
+  '(haskell-tags-on-save t))
+
+; Disable Emacs warning for that function:
 (put 'downcase-region 'disabled nil)
 
-(add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
+; Enable doc-mode for Haskell to show documentation on the fly:
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+; Enable Haskell indentation:
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-;; Uncomment to enable auto-insertion of module templates
-;(add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
+; Auto insert of module template on the start of every module:
+(add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
+; Enable interactive mode:
 (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-;; Enable spell checking of strings and comments
-(add-hook 'haskell-mode-hook 'flyspell-prog-mode)
 
-(setq highlight-symbol-idle-delay 1)
-(defun my-haskell-mode-hook ()
-  (highlight-symbol-mode)
-  (setq highlight-symbol-face '((:underline t)))
-  (local-set-key (kbd "C-c d") 'highlight-symbol-at-point)
-  (custom-set-faces '(highlight-symbol-face ((((class color) (background dark)) (:background "OliveDrab"))))))
-(add-hook 'haskell-mode-hook 'my-haskell-mode-hook)
-
-(custom-set-variables
-  '(haskell-process-suggest-remove-import-lines t)
-  '(haskell-process-auto-import-loaded-modules t)
-  '(haskell-process-log t)
-  ; type of using REPL (Cabal)
-  '(haskell-process-type 'cabal-repl)
-  '(haskell-indentation-electric-flag t))
-
-(eval-after-load 'haskell-mode
-  '(define-key haskell-mode-map (kbd "C-c C-o") 'haskell-compile))
-(eval-after-load 'haskell-cabal
-  '(define-key haskell-cabal-mode-map (kbd "C-c C-o") 'haskell-compile))
-(eval-after-load 'haskell-mode
-  '(define-key haskell-mode-map [f8] 'haskell-navigate-imports))
+;;
+;; Hotkeys:
+;;
+(eval-after-load "haskell-mode"
+ '(progn
+     (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-compile)
+     (define-key haskell-mode-map [f1] 'haskell-interactive-bring)
+     (define-key haskell-mode-map [f8] 'haskell-navigate-imports)))
+(eval-after-load "haskell-cabal"
+  '(define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-compile))
 
