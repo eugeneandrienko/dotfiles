@@ -124,6 +124,13 @@ HOTKEYS_TEXT_TMUX="C-b u - open urls from current window
 C-b t - open menu with additional actions"
 
 ################################################################################
+## Zathura
+################################################################################
+HOTKEYS_TEXT_ZATHURA="a - fit page to screen height
+s - fit page to screen width
+d - show one/two page(s) per screen"
+
+################################################################################
 ################################################################################
 
 function hotkeys() {
