@@ -7,7 +7,7 @@ echo $DMENU_CMD
 
 if [ -f ~/.gentoo ]; then
     DMENU_ITEMS="firefox:firefox_unsec:telegram"
-    DMENU_ITEMS+=":audacious:gimp:openshot:audacity"
+    DMENU_ITEMS+=":audacious:gimp:openshot"
     DMENU_ITEMS+=":qmapshack:josm"
     DMENU_ITEMS+=":idea:android-file-transfer"
     DMENU_ITEMS+=":modes"
@@ -45,9 +45,6 @@ case $(echo $DMENU_ITEMS | tr ':' '\n' | eval "$DMENU_CMD -p Execute:") in
         ;;
     'openshot')
         /usr/bin/openshot-qt &
-        ;;
-    'audacity')
-        /usr/bin/audacity &
         ;;
     'qmapshack')
          LC_MESSAGES="ru_RU.utf8" /usr/bin/env qmapshack &
