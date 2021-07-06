@@ -14,6 +14,7 @@
   '(haskell-process-type 'auto)
   ; Auto reindentation when insertion of some characters like: ,;)}]
   '(haskell-indentation-electric-flag t)
+  ; Call stylish-haskell before save:
   '(haskell-stylish-on-save t)
   ; Generate tags by hasktags on the file save:
   '(haskell-tags-on-save t))
