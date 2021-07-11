@@ -14,6 +14,8 @@ STORES=$MAILDIR/stores
 
 if (/^From:.*inform@emails.tinkoff.ru/)
     to $BANKS
+if (/^From:.*info@emails.tinkoff.ru/)
+    to $BANKS
 if (/^From:.*raiffeisen@email.raiffeisen.ru/)
     to $BANKS
 if (/^From:.*Darya.KOMAROVA@raiffeisen.ru/)
@@ -124,6 +126,8 @@ if (/^From:.*no-reply@escapefromtarkov.com/)
     to $SOCIAL
 if (/^From:.*@gaijin.net/)
     to $SOCIAL
+if (/^From:.*@boosty.to/)
+    to $SOCIAL
 
 if (/^From:.*no-reply@gosuslugi.ru/)
     to $STATE
@@ -136,6 +140,8 @@ if (/^From:.*noreply@gorod.gov.spb.ru/)
 if (/^From:.*no-reply@mvd.ru/)
     to $STATE
 if (/^From:.*notification@russianpost.ru/)
+    to $STATE
+if (/^From:.*@roi.ru/)
     to $STATE
 
 if (/^From:.*@pickpoint.ru/)
@@ -193,6 +199,14 @@ if (/^From:.*@d-76.ru/)
 if (/^From:.*@aloea.ru/)
     to $STORES
 if (/^From:.*@vkusnyesushi.ru/)
+    to $STORES
+if (/^From:.*@notice.alibaba.com/)
+    to $STORES
+if (/^From:.*@ikea.com/)
+    to $STORES
+if (/^From:.*@groomix.ru/)
+    to $STORES
+if (/^From:.*zadiarn@gmail.com/)
     to $STORES
 
 if (/^From:.*news@news.ozon.ru/)
