@@ -56,8 +56,14 @@ bindsym $mod+Shift+q kill
 # start i3lock
 bindsym $mod+Shift+x exec ~/.i3/lock.sh
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec ~/.i3/goodmenu.sh
+# start dmenus:
+bindsym $mod+d exec ~/.i3/menu_help.sh; mode "dmenu"
+mode "dmenu" {
+    bindsym d exec ~/.i3/menu.sh; mode "default"
+    bindsym m exec ~/.i3/menu_modes.sh; mode "default"
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
 
 # change focus
 bindsym $mod+j focus down
