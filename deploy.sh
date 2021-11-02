@@ -13,6 +13,9 @@ fi
 export STOW_DIR=.
 stow bin cmd
 
+# Clearing precompiled Emacs-Lisp files if exists
+find ~/.emacs.d/plugins/haskell-mode/ -type f -exec rm {} \;
+
 # Copying dotfiles to $HOME
 export STOW_DIR=./utils
 stow abook emacs git i3wm mplayer mutt rtorrent tmux vim zathura
@@ -54,6 +57,10 @@ chmod -v 600 ~/.netrc
 # Installing crontab
 echo "Installing crontab"
 crontab ./utils/crontab/crontab
+
+# Compiling emacs plugins
+echo "Compiling haskell-mode plugin"
+cd ~/.emacs.d/plugins/haskell-mode && make > /dev/null
 
 # Select target system if not selected yet
 if [ ! -f ~/.gentoo ] && \

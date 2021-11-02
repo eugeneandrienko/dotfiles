@@ -87,8 +87,6 @@ Install next programs via `cabal install`:
 
 #### Emacs plugins compilation
 
-Run `cd ~/.emacs.d/plugins/haskell-mode && make`.
-
 Run `C-u 0 M-x byte-recompile-directory` to recomplile contents of `~/.emacs.d/plugins`.
 
 #### File synchronization
