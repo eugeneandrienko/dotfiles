@@ -205,6 +205,7 @@ bar {
 # Workspace-mapped windows:
 assign [class="Firefox"]   web
 assign [class="firefox"]   web
+assign [class="Telegram"]  web
 assign [class="tmux"]      1
 assign [class="Vncviewer"] 10
 # Floating windows:
