@@ -7,17 +7,10 @@ general {
        color_bad  = "#cc9393"
 }
 
-order = "path_exists THEATRE"
-order += "cpu_usage"
+order = "cpu_usage"
 order += "ethernet enp5s0"
 order += "volume master"
 order += "tztime local"
-
-path_exists THEATRE {
-    path = "/home/drag0n/.mode-theatre"
-    format = "TM"
-    format_down = ""
-}
 
 cpu_usage {
     format = "C: %usage"
