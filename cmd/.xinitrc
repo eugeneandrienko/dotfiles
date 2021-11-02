@@ -10,7 +10,7 @@ feh --bg-fill --no-fehbg /home/drag0n/rsync/filez/wallpaperz/OUMA_xVt_O8.jpg
 
 if [ -f ~/.gentoo ]; then
     xrandr --output DVI-D-1 --primary
-    xrandr --output DVI-D-2 --auto --right-of DVI-D-1
+    xrandr --output HDMI-3 --auto --right-of DVI-D-1
 fi
 
 if [ -f ~/.gentoo ]; then
