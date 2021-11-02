@@ -60,7 +60,7 @@ crontab ./utils/crontab/crontab
 
 # Compiling emacs plugins
 echo "Compiling haskell-mode plugin"
-cd ~/.emacs.d/plugins/haskell-mode && make > /dev/null
+cd ~/.emacs.d/plugins/haskell-mode && gmake > /dev/null
 
 # Select target system if not selected yet
 if [ ! -f ~/.gentoo ] && \
