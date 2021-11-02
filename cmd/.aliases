@@ -112,4 +112,5 @@ youtube() {
 # Media-related aliases
 alias img2gif='convert -delay 15 -loop 0 '
 alias webm2mp4='ffmpeg -i '
+alias scrt='sleep 3 && scrot -sfz -l style=dash,width=1'
 
