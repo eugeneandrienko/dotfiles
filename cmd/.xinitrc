@@ -16,7 +16,7 @@ fi
 if [ -f ~/.gentoo ]; then
     numlockx
 fi
-~/.i3/redshift.sh
+~/.bin/redshift.sh
 
 if [ -f ~/.freebsd-thinkpad ]; then
     doas sysctl hw.acpi.video.lcd0.brightness=70

@@ -15,7 +15,7 @@ case $(echo $MODES_ITEMS | tr ':' '\n' | eval "$DMENU_CMD -p Mode:") in
     'night')
         ;;
     'redshift')
-        ~/.i3/redshift.sh
+        ~/.bin/redshift.sh
         ;;
     'noredshift')
         pkill redshift
