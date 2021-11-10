@@ -20,6 +20,7 @@ This repository contains different configuration files, which I have been writin
 * maildrop
 * msmtp
 * mutt
+* newsboat
 * pass
 * python3
 * perl
