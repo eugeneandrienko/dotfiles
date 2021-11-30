@@ -18,7 +18,7 @@ find ~/.emacs.d/plugins/haskell-mode/ -type f -exec rm {} \;
 
 # Copying dotfiles to $HOME
 export STOW_DIR=./utils
-stow abook emacs git i3wm mplayer mutt newsboat rtorrent tmux vim zathura
+stow abook emacs git i3wm mplayer mutt newsboat rtorrent ssh tmux vim zathura
 
 # Making necessary (empty) directories
 mkdir -pv "$HOME/secure/.emacs.d"
