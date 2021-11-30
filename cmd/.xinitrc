@@ -24,6 +24,8 @@ if [ -f ~/.freebsd-thinkpad ]; then
     xset s noblank
 fi
 
+xrdb ~/.Xresources
+
 if [ -f ~/.gentoo ]; then
     exec /usr/bin/i3 -c ~/.i3/config
 elif [ -f ~/.freebsd-thinkpad ]; then
