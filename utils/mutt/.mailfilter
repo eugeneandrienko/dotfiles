@@ -22,6 +22,12 @@ if (/^From:.*Darya.KOMAROVA@raiffeisen.ru/)
     to $BANKS
 if (/^From:.*@bspb.ru/)
     to $BANKS
+if (/^From:.*@emails.tinkoffinsurance.ru/)
+    to $BANKS
+if (/^From:.*@raiffeisen.ru/)
+    to $BANKS
+if (/^From:.*@emails.tinkoff.ru/)
+    to $BANKS
 
 if (/^From:.*ofdreceipt@beeline.ru/)
     to $CHECKS
@@ -39,10 +45,10 @@ if (/^From:.*no-reply-aws@amazon.com/ && \
     /^Subject: Thank you for your payment/ )
     to $CHECKS
 if (/^From:.*aws-receivables-support@email.amazon.com/ && \
-    /^Subject: Amazon Web Services Invoice.*/ )
+    /^Subject: Amazon Web Services Invoice.*/)
     to $CHECKS
 if (/^From:.*no-reply-aws@amazon.com/ && \
-    /^Subject: Amazon Web Services VAT Invoice.*/ )
+    /^Subject: Amazon Web Services VAT Invoice.*/)
     to $CHECKS
 if (/^From:.*noreply@ozon.ru/)
     to $CHECKS
@@ -55,8 +61,6 @@ if (/^From:.*noreply@taxcom.ru/)
 if (/^From:.*robot@robokassa.ru/)
     to $CHECKS
 if (/^From:.*no-reply@ofd.yandex.ru/)
-    to $CHECKS
-if (/^From:.*bingo@patreon.com/)
     to $CHECKS
 if (/^From:.*noreply@rbkmoney.com/)
     to $CHECKS
@@ -79,6 +83,25 @@ if (/^From:.*noreply@cloudkassir.ru/)
 if (/^From:.*noreply@sbis.ru/)
     to $CHECKS
 if (/^From:.*noreply@ofd.ru/)
+    to $CHECKS
+if (/^From:.*admin@notify.vk.com/ && \
+    /^Subject: Платёжная квитанция/)
+    to $CHECKS
+if (/^From:.*no-reply@ofd-ya.net/)
+    to $CHECKS
+if (/^From:.*noreply@rambler-co.ru/)
+    to $CHECKS
+if (/^From:.*hello@afisha.yandex.ru/ && \
+    /^Subject: Чек.*/)
+   to $CHECKS
+if (/^From:.*bingo@patreon.com/ && \
+    /^Subject:.*Patreon receipt is here.*/)
+   to $CHECKS
+if (/^From:.*@server.paykeeper.ru/)
+    to $CHECKS
+if (/^From:.*@cloudpayments.ru/)
+    to $CHECKS
+if (/^From:.*@yoomoney.ru/)
     to $CHECKS
 
 if (/^To:.*haskell@haskell.org/)
@@ -127,6 +150,12 @@ if (/^From:.*no-reply@escapefromtarkov.com/)
 if (/^From:.*@gaijin.net/)
     to $SOCIAL
 if (/^From:.*@boosty.to/)
+    to $SOCIAL
+if (/^From:.*@facebookmail.com/)
+    to $SOCIAL
+if (/^From:.*@e.ea.com/)
+    to $SOCIAL
+if (/^From:.*bingo@patreon.com/)
     to $SOCIAL
 
 if (/^From:.*no-reply@gosuslugi.ru/)
@@ -180,7 +209,7 @@ if (/^From:.*@yarkiy.ru/)
     to $STORES
 if (/^From:.*@photolubitel.com/)
     to $STORES
-if (/^From:.*@bookvoed.ru/)
+if (/^From:.*@bookvoed.ru/ && ! /^From:.*letter@bookvoed.ru/)
     to $STORES
 if (/^From:.*@lavka.yandex.ru/)
     to $STORES
@@ -207,6 +236,14 @@ if (/^From:.*@ikea.com/)
 if (/^From:.*@groomix.ru/)
     to $STORES
 if (/^From:.*zadiarn@gmail.com/)
+    to $STORES
+if (/^From:.*@sender.mvideo.ru/)
+    to $STORES
+if (/^From:.*@iwearmedicine.ru/)
+    to $STORES
+if (/^From:.*@812photo.ru/)
+    to $STORES
+if (/^From:.*@hobbygames.ru/)
     to $STORES
 
 if (/^From:.*news@news.ozon.ru/)
@@ -248,6 +285,33 @@ if (/^From:.*@psycheforum.ru/)
 if (/^From:.*@turing.com/)
     to /dev/null
 if (/^Subject:.*\[Haskell\] \[.*/)
+    to /dev/null
+if (/^From:.*@gmsservices.ru/)
+    to /dev/null
+if (/^From:.*@events-it.ru/)
+    to /dev/null
+if (/^From:.*donotreply@secureserver.net/)
+    to /dev/null
+if (/^From:.*offer@getoffer.dev/)
+    to /dev/null
+if (/^From:.*events_ru@epam.com/ && \
+    /^Subject:.*Hiring Week.*/)
+    to /dev/null
+if (/^From:.*@worldanimalprotection.us/)
+    to /dev/null
+if (/^From:.*@www.stayer.su/)
+    to /dev/null
+if (/^From:.*letter@bookvoed.ru/)
+    to /dev/null
+if (/^From:.*@email.tvrain.ru/)
+    to /dev/null
+if (/^From:.*news@subscribe.irr.ru/)
+    to /dev/null
+if (/^From:.*newsletter@shopfans.ru/)
+    to /dev/null
+if (/^From:.*@latoken.com/)
+    to /dev/null
+if (/^From:.*@official.vsco.co/)
     to /dev/null
 
 if (/.*/)
