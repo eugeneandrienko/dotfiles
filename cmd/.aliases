@@ -82,7 +82,7 @@ alias mvnpom='mvn help:effective-pom'
 alias mvndep='mvn dependency:tree'
 
 # Tmux
-alias txl='tmux ls'
+alias txl='tmux list-sessions'
 alias txa='tmux -2 a -t'
 alias txn='tmux -2 new -s'
 alias tmux='tmux -2'
@@ -94,7 +94,7 @@ alias xpaste='xclip -selection clipboard -o'
 # Gentoo aliases
 if [ -f ~/.gentoo ]; then
     alias emerge-update='doas emerge-webrsync; \
-                         read -p "Press Enter " NOTUSING; \
+                         read NOTUSING?"Press Enter "; \
                          doas emerge --ask -uDU --keep-going --with-bdeps=y @world'
  fi
 
