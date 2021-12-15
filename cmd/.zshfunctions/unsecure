@@ -1,6 +1,12 @@
 if [ -f ~/.freebsd-thinkpad ]; then
-    pefs mount $HOME/secure $HOME/secure && \
-             pefs addkey -a aes256 -c $HOME/secure || \
-             pefs umount $HOME/secure
+    pefs mount | grep -q secure
+    if [ "$?" -ne 0 ]; then
+        rm -vf $HOME/secure/.zsh_history && \
+            pefs mount $HOME/secure $HOME/secure && \
+            pefs addkey -a aes256 -c $HOME/secure || \
+            pefs umount $HOME/secure
+    else
+        echo "Already mounted!"
+    fi
 fi
 
