@@ -11,6 +11,8 @@ M-x template-latex-report       - create LaTeX report in current catalog
 M-x template-latex-presentation - create LaTeX presentation in current
                                   catalog
 C-c C-c                         - build or view LaTeX source
+C-c C-e                         - insert environment
+C-c C-s                         - insert heading
 F12                             - enable syntax checking (by aspell)
 
 M-x haskell-debug               - start debugger
