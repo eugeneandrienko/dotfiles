@@ -1,0 +1,2 @@
+mencoder mf://*.jpg -mf w=4616:h=3464:fps=10:type=jpg -ovc lavc -lavcopts vcodec=msmpeg4v2:vbitrate=16000:keyint=15:mbd=2:trell -oac copy -o "$1"
+

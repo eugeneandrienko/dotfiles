@@ -1,0 +1,5 @@
+for i in *.png; do
+    FNAME=$(echo "$i" | sed -r 's/(.+)\.png/\1/g')
+    convert "$i" "$FNAME".jpg
+done
+
