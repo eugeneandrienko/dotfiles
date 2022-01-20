@@ -14,6 +14,10 @@ C-c C-c                         - build or view LaTeX source
 C-c C-e                         - insert environment
 C-c C-s                         - insert heading
 F12                             - enable syntax checking (by aspell)
+C-c =                           - show ToC
+C-s M-r                         - regexp search
+C-r M-r                         - reverse regexp search
+M-% (after search starts)       - query replace (\(\) - group)
 
 M-x haskell-debug               - start debugger
 M-x haskell-mode-stylish-buffer - format Haskell file
@@ -137,7 +141,7 @@ d - show one/two page(s) per screen"
 
 function hotkeys() {
     declare -A HOTKEYS_LIST
-    for i in $(set | /usr/bin/env grep '^HOTKEYS_TEXT_' | sed -r 's/HOTKEYS_TEXT_(.*)=.*/\1/g'); do
+    for i in $(set | /usr/bin/env grep '^HOTKEYS_TEXT_' | sed -r 's/HOTKEYS_TEXT_([^=]*)=.*/\1/g'); do
         INDEX="$(echo $i | head -c 1 | tr '[:upper:]' '[:lower:]')"
         HOTKEYS_LIST["$INDEX"]="$i"
     done

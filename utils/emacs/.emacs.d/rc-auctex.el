@@ -8,6 +8,7 @@
 (add-hook 'LaTeX-mode-hook '(lambda () (set-fill-column 80)))
 (add-hook 'LaTeX-mode-hook 'auto-fill-mode)
 (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 
 (setq TeX-open-quote "<<")
 (setq TeX-close-quote ">>")
@@ -26,6 +27,8 @@
 (setq LaTeX-command "latex")
 ;use pdflatex unstead of latex
 (setq TeX-PDF-mode t)
+;enabled RefTeX
+(setq reftex-plug-into-AUCTeX t)
 (custom-set-faces
  '(font-latex-sectioning-0-face ((t (:inherit font-latex-sectioning-1-face :foreground "green" :height 1.1))))
  '(font-latex-sectioning-1-face ((t (:inherit font-latex-sectioning-2-face :foreground "green" :height 1.1))))
