@@ -2,4 +2,5 @@ browser "~/.bin/firefox-mutt.sh %u"
 confirm-delete-all-articles yes
 confirm-mark-all-feeds-read yes
 include plain
+ssl-verifypeer no
 
