@@ -33,6 +33,7 @@ This repository contains different configuration files, which I have been writin
 * vim
 * wget
 * xclip
+* yt-dlp
 * zsh
 
 Also, you may be need to install some fonts, like Terminus and Droid Sans Mono.

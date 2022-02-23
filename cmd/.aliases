@@ -98,7 +98,7 @@ if [ -f ~/.gentoo ]; then
                          doas emerge --ask -uDU --keep-going --with-bdeps=y @world'
  fi
 
-# youtube-dl aliases
+# yt-dlp aliases
 alias ydl='youtube-dl --proxy socks5://127.0.0.1:8080'
 alias ydl_podcast="youtube-dl --proxy socks5://127.0.0.1:8080 --continue \
                   --write-description --extract-audio --audio-format mp3 \
