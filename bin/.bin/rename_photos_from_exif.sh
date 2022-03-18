@@ -24,7 +24,7 @@ get_images_list2() {
 }
 get_images_list() {
     if [ -n "$DONT_TOUCH_RENAMED" ] && [ "$DONT_TOUCH_RENAMED" -eq "1" ]; then
-        get_images_list2 | grep -v '\./[1-2][0-9]\{3,3\}[0-1][0-9][0-3][0-9]_[0-2][0-9][0-5][0-9][0-5][0-9]\.[a-zA-Z]\{1,\}'
+        get_images_list2 | grep -v '\./[1-2][0-9]\{3,3\}[0-1][0-9][0-3][0-9]_[0-2][0-9][0-5][0-9][0-5][0-9] \{0,1\}-\{0,1\} \{0,1\}.\{0,\}\.[a-zA-Z]\{1,\}'
     else
         get_images_list2
     fi
