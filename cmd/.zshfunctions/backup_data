@@ -1,0 +1,20 @@
+function backup_data() {
+    mount | grep -q '/mnt'
+    if [ "$?" -ne "0" ]; then
+        echo "Disk not mounted to /mnt/"
+        return
+    fi
+    OPTIONS="--update"
+    _safe_backup "$OPTIONS" ~/docs      /mnt/
+    _safe_backup "$OPTIONS" ~/git_repos /mnt/
+    _safe_backup "$OPTIONS" ~/music     /mnt/
+    _safe_backup "$OPTIONS" ~/pictures  /mnt/
+    _safe_backup "$OPTIONS" ~/rsync     /mnt/
+    _safe_backup "$OPTIONS" ~/raws      /mnt/
+}
+
+function _safe_backup() {
+    opts=(-aPh)
+    rsync $opts $1 $2 $3
+}
+
