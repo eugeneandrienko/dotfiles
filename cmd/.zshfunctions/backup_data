@@ -4,7 +4,7 @@ function backup_data() {
         echo "Disk not mounted to /mnt/"
         return
     fi
-    OPTIONS="--update"
+    OPTIONS="--delete"
     _safe_backup "$OPTIONS" ~/docs      /mnt/
     _safe_backup "$OPTIONS" ~/git_repos /mnt/
     _safe_backup "$OPTIONS" ~/music     /mnt/
