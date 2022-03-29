@@ -37,7 +37,7 @@ This repository contains different configuration files, which I have been writin
 * yt-dlp
 * zsh
 
-Also, you may be need to install some fonts, like Terminus and Droid Sans Mono.
+Also, you may be need to install some fonts, like Terminus and Noto Mono.
 
 For the FreeBSD `pefs-kmod` should be installed and `pefs` module should be loaded into the kernel.
 
@@ -100,5 +100,16 @@ If you need to control brightness of display when starting X-server — add next
 
 ```
 permit nopass drag0n as root cmd tee args /sys/class/backlight/intel_backlight/brightness
+```
+
+#### Import GPG keys
+
+Use this commands:
+```
+gpg --list-keys
+gpg --export -a <uid> > pub.key
+gpg --export-secret-key -a <uid> > priv.key
+gpg --import pub.key
+gpg --import priv.key
 ```
 
