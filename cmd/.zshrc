@@ -54,8 +54,6 @@ autoload -z scanphoto_10x15
 autoload -z scana4
 autoload -z hotkeys && hotkeys
 autoload -z main_machine
-autoload -z secure
-autoload -z unsecure
 autoload -z png2jpg
 autoload -z jpg2timelapse
 autoload -z backup_data && backup_data

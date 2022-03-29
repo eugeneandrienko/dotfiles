@@ -15,6 +15,7 @@ This repository contains different configuration files, which I have been writin
 * ghc
 * git
 * gpg
+* i3
 * jq
 * lynx
 * maildrop
@@ -56,17 +57,6 @@ For the FreeBSD `pefs-kmod` should be installed and `pefs` module should be load
 
 In the `$HOME` should exists `secure/` catalog which should be encrypted.
 
-#### Encryption in FreeBSD
-
-```
-pefs addchain -a aes256 -fZ $HOME/secure
-pefs mount $HOME/secure $HOME/secure
-pefs addkey -a aes256 -c $HOME/secure
-pefs umount $HOME/secure
-```
-
-To open encrypted directory use `unsecure` alias, to encrypt directory again - `secure` alias.
-
 ### Install
 
 Clone this repository to some suitable directory.
@@ -93,7 +83,7 @@ Run `C-u 0 M-x byte-recompile-directory` to recomplile contents of `~/.emacs.d/p
 
 #### File synchronization
 
-To work with file synchronization via rsync you need to have `sync` SSH-key with empty passphrase. This key should be added to remote server to rsync account into
+To work with file synchronization via cloudsync you need to have `sync` SSH-key with empty passphrase. This key should be added to remote server to rsync account into
 `~/.ssh/authorized_keys`.
 
 #### Passwords
@@ -109,6 +99,6 @@ You should update your `/etc/hosts` with data from `noauto/hosts`.
 If you need to control brightness of display when starting X-server — add next line to `doas.conf`:
 
 ```
-permit nopass  drag0n as root cmd sysctl args hw.acpi.video.lcd0.brightness=70
+permit nopass drag0n as root cmd tee args /sys/class/backlight/intel_backlight/brightness
 ```
 

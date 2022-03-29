@@ -5,7 +5,7 @@ if [ -f ~/.gentoo ]; then
        [ -x /usr/bin/firefox-bin ]; then
         /usr/bin/apulse /usr/bin/firefox-bin &
     fi
-elif [ -f ~/.freebsd-thinkpad ]; then
-    /usr/local/bin/firefox &
+elif [ -f ~/.debian ]; then
+    /usr/bin/firefox &
 fi
 

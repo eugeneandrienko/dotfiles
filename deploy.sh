@@ -64,12 +64,12 @@ cd ~/.emacs.d/plugins/haskell-mode && gmake > /dev/null
 
 # Select target system if not selected yet
 if [ ! -f ~/.gentoo ] && \
-    [ ! -f ~/.freebsd-thinkpad ]; then
+    [ ! -f ~/.debian ]; then
     echo
-    echo 'OS and machines:'
+    echo 'OS:'
     echo
     echo 'g) Gentoo (GNU/Linux)'
-    echo 'ft) FreeBSD on the Thinkpad'
+    echo 'd) Debian'
     echo
     read 'SELECTED_OS?Select OS: '
 
@@ -78,13 +78,40 @@ if [ ! -f ~/.gentoo ] && \
             touch ~/.gentoo
             echo 'Selected Gentoo (GNU/Linux)'
             ;;
-        'ft')
-            touch ~/.freebsd-thinkpad
-            echo 'Selected FreeBSD on the Thinkpad'
+        'd')
+            touch ~/.debian
+            echo 'Selected Debian'
             ;;
         '*')
             echo 'Wrong input! Cannot determine OS - system may work incorrectly!'
             exit 2
+            ;;
+    esac
+fi
+
+# Select target machine if not selected yet
+if [ ! -f ~/.zalman ] && \
+    [ ! -f ~/.thinkpad ]; then
+    echo
+    echo 'Machine:'
+    echo
+    echo 'z) Zalman'
+    echo 't) Thinkpad'
+    echo
+    read 'SELECTED_MACHINE?Select machine: '
+
+    case "$SELECTED_MACHINE" in
+        'z')
+            touch ~/.zalman
+            echo 'Selected Zalman'
+            ;;
+        't')
+            touch ~/.thinkpad
+            echo 'Selected Thinkpad'
+            ;;
+        '*')
+            echo 'Wrong input! Cannot determine machine - system may work incorrectly!'
+            exit 3
             ;;
     esac
 fi

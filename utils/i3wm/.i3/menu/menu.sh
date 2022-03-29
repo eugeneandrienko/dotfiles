@@ -4,14 +4,14 @@ FONT="'-xos4-terminus-*-*-*-*-14-*-*-*-*-*-*-u'"
 COLORS="-sb '#000000' -sf '#ffffff' -nb '#ffffff' -nf '#000000'"
 DMENU_CMD="dmenu -i -b -fn $FONT $COLORS"
 
-if [ -f ~/.gentoo ]; then
+if [ -f ~/.zalman ]; then
     DMENU_ITEMS="firefox:firefox_unsec:telegram"
     DMENU_ITEMS+=":audacious:gimp:rawtherapee:openshot"
     DMENU_ITEMS+=":qmapshack:josm:stellarium"
     DMENU_ITEMS+=":idea:android-file-transfer"
-elif [ -f ~/.freebsd-thinkpad ]; then
+elif [ -f ~/.thinkpad ]; then
     DMENU_ITEMS="firefox:firefox_unsec:telegram"
-    DMENU_ITEMS+=":gimp"
+    DMENU_ITEMS+=":gimp:rawtherapee"
     DMENU_ITEMS+=":qmapshack:josm:stellarium"
     DMENU_ITEMS+=":android-file-transfer"
 fi
@@ -23,16 +23,12 @@ case $(echo $DMENU_ITEMS | tr ':' '\n' | eval "$DMENU_CMD -p Execute:") in
     'firefox_unsec')
         if [ -f ~/.gentoo ]; then
             /usr/bin/apulse /usr/bin/firefox-bin -P unsecure &
-        elif [ -f ~/.freebsd-thinkpad ]; then
-            /usr/local/bin/firefox -P unsecure &
+        elif [ -f ~/.debian ]; then
+            /usr/bin/firefox -P unsecure &
         fi
         ;;
     'telegram')
-        if [ -f ~/.gentoo ]; then
-            /home/drag0n/bin/telegram/Telegram &
-        elif [ -f ~/.freebsd-thinkpad ]; then
-            /usr/local/bin/telegram-desktop &
-        fi
+        /home/drag0n/bin/telegram/Telegram &
         ;;
     'audacious')
         /usr/bin/audacious &

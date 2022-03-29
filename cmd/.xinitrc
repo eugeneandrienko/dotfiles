@@ -1,34 +1,30 @@
 #!/usr/bin/env zsh
 
-if [ -f ~/.gentoo ]; then
+if [ -f ~/.zalman ]; then
     setxkbmap -layout us,ru -option grp:caps_toggle -option grp_led:caps -option compose:ralt
-elif [ -f ~/.freebsd-thinkpad ]; then
-    setxkbmap -rules "evdev" -model "thinkpad" -layout us,ru -option grp:caps_toggle -option grp_led:caps -option compose:ralt -keycodes evdev
+elif [ -f ~/.thinkpad ]; then
+    setxkbmap -model "thinkpad" -layout us,ru -option grp:caps_toggle -option grp_led:caps -option compose:ralt
 fi
 
 feh --bg-fill --no-fehbg /home/drag0n/rsync/filez/wallpaperz/OUMA_xVt_O8.jpg
 
-if [ -f ~/.gentoo ]; then
+if [ -f ~/.zalman ]; then
     xrandr --output DVI-D-1 --primary
     xrandr --output HDMI-3 --auto --right-of DVI-D-1
 fi
 
-if [ -f ~/.gentoo ]; then
+if [ -f ~/.zalman ]; then
     numlockx
 fi
 ~/.bin/redshift.sh
 
-if [ -f ~/.freebsd-thinkpad ]; then
-    doas sysctl hw.acpi.video.lcd0.brightness=70
+if [ -f ~/.thinkpad ]; then
+    echo 2323 | doas tee /sys/class/backlight/intel_backlight/brightness
     xset s off
     xset s noblank
 fi
 
 xrdb ~/.Xresources
 
-if [ -f ~/.gentoo ]; then
-    exec /usr/bin/i3 -c ~/.i3/config
-elif [ -f ~/.freebsd-thinkpad ]; then
-    exec /usr/local/bin/i3 -c ~/.i3/config
-fi
+exec /usr/bin/i3 -c ~/.i3/config
 
