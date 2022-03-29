@@ -1,0 +1,41 @@
+function drivesync() {
+    OPTIONS="--update"
+
+    # remote -> local
+    _safe_dsync "$OPTIONS" /mnt/rsync    ~/
+    _safe_dsync "$OPTIONS" /mnt/dotfiles ~/git_repos
+    # local -> remote
+    _safe_dsync "$OPTIONS" ~/rsync              /mnt/
+    _safe_dsync "$OPTIONS" ~/git_repos/dotfiles /mnt/
+}
+
+function drivesync_force_drive() {
+    OPTIONS="--delete"
+    _safe_dsync "$OPTIONS" /mnt/rsync    ~/
+    _safe_dsync "$OPTIONS" /mnt/dotfiles ~/git_repos
+}
+
+function drivesync_force_local() {
+    OPTIONS="--delete"
+    _safe_dsync "$OPTIONS" ~/rsync              /mnt/
+    _safe_dsync "$OPTIONS" ~/git_repos/dotfiles /mnt/
+}
+
+function _safe_dsync() {
+    opts=(-aEPhAX --exclude-from=$HOME/rsync/.rsyncignore)
+
+    rsync $opts $1 -ni $2 $3
+
+    echo "$2" | grep -q '/mnt'
+    if [ "$?" -eq 0 ]; then
+        ASK="Sync these files from drive to local? [y/n] "
+    else
+        ASK="Sync these files from local to drive? [y/n] "
+    fi
+
+    read ANSWER?"$ASK"
+    if [ "$ANSWER" == "y" ]; then
+        rsync $opts $1 --progress $2 $3
+    fi
+}
+

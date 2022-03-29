@@ -59,6 +59,7 @@ autoload -z unsecure
 autoload -z png2jpg
 autoload -z jpg2timelapse
 autoload -z backup_data && backup_data
+autoload -z drivesync && drivesync
 
 if [ -e ~/.aliases ]; then
     . ~/.aliases
