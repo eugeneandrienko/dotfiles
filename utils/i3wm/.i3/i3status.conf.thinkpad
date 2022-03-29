@@ -36,6 +36,8 @@ battery 0 {
     status_full = "FULL"
     threshold_type = "time"
     low_threshold = 10
+    integer_battery_capacity = true
+    last_full_capacity = true
 }
 
 ethernet em0 {
@@ -52,8 +54,7 @@ wireless wlan0 {
 volume master {
     format = "♪: %volume"
     format_muted = "✕: %volume"
-    device = "pcm0"
-    mixer = "vol"
+    device = "pulse:0"
 }
 
 tztime local {
