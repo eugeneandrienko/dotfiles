@@ -1,6 +1,8 @@
 function drivesync() {
     OPTIONS="--update"
 
+    _chown_mnt
+
     # remote -> local
     _safe_dsync "$OPTIONS" /mnt/rsync    ~/
     _safe_dsync "$OPTIONS" /mnt/dotfiles ~/git_repos
@@ -11,12 +13,14 @@ function drivesync() {
 
 function drivesync_force_drive() {
     OPTIONS="--delete"
+    _chown_mnt
     _safe_dsync "$OPTIONS" /mnt/rsync    ~/
     _safe_dsync "$OPTIONS" /mnt/dotfiles ~/git_repos
 }
 
 function drivesync_force_local() {
     OPTIONS="--delete"
+    _chown_mnt
     _safe_dsync "$OPTIONS" ~/rsync              /mnt/
     _safe_dsync "$OPTIONS" ~/git_repos/dotfiles /mnt/
 }
@@ -37,5 +41,10 @@ function _safe_dsync() {
     if [ "$ANSWER" == "y" ]; then
         rsync $opts $1 --progress $2 $3
     fi
+}
+
+function _chown_mnt() {
+    echo 'Doing chown -R drag0n:drag0n /mnt/*'
+    doas chown -R drag0n:drag0n /mnt/*
 }
 
