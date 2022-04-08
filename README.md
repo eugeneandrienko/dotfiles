@@ -6,6 +6,7 @@ This repository contains different configuration files, which I have been writin
 
 * abook
 * aspell
+* bc
 * cabal
 * ctags
 * doas

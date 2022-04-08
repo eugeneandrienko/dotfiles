@@ -184,6 +184,8 @@ bindsym XF86AudioPlay exec --no-startup-id /usr/bin/audacious -t
 bindsym XF86AudioStop exec --no-startup-id /usr/bin/audacious -s
 bindsym XF86AudioPrev exec --no-startup-id /usr/bin/audacious -r
 bindsym XF86AudioNext exec --no-startup-id /usr/bin/audacious -f
+bindsym XF86MonBrightnessDown exec --no-startup-id ~/.i3/brightness.sh down
+bindsym XF86MonBrightnessUp exec --no-startup-id ~/.i3/brightness.sh up
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
