@@ -209,9 +209,9 @@ assign [class="Telegram"]  web
 assign [class="tmux"]      1
 assign [class="Vncviewer"] 10
 # Floating windows:
-for_window [title="VK | Share Link - Chromium"] floating enable
-for_window [class="Chromium" window_role="app"] floating enable
-for_window [class="MPlayer"]                    floating enable
+for_window [class="MPlayer"]                        floating enable
+for_window [class="jetbrains-idea-ce" title="win0"] floating enable
+for_window [class="jetbrains-idea-ce" title="win0"] border none
 # Assign workspaces to monitors:
 workspace 1   output DVI-D-1
 workspace web output DVI-D-1
