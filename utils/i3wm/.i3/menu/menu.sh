@@ -13,7 +13,7 @@ elif [ -f ~/.thinkpad ]; then
     DMENU_ITEMS="firefox:firefox_unsec:telegram"
     DMENU_ITEMS+=":gimp:rawtherapee"
     DMENU_ITEMS+=":qmapshack:josm:stellarium"
-    DMENU_ITEMS+=":android-file-transfer"
+    DMENU_ITEMS+=":idea:android-file-transfer"
 fi
 
 case $(echo $DMENU_ITEMS | tr ':' '\n' | eval "$DMENU_CMD -p Execute:") in
