@@ -4,6 +4,7 @@ function backup_data() {
         echo "Disk not mounted to /mnt/"
         return
     fi
+    _chown_mnt
     OPTIONS="--delete"
     _safe_backup "$OPTIONS" ~/docs      /mnt/
     _safe_backup "$OPTIONS" ~/git_repos /mnt/
@@ -16,5 +17,13 @@ function backup_data() {
 function _safe_backup() {
     opts=(-aPh)
     rsync $opts $1 $2 $3
+}
+
+function _chown_mnt() {
+    echo 'Doing chown -R drag0n:drag0n /mnt/*'
+    while true; do
+        doas chown -R drag0n:drag0n /mnt/*
+        [[ "$?" -ne "0" ]] || break
+    done
 }
 
