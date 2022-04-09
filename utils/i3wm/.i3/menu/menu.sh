@@ -18,7 +18,7 @@ fi
 
 case $(echo $DMENU_ITEMS | tr ':' '\n' | eval "$DMENU_CMD -p Execute:") in
     'firefox')
-        /home/drag0n/.i3/firefox.sh
+        /home/drag0n/.bin/firefox.sh
         ;;
     'firefox_unsec')
         if [ -f ~/.gentoo ]; then

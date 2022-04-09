@@ -1,2 +1,2 @@
-COMMAND firefox-mutt.sh %s
+COMMAND ~/.bin/firefox.sh %s
 
