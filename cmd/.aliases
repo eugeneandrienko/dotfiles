@@ -97,7 +97,7 @@ if [ -f ~/.gentoo ]; then
 alias ydl='yt-dlp'
 alias ydl_podcast="yt-dlp --continue \
                   --write-description --extract-audio --audio-format mp3 \
-                  --embed-thumbnail --output '%(autonumber)s_%(title)s.%(ext)s'"
+                  --embed-thumbnail --output '%(video_autonumber)s_%(title)s.%(ext)s'"
 youtube() {
     mplayer -cookies -cookies-file /tmp/cookies.txt \
     $(yt-dlp -gf 22 \
