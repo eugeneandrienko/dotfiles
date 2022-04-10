@@ -28,6 +28,7 @@ This repository contains different configuration files, which I have been writin
 * perl
 * rsync
 * rtorrent
+* shred
 * stow
 * sxiv
 * tmux (>= 3.2)
@@ -57,6 +58,8 @@ For the FreeBSD `pefs-kmod` should be installed and `pefs` module should be load
 ### Before install
 
 In the `$HOME` should exists `secure/` catalog which should be encrypted.
+
+To store sensitive data (passwords, etc) in the archive for the new machine -- use `store_sensitive_data.sh` script.
 
 ### Install
 
@@ -107,10 +110,11 @@ permit nopass drag0n as root cmd tee args /sys/class/backlight/intel_backlight/b
 
 Use this commands:
 ```
-gpg --list-keys
-gpg --export -a <uid> > pub.key
-gpg --export-secret-key -a <uid> > priv.key
 gpg --import pub.key
 gpg --import priv.key
 ```
+
+Then call `gpg --edit-key <key-id>` and set trust level to 5 via command `trust`. Quit gpg console with `quit` command.
+
+#### Weather forecasts
 

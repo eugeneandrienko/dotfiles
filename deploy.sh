@@ -48,11 +48,15 @@ touch "$HOME/rsync/.rsyncignore"
 touch $HOME/secure/.netrc
 ln -s "$HOME/secure/.netrc" "$HOME/.netrc"
 
+# Create empty OpenWeatherMap API key file
+touch $HOME/secure/.openweathermap
+ln -s "$HOME/secure/.openweathermap" "$HOME/.openweathermap"
+
 # Changing access rights
 chmod -v 600 ~/.fdm.conf
 chmod -v 600 ~/.mailfilter
 chmod -v 600 ~/.msmtprc
-chmod -v 600 ~/.netrc
+chmod -v 600 ~/.netrc ~/secure/.netrc
 
 # Installing crontab
 echo "Installing crontab"
