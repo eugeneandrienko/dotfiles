@@ -9,6 +9,7 @@ This repository contains different configuration files, which I have been writin
 * bc
 * cabal
 * ctags
+* curl
 * doas
 * emacs
 * fdm

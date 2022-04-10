@@ -1,2 +1,3 @@
 */10 * * * * /home/drag0n/.bin/get_mail.sh
+*/30 * * * * /home/drag0n/.bin/get_weather.sh
 
