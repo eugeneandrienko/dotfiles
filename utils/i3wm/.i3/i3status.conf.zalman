@@ -19,7 +19,7 @@ read_file weather {
 }
 
 cpu_usage {
-    format = "C: %usage"
+    format = "CPU: %usage"
     max_threshold = 75
     degraded_threshold = 25
     format_above_threshold = "WARNING: %usage"
@@ -28,12 +28,12 @@ cpu_usage {
 
 ethernet enp5s0 {
     format_up = "%ip"
-    format_down = "Eth: down"
+    format_down = "eth down"
 }
 
 volume master {
-    format = "♪: %volume"
-    format_muted = "✕: %volume"
+    format = "Vol: %volume"
+    format_muted = "MUTE"
     device = "hw:0"
     mixer = "Master"
 }
