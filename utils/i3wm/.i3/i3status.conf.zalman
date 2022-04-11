@@ -19,7 +19,7 @@ read_file weather {
 }
 
 cpu_usage {
-    format = "📈 %usage"
+    format = "🗠 %usage"
     max_threshold = 75
     degraded_threshold = 25
     format_above_threshold = "WARNING %usage"
