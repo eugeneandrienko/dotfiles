@@ -80,7 +80,12 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 precmd() { printf "\a\033]2;\033\\" }
 
-RPROMPT="%F{blue}[%D{%H:%M:%S}]%f %n@%m"
+if [ -z $MC_TMPDIR ]; then
+    RPROMPT="%F{blue}[%D{%H:%M:%S}]%f %n@%m"
+else
+    # To properly display shell prompt without RPROMPT in mc
+    RPROMPT=""
+fi
 export RPROMPT
 
 mailpath=(
