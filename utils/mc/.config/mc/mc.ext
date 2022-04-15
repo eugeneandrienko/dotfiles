@@ -755,15 +755,15 @@ shell/i/.dvi
 
 # TeX
 shell/i/.tex
-	Open=emacs %s
-	View=emacs %s
-    Edit=emacs %s
+    Open=emacs -nw %s
+    View=emacs -nw %s
+    Edit=emacs -nw %s
 
 # Markdown
 shell/i/.md
-	Open=emacs %s
-	View=emacs %s
-    Edit=emacs %s
+    Open=emacs -nw %s
+    View=emacs -nw %s
+    Edit=emacs -nw %s
 
 # DjVu
 regex/i/\.djvu?$
