@@ -127,7 +127,8 @@ C     - decrease the download throttle by 50 KB"
 # Tmux
 ################################################################################
 HOTKEYS_TEXT_TMUX="C-b u - open urls from current window
-C-b t - open menu with additional actions"
+C-b t - open menu with additional actions
+C-b z - toogle zoom state of the current pane"
 
 ################################################################################
 ## Zathura
@@ -137,12 +138,36 @@ s - fit page to screen width
 d - show one/two page(s) per screen"
 
 ################################################################################
+## mc
+################################################################################
+HOTKEYS_TEXT_MC="C-x i   - set other panel to information display mode
+C-x q   - set other panel to quick view mode
+M-c     - cd command
+C-t     - tag file or directory
+M-g     - select top file on the panel
+M-r     - select middle file on the panel
+M-j     - select bottom file on the panel
++       - tag files by a pattern
+\\       - untag files by a pattern
+M-i     - make directory of current panel the current directory of the another panel
+M-s     - quick search in the current directory
+C-Space - show directory sizes
+C-\\     - show directory hotlist
+
+M-Shift-h - show directory history
+M-y       - move to previous directory in the directory history
+M-u       - move to next directory in the directory history
+
+M-Shift Enter - copy full path of file to command line
+M-Tab         - autocomplete filename, command, variable to command line"
+
+################################################################################
 ################################################################################
 
 function hotkeys() {
     declare -A HOTKEYS_LIST
     for i in $(set | /usr/bin/env grep '^HOTKEYS_TEXT_' | sed -r 's/HOTKEYS_TEXT_([^=]*)=.*/\1/g'); do
-        INDEX="$(echo $i | head -c 1 | tr '[:upper:]' '[:lower:]')"
+        INDEX="$(echo $i | head -c 2 | tr '[:upper:]' '[:lower:]')"
         HOTKEYS_LIST["$INDEX"]="$i"
     done
 

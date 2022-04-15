@@ -21,6 +21,8 @@ This repository contains different configuration files, which I have been writin
 * jq
 * lynx
 * maildrop
+* mc
+* mplayer
 * msmtp
 * mutt
 * newsboat
@@ -42,7 +44,15 @@ This repository contains different configuration files, which I have been writin
 
 Also, you may be need to install some fonts, like Terminus and Noto Mono.
 
-For the FreeBSD `pefs-kmod` should be installed and `pefs` module should be loaded into the kernel.
+GUI programs to install:
+* audacious
+* firefox
+* gimp
+* idea
+* josm
+* qmapshack
+* rawtherapee
+* telegram
 
 ### Contents
 
