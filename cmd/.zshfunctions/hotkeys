@@ -153,6 +153,7 @@ M-i     - make directory of current panel the current directory of the another p
 M-s     - quick search in the current directory
 C-Space - show directory sizes
 C-\\     - show directory hotlist
+M-\`     - show screens list
 
 M-Shift-h - show directory history
 M-y       - move to previous directory in the directory history
