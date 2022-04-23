@@ -20,7 +20,7 @@ function _umount_rsync() {
 }
 
 function _safe_rsync() {
-    opts=(-azPh --exclude-from=$HOME/rsync/.rsyncignore)
+    opts=(-azPh --exclude-from=$HOME/rsync/.rsyncignore --exclude=dotfiles/utils/mc/.config/mc/panels.ini)
 
     rsync $opts -e 'ssh -i ~/.ssh/sync' $1 -ni $2 $3
 

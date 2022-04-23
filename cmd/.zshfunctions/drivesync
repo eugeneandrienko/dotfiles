@@ -35,7 +35,7 @@ function _safe_dsync() {
     if [ "$4" == "y" ]; then
         opts=(-aEPhAX --exclude-from=$HOME/rsync/.rsyncignore --exclude=/mnt/rsync/mail)
     else
-        opts=(-aEPhAX --exclude-from=$HOME/rsync/.rsyncignore)
+        opts=(-aEPhAX --exclude-from=$HOME/rsync/.rsyncignore --exclude=dotfiles/utils/mc/.config/mc/panels.ini)
     fi
 
     rsync $opts $1 -ni $2 $3
