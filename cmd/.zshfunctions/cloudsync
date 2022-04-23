@@ -32,7 +32,7 @@ function _safe_rsync() {
     fi
 
     read ANSWER?"$ASK"
-    if [ "$ANSWER" == "y" ]; then
+    if [ "$ANSWER" = "y" ]; then
         rsync $opts -e 'ssh -i ~/.ssh/sync' $1 $2 $3
     fi
 }

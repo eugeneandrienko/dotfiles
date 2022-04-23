@@ -13,9 +13,15 @@ function drivesync() {
 
 function drivesync_force_drive() {
     OPTIONS="--delete"
+    if [ -f ~/.main-machine ]; then
+        read 'ANSWER?Sync mail? [y/n]: '
+        if [ "$ANSWER" = "n" ]; then
+            EXCLUDE_MAIL="y"
+        fi
+    fi
     _chown_mnt
-    _safe_dsync "$OPTIONS" /mnt/rsync    ~/
-    _safe_dsync "$OPTIONS" /mnt/dotfiles ~/git_repos
+    _safe_dsync "$OPTIONS" /mnt/rsync    ~/          $EXCLUDE_MAIL
+    _safe_dsync "$OPTIONS" /mnt/dotfiles ~/git_repos $EXCLUDE_MAIL
 }
 
 function drivesync_force_local() {
@@ -26,7 +32,11 @@ function drivesync_force_local() {
 }
 
 function _safe_dsync() {
-    opts=(-aEPhAX --exclude-from=$HOME/rsync/.rsyncignore)
+    if [ "$4" == "y" ]; then
+        opts=(-aEPhAX --exclude-from=$HOME/rsync/.rsyncignore --exclude=/mnt/rsync/mail)
+    else
+        opts=(-aEPhAX --exclude-from=$HOME/rsync/.rsyncignore)
+    fi
 
     rsync $opts $1 -ni $2 $3
 
@@ -38,7 +48,7 @@ function _safe_dsync() {
     fi
 
     read ANSWER?"$ASK"
-    if [ "$ANSWER" == "y" ]; then
+    if [ "$ANSWER" = "y" ]; then
         rsync $opts $1 --progress $2 $3
     fi
 }
