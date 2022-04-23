@@ -120,6 +120,23 @@ if [ ! -f ~/.zalman ] && \
     esac
 fi
 
+# Select "main machine" status
+if [ ! -f ~/.main-machine ] && \
+    [ ! -f ~/.not-main-machine ]; then
+    echo
+    echo '"Main machine" will retrieve mail from mail servers automatically'
+    echo
+    read 'ANSWER?Is this main machine? [y/n]: '
+    echo
+    if [ "$ANSWER" = "y" ]; then
+        touch ~/.main-machine
+        echo 'This is main machine'
+    else
+        touch ~/.not-main-machine
+        echo 'This is NOT main machine'
+    fi
+fi
+
 echo
 echo 'Done!'
 
