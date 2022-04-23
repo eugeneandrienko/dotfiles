@@ -830,6 +830,12 @@ regex/\.g?mo$
 shell/.po
 	Open=/usr/libexec/mc/ext.d/misc.sh open po
 
+# gpx
+shell/i/.gpx
+    Open=qmapshack %s 2>/dev/null &
+    View=qmapshack %s 2>/dev/null &
+    Edit=qmapshack %s 2>/dev/null &
+
 # lyx
 shell/i/.lyx
 	Open=/usr/libexec/mc/ext.d/misc.sh open lyx
