@@ -5,7 +5,7 @@ This repository contains different configuration files, which I have been writin
 ### Dependencies
 
 * abook
-* aspell
+* aspell (with aspell-ru dictionary)
 * bc
 * cabal
 * ctags
