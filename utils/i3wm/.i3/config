@@ -60,7 +60,7 @@ bindsym $mod+Shift+x exec ~/.i3/lock.sh
 bindsym $mod+d exec ~/.i3/menu/menu_help.sh; mode "dmenu"
 mode "dmenu" {
     bindsym d exec ~/.i3/menu/menu.sh; mode "default"
-    bindsym m exec ~/.i3/menu/menu_modes.sh; mode "default"
+    bindsym s exec ~/.i3/menu/menu_system.sh; mode "default"
     bindsym Escape mode "default"
     bindsym Return mode "default"
 }
