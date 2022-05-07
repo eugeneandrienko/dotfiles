@@ -94,10 +94,13 @@ if [ -f ~/.gentoo ]; then
  fi
 
 # yt-dlp aliases
-alias ydl='yt-dlp'
+alias ydl="yt-dlp --continue --write-description \
+           --output '%(upload_date)s_%(title)s.%(ext)s'"
+alias ydl_mp4="yt-dlp --continue --write-description --embed-thumbnail --recode-video mp4 \
+               --output '%(upload_date)s_%(title)s.%(ext)s'"
 alias ydl_podcast="yt-dlp --continue \
                   --write-description --extract-audio --audio-format mp3 \
-                  --embed-thumbnail --output '%(video_autonumber)s_%(title)s.%(ext)s'"
+                  --embed-thumbnail --output '%(upload_date)s_%(title)s.%(ext)s'"
 youtube() {
     mplayer -cookies -cookies-file /tmp/cookies.txt \
     $(yt-dlp -gf 22 \
