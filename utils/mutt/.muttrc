@@ -16,7 +16,6 @@ set record = =sent
 mailboxes =banks \
           =default \
           =checks \
-          =haskell \
           =maillists \
           =postponed \
           =sent \
@@ -29,14 +28,8 @@ mailboxes =banks \
 #
 # Mailing lists settings
 #
-lists haskell@haskell.org
-lists freebsd-haskell@haskell.org
-lists xmonad@haskell.org
-lists beginners@haskell.org
-subscribe haskell@haskell.org
-subscribe freebsd-haskell@haskell.org
-subscribe xmonad@haskell.org
-subscribe beginners@haskell.org
+# lists list@example.org
+# subscribe list@example.org
 
 
 #

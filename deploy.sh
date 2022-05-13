@@ -35,7 +35,6 @@ fi
 $MAILDIRMAKE "$HOME/rsync/mail/banks"
 $MAILDIRMAKE "$HOME/rsync/mail/checks"
 $MAILDIRMAKE "$HOME/rsync/mail/default"
-$MAILDIRMAKE "$HOME/rsync/mail/haskell"
 $MAILDIRMAKE "$HOME/rsync/mail/maillists"
 $MAILDIRMAKE "$HOME/rsync/mail/social"
 $MAILDIRMAKE "$HOME/rsync/mail/state"

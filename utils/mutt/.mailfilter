@@ -5,7 +5,6 @@ MAILDIR=$HOME/rsync/mail
 BANKS=$MAILDIR/banks
 CHECKS=$MAILDIR/checks
 DEFAULT=$MAILDIR/default
-HASKELL=$MAILDIR/haskell
 MAILLISTS=$MAILDIR/maillists
 SOCIAL=$MAILDIR/social
 STATE=$MAILDIR/state
@@ -52,7 +51,7 @@ if (/^From:.*no-reply-aws@amazon.com/ && \
     to $CHECKS
 if (/^From:.*noreply@ozon.ru/)
     to $CHECKS
-if (/^From:.*no-reply@taxi.yandex.ru/)
+if (/^From:.*no-reply@taxi.yandex.ru/ || /^From:.*no-reply@taxi.yandex.com/)
     to $CHECKS
 if (/^From:.*no-reply@xn--80ahmohdapg.xn--80asehdb/)
     to $CHECKS
@@ -73,6 +72,8 @@ if (/^From:.*inform@yamoney.ru/)
 if (/^From:.*homeinternet@beeline.ru/)
     to $CHECKS
 if (/^From:.*robot@peterburgregiongaz.ru/)
+    to $CHECKS
+if (/^From:.*robot@mail.peterburgregiongaz.ru/)
     to $CHECKS
 if (/^From:.*check@uniteller.ru/)
     to $CHECKS
@@ -103,25 +104,10 @@ if (/^From:.*@cloudpayments.ru/)
     to $CHECKS
 if (/^From:.*@yoomoney.ru/)
     to $CHECKS
-
-if (/^To:.*haskell@haskell.org/)
-    to $HASKELL
-if (/^Cc:.*haskell@haskell.org/)
-    to $HASKELL
-if (/^To:.*xmonad@haskell.org/)
-    to $HASKELL
-if (/^Cc:.*xmonad@haskell.org/)
-    to $HASKELL
-if (/^To:.*beginners@haskell.org/)
-    to $HASKELL
-if (/^Cc:.*beginners@haskell.org/)
-    to $HASKELL
-if (/^To:.*yazan.mualla@utbm.fr/)
-    to $MAILLISTS
-if (/^From:.*yazan.mualla@utbm.fr/)
-    to $MAILLISTS
-if (/^From:.*mailman-owner@haskell.org/)
-    to $MAILLISTS
+if (/^From:.*noreply@taxovichkof.ru/)
+    to $CHECKS
+if (/^From:.*tickets@tickets.ppk-piter.ru/)
+    to $CHECKS
 
 if (/^From:.*@bumble.com/)
     to $SOCIAL
@@ -171,6 +157,10 @@ if (/^From:.*no-reply@mvd.ru/)
 if (/^From:.*notification@russianpost.ru/)
     to $STATE
 if (/^From:.*@roi.ru/)
+    to $STATE
+if (/^From:.*@debt.pes.spb.ru/)
+    to $STATE
+if (/^From:.*@rosreestr.ru/)
     to $STATE
 
 if (/^From:.*@pickpoint.ru/)
@@ -245,6 +235,10 @@ if (/^From:.*@812photo.ru/)
     to $STORES
 if (/^From:.*@hobbygames.ru/)
     to $STORES
+if (/^From:.*zakaz@linzacity.ru/)
+    to $STORES
+if (/^From:.*@happylook.ru/)
+    to $STORES
 
 if (/^From:.*news@news.ozon.ru/)
     to /dev/null
@@ -312,6 +306,17 @@ if (/^From:.*newsletter@shopfans.ru/)
 if (/^From:.*@latoken.com/)
     to /dev/null
 if (/^From:.*@official.vsco.co/)
+    to /dev/null
+if (/^From:.*info@info.sportmaster.ru/)
+    to /dev/null
+if (/^From:.*@huntworld.ru/)
+    to /dev/null
+if (/^From:.*forum@guns.ru/ && \
+    /^Subject: Forum Digest.*/)
+    to /dev/null
+if (/^From:.*info@mail.timepad.ru/)
+    to /dev/null
+if (/^From:.*no-reply@sushiwok.ru/)
     to /dev/null
 
 if (/.*/)
