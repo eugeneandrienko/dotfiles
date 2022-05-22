@@ -108,6 +108,8 @@ if (/^From:.*noreply@taxovichkof.ru/)
     to $CHECKS
 if (/^From:.*tickets@tickets.ppk-piter.ru/)
     to $CHECKS
+if (/^From:.*noreply@sender.ozon.ru/)
+    to $CHECKS
 
 if (/^From:.*@bumble.com/)
     to $SOCIAL
@@ -238,6 +240,12 @@ if (/^From:.*@hobbygames.ru/)
 if (/^From:.*zakaz@linzacity.ru/)
     to $STORES
 if (/^From:.*@happylook.ru/)
+    to $STORES
+if (/^From:.*@vardex.ru/)
+    to $STORES
+if (/^From:.*mailer@sender.ozon.ru/)
+    to $STORES
+if (/^From:.*@stolichki.ru/)
     to $STORES
 
 if (/^From:.*news@news.ozon.ru/)
