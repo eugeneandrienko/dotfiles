@@ -19,6 +19,7 @@ This repository contains different configuration files, which I have been writin
 * gpg
 * i3
 * jq
+* lame
 * lynx
 * maildrop
 * mc

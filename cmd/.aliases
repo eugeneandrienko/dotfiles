@@ -101,12 +101,18 @@ alias ydl_mp4="yt-dlp --continue --write-description --embed-thumbnail --recode-
                --output '%(upload_date)s_%(title)s.%(ext)s'"
 alias ydl_podcast="yt-dlp --continue \
                   --write-description --extract-audio --audio-format mp3 \
-                  --embed-thumbnail --output '%(upload_date)s_%(title)s.%(ext)s'"
+                  --embed-thumbnail --output '%(upload_date)s_%(title)s.%(ext)s' \
+                  --exec after_move:'lame --scale 3 %(filepath)q' \
+                  --exec after_move:'rm %(filepath)q' \
+                  --exec after_move:'rename .mp3.mp3 .mp3 %(filepath)q.mp3'"
 youtube() {
     mplayer -cookies -cookies-file /tmp/cookies.txt \
     $(yt-dlp -gf 22 \
         --cookies /tmp/cookies.txt "$1"); \
     rm -f /tmp/cookies.txt
+}
+ydl_channel_id() {
+    yt-dlp -j "$1" | jq -r '"https://www.youtube.com/feeds/videos.xml?channel_id=" + .channel_id'
 }
 
 # Media-related aliases
