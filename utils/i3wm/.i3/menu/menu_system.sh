@@ -7,14 +7,14 @@ DMENU_CMD="dmenu -i -b -fn $FONT $COLORS"
 MODES_ITEMS="display mode:redshift"
 case $(echo $MODES_ITEMS | tr ':' '\n' | eval "$DMENU_CMD -p Select:") in
     'display mode')
-        case $(echo "normal:threatre:night" | tr ':' '\n' | eval "$DMENU_CMD -p '>'") in
+        case $(echo "normal:threatre" | tr ':' '\n' | eval "$DMENU_CMD -p '>'") in
             'normal')
                 xset +dpms
+                notify-send -u normal -t 5000 "Screen mode: NORMAL"
                 ;;
             'theatre')
                 xset -dpms
-                ;;
-            'night')
+                notify-send -u normal -t 5000 "Screen mode: THEATRE"
                 ;;
         esac
         ;;

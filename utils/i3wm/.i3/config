@@ -57,7 +57,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+Shift+x exec ~/.i3/lock.sh
 
 # start dmenus:
-bindsym $mod+d exec ~/.i3/menu/menu_help.sh; mode "dmenu"
+bindsym $mod+d mode "dmenu"
 mode "dmenu" {
     bindsym d exec ~/.i3/menu/menu.sh; mode "default"
     bindsym s exec ~/.i3/menu/menu_system.sh; mode "default"
