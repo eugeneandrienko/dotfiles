@@ -6,7 +6,6 @@ function backup_data() {
     fi
     _chown_mnt
     OPTIONS="--delete"
-    _safe_backup "$OPTIONS" ~/docs      /mnt/
     _safe_backup "$OPTIONS" ~/git_repos /mnt/
     _safe_backup "$OPTIONS" ~/music     /mnt/
     _safe_backup "$OPTIONS" ~/pictures  /mnt/
