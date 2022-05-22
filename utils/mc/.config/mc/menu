@@ -34,6 +34,10 @@ shell_patterns=0
             $CMD "$i"
         done
 
+= f *.jpg | f *.JPG | f *.jpeg | f *.JPEG | f *.png | f *.PNG
+s       Run sxiv in current directory
+        sxiv -t %d &
+
 = t d
 3       Compress the current subdirectory (tar.gz)
         Pwd=`basename %d /`
