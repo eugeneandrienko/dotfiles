@@ -14,6 +14,7 @@ alias -g lsa='ls -aFh --color=always'
 alias -g la='ls -aFh --color=always'
 alias -g lal='ls -laFh --color=always'
 alias -g lla='ls -laFh --color=always'
+alias tree='tree -F --dirsfirst'
 alias grep='grep --color=auto --with-filename --line-number \
                  --binary-files=without-match --exclude-dir=.git'
 alias bc='bc -l'
