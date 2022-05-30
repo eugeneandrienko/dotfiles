@@ -13,11 +13,11 @@
 (column-number-mode t)
 ;disable the startup screen
 (setq inhibit-startup-screen t)
-;;save all backups to "~/secure/.emacs.d/backups/"
-(when (not (file-directory-p "~/secure/.emacs.d/backups"))
-  (make-directory "~/secure/.emacs.d/backups"))
-(if (file-directory-p "~/secure/.emacs.d/backups")
-    (setq backup-directory-alist '(("." . "~/secure/.emacs.d/backups"))))
+;;save all backups to "~/.emacs.d/backups/"
+(when (not (file-directory-p "~/.emacs.d/backups"))
+  (make-directory "~/.emacs.d/backups"))
+(if (file-directory-p "~/.emacs.d/backups")
+    (setq backup-directory-alist '(("." . "~/.emacs.d/backups"))))
 ;Matching brackets highliting
 (show-paren-mode t)
 ;highligth the current line

@@ -75,13 +75,13 @@ set nobackup
 " Write all changes in file if we are switching to another file
 set autowrite
 " Set path to swap files
-set directory=~/secure/.vim/swapfiles
+set directory=~/.vim/swapfiles
 " Set path to catalog with undo history
-set undodir=~/secure/.vim/undodir
+set undodir=~/.vim/undodir
 " Enable infinite undo
 set undofile
 " Set secure viminfo path
-set viminfo+=n~/secure/.viminfo
+set viminfo+=n~/.viminfo
 
 
 

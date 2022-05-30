@@ -21,9 +21,8 @@ export STOW_DIR=./utils
 stow abook emacs git i3wm mc mplayer mutt newsboat rtorrent ssh tmux vim zathura
 
 # Making necessary (empty) directories
-mkdir -pv "$HOME/secure/.emacs.d"
-mkdir -pv "$HOME/secure/.vim/swapfiles"
-mkdir -pv "$HOME/secure/.vim/undodir"
+mkdir -pv "$HOME/.vim/swapfiles"
+mkdir -pv "$HOME/.vim/undodir"
 mkdir -pv "$HOME/rsync/mail"
 mkdir -pv "$HOME/rsync/mail/logs"
 
@@ -44,18 +43,17 @@ $MAILDIRMAKE "$HOME/rsync/mail/stores"
 touch "$HOME/rsync/.rsyncignore"
 
 # Create empty ~/.netrc if it not exists
-touch $HOME/secure/.netrc
-ln -s "$HOME/secure/.netrc" "$HOME/.netrc"
+touch $HOME/.netrc
 
 # Create empty OpenWeatherMap API key file
-touch $HOME/secure/.openweathermap
-ln -s "$HOME/secure/.openweathermap" "$HOME/.openweathermap"
+touch $HOME/.openweathermap
 
 # Changing access rights
 chmod -v 600 ~/.fdm.conf
 chmod -v 600 ~/.mailfilter
 chmod -v 600 ~/.msmtprc
-chmod -v 600 ~/.netrc ~/secure/.netrc
+chmod -v 600 ~/.netrc
+chmod -v 600 ~/.openweathermap
 
 # Installing crontab
 echo "Installing crontab"

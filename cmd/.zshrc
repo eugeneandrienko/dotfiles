@@ -7,7 +7,7 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
-HISTFILE=~/secure/.zsh_history
+HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
 export LISTMAX=9999

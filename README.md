@@ -69,8 +69,6 @@ GUI programs to install:
 
 ### Before install
 
-In the `$HOME` should exists `secure/` catalog which should be encrypted.
-
 To store sensitive data (passwords, etc) in the archive for the new machine -- use `store_sensitive_data.sh` script.
 
 ### Install
@@ -104,7 +102,7 @@ To work with file synchronization via cloudsync you need to have `sync` SSH-key 
 
 #### Passwords
 
-For using Mutt with GMail mailboxes you should specify mail server passwords in `~/secure/.netrc`.
+For using Mutt with GMail mailboxes you should specify mail server passwords in `~/.netrc`.
 
 #### /etc/hosts
 
