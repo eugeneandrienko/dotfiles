@@ -13,7 +13,7 @@ elif [ -f ~/.thinkpad ]; then
     DMENU_ITEMS="firefox:firefox_unsec:telegram"
     DMENU_ITEMS+=":gimp:rawtherapee"
     DMENU_ITEMS+=":qmapshack:josm:stellarium"
-    DMENU_ITEMS+=":idea:android-file-transfer"
+    DMENU_ITEMS+=":idea:android-file-transfer:blueman"
 fi
 
 case $(echo $DMENU_ITEMS | tr ':' '\n' | eval "$DMENU_CMD -p Execute:") in
@@ -56,6 +56,9 @@ case $(echo $DMENU_ITEMS | tr ':' '\n' | eval "$DMENU_CMD -p Execute:") in
         ;;
     'android-file-transfer')
         /usr/bin/env android-file-transfer &
+        ;;
+    'blueman')
+        /usr/bin/env blueman-manager &
         ;;
     *)
         exit 1
