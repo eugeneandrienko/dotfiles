@@ -66,6 +66,14 @@ for i in $(get_images_list | sort | uniq); do
     if [ -n "$DESCR" ] && [ "$DESCR" != "" ] && [ ! -n "$NO_DESCRIPTION" ]; then
         FNAME="$FNAME - $DESCR"
     fi
+    DUPNUM=1
+    while [ -f "$FNAME$EXTEN" ]; do
+        FNAMETMP="$FNAME"_d$DUPNUM
+        if [ ! -f "$FNAMETMP$EXTEN" ]; then
+            FNAME=$FNAMETMP
+        fi
+        DUPNUM=$((DUPNUM+1))
+    done
 
     if [ -n "$DRY_RUN" ] && [ "$DRY_RUN" -eq 1 ]; then
         echo "$i -> $FNAME$EXTEN"
