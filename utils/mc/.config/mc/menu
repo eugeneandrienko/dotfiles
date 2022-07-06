@@ -44,6 +44,12 @@ r       Resize images for Instagram
             convert "$i" -resize 1080x1080^ resized_"$i"
         done
 
+= f *.jpg | f *.JPG | f *.jpeg | f *.JPEG | f *.png | f *.PNG
+k       Resize images for Chris
+        for i in %s; do
+            convert "$i" -resize 2560x2560^ resized_"$i"
+        done
+
 = t d
 3       Compress the current subdirectory (tar.gz)
         Pwd=`basename %d /`
