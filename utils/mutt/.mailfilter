@@ -27,6 +27,8 @@ if (/^From:.*@raiffeisen.ru/)
     to $BANKS
 if (/^From:.*@emails.tinkoff.ru/)
     to $BANKS
+if (/^From:.*@email.tinkoff.ru/)
+    to $BANKS
 
 if (/^From:.*ofdreceipt@beeline.ru/)
     to $CHECKS
@@ -247,6 +249,12 @@ if (/^From:.*mailer@sender.ozon.ru/)
     to $STORES
 if (/^From:.*@stolichki.ru/)
     to $STORES
+if (/^From:.*@tokyo-city.ru/)
+    to $STORES
+if (/^From:.*aliexpress.com/)
+    to $STORES
+if (/^From:.*@avito.ru/)
+    to $STORES
 
 if (/^From:.*news@news.ozon.ru/)
     to /dev/null
@@ -325,6 +333,8 @@ if (/^From:.*forum@guns.ru/ && \
 if (/^From:.*info@mail.timepad.ru/)
     to /dev/null
 if (/^From:.*no-reply@sushiwok.ru/)
+    to /dev/null
+if (/^From:.*@news.metizi.com/)
     to /dev/null
 
 if (/.*/)
