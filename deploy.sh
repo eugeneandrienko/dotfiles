@@ -23,6 +23,7 @@ stow abook emacs git i3wm mc mplayer mutt newsboat rtorrent ssh tmux vim zathura
 # Making necessary (empty) directories
 mkdir -pv "$HOME/.vim/swapfiles"
 mkdir -pv "$HOME/.vim/undodir"
+mkdir -pv "$HOME/rsync/filez"
 mkdir -pv "$HOME/rsync/mail"
 mkdir -pv "$HOME/rsync/mail/logs"
 

@@ -58,6 +58,7 @@ autoload -z png2jpg
 autoload -z jpg2timelapse
 autoload -z backup_data && backup_data
 autoload -z drivesync && drivesync
+autoload -z phonesync && phonesync
 
 if [ -e ~/.aliases ]; then
     . ~/.aliases

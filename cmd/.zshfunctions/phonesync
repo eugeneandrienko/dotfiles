@@ -1,0 +1,27 @@
+function phonesync() {
+    if [ ! -d ~/.termux ]; then
+        doas chown drag0n:drag0n /mnt
+        aft-mtp-mount -o nonempty /mnt
+
+        DIR_TO_SYNC=/mnt/Internal\ shared\ storage/Download/rsync
+        mkdir -p "$DIR_TO_SYNC"
+
+        tar cjf /tmp/phone-sync.tar.bz2 -C ~/rsync/filez abook pass rss
+
+        OPTIONS="--delete"
+        _safe_backup "$OPTIONS" /tmp/phone-sync.tar.bz2 "$DIR_TO_SYNC"
+
+        doas umount -v /mnt
+        doas chown root:root /mnt
+    else
+        mv ~/storage/downloads/rsync/phone-sync.tar.bz2 ~/rsync/filez/
+        tar jxvf ~/rsync/filez/phone-sync.tar.bz2 -C ~/rsync/filez
+        rm -vf ~/rsync/filez/phone-sync.tar.bz2
+    fi
+}
+
+function _safe_backup() {
+    opts=(-aPh)
+    rsync $opts $1 $2 $3
+}
+
