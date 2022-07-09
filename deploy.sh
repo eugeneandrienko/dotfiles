@@ -150,6 +150,11 @@ if [ ! -f ~/.main-machine ] && \
     fi
 fi
 
+# Some fixes for Termux
+if [ -d ~/.termux ]; then
+    sed -ri 's!skin=/home/drag0n.*!skin=/home/.config/mc/gray-green-purple256.ini!g' ~/.config/mc/ini
+fi
+
 echo
 echo 'Done!'
 
