@@ -8,6 +8,7 @@ This repository contains different configuration files, which I have been writin
 * aspell (with aspell-ru dictionary)
 * bc
 * cabal
+* cal
 * cron
 * ctags
 * curl

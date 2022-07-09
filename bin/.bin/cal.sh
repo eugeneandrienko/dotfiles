@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-if [ -f ~/.gentoo ]; then
+if [ -f ~/.gentoo ] || [ -d ~/.termux ]; then
     cal -n 3
 elif [ -f ~/.debian ]; then
     ncal -3Mb
