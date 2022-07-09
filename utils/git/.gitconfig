@@ -1,7 +1,7 @@
 [user]
     name = eugeneandrienko
     email = evg.andrienko@gmail.com
-    signinkey = EB6A4FC927DE468CAD383BA8713D984F56881209
+    signingKey = EB6A4FC927DE468CAD383BA8713D984F56881209
 [push]
     default = simple
     # Make `git push` push relevant annotated tags when pushing
