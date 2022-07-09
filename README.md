@@ -19,6 +19,7 @@ This repository contains different configuration files, which I have been writin
 * git
 * gpg
 * i3
+* imagemagick
 * jq
 * lame
 * lynx
