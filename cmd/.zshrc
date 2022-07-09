@@ -95,9 +95,6 @@ mailpath=(
     ~/rsync/mail/stores"?New mail in =stores"
 )
 
-# For GPG signing Git commits:
-export GPG_TTY=$(tty)
-
 if [ -e ~/.userconfig ]; then
     . ~/.userconfig
 fi

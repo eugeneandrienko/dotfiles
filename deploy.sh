@@ -30,6 +30,8 @@ if [ -x /usr/bin/maildirmake ]; then
     MAILDIRMAKE="/usr/bin/maildirmake"
 elif [ -x /usr/local/bin/maildrop-maildirmake ]; then
     MAILDIRMAKE="/usr/local/bin/maildrop-maildirmake"
+elif [ -x /usr/local/bin/maildirmake ]; then
+    MAILDIRMAKE="/usr/local/bin/maildirmake"
 fi
 $MAILDIRMAKE "$HOME/rsync/mail/banks"
 $MAILDIRMAKE "$HOME/rsync/mail/checks"
@@ -77,6 +79,7 @@ if [ ! -f ~/.gentoo ] && \
     echo
     echo 'g) Gentoo (GNU/Linux)'
     echo 'd) Debian'
+    echo 't) Termux'
     echo
     read 'SELECTED_OS?Select OS: '
 
@@ -89,6 +92,10 @@ if [ ! -f ~/.gentoo ] && \
             touch ~/.debian
             echo 'Selected Debian'
             ;;
+        't')
+            touch ~/.termux
+            echo 'Selected Termux'
+            ;;
         '*')
             echo 'Wrong input! Cannot determine OS - system may work incorrectly!'
             exit 2
@@ -98,7 +105,8 @@ fi
 
 # Select target machine if not selected yet
 if [ ! -f ~/.zalman ] && \
-    [ ! -f ~/.thinkpad ]; then
+    [ ! -f ~/.thinkpad ] && \
+    [ ! -f ~/.termux ]; then
     echo
     echo 'Machine:'
     echo

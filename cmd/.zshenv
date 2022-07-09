@@ -47,3 +47,6 @@ export MAILDIR=$HOME/rsync/mail
 export PASSWORD_STORE_ENABLE_EXTENSIONS="true"
 export PASSWORD_STORE_DIR="$HOME/rsync/filez/pass"
 
+# For GPG signing Git commits:
+export GPG_TTY=$(tty)
+
