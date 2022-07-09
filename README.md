@@ -59,6 +59,8 @@ GUI programs to install:
 * rawtherapee
 * telegram
 
+If no `diff-highlight` binray in system — install it with `pip3 install diff-highlight`.
+
 ### Contents
 
 * `cmd/` - shell-related configuration files.
