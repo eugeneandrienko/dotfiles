@@ -8,6 +8,7 @@ This repository contains different configuration files, which I have been writin
 * aspell (with aspell-ru dictionary)
 * bc
 * cabal
+* cron
 * ctags
 * curl
 * doas
@@ -22,12 +23,14 @@ This repository contains different configuration files, which I have been writin
 * lame
 * lynx
 * maildrop
+* make (gmake executable should be available)
 * mc
 * mplayer
 * msmtp
 * mutt
 * newsboat
 * pass
+* pass-otp
 * python3
 * perl
 * rsync
