@@ -48,6 +48,8 @@ s() {
         [[ "$?" -ne "0" ]] || break
     done
 }
+alias mount_phone='doas chown drag0n:drag0n /mnt && aft-mtp-mount -o nonempty /mnt'
+alias umount_phone='doas umount -v /mnt && doas chown root:root /mnt'
 
 # Mistypes
 alias -g xs='cd'
