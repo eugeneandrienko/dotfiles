@@ -24,7 +24,13 @@ generator() {
 }
 
 cliper() {
-    xclip -in -selection $1
+    if [ -d ~/.termux ]; then
+        if [ "$1" = "primary"]; then
+            termux-clipboard-set
+        fi
+    else
+        xclip -in -selection $1
+    fi
 }
 
 ENTITY=""

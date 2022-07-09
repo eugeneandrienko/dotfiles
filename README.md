@@ -62,6 +62,10 @@ GUI programs to install:
 
 If no `diff-highlight` binray in system — install it with `pip3 install diff-highlight`.
 
+#### Additional packages for Termux
+
+* termux-api
+
 ### Contents
 
 * `cmd/` - shell-related configuration files.
