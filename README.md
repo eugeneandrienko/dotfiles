@@ -128,3 +128,5 @@ Then call `gpg --edit-key <key-id>` and set trust level to 5 via command `trust`
 
 #### Weather forecasts
 
+Add your OpenWeatherMap API key to `~/.openweathermap` file.
+
