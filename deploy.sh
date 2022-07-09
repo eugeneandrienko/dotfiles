@@ -61,7 +61,13 @@ crontab ./utils/crontab/crontab
 
 # Compiling emacs plugins
 echo "Compiling haskell-mode plugin"
-cd ~/.emacs.d/plugins/haskell-mode && gmake > /dev/null
+gmake --help 2>&1 > /dev/null
+if [ "$?" -eq "1" ]; then
+    MAKE_EXE=gmake
+else
+    MAKE_EXE=make
+fi
+cd ~/.emacs.d/plugins/haskell-mode && $MAKE_EXE > /dev/null
 
 # Select target system if not selected yet
 if [ ! -f ~/.gentoo ] && \
