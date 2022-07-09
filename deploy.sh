@@ -63,17 +63,18 @@ crontab ./utils/crontab/crontab
 
 # Compiling emacs plugins
 echo "Compiling haskell-mode plugin"
-gmake --help 2>&1 > /dev/null
+whereis gmake | awk -F: '{print $2}' | grep -q gmake
 if [ "$?" -eq "1" ]; then
-    MAKE_EXE=gmake
-else
     MAKE_EXE=make
+else
+    MAKE_EXE=gmake
 fi
 cd ~/.emacs.d/plugins/haskell-mode && $MAKE_EXE > /dev/null
 
 # Select target system if not selected yet
 if [ ! -f ~/.gentoo ] && \
-    [ ! -f ~/.debian ]; then
+    [ ! -f ~/.debian ] && \
+    [ ! -d ~/.termux ]; then
     echo
     echo 'OS:'
     echo
@@ -106,7 +107,7 @@ fi
 # Select target machine if not selected yet
 if [ ! -f ~/.zalman ] && \
     [ ! -f ~/.thinkpad ] && \
-    [ ! -f ~/.termux ]; then
+    [ ! -d ~/.termux ]; then
     echo
     echo 'Machine:'
     echo

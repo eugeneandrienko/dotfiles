@@ -6,7 +6,7 @@ export PATH
 COLORTERM=truecolor
 export COLORTERM
 
-if [ -f ~/.termux ];
+if [ -d ~/.termux ];
     echo "Calling termux-chroot"
     termux-chroot
 fi
