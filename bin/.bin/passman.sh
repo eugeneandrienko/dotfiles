@@ -25,7 +25,7 @@ generator() {
 
 cliper() {
     if [ -d ~/.termux ]; then
-        if [ "$1" = "primary"]; then
+        if [ "$1" = "primary" ]; then
             termux-clipboard-set
         fi
     else
