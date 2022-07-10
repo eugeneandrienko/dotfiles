@@ -9,6 +9,12 @@ if [ "$(basename "$PWD")" != "$GITREPO_NAME" ] || [ ! -d ".git/" ]; then
     exit 1
 fi
 
+# Some Termux fixes before deploy
+if [ -d ~/.termux ]; then
+    rm -vf ~/.config/mc/ini
+    rm -vf ~/.emacs
+fi
+
 # Copying shell configuration to $HOME
 export STOW_DIR=.
 stow bin cmd
@@ -63,14 +69,16 @@ echo "Installing crontab"
 crontab ./utils/crontab/crontab
 
 # Compiling emacs plugins
-echo "Compiling haskell-mode plugin"
-whereis gmake | awk -F: '{print $2}' | grep -q gmake
-if [ "$?" -eq "1" ]; then
-    MAKE_EXE=make
-else
-    MAKE_EXE=gmake
+if [ ! -d ~/.termux ]; then
+    echo "Compiling haskell-mode plugin"
+    whereis gmake | awk -F: '{print $2}' | grep -q gmake
+    if [ "$?" -eq "1" ]; then
+        MAKE_EXE=make
+    else
+        MAKE_EXE=gmake
+    fi
+    cd ~/.emacs.d/plugins/haskell-mode && $MAKE_EXE > /dev/null
 fi
-cd ~/.emacs.d/plugins/haskell-mode && $MAKE_EXE > /dev/null
 
 # Select target system if not selected yet
 if [ ! -f ~/.gentoo ] && \
@@ -153,6 +161,8 @@ fi
 # Some fixes for Termux
 if [ -d ~/.termux ]; then
     sed -ri 's!skin=/home/drag0n.*!skin=/home/.config/mc/gray-green-purple256.ini!g' ~/.config/mc/ini
+    rm -rf ~/.emacs.d/plugins/haskell-mode/
+    sed -ri '/haskell/d' ~/.emacs
 fi
 
 echo
