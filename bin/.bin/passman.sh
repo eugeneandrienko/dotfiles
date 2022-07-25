@@ -19,6 +19,9 @@
 
 DB="$PASSWORD_STORE_DIR"
 
+GPG_TTY=$(tty)
+export GPG_TTY
+
 generator() {
     gpg --armor --gen-random 1 30 | tr '+/' '-_' | tr -d =
 }
