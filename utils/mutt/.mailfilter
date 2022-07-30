@@ -255,6 +255,8 @@ if (/^From:.*aliexpress.com/)
     to $STORES
 if (/^From:.*@avito.ru/)
     to $STORES
+if (/^From:.*@intimissimi.com/ || /^From:.*@email-intimissimi.com/)
+    to $STORES
 
 if (/^From:.*news@news.ozon.ru/)
     to /dev/null
