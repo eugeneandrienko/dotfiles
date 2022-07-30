@@ -13,7 +13,7 @@ function drivesync() {
 
 function drivesync_force_drive() {
     OPTIONS="--delete"
-    if [ -f ~/.main-machine ]; then
+    if [ -f ~/.zalman ]; then
         read 'ANSWER?Sync mail? [y/n]: '
         if [ "$ANSWER" = "n" ]; then
             EXCLUDE_MAIL="y"
@@ -33,7 +33,7 @@ function drivesync_force_local() {
 
 function _safe_dsync() {
     if [ "$4" == "y" ]; then
-        opts=(-aEPhAX --exclude-from=$HOME/rsync/.rsyncignore --exclude=/mnt/rsync/mail)
+        opts=(-aEPhAX --exclude-from=$HOME/rsync/.rsyncignore --exclude=rsync/mail)
     else
         opts=(-aEPhAX --exclude-from=$HOME/rsync/.rsyncignore --exclude=dotfiles/utils/mc/.config/mc/panels.ini)
     fi
