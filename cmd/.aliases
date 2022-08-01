@@ -126,7 +126,7 @@ ydl_channel_id() {
 # Media-related aliases
 alias img2gif='convert -delay 15 -loop 0 '
 alias webm2mp4='ffmpeg -i '
-alias scrt='sleep 3 && scrot -sfz -l style=dash,width=1'
+alias scrt='sleep 3 && scrot -fzs -l style=dash,width=1'
 
 # Termux
 alias termux-access-files='am start -a android.intent.action.VIEW -d "content://com.android.externalstorage.documents/root/primary"'
