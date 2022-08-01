@@ -56,7 +56,7 @@ function _safe_dsync() {
 function _chown_mnt() {
     echo 'Doing chown -R drag0n:drag0n /mnt/*'
     while true; do
-        doas chown -R drag0n:drag0n /mnt/*
+        sudo chown -R drag0n:drag0n /mnt/*
         [[ "$?" -ne "0" ]] || break
     done
 }

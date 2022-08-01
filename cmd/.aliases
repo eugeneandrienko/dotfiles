@@ -23,7 +23,8 @@ alias du='du -hs'
 alias bk='popd'
 alias mplayer='mplayer -nojoystick -nolirc -vo xv -subcp cp1251'
 alias pingya='ping -c3 ya.ru'
-alias ss='doas -s'
+alias s='sudo'
+alias ss='sudo -s'
 alias wget='wget -c'
 alias sget='wget -c -e http_proxy=127.0.0.1:8080 -e https_proxy=127.0.0.1:8080'
 alias panic='rm -rfv ~/.cache/thumbnails/*; \
@@ -42,14 +43,8 @@ alias -g vi='vim'
 alias abook='abook --datafile ~/rsync/filez/abook/addressbook'
 alias newsboat='newsboat -u ~/rsync/filez/rss/urls'
 alias http_server='python3 -m http.server'
-s() {
-    while true; do
-        doas $@
-        [[ "$?" -ne "0" ]] || break
-    done
-}
-alias mount_phone='doas chown drag0n:drag0n /mnt && aft-mtp-mount -o nonempty /mnt'
-alias umount_phone='doas umount -v /mnt && doas chown root:root /mnt'
+alias mount_phone='sudo chown drag0n:drag0n /mnt && aft-mtp-mount -o nonempty /mnt'
+alias umount_phone='sudo umount -v /mnt && sudo chown root:root /mnt'
 
 # Mistypes
 alias -g xs='cd'
@@ -97,9 +92,9 @@ alias xpaste='xclip -selection clipboard -o'
 
 # Gentoo aliases
 if [ -f ~/.gentoo ]; then
-    alias emerge-update='doas emerge-webrsync; \
+    alias emerge-update='sudo emerge-webrsync; \
                          read NOTUSING?"Press Enter "; \
-                         doas emerge --ask -uDU --keep-going --with-bdeps=y @world'
+                         sudo emerge --ask -uDU --keep-going --with-bdeps=y @world'
  fi
 
 # yt-dlp aliases

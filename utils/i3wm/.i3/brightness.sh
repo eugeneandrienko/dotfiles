@@ -11,5 +11,5 @@ else
 fi
 NEW_VALUE=$(echo "$CURRENT_VALUE""$OPERATOR"100 | bc)
 
-echo "$NEW_VALUE" | doas tee "$BRIGHTNESS" > /dev/null
+echo "$NEW_VALUE" | sudo tee "$BRIGHTNESS" > /dev/null
 

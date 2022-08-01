@@ -12,7 +12,6 @@ This repository contains different configuration files, which I have been writin
 * cron
 * ctags
 * curl
-* doas
 * emacs
 * fdm
 * feh
@@ -40,6 +39,7 @@ This repository contains different configuration files, which I have been writin
 * shred
 * stow
 * sxiv
+* sudo
 * tmux (>= 3.2)
 * urlview
 * vim
@@ -119,12 +119,12 @@ For using Mutt with GMail mailboxes you should specify mail server passwords in 
 
 You should update your `/etc/hosts` with data from `noauto/hosts`.
 
-#### doas setup
+#### sudo setup
 
-If you need to control brightness of display when starting X-server — add next line to `doas.conf`:
+If you need to control brightness of display when starting X-server — add next line to `/etc/sudoers`:
 
 ```
-permit nopass drag0n as root cmd tee args /sys/class/backlight/intel_backlight/brightness
+drag0n ALL=(root) NOPASSWD: /usr/bin/tee /sys/class/backlight/intel_backlight/brightness
 ```
 
 #### Import GPG keys

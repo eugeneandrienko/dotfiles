@@ -19,7 +19,7 @@ fi
 ~/.bin/redshift.sh
 
 if [ -f ~/.thinkpad ]; then
-    echo 2323 | doas tee /sys/class/backlight/intel_backlight/brightness > /dev/null
+    echo 2323 | sudo tee /sys/class/backlight/intel_backlight/brightness > /dev/null
     xset s off
     xset s noblank
 fi
