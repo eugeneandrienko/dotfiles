@@ -38,3 +38,22 @@
  '(font-latex-sectioning-5-face ((((class color) (background dark)) (:inherit variable-pitch :foreground "OliveDrab" :weight bold))))
  '(font-latex-string-face  ((t (:inherit font-lock-keyword-face :foreground "OliveDrab" :height 1.0)))))
 
+;;templates for LaTeX
+(defun template-latex-report()
+  "Copy LaTeX report to current directory and open it."
+  (interactive)
+  (let ((latex-report-path "~/.emacs.d/templates/latex-report/*.tex")
+    (main-file-name "report.tex"))
+    (progn
+      (shell-command (concat "cp " latex-report-path " ."))
+      (find-file (expand-file-name (concat "./" main-file-name))))))
+
+(defun template-latex-presentation()
+  "Copy LaTeX presentation to current directory and open it."
+  (interactive)
+  (let ((latex-presentation-path "~/.emacs.d/templates/latex-beamer/*.tex")
+    (main-file-name "presentation.tex"))
+    (progn
+      (shell-command (concat "cp " latex-presentation-path " ."))
+      (find-file (expand-file-name (concat "./" main-file-name))))))
+

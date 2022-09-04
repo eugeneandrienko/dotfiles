@@ -29,9 +29,6 @@
   "Make new lines indented"
   (local-set-key (kbd "RET") 'newline-and-indent))
 
-(add-hook 'objc-mode-hook 'my-ret-hook)
-(add-hook 'clojure-mode-hook 'my-ret-hook)
-(add-hook 'haskell-mode-hook 'my-ret-hook)
 (add-hook 'octave-mode-hook 'my-ret-hook)
 (add-hook 'sh-mode-hook 'fci-mode)
 (add-hook 'sh-mode-hook
@@ -44,11 +41,8 @@
 (custom-set-faces '(default ((t (:size "14pt" :family "Noto Mono-14")))))
 ;y is rather short than yes
 (fset 'yes-or-no-p 'y-or-n-p)
-;
+;use blinking cursor
 (blink-cursor-mode t)
-;
-(custom-set-variables
- '(initial-scratch-message nil))
 
 ;normal color in emacs shell
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
@@ -68,21 +62,3 @@
 (global-set-key (kbd "C-c <up>")    'windmove-up)
 (global-set-key (kbd "C-c <down>")  'windmove-down)
 
-;;templates for LaTeX
-(defun template-latex-report()
-  "Copy LaTeX report to current directory and open it."
-  (interactive)
-  (let ((latex-report-path "~/.emacs.d/templates/latex-report/*.tex")
-	(main-file-name "report.tex"))
-    (progn
-      (shell-command (concat "cp " latex-report-path " ."))
-      (find-file (expand-file-name (concat "./" main-file-name))))))
-
-(defun template-latex-presentation()
-  "Copy LaTeX presentation to current directory and open it."
-  (interactive)
-  (let ((latex-presentation-path "~/.emacs.d/templates/latex-beamer/*.tex")
-	(main-file-name "presentation.tex"))
-    (progn
-      (shell-command (concat "cp " latex-presentation-path " ."))
-      (find-file (expand-file-name (concat "./" main-file-name))))))
