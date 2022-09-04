@@ -1,4 +1,4 @@
-; Increase GC limit to boot speedup
+;; Increase GC limit to boot speedup
 (setq gc-cons-threshold 100000000)
 
 (custom-set-variables
@@ -20,7 +20,7 @@
 (load "~/.emacs.d/rc-fill-column-indicator.el")
 (load "~/.emacs.d/rc-auto-complete.el")
 
-;;default cyr/latin input method
+;; Default cyr/latin input method
 (setq default-input-method "russian-computer")
 (global-set-key "\C-z" 'toggle-input-method)
 

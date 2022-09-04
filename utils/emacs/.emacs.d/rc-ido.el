@@ -1,4 +1,4 @@
-;;;interactive complete for files
+;; Interactive complete for files
 (ido-mode)
 (custom-set-variables '(ido-mode (quote buffer) nil (ido)))
 
@@ -24,7 +24,7 @@
                              (unless (or (null position) (null name))
                                (add-to-list 'symbol-names name)
                                (add-to-list 'name-and-pos (cons name position))))))))
-      (addsymbols imenu--index-alist))
+          (addsymbols imenu--index-alist))
     (let* ((selected-symbol (ido-completing-read "Symbol? " symbol-names))
            (position (cdr (assoc selected-symbol name-and-pos))))
       (goto-char position))))
