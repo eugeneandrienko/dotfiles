@@ -19,9 +19,6 @@ fi
 export STOW_DIR=.
 stow bin cmd
 
-# Clearing precompiled Emacs-Lisp files if exists
-find ~/.emacs.d/plugins/haskell-mode/ -type f -exec rm {} \;
-
 # Copying dotfiles to $HOME
 export STOW_DIR=./utils
 stow abook emacs git gnupg i3wm mc mplayer mutt newsboat rtorrent ssh tmux vim zathura
