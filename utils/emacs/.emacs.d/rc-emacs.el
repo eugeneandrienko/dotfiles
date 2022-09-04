@@ -18,6 +18,11 @@
   (make-directory "~/.emacs.d/backups"))
 (if (file-directory-p "~/.emacs.d/backups")
     (setq backup-directory-alist '(("." . "~/.emacs.d/backups"))))
+;;save all auto save files to "~/.emacs.d/autosave/"
+(when (not (file-directory-p "~/.emacs.d/autosave"))
+  (make-directory "~/.emacs.d/autosave"))
+(if (file-directory-p "~/.emacs.d/autosave")
+    (setq auto-save-file-name-transforms '((".*" "~/.emacs.d/autosave/" t))))
 ;Matching brackets highliting
 (show-paren-mode t)
 ;highligth the current line

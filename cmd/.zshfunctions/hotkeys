@@ -3,9 +3,11 @@
 ###############################################################################
 #
 HOTKEYS_TEXT_EMACS="C-z   - switch keyboard language
-M-g   - go to line
-C-x 2 - horizontal split
-C-x 3 - vertical split
+M-g              - go to line
+C-x 2            - horizontal split
+C-x 3            - vertical split
+M-x untabify     - remove tabs from file
+M-x recover-file - recover unsaved file
 
 M-x template-latex-report       - create LaTeX report in current catalog
 M-x template-latex-presentation - create LaTeX presentation in current
@@ -18,9 +20,6 @@ C-c =                           - show ToC
 C-s M-r                         - regexp search
 C-r M-r                         - reverse regexp search
 M-% (after search starts)       - query replace (\(\) - group)
-
-M-x haskell-debug               - start debugger
-M-x haskell-mode-stylish-buffer - format Haskell file
 
 F8          - jump to imports
 M-.         - jump to definition
