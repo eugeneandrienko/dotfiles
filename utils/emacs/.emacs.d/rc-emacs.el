@@ -37,8 +37,6 @@
 
 ;
 (setq compilation-window-height 10)
-;Emacs font
-(custom-set-faces '(default ((t (:size "14pt" :family "Noto Mono-14")))))
 ;y is rather short than yes
 (fset 'yes-or-no-p 'y-or-n-p)
 ;use blinking cursor
@@ -57,8 +55,13 @@
 ;;windmove
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
-(global-set-key (kbd "C-c <left>")  'windmove-left)
-(global-set-key (kbd "C-c <right>") 'windmove-right)
-(global-set-key (kbd "C-c <up>")    'windmove-up)
-(global-set-key (kbd "C-c <down>")  'windmove-down)
+(global-set-key (kbd "C-c h")  'windmove-left)
+(global-set-key (kbd "C-c k")    'windmove-up)
+(global-set-key (kbd "C-c j")  'windmove-down)
+(global-set-key (kbd "C-c l") 'windmove-right)
 
+;MELPA setup
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(package-initialize)
