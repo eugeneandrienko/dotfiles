@@ -32,10 +32,10 @@
 (add-hook 'octave-mode-hook 'my-ret-hook)
 (add-hook 'sh-mode-hook 'fci-mode)
 (add-hook 'sh-mode-hook
-	  '(lambda ()
-	     (linum-mode 1)))
+      '(lambda ()
+         (linum-mode 1)))
 
-;
+;height of compilation window
 (setq compilation-window-height 10)
 ;y is rather short than yes
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -44,7 +44,7 @@
 
 ;normal color in emacs shell
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
-;Bind 'M-g' to 'M-x goto-line'
+;bind 'M-g' to 'M-x goto-line'
 (global-set-key "\eg" 'goto-line)
 
 ;;default mode for text
@@ -65,3 +65,4 @@
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
+

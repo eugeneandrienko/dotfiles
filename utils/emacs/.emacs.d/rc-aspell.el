@@ -4,3 +4,4 @@
 (setq flyspell-dictionary "ru")
 (setq ispell-extra-args '("--sug-mode=ultra"))
 (global-set-key [f12] 'flyspell-mode)
+

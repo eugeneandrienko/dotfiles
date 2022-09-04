@@ -2,30 +2,15 @@
 (setq gc-cons-threshold 100000000)
 
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(Man-notify-method 'pushy)
  '(ido-mode 'buffer nil (ido))
  '(initial-scratch-message nil)
  '(package-selected-packages
-   '(fill-column-indicator color-theme-modern auto-complete auctex-latexmk auctex lsp-java)))
+   '(use-package fill-column-indicator color-theme-modern auto-complete auctex-latexmk auctex lsp-java)))
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:size "14pt" :family "Noto Mono-14"))))
- '(font-latex-sectioning-0-face ((t (:inherit font-latex-sectioning-1-face :foreground "OliveDrab" :height 1.1))))
- '(font-latex-sectioning-1-face ((t (:inherit font-latex-sectioning-2-face :foreground "OliveDrab" :height 1.1))))
- '(font-latex-sectioning-2-face ((t (:inherit font-latex-sectioning-3-face :foreground "OliveDrab" :height 1.1))))
- '(font-latex-sectioning-3-face ((t (:inherit font-latex-sectioning-4-face :foreground "OliveDrab" :height 1.1))))
- '(font-latex-sectioning-4-face ((t (:inherit font-latex-sectioning-5-face :foreground "OliveDrab" :height 1.1))))
- '(font-latex-sectioning-5-face ((((class color) (background dark)) (:inherit variable-pitch :foreground "OliveDrab" :weight bold))))
- '(font-latex-string-face ((t (:inherit font-lock-keyword-face :foreground "OliveDrab" :height 1.0))))
- '(highlight-symbol-face ((((class color) (background dark)) (:background "OliveDrab")))))
+ '(default ((t (:size "14pt" :family "Noto Mono-14")))))
 
+(load "~/.emacs.d/rc-use-package.el")
 (load "~/.emacs.d/rc-emacs.el")
 (load "~/.emacs.d/rc-ido.el")
 (load "~/.emacs.d/rc-aspell.el")
@@ -38,3 +23,4 @@
 ;;default cyr/latin input method
 (setq default-input-method "russian-computer")
 (global-set-key "\C-z" 'toggle-input-method)
+

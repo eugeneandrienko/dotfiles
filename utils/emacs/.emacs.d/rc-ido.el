@@ -30,3 +30,4 @@
       (goto-char position))))
 (global-set-key "\C-cg" 'ido-goto-symbol)
 (setq ido-save-directory-list-file "~/.emacs.d/ido.last")
+

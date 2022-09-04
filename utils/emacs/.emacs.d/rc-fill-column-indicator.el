@@ -1,6 +1,7 @@
-(require 'fill-column-indicator)
+(use-package fill-column-indicator
+  :custom
+  (fci-rule-width 1)
+  (fci-rule-color "grey")
+  :config
+  (setq-default fill-column 80))
 
-(setq fci-rule-width 1)
-(setq fci-rule-color "grey")
-(setq-default fill-column 80)
-;(add-hook 'after-change-major-mode-hook 'fci-mode)
