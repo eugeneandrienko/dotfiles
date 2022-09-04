@@ -7,7 +7,6 @@ This repository contains different configuration files, which I have been writin
 * abook
 * aspell (with aspell-ru dictionary)
 * bc
-* cabal
 * cal
 * cron
 * ctags
@@ -15,7 +14,6 @@ This repository contains different configuration files, which I have been writin
 * emacs
 * fdm
 * feh
-* ghc
 * git
 * gpg
 * i3
@@ -24,7 +22,7 @@ This repository contains different configuration files, which I have been writin
 * lame
 * lynx
 * maildrop
-* make (gmake executable should be available)
+* make (or gmake executable should be available in FreeBSD)
 * mc
 * mplayer
 * msmtp
@@ -95,12 +93,6 @@ Run *deploy.sh* script, which do the next:
 * Set right access rights to some configuration files.
 
 ### After install
-
-#### Haskell programs
-
-Install next programs via `cabal install`:
-* hasktags
-* stylish-haskell
 
 #### Emacs plugins compilation
 
