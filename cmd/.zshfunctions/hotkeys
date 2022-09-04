@@ -4,6 +4,7 @@
 #
 HOTKEYS_TEXT_EMACS="C-z   - switch keyboard language
 M-g              - go to line
+C-j              - insert new line below cursor
 C-x 2            - horizontal split
 C-x 3            - vertical split
 M-x untabify     - remove tabs from file

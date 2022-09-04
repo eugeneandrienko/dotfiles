@@ -48,6 +48,8 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 ;use blinking cursor
 (blink-cursor-mode t)
+;insert newline at the EOF
+(setq-default require-final-newline t)
 
 ;normal color in emacs shell
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
@@ -72,4 +74,3 @@
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
-
