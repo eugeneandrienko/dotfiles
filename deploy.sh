@@ -68,18 +68,6 @@ chmod -v 600 ~/.openweathermap
 echo "Installing crontab"
 crontab ./utils/crontab/crontab
 
-# Compiling emacs plugins
-if [ ! -d ~/.termux ]; then
-    echo "Compiling haskell-mode plugin"
-    whereis gmake | awk -F: '{print $2}' | grep -q gmake
-    if [ "$?" -eq "1" ]; then
-        MAKE_EXE=make
-    else
-        MAKE_EXE=gmake
-    fi
-    cd ~/.emacs.d/plugins/haskell-mode && $MAKE_EXE > /dev/null
-fi
-
 # Select target system if not selected yet
 if [ ! -f ~/.gentoo ] && \
     [ ! -f ~/.debian ] && \

@@ -35,13 +35,10 @@
 
 (load "~/.emacs.d/rc-emacs.el")
 (load "~/.emacs.d/rc-ido.el")
-;(load "~/.emacs.d/rc-edit-server.el")
 (load "~/.emacs.d/rc-aspell.el")
 (load "~/.emacs.d/rc-auctex.el")
 (load "~/.emacs.d/rc-colortheme.el")
 (load "~/.emacs.d/rc-rst-mode.el")
-(load "~/.emacs.d/rc-paredit.el")
-(load "~/.emacs.d/rc-haskell-mode.el")
 (load "~/.emacs.d/rc-fill-column-indicator.el")
 (load "~/.emacs.d/rc-auto-complete.el")
 
