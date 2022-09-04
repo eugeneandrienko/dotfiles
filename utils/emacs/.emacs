@@ -1,21 +1,12 @@
 ; Increase GC limit to boot speedup
 (setq gc-cons-threshold 100000000)
 
-;;start Emacs server
-;(server-start)
-;(remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function)
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(Man-notify-method 'pushy)
- '(haskell-indentation-electric-flag t)
- '(haskell-process-auto-import-loaded-modules t)
- '(haskell-process-log t)
- '(haskell-process-suggest-remove-import-lines t)
- '(haskell-process-type 'cabal-repl)
  '(ido-mode 'buffer nil (ido))
  '(initial-scratch-message nil))
 (custom-set-faces
