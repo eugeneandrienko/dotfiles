@@ -1,5 +1,9 @@
 (use-package tex-site
   :ensure auctex
+  :config
+  (progn
+    ;; Asks for master file in multi-file TeX documents
+    (setq-default TeX-master nil))
   :custom
   (TeX-PDF-mode t)
   (TeX-open-quote "<<")
