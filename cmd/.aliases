@@ -38,6 +38,7 @@ alias fuck_censorship='ssh -p 443 -ND 8080 fuck@censorship.1984; \
                        notify-send -u critical -t 5000 "Warning" "SSH tunnel is down"'
 alias sxiv='sxiv -s d -p'
 alias -g emacs='emacs -nw'
+alias emacj='emacs --load ~/.emacs.d/rc-java.el'
 alias rtorrent='~/.rtorrent/download_blocklist.sh && rtorrent'
 alias -g vi='vim'
 alias abook='abook --datafile ~/rsync/filez/abook/addressbook'

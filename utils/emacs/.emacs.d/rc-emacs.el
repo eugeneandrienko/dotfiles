@@ -13,6 +13,8 @@
 (column-number-mode t)
                                         ;disable the startup screen
 (setq inhibit-startup-screen t)
+                                        ;immediately show keystrokes
+(setq echo-keystrokes 0.5)
 
 ;; Save all backups to "~/.emacs.d/backups/"
 (when (not (file-directory-p "~/.emacs.d/backups"))

@@ -2,13 +2,18 @@
 # Emacs
 ###############################################################################
 #
-HOTKEYS_TEXT_EMACS="C-z   - switch keyboard language
-M-g              - go to line
-C-j              - insert new line below cursor
-C-x 2            - horizontal split
-C-x 3            - vertical split
-M-x untabify     - remove tabs from file
-M-x recover-file - recover unsaved file
+HOTKEYS_TEXT_EMACS="C-z                             - switch keyboard language
+M-g                             - go to line
+C-j                             - insert new line below cursor
+C-x 2                           - horizontal split
+C-x 3                           - vertical split
+M-x untabify                    - remove tabs from file
+M-x recover-file                - recover unsaved file
+C-s M-r                         - regexp search
+C-r M-r                         - reverse regexp search
+M-% (after search starts)       - query replace (\(\) - group)
+C-x SPC                         - select rectangle
+
 
 M-x template-latex-report       - create LaTeX report in current catalog
 M-x template-latex-presentation - create LaTeX presentation in current
@@ -18,28 +23,35 @@ C-c C-e                         - insert environment
 C-c C-s                         - insert heading
 F12                             - enable syntax checking (by aspell)
 C-c =                           - show ToC
-C-s M-r                         - regexp search
-C-r M-r                         - reverse regexp search
-M-% (after search starts)       - query replace (\(\) - group)
 
-F8          - jump to imports
-M-.         - jump to definition
-C-c C-z     - navigate between errors
-M-n         - go to next error or warning
-M-p         - go to previous error or warning
-M-?         - show error or warning information
 
-C-c C-c     - run Haskell compiler for current file
-TAB         - show next compile error
-RET         - goto compile error
-g           - recompile
-q           - quit compile window
+C-c p f                         - List of files in project
+C-c p d                         - List of directories in project
+C-c p T                         - List of test files in project
+C-c p l                         - List of files in given directory
+C-c p s g                       - Grep in project
+C-c p v                         - Show VCS info for project
+C-c p i                         - Invalidates project cache
+C-c p b                         - Show buffers, belongs to project
+C-c p k                         - Kill buffers, belongs to project
+C-c p e                         - Show recent files
+C-c p c                         - Run standard compilation command
+C-c p P                         - Run standard test command
+C-c p t                         - Switch between realization and test
 
-C-c C-l     - load current file into REPL
-F1          - open REPL buffer
-M-n         - next line in history
-M-p         - previous line in history
-C-c C-k     - clear REPL"
+C-c ! n                         - Next flycheck error
+C-c ! p                         - Previous flycheck error
+C-c ! l                         - List of flycheck errors for buffer
+C-c ! c                         - Run flycheck on current buffer
+C-c ! C                         - Clear errors in buffer
+
+C-c s d                         - Show documentation at point
+C-c s h                         - Hide documentation at point
+
+C-c t t                         - Show treemacs
+C-c t s                         - Show symbols in treemacs"
+
+
 
 ################################################################################
 # I3WM
