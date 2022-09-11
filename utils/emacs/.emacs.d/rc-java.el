@@ -42,7 +42,17 @@
   ("C-c s d" . lsp-ui-doc-show)
   ("C-c s h" . lsp-ui-doc-hide))
 
+(use-package lsp-java-lombok
+  :load-path "~/.emacs.d/plugins/"
+  :ensure  nil
+  :custom
+  (lsp-java-lombok/enabled t)
+  :config
+  (lsp-java-lombok/init))
+
 (use-package lsp-java
+  :after
+  (lsp-java-lombok)
   :config
   (progn
     (add-hook 'java-mode-hook 'lsp)
@@ -68,8 +78,7 @@
 ;;  (dap-auto-configure-mode))
 ;;
 ;;(use-package dap-java
-;;  :ensure
-;;  nil
+;;  :ensure nil
 ;;  :after
 ;;  dap-mode)
 
