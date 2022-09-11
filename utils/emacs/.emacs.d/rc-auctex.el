@@ -2,6 +2,9 @@
   :ensure auctex
   :config
   (progn
+    (add-hook 'LaTeX-mode-hook '(lambda () (set-fill-column 80)))
+    (add-hook 'LaTeX-mode-hook 'auto-fill-mode)
+    (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
     ;; Asks for master file in multi-file TeX documents
     (setq-default TeX-master nil)
     ;; Enable RefTeX
@@ -25,10 +28,6 @@
   (LaTeX-command "latex")
   (TeX-PDF-mode t "Use pdflatex instead of latex")
   (LaTeX-electric-left-right-brace t "Automatically close braces")
-  :hook
-  ((LaTeX-mode-hook . (lambda () (set-fill-column 80)))
-   (LaTeX-mode-hook . auto-fill-mode)
-   (LaTeX-mode-hook . turn-on-auto-fill))
   :init
   (defun template-latex-report()
     "Copy LaTeX report to current directory and open it."
