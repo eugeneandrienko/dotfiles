@@ -3,7 +3,11 @@
   :config
   (progn
     ;; Asks for master file in multi-file TeX documents
-    (setq-default TeX-master nil))
+    (setq-default TeX-master nil)
+    ;; Enable RefTeX
+    (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+    (setq reftex-plug-into-AUCTeX t)
+    (setq LaTeX-reftex-cite-format-auto-activate t))
   :custom
   (TeX-PDF-mode t)
   (TeX-open-quote "<<")
@@ -20,12 +24,11 @@
   (TeX-view-program-selection '((output-pdf "Zathura")))
   (LaTeX-command "latex")
   (TeX-PDF-mode t "Use pdflatex instead of latex")
-  (reftex-plug-into-AUCTeX t)
+  (LaTeX-electric-left-right-brace t "Automatically close braces")
   :hook
   ((LaTeX-mode-hook . (lambda () (set-fill-column 80)))
    (LaTeX-mode-hook . auto-fill-mode)
-   (LaTeX-mode-hook . turn-on-auto-fill)
-   (LaTeX-mode-hook . turn-on-reftex))
+   (LaTeX-mode-hook . turn-on-auto-fill))
   :init
   (defun template-latex-report()
     "Copy LaTeX report to current directory and open it."

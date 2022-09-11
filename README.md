@@ -19,7 +19,9 @@ This repository contains different configuration files, which I have been writin
 * i3
 * imagemagick
 * jq
+* lacheck
 * lame
+* latex (texlive)
 * lynx
 * maildrop
 * make (or gmake executable should be available in FreeBSD)

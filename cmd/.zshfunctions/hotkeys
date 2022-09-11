@@ -18,11 +18,32 @@ C-x SPC                         - select rectangle
 M-x template-latex-report       - create LaTeX report in current catalog
 M-x template-latex-presentation - create LaTeX presentation in current
                                   catalog
-C-c C-c                         - build or view LaTeX source
+C-c C-a                         - build the whole LaTeX source
+C-c C-b                         - build current buffer
+C-c C-r                         - build selected region
+C-c C-k                         - kill process
+C-c C-v                         - view LaTeX source
+
+C-c {                           - insert pair of braces
 C-c C-e                         - insert environment
+M-RET                           - insert new item
 C-c C-s                         - insert heading
+C-c (                           - insert unique label
+C-u C-c (                       - rescan document and insert unique label
+C-c )                           - reference label
+C-c [                           - insert citation
+C-u C-c [                       - insert citation with optional arguments
+C-&                             - view cross reference
+C-u C-&                         - rescan document and view cross reference
+C-c C-f C-b                     - bold font
+C-c C-f C-i                     - italics font
+C-c C-f C-e                     - emphasized font
+C-c C-f C-t                     - typewriter font
+C-c C-f C-d                     - delete font
 F12                             - enable syntax checking (by aspell)
 C-c =                           - show ToC
+C-c -                           - recenter ToC buffer to here
+C-c ^                           - switch to master file
 
 
 C-c p f                         - List of files in project
