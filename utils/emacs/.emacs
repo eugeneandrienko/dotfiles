@@ -10,6 +10,7 @@
 (load "~/.emacs.d/rc-rst-mode.el")
 (load "~/.emacs.d/rc-fill-column-indicator.el")
 (load "~/.emacs.d/rc-auto-complete.el")
+(load "~/.emacs.d/rc-org.el")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -20,7 +21,7 @@
  '(ido-mode 'buffer nil (ido))
  '(initial-scratch-message nil)
  '(package-selected-packages
-   '(company projectile lsp-ui lsp-java use-package fill-column-indicator color-theme-modern auto-complete auctex)))
+   '(org company projectile lsp-ui lsp-java use-package fill-column-indicator color-theme-modern auto-complete auctex)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

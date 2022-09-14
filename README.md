@@ -100,6 +100,12 @@ Run *deploy.sh* script, which do the next:
 
 Run `C-u 0 M-x byte-recompile-directory` to recomplile contents of `~/.emacs.d/plugins`.
 
+#### Org-mode installation
+
+To install org-mode enter `M-x list-packages` and find `org` in opened buffer. Then press `i` on org entry and `x` to install it.
+
+Do not know why, but `M-x package-install RET org RET` do not work. :-(
+
 #### File synchronization
 
 To work with file synchronization via cloudsync you need to have `sync` SSH-key with empty passphrase. This key should be added to remote server to rsync account into
