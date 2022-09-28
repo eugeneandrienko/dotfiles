@@ -6,11 +6,17 @@ function backup_data() {
     fi
     _chown_mnt
     OPTIONS="--delete"
-    _safe_backup "$OPTIONS" ~/git_repos /mnt/
-    _safe_backup "$OPTIONS" ~/music     /mnt/
-    _safe_backup "$OPTIONS" ~/pictures  /mnt/
-    _safe_backup "$OPTIONS" ~/rsync     /mnt/
-    _safe_backup "$OPTIONS" ~/raws      /mnt/
+    if [ -f ~/.zalman ]; then
+        _safe_backup "$OPTIONS" ~/git_repos /mnt/
+        _safe_backup "$OPTIONS" ~/music     /mnt/
+        _safe_backup "$OPTIONS" ~/pictures  /mnt/
+        _safe_backup "$OPTIONS" ~/rsync     /mnt/
+        _safe_backup "$OPTIONS" ~/raws      /mnt/
+    elif [ -f ~/.thinkpad ]; then
+        _safe_backup "$OPTIONS" ~/git_repos/dotfiles    /mnt/git_repos/
+        _safe_backup "$OPTIONS" ~/git_repos/telepodcast /mnt/git_repos/
+        _safe_backup "$OPTIONS" ~/rsync     /mnt/
+    fi
 }
 
 function _safe_backup() {
