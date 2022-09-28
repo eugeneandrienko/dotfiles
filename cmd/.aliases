@@ -75,6 +75,7 @@ alias gitsp='git stash pop'
 alias g='cd ~/git_repos'
 alias dw='cd ~/downloads'
 alias rs='cd ~/rsync'
+alias org='cd ~/rsync/org'
 
 # Maven
 alias mvnci='mvn clean install'

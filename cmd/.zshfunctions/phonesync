@@ -1,27 +1,14 @@
 function phonesync() {
     if [ ! -d ~/.termux ]; then
-        sudo chown drag0n:drag0n /mnt
-        aft-mtp-mount -o nonempty /mnt
-
-        DIR_TO_SYNC=/mnt/Internal\ shared\ storage/Download/rsync
-        mkdir -p "$DIR_TO_SYNC"
-
-        tar cjf /tmp/phone-sync.tar.bz2 -C ~/rsync/filez abook pass rss
-
-        OPTIONS="--delete"
-        _safe_backup "$OPTIONS" /tmp/phone-sync.tar.bz2 "$DIR_TO_SYNC"
-
-        sudo umount -v /mnt
-        sudo chown root:root /mnt
+        rm -vf /tmp/phone-sync.tar*
+        tar jcf /tmp/phone-sync.tar.bz2 -C ~/rsync filez/abook filez/pass filez/rss org
+        echo "Copy /tmp/phone-sync.tar.bz2 to phone"
+        read 'UNUSABLE?Press Enter to start mc: '
+        mc /tmp
     else
-        mv ~/storage/downloads/rsync/phone-sync.tar.bz2 ~/rsync/filez/
-        tar jxvf ~/rsync/filez/phone-sync.tar.bz2 -C ~/rsync/filez
-        rm -vf ~/rsync/filez/phone-sync.tar.bz2
+        mv ~/storage/downloads/phone-sync.tar.bz2 ~/rsync/
+        tar jxvf ~/rsync/phone-sync.tar.bz2 -C ~/rsync
+        rm -vf ~/rsync/phone-sync.tar.bz2
     fi
-}
-
-function _safe_backup() {
-    opts=(-aPh)
-    rsync $opts $1 $2 $3
 }
 
