@@ -46,6 +46,7 @@ alias newsboat='newsboat -u ~/rsync/filez/rss/urls'
 alias http_server='python3 -m http.server'
 alias mount_phone='sudo chown drag0n:drag0n /mnt && aft-mtp-mount -o nonempty /mnt'
 alias umount_phone='sudo umount -v /mnt && sudo chown root:root /mnt'
+alias daily='emacs ~/rsync/org/daily.org'
 
 # Mistypes
 alias -g xs='cd'
