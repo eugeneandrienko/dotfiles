@@ -4,8 +4,9 @@
    ("C-c c" . org-capture))
   :custom
   (org-catch-invisible-edits t)
-  (org-todo-keywords '((sequence "TODO(t)" "|" "DONE(d)" "CANCELLED(c)")))
-  (org-todo-keyword-faces '(("CANCELLED" . (:foreground "blue" :weight bold))))
+  (org-todo-keywords '((sequence "TODO(t)" "VERIFIED(v)" "|" "DONE(d)" "CANCELLED(c)")))
+  (org-todo-keyword-faces '(("CANCELLED" . (:foreground "blue" :weight bold))
+                            ("VERIFIED" . (:foreground "orange" :weight bold))))
   (org-clock-out-remove-zero-time-clocks t)
   (org-archive-subtree-save-file-p t "Save archive buffer immediately")
   (org-directory "~/rsync/org")
