@@ -19,7 +19,11 @@
                             "** TODO %?\n"
                             :empty-lines-after 2)
                            ("d" "Daily" entry (file "~/rsync/org/daily.org")
-                            "* TODO %? %^g\nSCHEDULED:%^T\n"
+                            "* TODO %? %^g\nSCHEDULED: %^t\n"
+                            :empty-lines-before 0
+                            :empty-lines-after 1)
+                           ("e" "Daily+time" entry (file "~/rsync/org/daily.org")
+                            "* TODO %? %^g\nSCHEDULED: %^T\n"
                             :empty-lines-before 0
                             :empty-lines-after 1)))
   (org-startup-indented t "Indent headlines")
