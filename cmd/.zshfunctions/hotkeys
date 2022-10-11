@@ -81,6 +81,8 @@ In agenda window:
    n                            - next line
    p                            - previous line
    t                            - change TODO state
+   d                            - show daily agenda
+   w                            - show weekly agenda
 
 C-c ?                           - Show field coordinates
 C-c }                           - Toggle grid for table

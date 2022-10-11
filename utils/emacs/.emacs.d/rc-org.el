@@ -27,6 +27,7 @@
                             :empty-lines-before 0
                             :empty-lines-after 1)))
   (org-startup-indented t "Indent headlines")
+  (org-agenda-span 'day)
   :config
   (progn
     (add-hook 'org-mode-hook
