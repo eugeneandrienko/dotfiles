@@ -1,11 +1,11 @@
-# Settings for vi mode
-bindkey -v
+# Settings for emacs mode
+bindkey -e
 export KEYTIMEOUT=1
-bindkey "^[[1~" beginning-of-line # Home
-bindkey "^[[4~" end-of-line # End
+bindkey "^[[1~" beginning-of-line # Home key
+bindkey "^[[4~" end-of-line # End key
 autoload -U edit-command-line
 zle -N edit-command-line
-bindkey -M vicmd v edit-command-line
+bindkey "^X^E" edit-command-line
 
 HISTFILE=~/.zsh_history
 HISTSIZE=1000

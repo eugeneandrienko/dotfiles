@@ -6,6 +6,6 @@ set bell-style visible
 "^B": backward-word
 "^F": forward-word
 
-set editing-mode vi
+set editing-mode emacs
 set show-mode-in-prompt on
 
