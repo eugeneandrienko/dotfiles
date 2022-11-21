@@ -7,6 +7,7 @@ This repository contains different configuration files, which I have been writin
 * abook
 * aspell (with aspell-ru dictionary)
 * bc
+* buttercup (for compiling gnuplot-mode for Emacs)
 * cal
 * cron
 * ctags
@@ -15,6 +16,7 @@ This repository contains different configuration files, which I have been writin
 * fdm
 * feh
 * git
+* gnuplot
 * gpg
 * i3
 * imagemagick

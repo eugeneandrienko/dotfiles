@@ -34,3 +34,5 @@
               '(lambda()
                  (add-to-list 'org-file-apps
                               '("\\.jpg\\'" . "sxiv %s"))))))
+
+(use-package gnuplot)

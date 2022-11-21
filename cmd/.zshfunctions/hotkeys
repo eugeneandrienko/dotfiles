@@ -83,6 +83,8 @@ In agenda window:
    t                            - change TODO state
    d                            - show daily agenda
    w                            - show weekly agenda
+   o                            - close other windows, show only agenda
+   NUMd                         - show daily agenda for NUM day of month
 
 C-c ?                           - Show field coordinates
 C-c }                           - Toggle grid for table
@@ -98,9 +100,12 @@ C-c -                           - Insert hline below
 C-c RET                         - Insert hline below and place cursor into the row below hline
 C-u C-c C-c                     - Recalculate table by formulas
 C-c *                           - Recalculate current row by formula
+C-c \" g                         - Draw plot by gnuplot
+C-c ^                           - Sort
 
 C-c C-n                         - Go to next heading
 C-c C-p                         - Go to previous heading
+S-TAB                           - Cycle visibility
 C-c C-o                         - Open link
 C-c C-c                         - Insert tag
 C-c ,                           - Set priority
