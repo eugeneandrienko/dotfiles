@@ -1,8 +1,3 @@
-GROUP "docs"
-ENTRY "AinSt" URL "/home/drag0n/rsync/docs/AinSt/"
-ENTRY "memoirs" URL "/home/drag0n/rsync/docs/memoirs"
-ENDGROUP
-GROUP "pics"
-ENTRY "pictures" URL "/home/drag0n/pictures"
+ENTRY "diary" URL "/home/drag0n/rsync/docs/diary"
 ENTRY "raws" URL "/home/drag0n/raws"
-ENDGROUP
+ENTRY "pictures" URL "/home/drag0n/pictures"
