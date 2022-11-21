@@ -32,7 +32,10 @@
   (progn
     (add-hook 'org-mode-hook
               '(lambda()
-                 (add-to-list 'org-file-apps
-                              '("\\.jpg\\'" . "sxiv %s"))))))
+                 (progn
+                   (add-to-list 'org-file-apps
+                                '("\\.jpg\\'" . "sxiv %s"))
+                   (add-to-list 'org-file-apps
+                                '("\\.png\\'" . "sxiv %s")))))))
 
 (use-package gnuplot)
