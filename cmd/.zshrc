@@ -96,7 +96,12 @@ mailpath=(
     ~/rsync/mail/stores"?New mail in =stores"
 )
 
+# Remove unnecessary catalogs:
+if [ -d "$HOME/Desktop" ] || [ -d "$HOME/Downloads" ]; then
+    rm -rf ~/Desktop ~/Downloads
+fi
+
+
 if [ -e ~/.userconfig ]; then
     . ~/.userconfig
 fi
-
