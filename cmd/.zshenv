@@ -4,6 +4,7 @@ export LS_COLORS
 EDITOR="emacs -nw";     export EDITOR
 LESS="-R";              export LESS
 LC_MESSAGES="C";        export LC_MESSAGES
+LC_ALL="en_US.utf8";    export LC_ALL
 
 # Set quoting style for ls here, since GNU/Linux coreutils
 # maintainers break the compatibility with decades of
