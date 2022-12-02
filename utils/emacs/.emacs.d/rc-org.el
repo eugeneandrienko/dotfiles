@@ -8,6 +8,8 @@
   (org-todo-keyword-faces '(("CANCELLED" . (:foreground "blue" :weight bold))
                             ("VERIFIED" . (:foreground "orange" :weight bold))))
   (org-clock-out-remove-zero-time-clocks t)
+  (org-archive-location "~/rsync/org/archive.org_archive::")
+  (org-archive-save-context-info (quote (file olpath)))
   (org-archive-subtree-save-file-p t "Save archive buffer immediately")
   (org-directory "~/rsync/org")
   (org-default-notes-file "~/rsync/org/notes.org")
