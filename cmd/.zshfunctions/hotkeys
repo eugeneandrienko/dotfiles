@@ -107,6 +107,7 @@ C-c C-n                         - Go to next heading
 C-c C-p                         - Go to previous heading
 S-TAB                           - Cycle visibility
 C-c C-o                         - Open link
+C-c C-l                         - Edit link
 C-c C-c                         - Insert tag
 C-c ,                           - Set priority
 C-c .                           - Insert timestamp
