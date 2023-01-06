@@ -765,6 +765,12 @@ shell/i/.md
     View=emacs -nw %s
     Edit=emacs -nw %s
 
+# Org files
+shell/i/.org
+    Open=emacs -nw %s
+    View=emacs -nw %s
+    Edit=emacs -nw %s
+
 # DjVu
 regex/i/\.djvu?$
 	Open=zathura 2>/dev/null %s &
