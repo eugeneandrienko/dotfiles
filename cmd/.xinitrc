@@ -6,7 +6,7 @@ elif [ -f ~/.thinkpad ]; then
     setxkbmap -model "thinkpad" -layout us,ru -option grp:caps_toggle -option grp_led:caps -option compose:ralt
 fi
 
-feh --bg-fill --no-fehbg /home/drag0n/rsync/filez/wallpaperz/OUMA_xVt_O8.jpg
+feh --bg-fill --no-fehbg /home/drag0n/rsync/filez/wallpaperz/navi.jpg
 
 if [ -f ~/.zalman ]; then
     xrandr --output DVI-D-1 --primary
