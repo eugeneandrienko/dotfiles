@@ -16,6 +16,7 @@
   (TeX-open-quote "<<")
   (TeX-close-quote ">>")
   (TeX-auto-save t)
+  (TeX-save-query t)
   (TeX-parse-self t "Allow document parsing")
   (TeX-source-correlate-mode t "For SyncTeX")
   (TeX-source-correlate-method 'synctex)
