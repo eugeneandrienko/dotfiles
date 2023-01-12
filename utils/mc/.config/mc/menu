@@ -49,7 +49,7 @@ e       Encode tagged files
             find "$i" -type f -exec chmod u+w {} \;
             find "$i" -type f -exec shred -uz {} \;
         done
-        find . -type d -exec rmdir {} \;
+        find . -type d -exec rmdir --ignore-fail-on-non-empty -p {} \;
 
 + f \.asc$
 d       Decode current file
