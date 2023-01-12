@@ -59,6 +59,7 @@ alias -g ks='ls'
 # Git aliases
 alias gits='git status -s'
 alias gitc='git commit -S -m'
+alias gitca='git commit -S --amend'
 alias gitp='git push'
 alias gitpl='git pull --rebase'
 alias gitf='git fetch'
