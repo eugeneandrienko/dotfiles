@@ -22,62 +22,42 @@ shell_patterns=0
 #   %0f   don't quote expanded macro
 ##############################################################################
 
-+ ! t t
-@       Do something on the current file
-        CMD=%{Enter command}
-        $CMD %f
-
-+ t t
-@       Do something on the tagged files
-        CMD=%{Enter command}
-        for i in %t ; do
-            $CMD "$i"
-        done
-
-= f *.jpg | f *.JPG | f *.jpeg | f *.JPEG | f *.png | f *.PNG
++ f \.jpg$ | f \.JPG$ | f \.jpeg$ | f \.JPEG$ | f \.png$ | f \.PNG$
 s       Run sxiv in current directory
         sxiv -t %d &
 
-= f *.jpg | f *.JPG | f *.jpeg | f *.JPEG | f *.png | f *.PNG
++ f \.jpg$ | f \.JPG$ | f \.jpeg$ | f \.JPEG$ | f \.png$ | f \.PNG$
 r       Resize images for Instagram
         for i in %s; do
             convert "$i" -resize 1080x1080^ resized_"$i"
         done
 
-= f *.jpg | f *.JPG | f *.jpeg | f *.JPEG | f *.png | f *.PNG
++ f \.jpg$ | f \.JPG$ | f \.jpeg$ | f \.JPEG$ | f \.png$ | f \.PNG$
 k       Resize images for Chris
         for i in %s; do
             convert "$i" -resize 2560x2560^ resized_"$i"
         done
 
-= t d
-3       Compress the current subdirectory (tar.gz)
-        Pwd=`basename %d /`
-        echo -n "Name of the compressed file (without extension) [$Pwd]: "
-        read tar
-        [ "$tar"x = x ] && tar="$Pwd"
-        cd .. && \
-        tar cf - "$Pwd" | gzip -f9 > "$tar.tar.gz" && \
-        echo "../$tar.tar.gz created."
-
-4       Compress the current subdirectory (tar.bz2)
-        Pwd=`basename %d /`
-        echo -n "Name of the compressed file (without extension) [$Pwd]: "
-        read tar
-        [ "$tar"x = x ] && tar="$Pwd"
-        cd .. && \
-        tar cf - "$Pwd" | bzip2 -f > "$tar.tar.bz2" && \
-        echo "../$tar.tar.bz2 created."
-
-+ t r & ! t t
-a       Append file to opposite
-        cat %f >> %D/%f
-
 + t t
-A       Append files to opposite files
-        for i in %t ; do
-            cat "$i" >> %D/"$i"
+e       Encode tagged files
+        ARCHIVE=$(basename $(pwd))
+        tar cf $ARCHIVE.tar %t
+        gpg --encrypt --armor --recipient evg.andrienko@gmail.com "$ARCHIVE".tar
+        gpg --sign "$ARCHIVE".tar.asc
+        shred -uz "$ARCHIVE".tar
+        for i in %u; do
+            find "$i" -type f -exec chmod u+w {} \;
+            find "$i" -type f -exec shred -uz {} \;
         done
+        find . -type d -exec rmdir {} \;
+
++ f \.asc$
+d       Decode current file
+        gpg --verify %f.gpg
+        gpg --decrypt --output output.tar %f
+        tar xf output.tar
+        shred -uz output.tar
+        rm -f %f %f.gpg
 
 + t r & ! t t
 d       Delete file if a copy exists in the other directory.
@@ -121,139 +101,3 @@ D       Delete tagged files if a copy exists in the other directory.
 + f \.tex$ & t r & ! t t
 t       Run latexmk on file and show it with zathura
         latexmk -pdf %f && zathura "`basename %f .tex`".pdf
-
-=+ f \.tar\.gz$ | f \.tar\.z$ | f \.tgz$ | f \.tpz$ | f \.tar\.lz$ | f \.tar\.lz4$ | f \.tar\.lzma$ | f \.tar\.7z$ | f \.tar\.xz$ | f \.tar\.zst | f \.tar\.Z$ | f \.tar\.bz2$ & t rl
-x       Extract the contents of a compressed tar file
-        unset PRG
-        case %f in
-            *.tar.7z)   PRG="7za e -so";;
-            *.tar.bz2)  PRG="bunzip2 -c";;
-            *.tar.gz|*.tar.z|*.tgz|*.tpz|*.tar.Z) PRG="gzip -dc";;
-            *.tar.lz)   PRG="lzip -dc";;
-            *.tar.lz4)  PRG="lz4 -dc";;
-            *.tar.lzma) PRG="lzma -dc";;
-            *.tar.xz)   PRG="xz -dc";;
-            *.tar.zst)  PRG="zstd -dc";;
-            *)          exit 1;;
-        esac
-        $PRG %f | tar xvf -
-
-= t r
-+ ! t t
-y       Gzip or gunzip current file
-        unset DECOMP
-        case %f in
-            *.gz|*.[zZ]) DECOMP=-d;;
-        esac
-        # Do *not* add quotes around $DECOMP!
-        gzip $DECOMP -v %f
-
-+ t t
-Y       Gzip or gunzip tagged files
-        for i in %t ; do
-            unset DECOMP
-            case "$i" in
-                *.gz|*.[zZ]) DECOMP=-d;;
-            esac
-            gzip $DECOMP -v "$i"
-        done
-
-+ ! t t
-b       Bzip2 or bunzip2 current file
-        unset DECOMP
-        case %f in
-            *.bz2) DECOMP=-d;;
-        esac
-        bzip2 $DECOMP -v %f
-
-+ t t
-B       Bzip2 or bunzip2 tagged files
-        for i in %t ; do
-            unset DECOMP
-            case "$i" in
-                *.bz2) DECOMP=-d;;
-            esac
-            bzip2 $DECOMP -v "$i"
-        done
-
-+ f \.tar.gz$ | f \.tgz$ | f \.tpz$ | f \.tar.Z$ | f \.tar.z$ | f \.tar.bz2$ | f \.tar.F$ & t r & ! t t
-z       Extract compressed tar file to subdirectory
-        unset D
-        set gzip -cd
-        case %f in
-            *.tar.F)   D=`basename %f .tar.F`; set freeze -dc;;
-            *.tar.Z)   D=`basename %f .tar.Z`;;
-            *.tar.bz2) D=`basename %f .tar.bz2`; set bunzip2 -c;;
-            *.tar.gz)  D=`basename %f .tar.gz`;;
-            *.tar.z)   D=`basename %f .tar.z`;;
-            *.tgz)     D=`basename %f .tgz`;;
-            *.tpz)     D=`basename %f .tpz`;;
-        esac
-        mkdir "$D"; cd "$D" && ("$1" "$2" ../%f | tar xvf -)
-
-+ t t
-Z       Extract compressed tar files to subdirectories
-        for i in %t ; do
-            set gzip -dc
-            unset D
-            case "$i" in
-                *.tar.F)   D=`basename "$i" .tar.F`; set freeze -dc;;
-                *.tar.Z)   D=`basename "$i" .tar.Z`;;
-                *.tar.bz2) D=`basename "$i" .tar.bz2`; set bunzip2 -c;;
-                *.tar.gz)  D=`basename "$i" .tar.gz`;;
-                *.tar.z)   D=`basename "$i" .tar.z`;;
-                *.tgz)     D=`basename "$i" .tgz`;;
-                *.tpz)     D=`basename "$i" .tpz`;;
-          esac
-          mkdir "$D"; (cd "$D" && "$1" "$2" "../$i" | tar xvf -)
-        done
-
-+ f \.gz$ | f \.tgz$ | f \.tpz$ | f \.Z$ | f \.z$ | f \.bz2$ & t r & ! t t
-c       Convert gz<->bz2, tar.gz<->tar.bz2 & tgz->tar.bz2
-        unset D
-        unset EXT
-        case %f in
-            *.Z)   EXT=Z;;
-            *.bz2) EXT=bz2;;
-            *.gz)  EXT=gz;;
-            *.tgz) EXT=tgz;;
-            *.tpz) EXT=tpz;;
-            *.z)   EXT=z;;
-        esac
-        case "$EXT" in
-            bz2|Z|gz|z) D=`basename %f ."$EXT"`;;
-            tgz|tpz)    D=`basename %f ."$EXT"`.tar;;
-        esac
-        if [ "$EXT" = "bz2" ]; then
-            bunzip2 -v %f
-            gzip -f9 -v "$D"
-        else
-            gunzip -v %f
-            bzip2 -v "$D"
-        fi
-
-+ t t
-C       Convert gz<->bz2, tar.gz<->tar.bz2 & tgz->tar.bz2
-        for i in %t ; do
-            unset D
-            unset EXT
-            case "$i" in
-                *.Z)   EXT=Z;;
-                *.bz2) EXT=bz2;;
-                *.gz)  EXT=gz;;
-                *.tgz) EXT=tgz;;
-                *.tpz) EXT=tpz;;
-                *.z)   EXT=z;;
-            esac
-            case "$EXT" in
-                bz2|Z|gz|z) D=`basename "$i" ."$EXT"`;;
-                tgz|tpz)    D=`basename "$i" ."$EXT"`.tar;;
-            esac
-            if [ "$EXT" = "bz2" ]; then
-                bunzip2 -v "$i"
-                gzip -f9 -v "$D"
-            else
-                gunzip -v "$i"
-                bzip2 -v "$D"
-            fi
-        done
