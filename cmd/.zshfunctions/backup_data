@@ -6,13 +6,14 @@ function backup_data() {
     fi
     _chown_mnt
     OPTIONS="--delete"
-    if [ -f ~/.zalman ]; then
+    source ~/.bin/get_machine_id.sh
+    if [ "$MACHINE_HW" = "zalman" ]; then
         _safe_backup "$OPTIONS" ~/git_repos /mnt/
         _safe_backup "$OPTIONS" ~/music     /mnt/
         _safe_backup "$OPTIONS" ~/pictures  /mnt/
         _safe_backup "$OPTIONS" ~/rsync     /mnt/
         _safe_backup "$OPTIONS" ~/raws      /mnt/
-    elif [ -f ~/.thinkpad ]; then
+    elif [ "$MACHINE_HW" = "thinkpad" ]; then
         _safe_backup "$OPTIONS" ~/git_repos/dotfiles    /mnt/git_repos/
         _safe_backup "$OPTIONS" ~/git_repos/telepodcast /mnt/git_repos/
         _safe_backup "$OPTIONS" ~/rsync     /mnt/

@@ -21,7 +21,8 @@ stow bin cmd
 
 # Copying dotfiles to $HOME
 export STOW_DIR=./utils
-stow abook emacs git gnupg i3wm mc mplayer mutt newsboat rtorrent ssh tmux vim zathura
+stow abook emacs git gnupg mc mplayer mutt newsboat rtorrent ssh tmux vim zathura
+stow --ignore="i3status\.conf\.m4" i3wm
 
 # Making necessary (empty) directories
 mkdir -pv "$HOME/.vim/swapfiles"
@@ -65,82 +66,30 @@ chmod -v 600 ~/.openweathermap
 echo "Installing crontab"
 crontab ./utils/crontab/crontab
 
-# Select target system if not selected yet
-if [ ! -f ~/.gentoo ] && \
-    [ ! -f ~/.debian ] && \
-    [ ! -d ~/.termux ]; then
-    echo
-    echo 'OS:'
-    echo
-    echo 'g) Gentoo (GNU/Linux)'
-    echo 'd) Debian'
-    echo 't) Termux'
-    echo
-    read 'SELECTED_OS?Select OS: '
-
-    case "$SELECTED_OS" in
-        'g')
-            touch ~/.gentoo
-            echo 'Selected Gentoo (GNU/Linux)'
-            ;;
-        'd')
-            touch ~/.debian
-            echo 'Selected Debian'
-            ;;
-        't')
-            touch ~/.termux
-            echo 'Selected Termux'
-            ;;
-        '*')
-            echo 'Wrong input! Cannot determine OS - system may work incorrectly!'
-            exit 2
-            ;;
-    esac
-fi
-
-# Select target machine if not selected yet
-if [ ! -f ~/.zalman ] && \
-    [ ! -f ~/.thinkpad ] && \
-    [ ! -d ~/.termux ]; then
+# Select target system and OS if not selected yet
+if [ -d ~/.termux ]; then
+    echo "Termux" > ~/.machine_id
+elif [ ! -f ~/.machine_id ]; then
     echo
     echo 'Machine:'
     echo
-    echo 'z) Zalman'
-    echo 't) Thinkpad'
+    echo '1) Gentoo (GNU/Linux) on Zalman'
+    echo '2) Debian on Thinkpad'
     echo
-    read 'SELECTED_MACHINE?Select machine: '
+    read 'SELECTED_OS?Select machine: '
 
-    case "$SELECTED_MACHINE" in
-        'z')
-            touch ~/.zalman
-            echo 'Selected Zalman'
+    case "$SELECTED_OS" in
+        '1')
+            echo "Gentoo on Zalman" > ~/.machine_id
             ;;
-        't')
-            touch ~/.thinkpad
-            echo 'Selected Thinkpad'
+        '2')
+            echo "Debian on Thinkpad" > ~/.machine_id
             ;;
         '*')
-            echo 'Wrong input! Cannot determine machine - system may work incorrectly!'
-            exit 3
+            echo 'Wrong input!'
+            exit 2
             ;;
     esac
-fi
-
-# Select "main machine" status
-if [ ! -f ~/.main-machine ] && \
-    [ ! -f ~/.not-main-machine ]; then
-    echo
-    echo '"Main machine" will retrieve mail from mail servers automatically'
-    echo
-    read 'ANSWER?Is this main machine? [y/n]: '
-    echo
-    if [ "$ANSWER" = "y" ]; then
-        touch ~/.main-machine
-        echo 'This is main machine'
-    else
-        touch ~/.not-main-machine
-        echo 'This is NOT main machine'
-    fi
 fi
 
 # Some fixes for Termux
@@ -150,6 +99,9 @@ if [ -d ~/.termux ]; then
     sed -ri '/haskell/d' ~/.emacs
 fi
 
+# m4 some config files
+source ~/.bin/get_machine_id.sh
+m4 -P -D"$MACHINE_HW" utils/i3wm/.i3/i3status.conf.m4 > ~/.i3/i3status.conf
+
 echo
 echo 'Done!'
-

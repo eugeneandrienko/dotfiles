@@ -1,3 +1,4 @@
-*/10 * * * * /home/drag0n/.bin/get_mail.sh
+# */10 * * * * /home/drag0n/.bin/get_mail.sh
+
 */30 * * * * /home/drag0n/.bin/get_weather.sh
 */1 * * * * /home/drag0n/.bin/get_kbd_lang.sh

@@ -201,7 +201,7 @@ bar {
         inactive_workspace #ffffff #ffffff #000000
         focused_workspace  #000000 #000000 #ffffff
     }
-    status_command ~/.i3/i3status.sh
+    status_command i3status --config ~/.i3/i3status.conf
 }
 
 # Workspace-mapped windows:

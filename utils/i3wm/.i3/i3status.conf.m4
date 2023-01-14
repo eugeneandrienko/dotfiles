@@ -11,7 +11,13 @@ general {
 order  = "read_file weather"
 order += "read_file language"
 order += "cpu_usage"
-order += "ethernet enp5s0"
+m4_ifdef(`zalman',
+`order += "ethernet enp5s0"',
+m4_ifdef(`thinkpad',
+`order += "cpu_temperature 0"
+order += "battery 0"
+order += "ethernet em0"
+order += "wireless wlan0"'))
 order += "volume master"
 order += "tztime local"
 
@@ -31,10 +37,39 @@ cpu_usage {
     format_above_degraded_threshold = "DEGRADED %usage"
 }
 
-ethernet enp5s0 {
+m4_ifdef(`zalman',
+`ethernet enp5s0 {
+    format_up = "🖧 %ip"
+    format_down = "🖧 down"
+}',
+m4_ifdef(`thinkpad',
+`cpu_temperature 0 {
+    format = "🌡 %degrees °C"
+}
+
+battery 0 {
+    format = "%status %percentage %remaining"
+    format_down = "No battery"
+    status_chr = "🔌"
+    status_bat = "🔋"
+    status_unk = "🕱"
+    status_full = "🔋"
+    threshold_type = "time"
+    low_threshold = 10
+    integer_battery_capacity = true
+    last_full_capacity = true
+}
+
+ethernet em0 {
     format_up = "🖧 %ip"
     format_down = "🖧 down"
 }
+
+wireless wlan0 {
+    format_up = "📡 %essid"
+    format_down = "📡 down"
+    format_quality = "%03d%s"
+}'))
 
 volume master {
     format = "🔊 %volume"

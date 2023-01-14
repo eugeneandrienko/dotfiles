@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
-if [ -f ~/.zalman ]; then
+source ~/.bin/get_machine_id.sh
+
+if [ "$MACHINE_HW" = "zalman" ]; then
     amixer -c 0 -- sset Master toggle 1>/dev/null 2>&1;
-elif [ -f ~/.thinkpad ]; then
+elif [ "$MACHINE_HW" = "thinkpad" ]; then
     amixer -c 0 -- sset Master toggle 1>/dev/null 2>&1;
     MASTER_STATE=$(amixer -c 0 -- sget Master | grep 'Mono:' | sed -r 's/.*\[(o[nf]f?)\]/\1/g')
     HEADPHONE_LEVEL=$(amixer -c 0 -- sget Headphone | grep 'Front Left:' | sed -r 's/.*\[([0-9]+)%\].*/\1/g')
@@ -15,4 +17,3 @@ elif [ -f ~/.thinkpad ]; then
         amixer -c 0 -- sset Speaker toggle 1>/dev/null 2>&1;
     fi
 fi
-

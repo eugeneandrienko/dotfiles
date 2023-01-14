@@ -1,6 +1,8 @@
 #!/usr/bin/env zsh
 
-if [ ! -f ~/.gentoo ]; then
+source ~/.bin/get_machine_id.sh
+
+if [ "$MACHINE_OS" != "gentoo" ]; then
     echo "This script only for Gentoo host!"
     exit 1
 fi

@@ -4,12 +4,14 @@ FONT="'-xos4-terminus-*-*-*-*-14-*-*-*-*-*-*-u'"
 COLORS="-sb '#000000' -sf '#ffffff' -nb '#ffffff' -nf '#000000'"
 DMENU_CMD="dmenu -i -b -fn $FONT $COLORS"
 
-if [ -f ~/.zalman ]; then
+source ~/.bin/get_machine_id.sh
+
+if [ "$MACHINE_HW" = "zalman" ]; then
     DMENU_ITEMS="firefox:firefox_unsec:telegram"
     DMENU_ITEMS+=":audacious:gimp:rawtherapee:openshot"
     DMENU_ITEMS+=":qmapshack:josm:stellarium"
     DMENU_ITEMS+=":idea:android-file-transfer"
-elif [ -f ~/.thinkpad ]; then
+elif [ "$MACHINE_HW" = "thinkpad" ]; then
     DMENU_ITEMS="firefox:firefox_unsec:telegram"
     DMENU_ITEMS+=":gimp:rawtherapee"
     DMENU_ITEMS+=":qmapshack:josm:stellarium"
@@ -21,9 +23,9 @@ case $(echo $DMENU_ITEMS | tr ':' '\n' | eval "$DMENU_CMD -p Execute:") in
         /home/drag0n/.bin/firefox.sh
         ;;
     'firefox_unsec')
-        if [ -f ~/.gentoo ]; then
+        if [ "$MACHINE_OS" = "gentoo" ]; then
             /usr/bin/apulse /usr/bin/firefox-bin -P unsecure &
-        elif [ -f ~/.debian ]; then
+        elif [ "$MACHINE_OS" = "debian" ]; then
             /usr/bin/firefox -P unsecure &
         fi
         ;;
@@ -64,4 +66,3 @@ case $(echo $DMENU_ITEMS | tr ':' '\n' | eval "$DMENU_CMD -p Execute:") in
         exit 1
         ;;
 esac
-

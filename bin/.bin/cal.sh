@@ -1,12 +1,19 @@
 #!/usr/bin/env sh
 
-if [ -f ~/.gentoo ]; then
-    cal -n 3
-elif [ -d ~/.termux ]; then
-    cal -n 1
-elif [ -f ~/.debian ]; then
-    ncal -3Mb
-else
-    exit 1
-fi
+source ~/.bin/get_machine_id.sh
+
+case "$MACHINE_OS" in
+    "gentoo")
+        cal -n 3
+        ;;
+    "debian")
+        ncal -3Mb
+        ;;
+    "termux")
+        cal -n 1
+        ;;
+    "*")
+        exit 1
+        ;;
+esac
 

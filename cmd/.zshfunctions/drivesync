@@ -12,8 +12,9 @@ function drivesync() {
 }
 
 function drivesync_force_drive() {
+    source ~/.bin/get_machine_id.sh
     OPTIONS="--delete"
-    if [ -f ~/.zalman ]; then
+    if [ "$MACHINE_HW" = "zalman" ]; then
         read 'ANSWER?Sync mail? [y/n]: '
         if [ "$ANSWER" = "n" ]; then
             EXCLUDE_MAIL="y"
@@ -60,4 +61,3 @@ function _chown_mnt() {
         [[ "$?" -ne "0" ]] || break
     done
 }
-
