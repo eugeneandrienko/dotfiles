@@ -38,9 +38,6 @@ export MANPAGER='less -RFX'
 # Don't clear the screen after quitting pager
 export PAGER='less -RFX'
 
-# For correct colors in console
-export TERM=screen-256color
-
 export LESS=RFXj2
 export LESS=${LESS}"Ps?f%f .?m(%i/%m) .%lt-%lb?L/%L. [%bB?B/%B.]?B %pB\%.?x N\:%x.%t"
 
