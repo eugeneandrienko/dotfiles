@@ -43,7 +43,16 @@ e       Encode tagged files
         ARCHIVE=$(basename $(pwd))
         tar cf $ARCHIVE.tar %t
         gpg --encrypt --armor --recipient evg.andrienko@gmail.com "$ARCHIVE".tar
+        if [ "$?" -ne "0" ]; then
+            echo "Error: encrypt fail"
+            exit 1
+        fi
+        printf "\a\033]2;\033\\"
         gpg --sign "$ARCHIVE".tar.asc
+        if [ "$?" -ne "0" ]; then
+            echo "Error: sign fail"
+            exit 2
+        fi
         shred -uz "$ARCHIVE".tar
         for i in %u; do
             find "$i" -type f -exec chmod u+w {} \;
@@ -54,7 +63,16 @@ e       Encode tagged files
 + f \.asc$
 d       Decode current file
         gpg --verify %f.gpg
+        if [ "$?" -ne "0" ]; then
+            echo "Error: verify fail"
+            exit 1
+        fi
+        printf "\a\033]2;\033\\"
         gpg --decrypt --output output.tar %f
+        if [ "$?" -ne "0" ]; then
+            echo "Error: decrypt fail"
+            exit 2
+        fi
         tar xf output.tar
         shred -uz output.tar
         rm -f %f %f.gpg
