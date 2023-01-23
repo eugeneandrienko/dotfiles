@@ -107,6 +107,9 @@ Sometimes Org-mode will not install via =use-package= plugin.
 
 To install Org-mode enter =M-x list-packages= and find =org= in opened
 buffer. Then press =i= on org entry and =x= to install it.
+** Pinentry installation:
+=M-x package-install= -> =pinentry= — if it is not installed itself via
+=use-package=.
 ** File synchronization:
 To work with file synchronization via cloudsync you need to have =sync=
 SSH-key with empty passphrase. This key should be added to remote server to

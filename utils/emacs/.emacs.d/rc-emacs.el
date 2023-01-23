@@ -102,3 +102,7 @@
 ;; Font for GUI
 (add-to-list 'default-frame-alist
              '(font . "Droid Sans Mono-12"))
+
+(use-package pinentry
+ :custom
+ (pinentry-start))
