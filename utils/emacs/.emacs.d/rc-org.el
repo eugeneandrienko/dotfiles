@@ -30,6 +30,7 @@
                             :empty-lines-after 1)))
   (org-startup-indented t "Indent headlines")
   (org-agenda-span 'day)
+  (org-image-actual-width '(0.3))
   :config
   (progn
     (add-hook 'org-mode-hook

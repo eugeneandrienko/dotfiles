@@ -1,20 +1,31 @@
                                         ;my favourite scrolling
 (setq scroll-step 1)
                                         ;turn off the panel
-;(tool-bar-mode 0)
+(when (fboundp 'tool-bar-mode)
+  (tool-bar-mode -1))
                                         ;turn off the menu
-(menu-bar-mode 0)
+(when (fboundp 'menu-bar-mode)
+  (menu-bar-mode -1))
                                         ;compilation window shall scroll down
 (setq compilation-scroll-output 1)
                                         ;disable the vertical scrollbars
-;(scroll-bar-mode 0)
+(when (fboundp 'scroll-bar-mode)
+  (scroll-bar-mode -1))
                                         ;enable numbers of line and char
 (line-number-mode t)
 (column-number-mode t)
                                         ;disable the startup screen
 (setq inhibit-startup-screen t)
+(setq use-file-dialog nil)
+(setq use-dialog-box nil)
+(setq inhibit-startup-echo-area-message t)
                                         ;immediately show keystrokes
 (setq echo-keystrokes 0.5)
+
+(let ((no-border '(internal-border-width . 0)))
+  (add-to-list 'default-frame-alist no-border)
+  (add-to-list 'initial-frame-alist no-border))
+
 
 ;; Save all backups to "~/.emacs.d/backups/"
 (when (not (file-directory-p "~/.emacs.d/backups"))
@@ -81,4 +92,13 @@
              '("gnu" . "https://elpa.gnu.org/packages/") t)
 (add-to-list 'package-archives
              '("nongnu" . "https://elpa.nongnu.org/nongnu/") t)
+(setq package-archive-priorities
+      '(("melpa-stable" . 10)
+        ("gnu" . 9)
+        ("nongnu" . 8)
+        ("melpa" . 1)))
 (package-initialize)
+
+;; Font for GUI
+(add-to-list 'default-frame-alist
+             '(font . "Droid Sans Mono-12"))

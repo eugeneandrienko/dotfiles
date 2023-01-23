@@ -23,6 +23,7 @@ C-c C-b                         - build current buffer
 C-c C-r                         - build selected region
 C-c C-k                         - kill process
 C-c C-v                         - view LaTeX source
+C-c C-p C-p                     - view inline images
 
 C-c {                           - insert pair of braces
 C-c C-e                         - insert environment
@@ -115,6 +116,7 @@ C-c C-d                         - Insert deadline
 C-c C-s                         - Insert schedule
 C-c C-x M                       - Insert new Checkbox item
 C-c $                           - Archive entry
+M-x org-redisplay-inline-images - Redisplay inline images
 
 C-c C-x C-i                     - Clock in
 C-c C-x C-o                     - Clock out
