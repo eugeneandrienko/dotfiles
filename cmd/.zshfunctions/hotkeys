@@ -73,6 +73,13 @@ C-c s h                         - Hide documentation at point
 C-c t t                         - Show treemacs
 C-c t s                         - Show symbols in treemacs
 
+C-x g                           - Show Magit buffer
+g                               - Update Magit buffer
+d d (in buffer)                 - Show detailed diff for changes
+l l (in buffer)                 - Show log
+c                               - Commit
+C-c C-c                         - Show window with all Magit commands
+
 
 C-c c                           - Capture
 In agenda window:

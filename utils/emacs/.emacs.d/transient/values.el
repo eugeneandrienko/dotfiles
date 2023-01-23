@@ -1,0 +1,1 @@
+((magit-commit "--gpg-sign=EB6A4FC927DE468CAD383BA8713D984F56881209"))
