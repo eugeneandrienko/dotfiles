@@ -59,6 +59,7 @@ autoload -z jpg2timelapse
 autoload -z backup_data && backup_data
 autoload -z drivesync && drivesync
 autoload -z phonesync
+autoload -z emacs
 
 if [ -e ~/.aliases ]; then
     . ~/.aliases
@@ -100,7 +101,6 @@ mailpath=(
 if [ -d "$HOME/Desktop" ] || [ -d "$HOME/Downloads" ]; then
     rm -rf ~/Desktop ~/Downloads
 fi
-
 
 if [ -e ~/.userconfig ]; then
     . ~/.userconfig
