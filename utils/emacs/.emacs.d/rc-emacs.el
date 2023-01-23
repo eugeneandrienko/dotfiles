@@ -103,6 +103,10 @@
 (add-to-list 'default-frame-alist
              '(font . "Droid Sans Mono-12"))
 
+;; Emacs pinentry — ask password for GPG keys
 (use-package pinentry
  :custom
  (pinentry-start))
+
+;; Mail mode for mutt
+(add-to-list 'auto-mode-alist '("/mutt" . mail-mode))
