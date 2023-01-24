@@ -205,15 +205,17 @@ bar {
 }
 
 # Workspace-mapped windows:
-assign [class="Firefox"]   web
-assign [class="firefox"]   web
-assign [class="Telegram"]  web
-assign [class="tmux"]      1
-assign [class="Vncviewer"] 10
+assign [class="(?i)firefox"] web
+assign [class="Telegram"]    web
+assign [class="tmux"]        1
+assign [class="Vncviewer"]   10
 # Floating windows:
 for_window [class="MPlayer"]                        floating enable
 for_window [class="jetbrains-idea-ce" title="win0"] floating enable
 for_window [class="jetbrains-idea-ce" title="win0"] border none
+# Mark windows:
+for_window [class="(?i)emacs"] mark emacs
+for_window [class="Vncviewer"] mark vncview
 # Assign workspaces to monitors:
 workspace 1   output DVI-D-1
 workspace web output DVI-D-1
