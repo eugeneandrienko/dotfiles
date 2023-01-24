@@ -110,3 +110,17 @@
 
 ;; Mail mode for mutt
 (add-to-list 'auto-mode-alist '("/mutt" . mail-mode))
+
+;; Setup more smart buffer handling
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(setq ibuffer-saved-filter-groups
+      (quote (("default"
+               ("Org" (or
+                       (mode . org-mode)
+                       (name . "^\\*Org Agenda\\*$")))
+               ("Java" (or
+                        (mode . java-mode)
+                        (name . "^\\*EGLOT.+")))))))
+(add-hook 'ibuffer-mode-hook
+          (lambda ()
+            (ibuffer-switch-to-saved-filter-groups "default")))
