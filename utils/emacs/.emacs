@@ -1,8 +1,8 @@
 ;; Increase GC limit to boot speedup
 (setq gc-cons-threshold 100000000)
 
-(load "~/.emacs.d/rc-emacs.el")
 (load "~/.emacs.d/rc-use-package.el")
+(load "~/.emacs.d/rc-emacs.el")
 
 (load "~/.emacs.d/rc-ido.el")
 (load "~/.emacs.d/rc-aspell.el")
