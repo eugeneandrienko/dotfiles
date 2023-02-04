@@ -1,4 +1,5 @@
 ﻿"" CONTENTS:
+""" *) Plugin installation
 """ *) General
 """ *) Encoding
 """ *) Files
@@ -13,12 +14,32 @@
 """ *) Keybindings
 
 
+""
+"" Plugin installation
+""
+set runtimepath+=~/.vim
+set nocompatible
+" Install plugin manager
+" Usage - :Bundle<TAB>
+" Launch this to install:
+"    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'markonm/traces.vim'
+Plugin 'vim-scripts/taglist.vim'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'dim13/xedit.vim'
+call vundle#end()
 
 ""
 "" General
 ""
-set runtimepath+=~/.vim
-set nocompatible
 filetype plugin indent on
 " Save 50 lines in cmdline history
 set history=50
