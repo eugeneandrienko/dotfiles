@@ -4,7 +4,7 @@ source ~/.bin/get_machine_id.sh
 
 case "$MACHINE_OS" in
     "gentoo")
-        cal -n 3
+        cal -m -n 3
         ;;
     "debian")
         ncal -3Mb
