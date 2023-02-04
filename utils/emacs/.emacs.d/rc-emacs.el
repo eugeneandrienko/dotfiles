@@ -101,7 +101,7 @@
 
 ;; Font for GUI
 (add-to-list 'default-frame-alist
-             '(font . "Droid Sans Mono-12"))
+             '(font . "Noto Sans Mono-12"))
 
 ;; Emacs pinentry — ask password for GPG keys
 (use-package pinentry
