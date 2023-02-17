@@ -37,7 +37,8 @@
  '(font-latex-sectioning-4-face ((t (:inherit font-latex-sectioning-5-face :foreground "OliveDrab" :height 1.1))) t)
  '(font-latex-sectioning-5-face ((((class color) (background dark)) (:inherit variable-pitch :foreground "OliveDrab" :weight bold))) t)
  '(font-latex-string-face ((t (:inherit font-lock-keyword-face :foreground "OliveDrab" :height 1.0))) t)
- '(highlight-symbol-face ((((class color) (background dark)) (:background "OliveDrab"))) t))
+ '(highlight-symbol-face ((((class color) (background dark)) (:background "OliveDrab"))) t)
+ '(italic ((t (:slant italic :weight thin :height 120 :width normal :family "Noto Sans Mono Italic")))))
 
 ;; Default cyr/latin input method
 (setq default-input-method "russian-computer")
