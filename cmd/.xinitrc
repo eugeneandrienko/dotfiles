@@ -28,6 +28,6 @@ if [ "$MACHINE_HW" = "thinkpad" ]; then
 fi
 
 xrdb ~/.Xresources
-xrdb ~/.urxvt
+xrdb -merge  ~/.urxvt
 
 exec /usr/bin/i3 -c ~/.i3/config

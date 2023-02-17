@@ -78,7 +78,6 @@ diff-highlight`.
 ** =noauto/= contents:
 - =hosts= — =/etc/hosts= file. This is not a valid =hosts= file! You should
   review it and add useful entries to your =/etc/hosts= by hands!
-- =st= — configuration file for st terminal emulator.
 
 * Before install:
 To store sensitive data (passwords, etc) in the archive for the new machine —

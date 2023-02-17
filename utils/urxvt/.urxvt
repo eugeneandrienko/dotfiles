@@ -61,6 +61,7 @@ URxvt.iso14755_52:          false
 
 URxvt.font: xft:Noto Sans Mono:pixelsize=16:antialias=true:autohint=true
 URxvt.boldFont: xft:Noto Sans Mono-Bold:pixelsize=16:antialias=true:autohint=true
+URxvt.italicFont: xft: Noto Sans-Italic:pixelsize=16:antialias=true:autohint=true
 URxvt.letterSpace: -1
 URxvt.lineSpace: 0
 
