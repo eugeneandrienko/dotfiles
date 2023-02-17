@@ -10,9 +10,13 @@ function backup_data() {
     if [ "$MACHINE_HW" = "zalman" ]; then
         _safe_backup "$OPTIONS" ~/git_repos /mnt/
         _safe_backup "$OPTIONS" ~/music     /mnt/
+        _safe_backup "$OPTIONS" ~/palm      /mnt/
         _safe_backup "$OPTIONS" ~/pictures  /mnt/
         _safe_backup "$OPTIONS" ~/rsync     /mnt/
         _safe_backup "$OPTIONS" ~/raws      /mnt/
+        _safe_backup "$OPTIONS" ~/.config/GIMP/2.10/brushes /mnt/gimp
+        _safe_backup "$OPTIONS" ~/.config/GIMP/2.10/scripts /mnt/gimp
+        _safe_backup "$OPTIONS" ~/.config/RawTherapee/profiles /mnt/rawtherapee
     elif [ "$MACHINE_HW" = "thinkpad" ]; then
         _safe_backup "$OPTIONS" ~/git_repos/dotfiles    /mnt/git_repos/
         _safe_backup "$OPTIONS" ~/git_repos/telepodcast /mnt/git_repos/
