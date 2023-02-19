@@ -12,6 +12,7 @@
 (load "~/.emacs.d/rc-rst-mode.el")
 (load "~/.emacs.d/rc-fill-column-indicator.el")
 (load "~/.emacs.d/rc-company.el")
+(load "~/.emacs.d/rc-dockerfile-mode.el")
 (load "~/.emacs.d/rc-org.el")
 
 (custom-set-variables
