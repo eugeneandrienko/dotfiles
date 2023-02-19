@@ -47,32 +47,6 @@ C-c -                           - recenter ToC buffer to here
 C-c ^                           - switch to master file
 
 
-C-c p f                         - List of files in project
-C-c p d                         - List of directories in project
-C-c p T                         - List of test files in project
-C-c p l                         - List of files in given directory
-C-c p s g                       - Grep in project
-C-c p v                         - Show VCS info for project
-C-c p i                         - Invalidates project cache
-C-c p b                         - Show buffers, belongs to project
-C-c p k                         - Kill buffers, belongs to project
-C-c p e                         - Show recent files
-C-c p c                         - Run standard compilation command
-C-c p P                         - Run standard test command
-C-c p t                         - Switch between realization and test
-
-C-c ! n                         - Next flycheck error
-C-c ! p                         - Previous flycheck error
-C-c ! l                         - List of flycheck errors for buffer
-C-c ! c                         - Run flycheck on current buffer
-C-c ! C                         - Clear errors in buffer
-
-C-c s d                         - Show documentation at point
-C-c s h                         - Hide documentation at point
-
-C-c t t                         - Show treemacs
-C-c t s                         - Show symbols in treemacs
-
 C-x g                           - Show Magit buffer
 g                               - Update Magit buffer
 d d (in buffer)                 - Show detailed diff for changes
@@ -124,6 +98,7 @@ C-c C-s                         - Insert schedule
 C-c C-x M                       - Insert new Checkbox item
 C-c $                           - Archive entry
 M-x org-redisplay-inline-images - Redisplay inline images
+C-c C-,                         - Insert template
 
 C-c C-x C-i                     - Clock in
 C-c C-x C-o                     - Clock out
