@@ -11,7 +11,7 @@
 (load "~/.emacs.d/rc-magit.el")
 (load "~/.emacs.d/rc-rst-mode.el")
 (load "~/.emacs.d/rc-fill-column-indicator.el")
-(load "~/.emacs.d/rc-auto-complete.el")
+(load "~/.emacs.d/rc-company.el")
 (load "~/.emacs.d/rc-org.el")
 
 (custom-set-variables
