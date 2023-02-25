@@ -31,6 +31,8 @@
   (org-startup-indented t "Indent headlines")
   (org-agenda-span 'day)
   (org-hide-emphasis-markers t)
+  (org-src-fontify-natively t "Syntax highlight in BEGIN_SRC blocks")
+  (org-confirm-babel-evaluate nil "Dunno prompt before running the code in org")
   :config
   (progn
     (add-hook 'org-mode-hook
@@ -39,6 +41,8 @@
                    (add-to-list 'org-file-apps
                                 '("\\.jpg\\'" . "sxiv %s"))
                    (add-to-list 'org-file-apps
-                                '("\\.png\\'" . "sxiv %s")))))))
+                                '("\\.png\\'" . "sxiv %s")))))
+    (org-babel-do-load-languages 'org-babel-load-languages
+                                 '((shell  . t)))))
 
 (use-package gnuplot)
