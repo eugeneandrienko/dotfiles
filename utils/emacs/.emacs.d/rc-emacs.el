@@ -120,7 +120,9 @@
                        (name . "^\\*Org Agenda\\*$")))
                ("Java" (or
                         (mode . java-mode)
-                        (name . "^\\*EGLOT.+")))))))
+                        (name . "^\\*EGLOT.+")))
+               ("LaTeX" (or
+                         (mode . latex-mode)))))))
 (add-hook 'ibuffer-mode-hook
           (lambda ()
             (ibuffer-switch-to-saved-filter-groups "default")))
