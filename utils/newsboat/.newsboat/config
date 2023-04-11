@@ -1,4 +1,0 @@
-browser "~/.bin/firefox.sh %u"
-include plain
-ssl-verifypeer no
-

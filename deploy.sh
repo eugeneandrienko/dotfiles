@@ -21,7 +21,7 @@ stow bin cmd
 
 # Copying dotfiles to $HOME
 export STOW_DIR=./utils
-stow abook emacs git gnupg mc mplayer mutt newsboat rtorrent ssh tmux vim urxvt zathura
+stow abook emacs git gnupg mc mplayer mutt rtorrent ssh tmux vim urxvt zathura
 stow --ignore="i3status\.conf\.m4" i3wm
 
 # Making necessary (empty) directories
@@ -44,6 +44,7 @@ $MAILDIRMAKE "$HOME/rsync/mail/checks"
 $MAILDIRMAKE "$HOME/rsync/mail/default"
 $MAILDIRMAKE "$HOME/rsync/mail/infrastructure"
 $MAILDIRMAKE "$HOME/rsync/mail/maillists"
+$MAILDIRMAKE "$HOME/rsync/mail/rss"
 $MAILDIRMAKE "$HOME/rsync/mail/social"
 $MAILDIRMAKE "$HOME/rsync/mail/state"
 $MAILDIRMAKE "$HOME/rsync/mail/stores"

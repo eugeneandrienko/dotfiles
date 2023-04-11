@@ -40,7 +40,7 @@ You should have next programs in system before configuration deployment:
 - maildrop
 - msmtp
 - mutt
-- newsboat
+- [[https://github.com/rss2email/rss2email][rss2email]]
 - urlview
 
 ** Editing:
