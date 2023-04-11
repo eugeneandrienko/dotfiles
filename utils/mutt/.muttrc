@@ -24,7 +24,8 @@ mailboxes =banks \
           =state \
           =stores \
           =keep
-
+# Cache:
+set header_cache = $HOME/rsync/mail/cache
 
 #
 # Mailing lists settings
