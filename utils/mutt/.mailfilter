@@ -5,6 +5,7 @@ MAILDIR=$HOME/rsync/mail
 BANKS=$MAILDIR/banks
 CHECKS=$MAILDIR/checks
 DEFAULT=$MAILDIR/default
+INFRASTRUCTURE=$MAILDIR/infrastructure
 MAILLISTS=$MAILDIR/maillists
 SOCIAL=$MAILDIR/social
 STATE=$MAILDIR/state
@@ -112,6 +113,21 @@ if (/^From:.*tickets@tickets.ppk-piter.ru/)
     to $CHECKS
 if (/^From:.*noreply@sender.ozon.ru/)
     to $CHECKS
+if (/^From:.*noreply-cloudkassir@cp.ru/)
+    to $CHECKS
+if (/^From:.*no-reply@katemedia.eu/)
+    to $CHECKS
+if (/^From:.*info@clients.rsb.ru/)
+    to $CHECKS
+if (/^From:.*echeck@1-ofd.ru/)
+    to $CHECKS
+if (/^From:.*@qiwi.com/)
+    to $CHECKS
+
+if (/^From:.*cloudflare.com/)
+    to $INFRASTRUCTURE
+if (/^From:.*notifications@github.com/)
+    to $INFRASTRUCTURE
 
 if (/^From:.*@bumble.com/)
     to $SOCIAL
@@ -147,6 +163,10 @@ if (/^From:.*@e.ea.com/)
     to $SOCIAL
 if (/^From:.*bingo@patreon.com/)
     to $SOCIAL
+if (/^From:.*noreply@deviantart.com/)
+    to $SOCIAL
+if (/^From:.*@erarta.com/)
+    to $SOCIAL
 
 if (/^From:.*no-reply@gosuslugi.ru/)
     to $STATE
@@ -165,6 +185,12 @@ if (/^From:.*@roi.ru/)
 if (/^From:.*@debt.pes.spb.ru/)
     to $STATE
 if (/^From:.*@rosreestr.ru/)
+    to $STATE
+if (/^From:.*info@peterburgregiongaz.ru/)
+    to $STATE
+if (/^From:.*@debt.eirc.spb.ru/)
+    to $STATE
+if (/^From:.*@gorzdrav.spb.ru/)
     to $STATE
 
 if (/^From:.*@pickpoint.ru/)
@@ -257,6 +283,8 @@ if (/^From:.*@avito.ru/)
     to $STORES
 if (/^From:.*@intimissimi.com/ || /^From:.*@email-intimissimi.com/)
     to $STORES
+if (/^From:.*@boxberry.ru/)
+    to $STORES
 
 if (/^From:.*news@news.ozon.ru/)
     to /dev/null
@@ -337,6 +365,22 @@ if (/^From:.*info@mail.timepad.ru/)
 if (/^From:.*no-reply@sushiwok.ru/)
     to /dev/null
 if (/^From:.*@news.metizi.com/)
+    to /dev/null
+if (/^From:.*@torrefacto.ru/)
+    to /dev/null
+if (/^From:.*news@x5club.ru/)
+    to /dev/null
+if (/^From:.*promo@vsk.ru/)
+    to /dev/null
+if (/^From:.*@suhpaek.ru/)
+    to /dev/null
+if (/^From:.*@intuit.ru/)
+    to /dev/null
+if (/^From:.*@sender.fundayshop.com/)
+    to /dev/null
+if (/^From:.*@greenboxes.ru/)
+    to /dev/null
+if (/^From:.*@.*sutochno.ru/)
     to /dev/null
 
 if (/.*/)

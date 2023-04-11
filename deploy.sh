@@ -30,6 +30,7 @@ mkdir -pv "$HOME/.vim/undodir"
 mkdir -pv "$HOME/rsync/filez"
 mkdir -pv "$HOME/rsync/mail"
 mkdir -pv "$HOME/rsync/mail/logs"
+mkdir -pv "$HOME/rsync/mail/cache"
 
 if [ -x /usr/bin/maildirmake ]; then
     MAILDIRMAKE="/usr/bin/maildirmake"
@@ -41,6 +42,7 @@ fi
 $MAILDIRMAKE "$HOME/rsync/mail/banks"
 $MAILDIRMAKE "$HOME/rsync/mail/checks"
 $MAILDIRMAKE "$HOME/rsync/mail/default"
+$MAILDIRMAKE "$HOME/rsync/mail/infrastructure"
 $MAILDIRMAKE "$HOME/rsync/mail/maillists"
 $MAILDIRMAKE "$HOME/rsync/mail/social"
 $MAILDIRMAKE "$HOME/rsync/mail/state"

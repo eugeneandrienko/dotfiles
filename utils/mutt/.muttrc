@@ -16,6 +16,7 @@ set record = =sent
 mailboxes =banks \
           =default \
           =checks \
+          =infrastructure \
           =maillists \
           =postponed \
           =sent \
