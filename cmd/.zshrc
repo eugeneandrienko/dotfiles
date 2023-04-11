@@ -92,7 +92,12 @@ export RPROMPT
 
 mailpath=(
     ~/rsync/mail/default"?New mail in =default"
+    ~/rsync/mail/infrastructure"?New mail in =infrastructure"
     ~/rsync/mail/maillists"?New mail in =maillists"
+    ~/rsync/mail/rss"?New mail in =rss"
+    ~/rsync/mail/rss-podcasts"?New mail in =rss-podcasts"
+    ~/rsync/mail/rss-youtube"?New mail in =rss-youtube"
+    ~/rsync/mail/social"?New mail in =social"
     ~/rsync/mail/state"?New mail in =state"
     ~/rsync/mail/stores"?New mail in =stores"
 )

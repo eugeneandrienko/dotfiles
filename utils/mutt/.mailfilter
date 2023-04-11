@@ -11,6 +11,10 @@ SOCIAL=$MAILDIR/social
 STATE=$MAILDIR/state
 STORES=$MAILDIR/stores
 
+RSS=$MAILDIR/rss
+RSS_PODCASTS=$MAILDIR/rss-podcasts
+RSS_YOUTUBE=$MAILDIR/rss-youtube
+
 
 if (/^From:.*inform@emails.tinkoff.ru/)
     to $BANKS
@@ -382,6 +386,15 @@ if (/^From:.*@greenboxes.ru/)
     to /dev/null
 if (/^From:.*@.*sutochno.ru/)
     to /dev/null
+
+if (/^X-RSS-Feed:.*beardycast.*/ || \
+        /^X-RSS-Feed:.*radio-t.*/ || \
+        /^X-RSS-Feed:.*cloud.mave.digital\/37264/)
+    to $RSS_PODCASTS
+if (/^X-RSS-Feed:.*www.youtube.com.*/)
+    to $RSS_YOUTUBE
+if (/^X-RSS-Feed:.*/)
+    to $RSS
 
 if (/.*/)
     to $DEFAULT
