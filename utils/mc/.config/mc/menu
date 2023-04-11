@@ -55,6 +55,9 @@ e       Encode tagged files
         fi
         shred -uz "$ARCHIVE".tar
         for i in %u; do
+            if [ "$i" == "$ARCHIVE".gpg ] || [ "$i" == "$ARCHIVE".gpg.asc ]; then
+                continue;
+            fi
             find "$i" -type f -exec chmod u+w {} \;
             find "$i" -type f -exec shred -uz {} \;
         done
