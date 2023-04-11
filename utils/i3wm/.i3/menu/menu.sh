@@ -8,12 +8,12 @@ source ~/.bin/get_machine_id.sh
 
 if [ "$MACHINE_HW" = "zalman" ]; then
     DMENU_ITEMS="firefox:firefox_unsec:telegram"
-    DMENU_ITEMS+=":audacious:gimp:rawtherapee:openshot"
+    DMENU_ITEMS+=":audacious:gimp:rawtherapee:shotwell:openshot"
     DMENU_ITEMS+=":qmapshack:josm:stellarium"
     DMENU_ITEMS+=":idea:android-file-transfer"
 elif [ "$MACHINE_HW" = "thinkpad" ]; then
     DMENU_ITEMS="firefox:firefox_unsec:telegram"
-    DMENU_ITEMS+=":gimp:rawtherapee"
+    DMENU_ITEMS+=":gimp:rawtherapee:shotwell"
     DMENU_ITEMS+=":qmapshack:josm:stellarium"
     DMENU_ITEMS+=":idea:android-file-transfer:blueman"
 fi
@@ -40,6 +40,9 @@ case $(echo $DMENU_ITEMS | tr ':' '\n' | eval "$DMENU_CMD -p Execute:") in
         ;;
     'rawtherapee')
         /usr/bin/env rawtherapee &
+        ;;
+    'shotwell')
+        /usr/bin/env shotwell &
         ;;
     'openshot')
         /usr/bin/openshot-qt &
