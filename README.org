@@ -3,71 +3,6 @@
 This repository contains different configuration files, which I have been
 writing since 2005.
 
-* Dependencies:
-- abook
-- aspell (with aspell-ru dictionary)
-- bc
-- buttercup (for compiling gnuplot-mode for Emacs)
-- cal
-- cron
-- ctags
-- curl
-- emacs
-- fdm
-- feh
-- git
-- gnuplot
-- gpg
-- i3
-- imagemagick
-- jq
-- lacheck
-- lame
-- latex (texlive)
-- lynx
-- maildrop
-- make (or gmake executable should be available in FreeBSD)
-- mc
-- mplayer
-- msmtp
-- mutt
-- newsboat
-- pass
-- pass-otp
-- python3
-- perl
-- rsync
-- rtorrent
-- shred
-- stow
-- sxiv
-- sudo
-- tmux (>= 3.2)
-- urlview
-- vim
-- wget
-- xclip
-- yt-dlp
-- zsh
-
-Also, you may be need to install some fonts, like Terminus and Noto Mono.
-
-If no `diff-highlight` binary in system — install it with `pip3 install
-diff-highlight`.
-
-** GUI programs to install:
-- audacious
-- firefox
-- gimp
-- idea
-- josm
-- qmapshack
-- rawtherapee
-- telegram
-
-** Additional packages for Termux:
-- termux-api
-
 * Contents:
 - =cmd/= — shell-related configuration files.
 - =utils/= — configuration files for different utilities, like vim or tmux.
@@ -80,56 +15,96 @@ diff-highlight`.
   review it and add useful entries to your =/etc/hosts= by hands!
 - =50trackball.conf= — X configuration for Logitech trackball
 
-* Before install:
-To store sensitive data (passwords, etc) in the archive for the new machine —
-use =store_sensitive_data.sh= script.
+* Dependencies:
+You should have next programs in system before configuration deployment:
 
-* Install:
-1. Clone this repository to some suitable directory. You *mustn't* clone it to
-   your =~= directory!
-2. Run =deploy.sh= script, which do the next:
-   1) Make soft links from our catalog to the user $HOME catalog via stow.
-   2) Create necessary empty directories.
-   3) Create mail directories.
-   4) Set right access rights to some configuration files.
-   5) Download in install lombok to =~/.emacs.d/share/lombok/=. It is
-      necessary to use Emacs as Java IDE (via [[https://github.com/eclipse/eclipse.jdt.ls][jdtls]]).
-   6) Store in =~= special file with OS and hardware type of machine where
-      this repository is cloned to. It is necessary to properly handle some
-      functions, which should exists on one machine and shouldn't on another.
+** System programs:
+- aspell (with aspell-ru dictionary)
+- bc
+- cal
+- cron
+- curl
+- make (or gmake executable should be available in FreeBSD)
+- python3
+- perl
+- rsync
+- stow
+- sudo
+- tmux (>= 3.2)
+- zsh
 
-* After install:
-** Vim plugins installation
-After deployment do the next to install Vim plugins:
-- First, install Vundle plugin: =git clone
-  https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim=.
-- Second, in Vim execute =:BundleInstall=.
-** Emacs plugins compilation:
-Run =C-u 0 M-x byte-recompile-directory= to recomplile contents of
-=~/.emacs.d/plugins=.
-** Org-mode installation:
-Sometimes Org-mode will not install via =use-package= plugin.
+** Mail and IM:
+- abook
+- fdm
+- lynx
+- maildrop
+- msmtp
+- mutt
+- newsboat
+- urlview
 
-To install Org-mode enter =M-x list-packages= and find =org= in opened
-buffer. Then press =i= on org entry and =x= to install it.
-** Pinentry installation:
-=M-x package-install= -> =pinentry= — if it is not installed itself via
-=use-package=.
+** Editing:
+- buttercup (for compiling gnuplot-mode for Emacs)
+- ctags
+- diff-highlight (can be installed with `pip3 install diff-highlight`)
+- emacs
+- gnuplot
+- idea
+- lacheck
+- latex (texlive)
+- vim
+
+** Utilities:
+- git
+- gpg
+- jq
+- mc
+- pass
+- pass-otp
+- rtorrent
+- shred
+- wget
+- xclip
+- yt-dlp
+
+** Multimedia:
+- feh
+- gimp
+- imagemagick
+- lame
+- mplayer
+- rawtherapee
+- sxiv
+
+** GUI:
+- audacious
+- firefox
+- i3
+- josm
+- qmapshack
+- telegram
+*** Fonts:
+- Terminus
+- Noto Mono
+
+** Additional packages for Termux:
+- termux-api
+
+* Before deployment:
+If you need sensitive data (passwords, API keys, etc) in the new machine — use
+=store_sensitive_data.sh= script to save it in archive on the old machine and
+move to the new machine.
+
+On the new machine you should do the next, to import sensitive data:
 ** File synchronization:
 To work with file synchronization via cloudsync you need to have =sync=
 SSH-key with empty passphrase. This key should be added to remote server to
 =rsync= account into =~/.ssh/authorized_keys=.
+
 ** Passwords:
 For using Mutt with GMail mailboxes you should specify mail server passwords
 in =~/.netrc=.
-** /etc/hosts:
-You should update your =/etc/hosts= with data from =noauto/hosts=.
-** sudo setup:
-If you need to control brightness of display when starting X-server — add next
-line to =/etc/sudoers=:
-#+BEGIN_EXAMPLE
-drag0n ALL=(root) NOPASSWD: /usr/bin/tee /sys/class/backlight/intel_backlight/brightness
-#+END_EXAMPLE
+
 ** Import GPG keys:
 Use this commands:
 #+BEGIN_EXAMPLE
@@ -139,5 +114,47 @@ gpg --import priv.key
 
 After that call =gpg --edit-key <key-id>= and set trust level to 5 via command
 =trust=. Quit gpg console with =quit= command.
+
 ** Weather forecasts:
 Add your OpenWeatherMap API key to =~/.openweathermap= file.
+
+* Deployment:
+1. Clone this repository to some suitable directory. You *mustn't* clone it to
+   your =~= directory!
+2. Run =deploy.sh= script, which do the next:
+   1) Make soft links from our catalog to the user $HOME catalog via stow.
+   2) Create necessary empty directories.
+   3) Create mail directories.
+   4) Set right access rights to some configuration files.
+   5) Store in =~= special file with OS and hardware type of machine where
+      this repository is cloned to. It is necessary to properly handle some
+      functions, which should exists on one machine and shouldn't on another.
+
+* After deployment:
+** Vim plugins installation
+Do the next to install Vim plugins:
+- First, install Vundle plugin: =git clone
+  https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim=.
+- Second, in Vim execute =:BundleInstall=.
+  
+** Emacs plugins compilation:
+Run =C-u 0 M-x byte-recompile-directory= to recomplile contents of
+=~/.emacs.d/plugins=.
+*** Org-mode installation:
+Sometimes Org-mode will not install via =use-package= plugin.
+
+To install Org-mode enter =M-x list-packages= and find =org= in opened
+buffer. Then press =i= on org entry and =x= to install it.
+*** Pinentry installation:
+=M-x package-install= -> =pinentry= — if it is not installed itself via
+=use-package=.
+
+** /etc/hosts:
+You should update your =/etc/hosts= with data from =noauto/hosts=.
+
+** sudo setup:
+If you need to control brightness of display when starting X-server — add next
+line to =/etc/sudoers=:
+#+BEGIN_EXAMPLE
+drag0n ALL=(root) NOPASSWD: /usr/bin/tee /sys/class/backlight/intel_backlight/brightness
+#+END_EXAMPLE
