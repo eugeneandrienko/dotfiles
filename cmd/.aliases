@@ -114,6 +114,8 @@ alias ydl_podcast="yt-dlp --continue \
 alias ydl_mp3="yt-dlp --continue \
                --extract-audio --audio-format mp3 \
                --embed-thumbnail --output '%(title)s.%(ext)s'"
+alias ydl_tor="yt-dlp --continue --output '%(title)s.%(ext)s' \
+               --proxy socks5://localhost:9150"
 youtube() {
     mplayer -cookies -cookies-file /tmp/cookies.txt \
     $(yt-dlp -gf 22 \
