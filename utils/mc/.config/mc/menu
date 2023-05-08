@@ -35,12 +35,6 @@ e       Encode tagged files
             echo "Error: encrypt fail"
             exit 1
         fi
-        printf "\a\033]2;\033\\"
-        gpg --sign "$ARCHIVE".tar.asc
-        if [ "$?" -ne "0" ]; then
-            echo "Error: sign fail"
-            exit 2
-        fi
         shred -uz "$ARCHIVE".tar
         for i in %u; do
             if [ "$i" == "$ARCHIVE".gpg ] || [ "$i" == "$ARCHIVE".gpg.asc ]; then
@@ -50,6 +44,15 @@ e       Encode tagged files
             find "$i" -type f -exec shred -uz {} \;
         done
         find . -type d -exec rmdir --ignore-fail-on-non-empty -p {} \;
+        echo "Encrypt completed!"
+        printf "\a\033]2;\033\\"
+        echo "Press Enter to sign encrypted archive"
+        read DO_NOT_USE
+        gpg --sign "$ARCHIVE".tar.asc
+        if [ "$?" -ne "0" ]; then
+            echo "Error: sign fail"
+            exit 2
+        fi
 
 + f \.asc$
 d       Decode current file
