@@ -46,6 +46,7 @@ alias mount_phone='sudo chown drag0n:drag0n /mnt && aft-mtp-mount -o nonempty /m
 alias umount_phone='sudo umount -v /mnt && sudo chown root:root /mnt'
 alias daily='emacs ~/rsync/org/daily.org'
 alias mutt='TERM=screen-256color mutt'
+alias emacskill='emacsclient -e "(kill-emacs)"'
 
 # Mistypes
 alias -g xs='cd'
