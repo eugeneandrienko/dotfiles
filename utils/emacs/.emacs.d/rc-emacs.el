@@ -122,7 +122,8 @@
                         (mode . java-mode)
                         (name . "^\\*EGLOT.+")))
                ("LaTeX" (or
-                         (mode . latex-mode)))))))
+                         (mode . latex-mode)
+                         (mode . bibtex-mode)))))))
 (add-hook 'ibuffer-mode-hook
           (lambda ()
             (ibuffer-switch-to-saved-filter-groups "default")))
