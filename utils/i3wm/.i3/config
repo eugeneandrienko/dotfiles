@@ -213,6 +213,7 @@ assign [class="Vncviewer"]   10
 for_window [class="MPlayer"]                        floating enable
 for_window [class="jetbrains-idea-ce" title="win0"] floating enable
 for_window [class="jetbrains-idea-ce" title="win0"] border none
+for_window [instance="shotcut" floating] border none
 # Mark windows:
 for_window [class="(?i)emacs"] mark emacs
 for_window [class="Vncviewer"] mark vncview
