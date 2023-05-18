@@ -14,6 +14,7 @@ function backup_data() {
         _safe_backup "$OPTIONS" ~/pictures  /mnt/
         _safe_backup "$OPTIONS" ~/rsync     /mnt/
         _safe_backup "$OPTIONS" ~/raws      /mnt/
+        _safe_backup "$OPTIONS" ~/video     /mnt/
         _safe_backup "$OPTIONS" ~/.config/GIMP/2.10/brushes /mnt/gimp
         _safe_backup "$OPTIONS" ~/.config/GIMP/2.10/scripts /mnt/gimp
         _safe_backup "$OPTIONS" ~/.config/RawTherapee/profiles /mnt/rawtherapee
