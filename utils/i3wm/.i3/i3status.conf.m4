@@ -9,7 +9,6 @@ general {
 }
 
 order  = "read_file weather"
-order += "read_file language"
 order += "cpu_usage"
 m4_ifdef(`zalman',
 `order += "ethernet enp5s0"',
@@ -23,10 +22,6 @@ order += "tztime local"
 
 read_file weather {
     path = "/home/drag0n/.cache/weather"
-}
-
-read_file language {
-    path = "/home/drag0n/.cache/language"
 }
 
 cpu_usage {

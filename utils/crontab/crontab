@@ -2,4 +2,3 @@
 * */1 * * * /home/drag0n/.bin/get_rss.sh
 
 */30 * * * * /home/drag0n/.i3/scripts/get_weather.sh
-*/1 * * * * /home/drag0n/.i3/scripts/get_kbd_lang.sh
