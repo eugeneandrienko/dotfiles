@@ -4,10 +4,10 @@ source ~/.bin/get_machine_id.sh
 
 case "$MACHINE_HW" in
     "zalman")
-        setxkbmap -layout us,ru -option grp:caps_toggle -option grp_led:caps -option compose:ralt
+        setxkbmap -layout us,ru -option grp:caps_select -option grp_led:caps -option compose:ralt
         ;;
     "thinkpad")
-        setxkbmap -model "thinkpad" -layout us,ru -option grp:caps_toggle -option grp_led:caps -option compose:ralt
+        setxkbmap -model "thinkpad" -layout us,ru -option grp:caps_select -option grp_led:caps -option compose:ralt
         ;;
 esac
 
