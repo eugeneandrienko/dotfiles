@@ -7,7 +7,7 @@ case "$MACHINE_HW" in
         setxkbmap -layout us,ru -option grp:caps_select -option grp_led:caps -option compose:ralt
         ;;
     "thinkpad")
-        setxkbmap -model "thinkpad" -layout us,ru -option grp:caps_select -option grp_led:caps -option compose:ralt
+        setxkbmap -model "thinkpad" -layout us,ru -option grp:shift_caps_switch -option grp_led:caps -option compose:ralt
         ;;
 esac
 
