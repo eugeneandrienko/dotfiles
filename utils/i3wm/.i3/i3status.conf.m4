@@ -15,7 +15,7 @@ m4_ifdef(`zalman',
 m4_ifdef(`thinkpad',
 `order += "cpu_temperature 0"
 order += "battery 0"
-order += "ethernet em0"
+order += "ethernet eth0"
 order += "wireless wlan0"'))
 order += "volume master"
 order += "tztime local"
@@ -55,7 +55,7 @@ battery 0 {
     last_full_capacity = true
 }
 
-ethernet em0 {
+ethernet eth0 {
     format_up = "🖧 %ip"
     format_down = "🖧 down"
 }
