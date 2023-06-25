@@ -73,6 +73,17 @@ d       Decode current file
         shred -uz output.tar
         rm -f %f %f.gpg
 
++ f \.asc$
+d       Decode current file wout sign check
+        gpg --decrypt --output output.tar %f
+        if [ "$?" -ne "0" ]; then
+            echo "Error: decrypt fail"
+            exit 2
+        fi
+        tar xf output.tar
+        shred -uz output.tar
+        rm -f %f %f.gpg
+
 + t r & ! t t
 d       Delete file if a copy exists in the other directory.
         if [ %d = %D ]; then
