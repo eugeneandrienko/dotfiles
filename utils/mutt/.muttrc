@@ -115,8 +115,8 @@ set prompt_after=no
 # Add ~ instead of blank-lines on the bottom of the pager
 set tilde
 set beep=no
-# First, search for plain text in mail, then - search for html
-alternative_order text/plain text/html
+# First, search for html, then for plain text
+alternative_order text/html text/plain
 # Faster switching between folders
 set sleep_time=0
 # Default charset for e-mail composition
