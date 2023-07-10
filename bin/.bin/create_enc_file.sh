@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+#
+### Check incoming parameters:
+#
+function show_help()
+{
+    echo "$0 FILENAME SIZE"
+    echo "    FILENAME - name of new cryptocontainer"
+    echo "    SIZE - size of new cryptocontainer. In bytes, can use K/M/G suffixies"
+}
+
+if [ "$#" -ne 2 ]; then
+    show_help
+    exit 1
+fi
+
+echo "$2" | grep -q '[0-9]\{1,\}[KMG]\{0,1\}$'
+if [ "$?" -ne 0 ]; then
+    show_help
+    exit 1
+fi
+
+CRYPTO_FILENAME="$1"
+CRYPTO_SIZE="$2"
+
+#
+### Create cryptocontainer
+#
+
+fallocate -l "$CRYPTO_SIZE" "$CRYPTO_FILENAME"
+if [ "$?" -ne 0 ]; then
+    echo "Failed to allocate $CRYPTO_SIZE for $CRYPTO_FILENAME"
+    exit 2
+fi
+cryptsetup -y luksFormat ./"$CRYPTO_FILENAME"
+if [ "$?" -ne 0 ]; then
+    echo "Failed to create cryptocontainer in $CRYPTO_FILENAME"
+    exit 2
+fi
+
+sudo cryptsetup luksOpen ./"$CRYPTO_FILENAME" "$CRYPTO_FILENAME"
+sudo mkfs.ext4 /dev/mapper/"$CRYPTO_FILENAME"
+
+mkdir -p ./temp
+sudo mount /dev/mapper/"$CRYPTO_FILENAME" ./temp
+sudo chown -R $USER:$GID ./temp
+
+sudo umount ./temp
+rmdir ./temp
+sudo cryptsetup luksClose "$CRYPTO_FILENAME"
+

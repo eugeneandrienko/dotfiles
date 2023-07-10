@@ -26,63 +26,17 @@ shell_patterns=0
 s       Run sxiv in current directory
         sxiv -t %d &
 
-+ t t
-e       Encode tagged files
-        ARCHIVE=$(basename $(pwd))
-        tar cf $ARCHIVE.tar %t
-        gpg --encrypt --armor --recipient evg.andrienko@gmail.com "$ARCHIVE".tar
-        if [ "$?" -ne "0" ]; then
-            echo "Error: encrypt fail"
-            exit 1
-        else
-            echo "Encrypt completed"
-        fi
-        shred -uz "$ARCHIVE".tar
-        for i in %u; do
-            if [ "$i" = "$ARCHIVE".gpg -o "$i" = "$ARCHIVE".gpg.asc ]; then
-                continue;
-            fi
-            find "$i" -type f -exec chmod u+w {} \;
-            find "$i" -type f -exec shred -uz {} \;
-        done
-        find . -type d -exec rmdir --ignore-fail-on-non-empty -p {} \;
-        echo "Shred completed!"
-        printf "\a\033]2;\033\\"
-        echo "Press Enter to sign encrypted archive"
-        read DO_NOT_USE
-        gpg --sign "$ARCHIVE".tar.asc
-        if [ "$?" -ne "0" ]; then
-            echo "Error: sign fail"
-            exit 2
-        fi
++
+m       Mount cryptocontainer
+        sudo cryptsetup luksOpen ./%p %p
+        sudo mount /dev/mapper/%p %d
+        sudo chown -R $USER:$GID %d
 
-+ f \.asc$
-d       Decode current file
-        gpg --verify %f.gpg
-        if [ "$?" -ne "0" ]; then
-            echo "Error: verify fail"
-            exit 1
-        fi
-        printf "\a\033]2;\033\\"
-        gpg --decrypt --output output.tar %f
-        if [ "$?" -ne "0" ]; then
-            echo "Error: decrypt fail"
-            exit 2
-        fi
-        tar xf output.tar
-        shred -uz output.tar
-        rm -f %f %f.gpg
-
-+ f \.asc$
-d       Decode current file wout sign check
-        gpg --decrypt --output output.tar %f
-        if [ "$?" -ne "0" ]; then
-            echo "Error: decrypt fail"
-            exit 2
-        fi
-        tar xf output.tar
-        shred -uz output.tar
-        rm -f %f %f.gpg
++
+u       Umount cryptocontainer
+        DEVNAME=$(mount | /bin/grep '%f' | awk '{print $1}')
+        sudo umount %f
+        sudo cryptsetup luksClose "$DEVNAME"
 
 + t r & ! t t
 d       Delete file if a copy exists in the other directory.
