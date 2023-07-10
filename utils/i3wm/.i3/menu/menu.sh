@@ -20,7 +20,7 @@ fi
 
 case $(echo $DMENU_ITEMS | tr ':' '\n' | eval "$DMENU_CMD -p Execute:") in
     'firefox')
-        /home/drag0n/.bin/firefox.sh
+        $HOME/.bin/firefox.sh
         ;;
     'firefox_unsec')
         if [ "$MACHINE_OS" = "gentoo" ]; then
@@ -30,7 +30,7 @@ case $(echo $DMENU_ITEMS | tr ':' '\n' | eval "$DMENU_CMD -p Execute:") in
         fi
         ;;
     'telegram')
-        /home/drag0n/bin/telegram/Telegram &
+        $HOME/bin/telegram/Telegram &
         ;;
     'audacious')
         /usr/bin/audacious &
@@ -51,13 +51,13 @@ case $(echo $DMENU_ITEMS | tr ':' '\n' | eval "$DMENU_CMD -p Execute:") in
          LC_MESSAGES="ru_RU.utf8" /usr/bin/env qmapshack &
         ;;
     'josm')
-        /usr/bin/env java -jar /home/drag0n/bin/josm/josm-tested.jar &
+        /usr/bin/env java -jar $HOME/bin/josm/josm-tested.jar &
         ;;
     'stellarium')
         /usr/bin/env stellarium &
         ;;
     'idea')
-        /home/drag0n/bin/idea/bin/idea.sh
+        $HOME/bin/idea/bin/idea.sh
         ;;
     'android-file-transfer')
         /usr/bin/env android-file-transfer &
