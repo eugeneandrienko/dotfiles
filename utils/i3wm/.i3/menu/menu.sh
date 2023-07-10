@@ -11,11 +11,13 @@ if [ "$MACHINE_HW" = "zalman" ]; then
     DMENU_ITEMS+=":audacious:gimp:rawtherapee:shotwell:shotcut"
     DMENU_ITEMS+=":qmapshack:josm:stellarium"
     DMENU_ITEMS+=":idea:android-file-transfer"
+    DMENU_ITEMS+=":homm3"
 elif [ "$MACHINE_HW" = "thinkpad" ]; then
     DMENU_ITEMS="firefox:firefox_unsec:telegram"
     DMENU_ITEMS+=":gimp:rawtherapee:shotwell"
     DMENU_ITEMS+=":qmapshack:josm:stellarium"
     DMENU_ITEMS+=":idea:android-file-transfer:blueman"
+    DMENU_ITEMS+=":homm3"
 fi
 
 case $(echo $DMENU_ITEMS | tr ':' '\n' | eval "$DMENU_CMD -p Execute:") in
@@ -64,6 +66,9 @@ case $(echo $DMENU_ITEMS | tr ':' '\n' | eval "$DMENU_CMD -p Execute:") in
         ;;
     'blueman')
         /usr/bin/env blueman-manager &
+        ;;
+    'homm3')
+        cd $HOME/homm3 && wine HD_Launcher.exe &
         ;;
     *)
         exit 1
