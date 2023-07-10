@@ -1,4 +1,4 @@
-# */10 * * * * /home/drag0n/.bin/get_mail.sh
+*/10 * * * * /home/drag0n/.bin/get_mail.sh
 * */1 * * * /home/drag0n/.bin/get_rss.sh
 
 */30 * * * * /home/drag0n/.i3/scripts/get_weather.sh
