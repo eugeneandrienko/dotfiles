@@ -1,5 +1,16 @@
-# Write your default config options here!
+softvol = yes
+softvol-max = 500
+vo = xv
+fixed-vo = yes
 
-softvol = "yes"
-softvol-max=500
+subcp = cp1251
+
+nojoystick = yes
+nolirc = yes
+noar = yes
+nomouseinput = yes
+noborder = yes
+
+progbar-align = 75
+geometry = 1280x720
 
