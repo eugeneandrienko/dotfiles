@@ -46,6 +46,7 @@ alias umount_phone='sudo umount -v /mnt && sudo chown root:root /mnt'
 alias daily='emacs ~/rsync/org/daily.org'
 alias mutt='TERM=screen-256color mutt'
 alias emacskill='emacsclient -e "(kill-emacs)"'
+alias r2e='r2e -c ~/rsync/mail/rss2email.cfg -d ~/rsync/mail/rss2email.json'
 
 # Mistypes
 alias -g xs='cd'
