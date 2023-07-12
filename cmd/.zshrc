@@ -6,11 +6,13 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
 
+# Zsh-specific options:
 setopt appendhistory autocd extendedglob no_nomatch notify
 setopt hist_expire_dups_first
 setopt hist_ignore_space
 setopt hist_ignore_all_dups
 setopt hist_find_no_dups
+setopt hist_save_no_dups
 setopt hist_reduce_blanks
 setopt no_auto_remove_slash
 setopt glob_star_short glob_dots
@@ -19,12 +21,11 @@ setopt rm_star_silent
 setopt pipe_fail
 unsetopt beep
 
+# Completion settings:
 bindkey '^[[Z' reverse-menu-complete
-
+autoload -Uz compinit; compinit
 zstyle :compinstall filename '/home/drag0n/.zshrc'
 zstyle ':completion:*' list-suffixeszstyle ':completion:*' expand prefix suffix
-autoload -Uz compinit
-compinit
 
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
@@ -55,6 +56,7 @@ autoload -z drivesync && drivesync
 autoload -z phonesync
 autoload -z emacs
 
+# Aliases:
 if [ -e ~/.aliases ]; then
     . ~/.aliases
 fi
@@ -77,13 +79,14 @@ zle -N zle-keymap-select
 precmd() { printf "\a\033]2;\033\\" }
 
 if [ -z $MC_TMPDIR ]; then
-    RPROMPT="%F{blue}[%D{%H:%M:%S}]%f %n@%m"
+    RPROMPT="%F{blue}[%D{%H:%M:%S}]%f"
 else
     # To properly display shell prompt without RPROMPT in mc
     RPROMPT=""
 fi
 export RPROMPT
 
+# Maildirs:
 mailpath=(
     ~/rsync/mail/default"?New mail in =default"
     ~/rsync/mail/infrastructure"?New mail in =infrastructure"
@@ -101,6 +104,8 @@ if [ -d "$HOME/Desktop" ] || [ -d "$HOME/Downloads" ]; then
     rm -rf ~/Desktop ~/Downloads
 fi
 
+# Specific user config:
 if [ -e ~/.userconfig ]; then
     . ~/.userconfig
 fi
+
