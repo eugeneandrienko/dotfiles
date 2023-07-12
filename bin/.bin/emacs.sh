@@ -9,7 +9,7 @@ function emacsfunc() {
         # No Emacs frames — need to create a new one:
         EMACS_CMD="$EMACS_CMD -c"
     fi
-    if [[ ! "mutt git" =~ "$PARENT_PROGRAM" ]]; then
+    if [[ ! "mutt git zsh" =~ "$PARENT_PROGRAM" ]]; then
         # Shouldn't wait for buffer in Emacs — return immediately:
         EMACS_CMD="$EMACS_CMD -n"
     fi
