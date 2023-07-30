@@ -2,6 +2,7 @@ softvol = yes
 softvol-max = 500
 vo = xv
 fixed-vo = yes
+lavdopts = threads=4
 
 subcp = cp1251
 
