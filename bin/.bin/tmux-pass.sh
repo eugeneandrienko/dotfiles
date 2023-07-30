@@ -2,7 +2,7 @@
 while :; do
     echo -n "> "
     read pass
-    passman.sh has "$pass" && break
+    $HOME/.bin/passman.sh has "$pass" && break
 done
-exec passman.sh "$pass"
+exec $HOME/.bin/passman.sh "$pass"
 
