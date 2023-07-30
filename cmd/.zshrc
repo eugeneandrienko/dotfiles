@@ -19,13 +19,19 @@ setopt glob_star_short glob_dots
 setopt auto_pushd pushd_ignore_dups
 setopt rm_star_silent
 setopt pipe_fail
+setopt auto_param_slash
 unsetopt beep
 
 # Completion settings:
 bindkey '^[[Z' reverse-menu-complete
+
 autoload -Uz compinit; compinit
-zstyle :compinstall filename '/home/drag0n/.zshrc'
 zstyle ':completion:*' list-suffixeszstyle ':completion:*' expand prefix suffix
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path $HOME/.zcompcache
+zstyle ':completion:*' menu select=long
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' squeeze-slashes true
 
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
@@ -48,7 +54,6 @@ autoload -z cloudsync && cloudsync && \
 autoload -z scanphoto_10x15
 autoload -z scana4
 autoload -z hotkeys && hotkeys
-autoload -z main_machine
 autoload -z png2jpg
 autoload -z jpg2timelapse
 autoload -z backup_data && backup_data
