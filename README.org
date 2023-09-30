@@ -27,6 +27,7 @@ You should have next programs in system before configuration deployment:
 - make (or gmake executable should be available in FreeBSD)
 - python3
 - perl
+- postgresql
 - rsync
 - stow
 - sudo

@@ -6,9 +6,11 @@ function drivesync() {
     # remote -> local
     _safe_dsync "$OPTIONS" /mnt/rsync    ~/
     _safe_dsync "$OPTIONS" /mnt/dotfiles ~/git_repos
+    _safe_postgresql_sync "drive" money /mnt/postgresql/
     # local -> remote
     _safe_dsync "$OPTIONS" ~/rsync              /mnt/
     _safe_dsync "$OPTIONS" ~/git_repos/dotfiles /mnt/
+    _safe_postgresql_sync "local" money /mnt/postgresql/
 }
 
 function drivesync_force_drive() {
@@ -23,6 +25,7 @@ function drivesync_force_drive() {
     _chown_mnt
     _safe_dsync "$OPTIONS" /mnt/rsync    ~/          $EXCLUDE_MAIL
     _safe_dsync "$OPTIONS" /mnt/dotfiles ~/git_repos $EXCLUDE_MAIL
+    _safe_postgresql_sync "drive" money /mnt/postgresql/
 }
 
 function drivesync_force_local() {
@@ -30,6 +33,7 @@ function drivesync_force_local() {
     _chown_mnt
     _safe_dsync "$OPTIONS" ~/rsync              /mnt/
     _safe_dsync "$OPTIONS" ~/git_repos/dotfiles /mnt/
+    _safe_postgresql_sync "local" money /mnt/postgresql/
 }
 
 function _safe_dsync() {
@@ -61,3 +65,19 @@ function _chown_mnt() {
         [[ "$?" -ne "0" ]] || break
     done
 }
+
+function _safe_postgresql_sync() {
+    case "$1" in
+    "local")
+        echo -n "Dumping $2 database ... "
+        pg_dump -f "$3/$2.sql.gz" -C -c -Z 9 "$2"
+        if [ "$?" -eq "0" ]; then
+            echo "OK"
+        fi
+    ;;
+    "drive")
+        gzip -d -c "$3/$2.sql.gz" | sed -r 's/LOCALE_PROVIDER = libc LOCALE/LC_COLLATE/g' | psql -q -U drag0n postgres
+    ;;
+    esac
+}
+
