@@ -1,10 +1,7 @@
 #!/usr/bin/env zsh
 
-FONT="'-xos4-terminus-*-*-*-*-14-*-*-*-*-*-*-u'"
-COLORS="-sb '#000000' -sf '#ffffff' -nb '#ffffff' -nf '#000000'"
-DMENU_CMD="dmenu -i -b -fn $FONT $COLORS"
-
 source ~/.bin/get_machine_id.sh
+source ~/.i3/menu/menu_funcs.sh
 
 DMENU_ITEMS="firefox:firefox_unsec:telegram:syncthing"
 if [ "$MACHINE_HW" = "zalman" ]; then
@@ -18,7 +15,7 @@ DMENU_ITEMS+=":idea:umlet"
 DMENU_ITEMS+=":android-file-transfer"
 DMENU_ITEMS+=":homm3"
 
-case $(echo $DMENU_ITEMS | tr ':' '\n' | eval "$DMENU_CMD -p Execute:") in
+case $(echo $DMENU_ITEMS | parse_items | f_dmenu 'Execute:') in
     'firefox')
         $HOME/.bin/firefox.sh
         ;;

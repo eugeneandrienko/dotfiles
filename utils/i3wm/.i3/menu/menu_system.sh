@@ -1,15 +1,18 @@
 #!/usr/bin/env zsh
 
+if [ -f /usr/bin/x11-ssh-askpass ]; then
+    export SUDO_ASKPASS="/usr/bin/x11-ssh-askpass"
+else
+    export SUDO_ASKPASS="/usr/bin/ssh-askpass"
+fi
+
 source ~/.bin/get_machine_id.sh
+source ~/.i3/menu/menu_funcs.sh
 
-FONT="'-xos4-terminus-*-*-*-*-14-*-*-*-*-*-*-u'"
-COLORS="-sb '#000000' -sf '#ffffff' -nb '#ffffff' -nf '#000000'"
-DMENU_CMD="dmenu -i -b -fn $FONT $COLORS"
-
-MODES_ITEMS="display mode:redshift:reboot"
-case $(echo $MODES_ITEMS | tr ':' '\n' | eval "$DMENU_CMD -p Select:") in
+ITEMS="display mode:redshift:poweroff:reboot"
+case $(echo $ITEMS | parse_items | f_dmenu 'Select:') in
     'display mode')
-        case $(echo "normal:threatre" | tr ':' '\n' | eval "$DMENU_CMD -p '>'") in
+        case $(echo "normal:threatre" | parse_items | f_dmenu '>') in
             'normal')
                 xset +dpms
                 notify-send -u normal -t 5000 "Screen mode: NORMAL"
@@ -21,7 +24,14 @@ case $(echo $MODES_ITEMS | tr ':' '\n' | eval "$DMENU_CMD -p Select:") in
         esac
         ;;
     'redshift')
-        case $(echo "on:off" | tr ':' '\n' | eval "$DMENU_CMD -p '>'") in
+        PROMPT="State: "
+        if pgrep -x "redshift" > /dev/null; then
+            PROMPT+="on"
+        else
+            PROMPT+="off"
+        fi
+        PROMPT+=""
+        case $(echo "on:off" | parse_items | f_dmenu "$PROMPT") in
             'on')
                 ~/.bin/redshift.sh
                 ;;
@@ -30,25 +40,27 @@ case $(echo $MODES_ITEMS | tr ':' '\n' | eval "$DMENU_CMD -p Select:") in
                 ;;
         esac
         ;;
+    'poweroff')
+        sudo -A shutdown -hP now
+        i3-msg exit
+        ;;
     'reboot')
-        export SUDO_ASKPASS="/usr/bin/x11-ssh-askpass"
         case "$MACHINE_HW" in
             "zalman")
-                REBOOT_ITEMS="windows:linux"
+                case $(echo "windows:linux" | parse_items | f_dmenu '>') in
+                    'windows')
+                        sudo -A touch /root/REBOOT.reboot
+                        sudo -A grub-reboot 'Windows 10 (on /dev/sda1)'
+                        i3-msg exit
+                        ;;
+                    'linux')
+                        sudo -A touch /root/REBOOT.reboot
+                        i3-msg exit
+                        ;;
+                esac
                 ;;
             "thinkpad")
-                REBOOT_ITEMS="linux"
-                ;;
-        esac
-        case $(echo $REBOOT_ITEMS | tr ':' '\n' | eval "$DMENU_CMD -p '>'") in
-            'windows')
-                sudo -A touch /root/REBOOT.reboot
-                sudo -A grub-reboot 'Windows 10 (on /dev/sda1)'
-                i3-msg exit
-                ;;
-            'linux')
-                sudo -A touch /root/REBOOT.reboot
-                i3-msg exit
+                sudo -A shutdown -r now
                 ;;
         esac
         ;;
