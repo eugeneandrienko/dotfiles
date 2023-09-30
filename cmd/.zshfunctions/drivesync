@@ -76,7 +76,7 @@ function _safe_postgresql_sync() {
         fi
     ;;
     "drive")
-        gzip -d -c "$3/$2.sql.gz" | sed -r 's/LOCALE_PROVIDER = libc LOCALE/LC_COLLATE/g' | psql -q -U drag0n postgres
+        gzip -d -c "$3/$2.sql.gz" | psql -q -U drag0n postgres
     ;;
     esac
 }
