@@ -1,3 +1,7 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
-/usr/bin/env fdm -l fetch
+source ~/.bin/get_machine_id.sh
+if [ "$MACHINE_HW" = "zalman" ]; then
+    /usr/bin/env fdm -l fetch
+fi
+
