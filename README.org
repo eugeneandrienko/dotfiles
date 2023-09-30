@@ -61,6 +61,7 @@ You should have next programs in system before configuration deployment:
 - gpg
 - jq
 - mc
+- numlockx
 - pass
 - pass-otp
 - rtorrent

@@ -1,3 +1,7 @@
 Sxiv.background: #909090
 Sxiv.font: Noto Mono:pixelsize=16:antialias=true:autohint=true
 
+# Unpack archive in ~/rsync/filez/cursorsz
+# to ~/.icons/macos/
+Xcursor.theme: macos
+Xcursor.size: 32
