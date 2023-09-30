@@ -2,6 +2,8 @@
 
 source ~/.bin/get_machine_id.sh
 
+syncthing serve &
+
 case "$MACHINE_HW" in
     "zalman")
         setxkbmap -layout us,ru -option grp:caps_select -option grp_led:caps -option compose:ralt

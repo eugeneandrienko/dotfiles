@@ -31,6 +31,7 @@ mkdir -pv "$HOME/rsync/filez"
 mkdir -pv "$HOME/rsync/mail"
 mkdir -pv "$HOME/rsync/mail/logs"
 mkdir -pv "$HOME/rsync/mail/cache"
+mkdir -pv "$HOME/syncthing"
 
 if [ -x /usr/bin/maildirmake ]; then
     MAILDIRMAKE="/usr/bin/maildirmake"

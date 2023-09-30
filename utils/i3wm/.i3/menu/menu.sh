@@ -6,21 +6,17 @@ DMENU_CMD="dmenu -i -b -fn $FONT $COLORS"
 
 source ~/.bin/get_machine_id.sh
 
+DMENU_ITEMS="firefox:firefox_unsec:telegram:syncthing"
 if [ "$MACHINE_HW" = "zalman" ]; then
-    DMENU_ITEMS="firefox:firefox_unsec:telegram"
     DMENU_ITEMS+=":audacious:gimp:rawtherapee:shotwell:shotcut"
-    DMENU_ITEMS+=":qmapshack:josm:stellarium"
-    DMENU_ITEMS+=":idea:umlet"
-    DMENU_ITEMS+=":android-file-transfer"
-    DMENU_ITEMS+=":homm3"
 elif [ "$MACHINE_HW" = "thinkpad" ]; then
-    DMENU_ITEMS="firefox:firefox_unsec:telegram"
     DMENU_ITEMS+=":gimp:rawtherapee:shotwell"
-    DMENU_ITEMS+=":qmapshack:josm:stellarium"
-    DMENU_ITEMS+=":idea:umlet"
-    DMENU_ITEMS+=":android-file-transfer:blueman"
-    DMENU_ITEMS+=":homm3"
+    DMENU_ITEMS+=":blueman"
 fi
+DMENU_ITEMS+=":qmapshack:josm:stellarium"
+DMENU_ITEMS+=":idea:umlet"
+DMENU_ITEMS+=":android-file-transfer"
+DMENU_ITEMS+=":homm3"
 
 case $(echo $DMENU_ITEMS | tr ':' '\n' | eval "$DMENU_CMD -p Execute:") in
     'firefox')
@@ -35,6 +31,9 @@ case $(echo $DMENU_ITEMS | tr ':' '\n' | eval "$DMENU_CMD -p Execute:") in
         ;;
     'telegram')
         $HOME/bin/telegram/Telegram &
+        ;;
+    'syncthing')
+        $HOME/.bin/firefox.sh https://127.0.0.1:8384/ &
         ;;
     'audacious')
         /usr/bin/audacious &

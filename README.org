@@ -30,6 +30,7 @@ You should have next programs in system before configuration deployment:
 - postgresql
 - rsync
 - stow
+- syncthing
 - sudo
 - tmux (>= 3.2)
 - zsh
