@@ -53,6 +53,7 @@ d d (in buffer)                 - Show detailed diff for changes
 l l (in buffer)                 - Show log
 c                               - Commit
 C-c C-c                         - Show window with all Magit commands
+M-x magit-log-buffer-file       - Show changes for specific file
 
 
 C-c c                           - Capture
