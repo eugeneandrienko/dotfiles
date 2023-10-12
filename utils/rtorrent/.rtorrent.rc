@@ -110,3 +110,10 @@ protocol.pex.set = yes
 # decent hash checking rate.
 #hash_max_tries = 10
 
+#log.open_file = "rtorrent", "/var/log/rtorrent.log"
+#log.add_output = "critical", "rtorrent"
+#log.add_output = "error", "rtorrent"
+#log.add_output = "warn", "rtorrent"
+#log.add_output = "info", "rtorrent"
+#log.add_output = "debug", "rtorrent"
+
