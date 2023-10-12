@@ -5,6 +5,7 @@ MAILDIR=$HOME/rsync/mail
 BANKS=$MAILDIR/banks
 CHECKS=$MAILDIR/checks
 DEFAULT=$MAILDIR/default
+EXPRESSO=$MAILDIR/expresso
 INFRASTRUCTURE=$MAILDIR/infrastructure
 MAILLISTS=$MAILDIR/maillists
 SOCIAL=$MAILDIR/social
@@ -127,6 +128,12 @@ if (/^From:.*echeck@1-ofd.ru/)
     to $CHECKS
 if (/^From:.*@qiwi.com/)
     to $CHECKS
+if (/^From:.*@modulbank.ru/)
+    to $CHECKS
+if (/^From:.*noreply-cloudpayments@cp.ru/)
+    to $CHECKS
+if (/^From:.*noreply@tinkoff.ru/ && /^Subject: Документы.*/)
+    to $CHECKS
 
 if (/^From:.*cloudflare.com/)
     to $INFRASTRUCTURE
@@ -171,6 +178,10 @@ if (/^From:.*noreply@deviantart.com/)
     to $SOCIAL
 if (/^From:.*@erarta.com/)
     to $SOCIAL
+if (/^From:.*@mail.instagram.com/)
+    to $SOCIAL
+if (/^From:.*no-reply@joyreactor.cc/)
+    to $SOCIAL
 
 if (/^From:.*no-reply@gosuslugi.ru/)
     to $STATE
@@ -195,6 +206,8 @@ if (/^From:.*info@peterburgregiongaz.ru/)
 if (/^From:.*@debt.eirc.spb.ru/)
     to $STATE
 if (/^From:.*@gorzdrav.spb.ru/)
+    to $STATE
+if (/^From:.*@dzo.eirc.spb.ru/)
     to $STATE
 
 if (/^From:.*@pickpoint.ru/)
@@ -288,6 +301,10 @@ if (/^From:.*@avito.ru/)
 if (/^From:.*@intimissimi.com/ || /^From:.*@email-intimissimi.com/)
     to $STORES
 if (/^From:.*@boxberry.ru/)
+    to $STORES
+if (/^From:.*@club.perekrestok.ru/)
+    to $STORES
+if (/^From:.*@unverified.beget.ru/ || /^From:.*pf.vodovoz@yandex.ru/)
     to $STORES
 
 if (/^From:.*news@news.ozon.ru/)
@@ -395,6 +412,9 @@ if (/^X-RSS-Feed:.*www.youtube.com.*/)
     to $RSS_YOUTUBE
 if (/^X-RSS-Feed:.*/)
     to $RSS
+
+if (/^From:.*@expresso.today/)
+    to $EXPRESSO
 
 if (/.*/)
     to $DEFAULT
