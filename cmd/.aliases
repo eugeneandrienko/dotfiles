@@ -95,11 +95,9 @@ alias xcopy='xclip -selection clipboard'
 alias xpaste='xclip -selection clipboard -o'
 
 # Gentoo aliases
-if [ -f ~/.gentoo ]; then
-    alias emerge-update='sudo emerge-webrsync; \
-                         read NOTUSING?"Press Enter "; \
-                         sudo emerge --ask -uDU --keep-going --with-bdeps=y @world'
- fi
+alias emerge-update='sudo emerge-webrsync; \
+                     read NOTUSING?"Press Enter "; \
+                     sudo emerge --ask -uDU --keep-going --with-bdeps=y @world'
 
 # yt-dlp aliases
 alias ydl="yt-dlp --continue --write-description \
@@ -117,15 +115,6 @@ alias ydl_mp3="yt-dlp --continue \
                --embed-thumbnail --output '%(title)s.%(ext)s'"
 alias ydl_tor="yt-dlp --continue --output '%(title)s.%(ext)s' \
                --proxy socks5://localhost:9150"
-youtube() {
-    mplayer -cookies -cookies-file /tmp/cookies.txt \
-    $(yt-dlp -gf 22 \
-        --cookies /tmp/cookies.txt "$1"); \
-    rm -f /tmp/cookies.txt
-}
-ydl_channel_id() {
-    yt-dlp -j "$1" | jq -r '"https://www.youtube.com/feeds/videos.xml?channel_id=" + .channel_id'
-}
 
 # Media-related aliases
 alias img2gif='convert -delay 15 -loop 0 '

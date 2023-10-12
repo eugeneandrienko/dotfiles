@@ -1,14 +1,7 @@
 source ~/.zshfunctions/_sync_common
 
-OPTIONS="--update"
-
+OPTIONS="--delete"
 _chown_mnt
-
-# remote -> local
-_safe_dsync "$OPTIONS" /mnt/rsync    ~/
-_safe_dsync "$OPTIONS" /mnt/dotfiles ~/git_repos
-_safe_postgresql_sync "drive" money /mnt/postgresql/
-# local -> remote
 _safe_dsync "$OPTIONS" ~/rsync              /mnt/
 _safe_dsync "$OPTIONS" ~/git_repos/dotfiles /mnt/
 _safe_postgresql_sync "local" money /mnt/postgresql/

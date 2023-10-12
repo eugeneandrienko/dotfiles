@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 usage() {
     echo "Renames files from camera with date of file creation from EXIF"
     echo
@@ -12,7 +10,6 @@ usage() {
     echo -e "\t-t\tdo not touch already renamed files"
     echo -e "\t-h\thelp"
     echo
-    exit 0
 }
 
 exif() {
@@ -44,6 +41,7 @@ while getopts "dnth" OPTIONS; do
             ;;
         "h")
             usage
+            return 1
             ;;
     esac
 done

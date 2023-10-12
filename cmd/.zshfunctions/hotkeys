@@ -236,21 +236,19 @@ M-Tab         - autocomplete filename, command, variable to command line"
 ################################################################################
 ################################################################################
 
-function hotkeys() {
-    declare -A HOTKEYS_LIST
-    for i in $(set | /usr/bin/env grep '^HOTKEYS_TEXT_' | sed -r 's/HOTKEYS_TEXT_([^=]*)=.*/\1/g'); do
-        INDEX="$(echo $i | head -c 2 | tr '[:upper:]' '[:lower:]')"
-        HOTKEYS_LIST["$INDEX"]="$i"
-    done
+declare -A HOTKEYS_LIST
+for i in $(set | /usr/bin/env grep '^HOTKEYS_TEXT_' | sed -r 's/HOTKEYS_TEXT_([^=]*)=.*/\1/g'); do
+    INDEX="$(echo $i | head -c 2 | tr '[:upper:]' '[:lower:]')"
+    HOTKEYS_LIST["$INDEX"]="$i"
+done
 
-    echo "List of available hotkeys:"
-    for key value in ${(@kv)HOTKEYS_LIST}; do
-        echo "$key) $value"
-    done
-    echo
-    read  'ANSWER?Select which hotkeys to show: '
+echo "List of available hotkeys:"
+for key value in ${(@kv)HOTKEYS_LIST}; do
+    echo "$key) $value"
+done
+echo
+read  'ANSWER?Select which hotkeys to show: '
 
-    HOTKEY_ELEMENT_NAME=HOTKEYS_TEXT_${HOTKEYS_LIST["$ANSWER"]}
-    eval "echo \"\$$HOTKEY_ELEMENT_NAME\""
-}
+HOTKEY_ELEMENT_NAME=HOTKEYS_TEXT_${HOTKEYS_LIST["$ANSWER"]}
+eval "echo \"\$$HOTKEY_ELEMENT_NAME\""
 

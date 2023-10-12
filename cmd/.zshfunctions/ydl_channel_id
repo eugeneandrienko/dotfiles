@@ -1,0 +1,2 @@
+yt-dlp -j "$1" | jq -r '"https://www.youtube.com/feeds/videos.xml?channel_id=" + .channel_id'
+

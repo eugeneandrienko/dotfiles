@@ -1,0 +1,5 @@
+mplayer -cookies -cookies-file /tmp/cookies.txt \
+$(yt-dlp -gf 22 \
+    --cookies /tmp/cookies.txt "$1"); \
+rm -f /tmp/cookies.txt
+

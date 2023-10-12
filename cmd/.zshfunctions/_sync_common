@@ -1,0 +1,71 @@
+function _chown_mnt() {
+    echo 'Doing chown -R drag0n:drag0n /mnt/*'
+    while true; do
+        sudo chown -R drag0n:drag0n /mnt/*
+        [[ "$?" -ne "0" ]] || break
+    done
+}
+
+function _safe_postgresql_sync() {
+    case "$1" in
+    "local")
+        echo -n "Dumping $2 database ... "
+        pg_dump -f "$3/$2.sql.gz" -C -c -Z 9 "$2"
+        if [ "$?" -eq "0" ]; then
+            echo "OK"
+        fi
+    ;;
+    "drive")
+        gzip -d -c "$3/$2.sql.gz" | psql -q -U drag0n postgres
+    ;;
+    esac
+}
+
+function _safe_dsync() {
+    if [ "$4" == "y" ]; then
+        opts=(-aEPhAX --exclude-from=$HOME/rsync/.rsyncignore --exclude=rsync/mail)
+    else
+        opts=(-aEPhAX --exclude-from=$HOME/rsync/.rsyncignore --exclude=dotfiles/utils/mc/.config/mc/panels.ini)
+    fi
+
+    rsync $opts $1 -ni $2 $3
+
+    echo "$2" | grep -q '/mnt'
+    if [ "$?" -eq 0 ]; then
+        ASK="Sync these files from drive to local? [y/n] "
+    else
+        ASK="Sync these files from local to drive? [y/n] "
+    fi
+
+    read ANSWER?"$ASK"
+    if [ "$ANSWER" = "y" ]; then
+        rsync $opts $1 --progress $2 $3
+    fi
+}
+
+function _mount_rsync() {
+    ssh -i ~/.ssh/sync -t sync@eugene-andrienko.com 'pefs mount /home/sync/rsync /home/sync/rsync && pefs addkey -a aes256 -c /home/sync/rsync || pefs umount /home/sync/rsync'
+}
+
+function _umount_rsync() {
+    ssh -i ~/.ssh/sync sync@eugene-andrienko.com 'pefs umount /home/sync/rsync'
+}
+
+function _safe_rsync() {
+    opts=(-azPh --exclude-from=$HOME/rsync/.rsyncignore --exclude=dotfiles/utils/mc/.config/mc/panels.ini)
+
+    rsync $opts -e 'ssh -i ~/.ssh/sync' $1 -ni $2 $3
+
+    echo "$2" | grep -q 'sync@'
+    if [ "$?" -eq 0 ]; then
+        ASK="Sync these files from remote to local? [y/n] "
+    else
+        ASK="Sync these files from local to remote? [y/n] "
+    fi
+
+    read ANSWER?"$ASK"
+    if [ "$ANSWER" = "y" ]; then
+        rsync $opts -e 'ssh -i ~/.ssh/sync' $1 $2 $3
+    fi
+}
+

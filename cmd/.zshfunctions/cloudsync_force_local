@@ -1,3 +1,4 @@
+source ~/.zshfunctions/_sync_common
 OPTIONS="--delete"
 _mount_rsync
 _safe_rsync "$OPTIONS" ~/rsync/ sync@eugene-andrienko.com:/home/sync/rsync

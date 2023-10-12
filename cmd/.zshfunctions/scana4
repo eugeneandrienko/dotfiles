@@ -1,6 +1,6 @@
 if [ "$#" -ne 2 ]; then
     echo "scana4 PADDING_ZEROES_COUNT START_FROM"
-    return
+    return 1
 fi
 START_FROM="$2"
 while true; do

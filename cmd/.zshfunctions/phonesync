@@ -1,14 +1,12 @@
-function phonesync() {
-    if [ ! -d ~/.termux ]; then
-        rm -vf /tmp/phone-sync.tar*
-        tar jcf /tmp/phone-sync.tar.bz2 -C ~ rsync/filez/abook rsync/org git_repos/dotfiles
-        mv /tmp/phone-sync.tar.bz2 ~/syncthing
-    else
-        mv ~/storage/downloads/SyncthingShare/phone-sync.tar.bz2 ~
-        tar jxvf ~/phone-sync.tar.bz2 -C ~
-        rm -vf ~/phone-sync.tar.bz2
-        echo
-        echo "Don't forget to redeploy dotfiles!"
-    fi
-}
+if [ ! -d ~/.termux ]; then
+    rm -vf /tmp/phone-sync.tar*
+    tar jcf /tmp/phone-sync.tar.bz2 -C ~ rsync/filez/abook rsync/org git_repos/dotfiles
+    mv /tmp/phone-sync.tar.bz2 ~/syncthing
+else
+    mv ~/storage/downloads/SyncthingShare/phone-sync.tar.bz2 ~
+    tar jxvf ~/phone-sync.tar.bz2 -C ~
+    rm -vf ~/phone-sync.tar.bz2
+    echo
+    echo "Don't forget to redeploy dotfiles!"
+fi
 

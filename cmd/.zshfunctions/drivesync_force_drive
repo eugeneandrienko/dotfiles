@@ -1,0 +1,15 @@
+source ~/.zshfunctions/_sync_common
+source ~/.bin/get_machine_id.sh
+
+OPTIONS="--delete"
+if [ "$MACHINE_HW" = "zalman" ]; then
+    read 'ANSWER?Sync mail? [y/n]: '
+    if [ "$ANSWER" = "n" ]; then
+        EXCLUDE_MAIL="y"
+    fi
+fi
+_chown_mnt
+_safe_dsync "$OPTIONS" /mnt/rsync    ~/          $EXCLUDE_MAIL
+_safe_dsync "$OPTIONS" /mnt/dotfiles ~/git_repos $EXCLUDE_MAIL
+_safe_postgresql_sync "drive" money /mnt/postgresql/
+

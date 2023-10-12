@@ -48,18 +48,24 @@ fpath+=~/.zshfunctions
 autoload -z video2gif
 autoload -z video_rotate
 autoload -z videos_rotate
-autoload -z cloudsync && cloudsync && \
-    autoload -z cloudsync_force_local && \
-    autoload -z cloudsync_force_remote
+autoload -z cloudsync
+autoload -z cloudsync_force_local
+autoload -z cloudsync_force_remote
 autoload -z scanphoto_10x15
 autoload -z scana4
-autoload -z hotkeys && hotkeys
+autoload -z hotkeys
 autoload -z png2jpg
 autoload -z jpg2timelapse
-autoload -z backup_data && backup_data
-autoload -z drivesync && drivesync
+autoload -z backup_data
+autoload -z drivesync
+autoload -z drivesync_force_drive
+autoload -z drivesync_force_local
 autoload -z phonesync
 autoload -z emacs
+autoload -z ydl_channel_id
+autoload -z youtube
+autoload -z create_enc_file
+autoload -z rename_photos_by_exif
 
 # Aliases:
 if [ -e ~/.aliases ]; then
