@@ -47,6 +47,7 @@ alias daily='emacs ~/rsync/org/daily.org'
 alias mutt='TERM=screen-256color mutt'
 alias emacskill='emacsclient -e "(kill-emacs)"'
 alias r2e='r2e -c ~/rsync/mail/rss2email.cfg -d ~/rsync/mail/rss2email.json'
+alias org2vas3k='ORG_TMP=$(mktemp /tmp/tmp.XXXXXXXX.org); emacsclient -a "" "$ORG_TMP"; pandoc -s "$ORG_TMP" -t gfm | xclip -in -selection clipboard; rm -f "$ORG_TMP"'
 
 # Mistypes
 alias -g xs='cd'
