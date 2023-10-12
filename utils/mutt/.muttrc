@@ -14,8 +14,9 @@ set postponed = =postponed
 set spoolfile = =default
 set record = =sent
 mailboxes =banks \
-          =default \
           =checks \
+          =default \
+          =expresso \
           =infrastructure \
           =maillists \
           =postponed \

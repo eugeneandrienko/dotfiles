@@ -43,6 +43,7 @@ fi
 $MAILDIRMAKE "$HOME/rsync/mail/banks"
 $MAILDIRMAKE "$HOME/rsync/mail/checks"
 $MAILDIRMAKE "$HOME/rsync/mail/default"
+$MAILDIRMAKE "$HOME/rsync/mail/expresso"
 $MAILDIRMAKE "$HOME/rsync/mail/infrastructure"
 $MAILDIRMAKE "$HOME/rsync/mail/maillists"
 $MAILDIRMAKE "$HOME/rsync/mail/rss-inbox"
