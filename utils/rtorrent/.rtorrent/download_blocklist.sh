@@ -1,6 +1,6 @@
 #!/bin/sh
 
 cd ~/.rtorrent/ || exit
-wget https://silo.glasz.org/antip2p.list.gz
+wget 'http://list.iblocklist.com/?list=ydxerpxkpcfqjaybcssw&fileformat=cidr&archiveformat=gz' -O antip2p.list.gz
 gzip -fvd antip2p.list.gz
 
