@@ -1,7 +1,5 @@
-Sxiv.background: #909090
-Sxiv.font: Noto Mono:pixelsize=16:antialias=true:autohint=true
+#include ".Xresources.d/sxiv"
+#include ".Xresources.d/urxvt"
+#include ".Xresources.d/cursor"
+#include ".Xresources.d/xft"
 
-! Unpack archive in ~/rsync/filez/cursorsz
-! to ~/.icons/macos/
-Xcursor.theme: macos
-Xcursor.size: 32

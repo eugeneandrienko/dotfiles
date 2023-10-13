@@ -1,0 +1,5 @@
+! Unpack archive in ~/rsync/filez/cursorz
+! to ~/.icons/macos/
+Xcursor.theme: macos
+Xcursor.size: 32
+

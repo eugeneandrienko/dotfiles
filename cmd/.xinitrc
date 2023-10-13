@@ -38,8 +38,8 @@ esac
 # Start redshift:
 ~/.bin/redshift.sh
 
-# Setup colors for different X-server programs:
-xrdb ~/.Xresources
-xrdb -merge  ~/.urxvt
+# Setup colors and fonts for different X-server programs:
+xrdb -I$HOME ~/.Xresources
 
 exec /usr/bin/i3 -c ~/.i3/config
+
