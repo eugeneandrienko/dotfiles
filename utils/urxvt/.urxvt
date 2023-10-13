@@ -1,4 +1,3 @@
-! Call xrdb ~/.urxvt to apply.
 !-----------------------------------------------------------------
 Xft.antialias: true
 XftG.dpi:        96
@@ -9,61 +8,63 @@ Xft.hintstyle:  hintslight
 
 
 !-----------------------------------------------------------------
-URxvt*termName: rxvt-256color
-URxvt*xftAntialias: true
+URxvt.termName: rxvt-256color
+URxvt.xftAntialias: true
 
 ! black
-URxvt*color0: #000000
-URxvt*color8: #000000
+URxvt.color0: #000000
+URxvt.color8: #000000
 
 ! red
-URxvt*color1: #cc0000
-URxvt*color9: #ff0000
+URxvt.color1: #cc0000
+URxvt.color9: #ff0000
 
 ! green
-URxvt*color2: #00aa00
-URxvt*color10: #00cc00
+URxvt.color2: #00aa00
+URxvt.color10: #00cc00
 
 ! yellow
-URxvt*color3: #999900
-URxvt*color11: #cccc00
+URxvt.color3: #999900
+URxvt.color11: #cccc00
 
 ! blue
-URxvt*color4: #0000cc
-URxvt*color12: #0000ff
+URxvt.color4: #0000cc
+URxvt.color12: #0000ff
 
 ! magenta
-URxvt*color5: #cc00cc
-URxvt*color13: #ff00ff
+URxvt.color5: #cc00cc
+URxvt.color13: #ff00ff
 
 ! cyan
-URxvt*color6: #009999
-URxvt*color14: #00cccc
+URxvt.color6: #009999
+URxvt.color14: #00cccc
 
 ! white
-URxvt*color7: #ffffff
-URxvt*color15: #ffffff
+URxvt.color7: #ffffff
+URxvt.color15: #ffffff
 
 
-URxvt*background: #ffffff
-URxvt*foreground: #000000
-URxvt*cursorColor: #000000
-URxvt*colorUL: #4682B4
-URxvt*underlineColor: #dfaf8f
+URxvt.background: #ffffff
+URxvt.foreground: #000000
+URxvt.cursorColor: #000000
+URxvt.colorUL: #4682B4
+URxvt.underlineColor: #dfaf8f
 
 
-!transparent background
+! transparent background
 URxvt.transparent: false
 URxvt.depth: 24
 
 URxvt.iso14755:             false
 URxvt.iso14755_52:          false
 
-URxvt.font: xft:Noto Sans Mono:pixelsize=16:antialias=true:autohint=true
-URxvt.boldFont: xft:Noto Sans Mono-Bold:pixelsize=16:antialias=true:autohint=true
-URxvt.italicFont: xft: Noto Sans-Italic:pixelsize=16:antialias=true:autohint=true
+URxvt.font: xft:Noto Sans Mono:style=Normal:pixelsize=16:antialias=true:autohint=true
+URxvt.boldFont: xft:Noto Sans Mono:style=Bold:pixelsize=16:antialias=true:autohint=true
+URxvt.italicFont: xft: Noto Sans Mono:style=Italic:pixelsize=16:antialias=true:autohint=true
 URxvt.letterSpace: -1
 URxvt.lineSpace: 0
+! Show bold text only by the boldness:
+URxvt.intensityStyles: false
 
 URxvt.scrollBar: false
 URxvt.saveLines: 1000
@@ -75,11 +76,11 @@ URxvt.urgentOnBell: true
 ! disable scrolling in urxvt itself
 URxvt.secondaryScreen: 0
 URxvt.secondaryScroll: 0
-URxvt*secondaryWheel: false
+URxvt.secondaryWheel: false
 
-URxvt*loginShell: true
+URxvt.loginShell: true
 
 ! hide mouse pointer
-URxvt*pointerBlank: true
-URxvt*pointerBlankDelay: 2
+URxvt.pointerBlank: true
+URxvt.pointerBlankDelay: 2
 
