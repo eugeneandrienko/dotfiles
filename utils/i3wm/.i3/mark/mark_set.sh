@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 FONT="'-xos4-terminus-*-*-*-*-14-*-*-*-*-*-*-u'"
-COLORS="-sb '#000000' -sf '#ffffff' -nb '#ffffff' -nf '#000000'"
+COLORS="-sb '#46585e' -sf '#fdf6e3' -nb '#fdf6e3' -nf '#46585e'"
 DMENU_CMD="dmenu -i -b -fn $FONT $COLORS"
 
 LIST_OF_MARKS='ff:fp:k:t'

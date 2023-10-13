@@ -83,7 +83,7 @@ editor_backup_extension=~
 editor_filesize_threshold=64M
 editor_stop_format_chars=-+*\\,.;:&>
 mcview_eof=
-skin=/home/drag0n/.config/mc/seasons.ini
+skin=solarized-light-ansi
 
 filepos_max_saved_entries=1024
 
@@ -142,7 +142,7 @@ filetype_mode=true
 permission_mode=false
 torben_fj_mode=false
 quick_search_mode=2
-select_flags=7
+select_flags=4
 
 simple_swap=false
 
@@ -158,7 +158,7 @@ content_regexp=false
 content_first_hit=false
 content_whole_words=false
 content_all_charsets=false
-ignore_dirs_enable=true
+ignore_dirs_enable=false
 ignore_dirs=
 
 [Panelize]

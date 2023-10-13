@@ -64,6 +64,12 @@ macro index \ce <next-entry>
 macro index \cy <previous-entry>
 macro pager \ce <next-line>
 macro pager \cy <previous-line>
+# Open HTML mail in external browser
+macro attach 'V' \
+"\
+<pipe-entry>iconv -c --to-code=UTF8 > /tmp/mail.html<enter>\
+<shell-escape>~/.bin/firefox.sh /tmp/mail.html<enter>\
+"
 
 #
 # Sidebar
@@ -77,8 +83,6 @@ set sidebar_visible=yes
 set mail_check_stats
 set sidebar_format='%B%?F? [%F]?%* %?N?%N/?%S'
 set sidebar_sort_method='unsorted'
-color sidebar_new blue default
-color sidebar_highlight underline black white
 
 
 #
@@ -138,6 +142,8 @@ set attribution = "*** %n [%{%Y-%m-%d %H:%M}]:"
 set user_agent=yes
 # Decode mail before send it to pipe
 set pipe_decode=yes
+# Disable "Press any key to continue..."
+set wait_key=no
 
 
 #
@@ -167,45 +173,9 @@ mime_lookup application/octet-stream
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #
-# Color definitions
+# Color theme
 #
-
-# normal (not quoted) text
-color normal black default
-# default color of the message header in the pager
-color hdrdefault blue default
-# text matching $quote_regexp in the body of the message
-color quoted green white
-# any text beneath the signature line
-color signature green white
-# arrow or bar used to indicate the current item in a menu
-color indicator white black
-# error messages printed by mutt
-color error brightred default
-# mode lines used to display info about the mailbox or message
-color status white black
-# thread color in index menu
-color tree magenta default
-# the "~" used to pad blank lines in the pager
-color tilde blue default
-# Informational messages
-color message blue default
-# the "+" markers at the beginning of wrapped lines in the pager
-color markers blue white
-# any attachments present
-color attachment magenta default
-# highlighting of words in the pager
-color search black green
-# match regexp in the message header
-color header red default ^(From|Subject):
-# point out URLs
-color body magenta default "(ftp|http|https)://[^ ]+"
-# e-mail addresses
-color body magenta default "[-a-z_0-9.]+@[-a-z_0-9.]+"
-# Highlighting underlined patters in the body of messages
-color underline green white
-
-
+source ~/.muttcolors
 
 
 ##

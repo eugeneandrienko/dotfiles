@@ -193,13 +193,13 @@ bar {
     id main-bar
     font pango:Noto Mono 12
     colors {
-        background #ffffff
-        statusline #222222
-        separator  #000000
+        background #fdf6e3
+        statusline #46585e
+        separator  #46585e
         # color-class      border  backgr  text
-        active_workspace   #000000 #ffffff #000000
-        inactive_workspace #ffffff #ffffff #000000
-        focused_workspace  #000000 #000000 #ffffff
+        active_workspace   #46585e #fdf6e3 #46585e
+        inactive_workspace #fdf6e3 #fdf6e3 #46585e
+        focused_workspace  #46585e #46585e #fdf6e3
     }
     status_command i3status --config ~/.i3/i3status.conf
 }
@@ -225,10 +225,10 @@ workspace 3   output DVI-D-2
 
 # Colors
 # color-class           border  backgr  text    indicator
-client.focused          #000000 #ffffff #000000 #ffffff
-client.focused_inactive #ffffff #ffffff #bbbbbb #ffffff
-client.unfocused        #ffffff #ffffff #bbbbbb #ffffff
-client.urgent           #900000 #900000 #ffffff #900000
-#client.placeholder     #000000 #9f9f9f #333333 #000000
+client.focused          #46585e #fdf6e3 #46585e #fdf6e3
+client.focused_inactive #fdf6e3 #fdf6e3 #bbbbbb #fdf6e3
+client.unfocused        #fdf6e3 #fdf6e3 #bbbbbb #fdf6e3
+client.urgent           #dc322f #dc322f #fdf6e3 #dc322f
+#client.placeholder     #46585e #9f9f9f #333333 #46585e
 client.background       #ffffff
 

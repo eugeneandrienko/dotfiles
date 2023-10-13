@@ -2,10 +2,10 @@ general {
        output_format = "i3bar"
        colors = true
        interval = 1
-       color_good = "#61b8d3"
-       color_degraded = "#907f4f"
-       color_bad  = "#cc9393"
-       color_separator = "#000000"
+       color_good = "#2aa198"
+       color_degraded = "#b58900"
+       color_bad  = "#dc322f"
+       color_separator = "#46585e"
 }
 
 order  = "read_file weather"
