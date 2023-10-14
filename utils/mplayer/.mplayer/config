@@ -10,7 +10,6 @@ nojoystick = yes
 nolirc = yes
 noar = yes
 nomouseinput = yes
-noborder = yes
 
 progbar-align = 75
 geometry = 1280x720
