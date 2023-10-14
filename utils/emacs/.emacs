@@ -14,6 +14,7 @@
 (load "~/.emacs.d/rc-company.el")
 (load "~/.emacs.d/rc-dockerfile-mode.el")
 (load "~/.emacs.d/rc-org.el")
+(load "~/.emacs.d/rc-sql.el")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
