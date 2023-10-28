@@ -27,11 +27,7 @@ alias ss='sudo -s'
 alias wget='wget -c'
 alias sget='wget -c -e http_proxy=127.0.0.1:8080 -e https_proxy=127.0.0.1:8080'
 alias panic='rm -rfv ~/.cache/thumbnails/*; \
-             rm -rfv ~/.thumbnails/*; \
-             rm -rfv ~/.cache/mozilla/firefox/022ivwuz.default/cache2/*; \
-             rm -rfv ~/.cache/mozilla/firefox/022ivwuz.default/startupCache/*; \
-             rm -rfv ~/.cache/vlc/*; \
-             sleep 1; kill -9 $$'
+             rm -rfv ~/.cache/sxiv/*'
 alias df='df -h'
 alias fuck_censorship='ssh -p 443 -ND 8080 fuck@censorship.1984; \
                        notify-send -u critical -t 5000 "Warning" "SSH tunnel is down"'
@@ -97,6 +93,7 @@ alias xpaste='xclip -selection clipboard -o'
 
 # Gentoo aliases
 alias emerge-update='sudo emerge-webrsync; \
+                     dunstify "emerge-webrsync" "Completed!\nContinue update?" -u normal
                      read NOTUSING?"Press Enter "; \
                      sudo emerge --ask -uDU --keep-going --with-bdeps=y @world'
 

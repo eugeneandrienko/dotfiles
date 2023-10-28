@@ -15,11 +15,11 @@ case $(echo $ITEMS | parse_items | f_dmenu 'Select:') in
         case $(echo "normal:threatre" | parse_items | f_dmenu '>') in
             'normal')
                 xset +dpms
-                notify-send -u normal -t 5000 "Screen mode: NORMAL"
+                notify-send -u low -t 5000 "Screen mode: NORMAL"
                 ;;
             'theatre')
                 xset -dpms
-                notify-send -u normal -t 5000 "Screen mode: THEATRE"
+                notify-send -u low -t 5000 "Screen mode: THEATRE"
                 ;;
         esac
         ;;
@@ -34,9 +34,11 @@ case $(echo $ITEMS | parse_items | f_dmenu 'Select:') in
         case $(echo "on:off" | parse_items | f_dmenu "$PROMPT") in
             'on')
                 ~/.bin/redshift.sh
+                dunstify -u low "Redshift enabled"
                 ;;
             'off')
                 pkill redshift
+                dunstify -u low "Redshift disabled"
                 ;;
         esac
         ;;

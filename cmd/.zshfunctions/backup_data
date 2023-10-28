@@ -30,4 +30,5 @@ elif [ "$MACHINE_HW" = "thinkpad" ]; then
     _safe_backup "$OPTIONS" ~/git_repos/telepodcast /mnt/git_repos/
     _safe_backup "$OPTIONS" ~/rsync     /mnt/
 fi
+dunstify -a "backup_data" "Backup completed" -u low
 

@@ -21,7 +21,7 @@ stow bin cmd
 
 # Copying dotfiles to $HOME
 export STOW_DIR=./utils
-stow abook emacs git gnupg mc mplayer mutt postgresql rtorrent ssh tmux vim zathura
+stow abook dunst emacs git gnupg mc mplayer mutt postgresql rtorrent ssh tmux vim zathura
 stow --ignore="i3status\.conf\.m4" i3wm
 
 # Making necessary (empty) directories
@@ -73,6 +73,9 @@ chmod -v 600 ~/.openweathermap
 # Installing crontab
 echo "Installing crontab"
 crontab ./utils/crontab/crontab
+
+# Restart dunst
+pkill dunst
 
 # Select target system and OS if not selected yet
 if [ -d ~/.termux ]; then
