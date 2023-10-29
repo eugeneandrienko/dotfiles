@@ -26,6 +26,7 @@
  '(ido-mode 'buffer nil (ido))
  '(initial-scratch-message nil)
  '(org-fold-catch-invisible-edits t nil nil "Customized with use-package org")
+ '(show-trailing-whitespace t)
  '(package-selected-packages
    '(pinentry org company projectile lsp-ui lsp-java use-package fill-column-indicator color-theme-modern auto-complete auctex)))
 (custom-set-faces
@@ -47,4 +48,3 @@
 ;; Default cyr/latin input method
 (setq default-input-method "russian-computer")
 (global-set-key "\C-z" 'toggle-input-method)
-
