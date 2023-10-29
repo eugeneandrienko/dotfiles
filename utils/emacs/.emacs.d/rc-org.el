@@ -43,6 +43,10 @@
                    (add-to-list 'org-file-apps
                                 '("\\.png\\'" . "sxiv %s")))))
     (org-babel-do-load-languages 'org-babel-load-languages
-                                 '((shell  . t)))))
+                                 '((shell  . t)))
+    (define-key org-mode-map (kbd "C-c <up>") nil)
+    (define-key org-mode-map (kbd "C-c <down>") nil)
+    (define-key org-mode-map (kbd "C-c <left>") nil)
+    (define-key org-mode-map (kbd "C-c <right>") nil)))
 
 (use-package gnuplot)
