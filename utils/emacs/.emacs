@@ -15,6 +15,7 @@
 (load "~/.emacs.d/rc-dockerfile-mode.el")
 (load "~/.emacs.d/rc-org.el")
 (load "~/.emacs.d/rc-sql.el")
+(load "~/.emacs.d/rc-dashboard.el")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -24,6 +25,7 @@
  '(Man-notify-method 'pushy)
  '(ido-mode 'buffer nil (ido))
  '(initial-scratch-message nil)
+ '(org-fold-catch-invisible-edits t nil nil "Customized with use-package org")
  '(package-selected-packages
    '(pinentry org company projectile lsp-ui lsp-java use-package fill-column-indicator color-theme-modern auto-complete auctex)))
 (custom-set-faces
