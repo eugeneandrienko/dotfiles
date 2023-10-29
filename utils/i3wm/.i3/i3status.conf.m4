@@ -67,8 +67,8 @@ wireless wlan0 {
 }'))
 
 volume master {
-    format = "🔊 %volume"
-    format_muted = "🔇 %volume"
+    format = "🔊"
+    format_muted = "🔇"
     device = "hw:0"
     mixer = "Master"
 }

@@ -163,7 +163,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "<b>%s</b>\n%b%p"
+    format = "<b>%s</b>\n%b"
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
@@ -374,7 +374,19 @@
 # Instead of the appname filter, it's recommended to use the desktop_entry filter.
 # GLib based applications export their desktop-entry name. In comparison to the appname,
 # the desktop-entry won't get localized.
-#
+
+[firefox]
+    desktop_entry = Firefox
+    format = "<b>%a</b>\n%b"
+
+[audio_stack_tag]
+    stack_tag = audio
+    format = "%s %n%%"
+
+[brightness_stack_tag]
+    stack_tag = bright
+    format = "%s %n%%"
+
 # SCRIPTING
 # You can specify a script that gets run when the rule matches by
 # setting the "script" option.
