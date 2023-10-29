@@ -108,9 +108,40 @@ C-c C-x 0                       - Start timer
 C-c C-x ;                       - Start countdown timer
 C-c C-x .                       - Insert timer value to buffer
 C-c C-x ,                       - Pause timer
-C-c C-x _                       - Stop timer"
+C-c C-x _                       - Stop timer
 
+C-c j C-h                       - lsp-java keys help
+C-c p C-h                       - Projectile keys help
+C-c p s g                       - Grep in project
+C-c p r                         - Replace in project
+C-c p ?                         - Find references in project
+C-c p t                         - Toggle between implementation and test
+C-c p a                         - Toggle between related files (.h->.c and etc)
+C-c p !                         - Run shell command
+C-c p &                         - Run shell command async
+C-c p c                         - Build project
+C-c p P                         - Test project
+C-c p f                         - List of files in project and goto
+C-c p T                         - List of test files in project and goto
+C-c p b                         - List of project buffers
 
+C-c p i                         - Invalidate project cache
+C-c p k                         - Kill all project buffers
+C-c p S                         - Save all project buffers
+
+C-c p left                      - Goto previous opened file
+C-c p right                     - Goto next opened file
+
+C-c ! l                         - List warning and errors from flycheck
+    e                           explain error
+    g                           update error list
+    q                           quit error list
+M-.                             - Show definition
+M-?                             - Show references
+M-1                             - Show files
+M-2                             - Show list of methods
+M-3                             - Show errors
+M-;                             - Comment block of code"
 
 ################################################################################
 # I3WM
