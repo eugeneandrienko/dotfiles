@@ -44,6 +44,13 @@ alias mutt='TERM=screen-256color mutt'
 alias emacskill='emacsclient -e "(kill-emacs)"'
 alias r2e='r2e -c ~/rsync/mail/rss2email.cfg -d ~/rsync/mail/rss2email.json'
 alias org2vas3k='ORG_TMP=$(mktemp /tmp/tmp.XXXXXXXX.org); emacsclient -a "" "$ORG_TMP"; pandoc -s "$ORG_TMP" -t gfm | xclip -in -selection clipboard; rm -f "$ORG_TMP"'
+alias weather='ansiweather -l "$(geocoords.sh loc)" -k $(cat ~/.openweathermap) -H true | \
+               sed -e "s/ - /\n/g" -e "s/: /:;/g" | \
+               sed -r "s/ (Weather in.*:;)(.*)/"$(tput bold)"\1"$(tput sgr0)"\nTemperature:;\2/g" | \
+               column -s ";" -t -l 2'
+alias forecast='ansiweather -l "$(geocoords.sh loc)" -F | \
+                sed -r -e "s/: /:;/g" -e "s/ - /\n/g" -e "s/ (.* forecast):;(.*)/"$(tput bold)"\1:"$(tput sgr0)"\n\2/g" | \
+                column -s ";" -t -l 2'
 
 # Mistypes
 alias -g xs='cd'

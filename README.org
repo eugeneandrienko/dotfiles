@@ -57,6 +57,7 @@ You should have next programs in system before configuration deployment:
 - vim
 
 ** Utilities:
+- ansiweather
 - dunst
 - git
 - gpg
