@@ -1,0 +1,62 @@
+|---------------------------------+--------------------------------------------------------------|
+| Hotkey                          | Description                                                  |
+|---------------------------------+--------------------------------------------------------------|
+| C-c c                           | Capture                                                      |
+|---------------------------------+--------------------------------------------------------------|
+| C-c ?                           | Show field coordinates                                       |
+| C-c }                           | Toggle grid for table                                        |
+| C-c =                           | Insert column formula                                        |
+| C-u C-c =                       | Insert field formula                                         |
+| M-S-Up                          | Kill current line                                            |
+| M-S-Down                        | Insert new row above                                         |
+| M-S-Left                        | Kill current column                                          |
+| M-S-Right                       | Insert new column to the point position                      |
+| C-x @ S RET                     | Copy current field to the field below (with increment)       |
+| C-u 0 C-x @ S RET               | Copy current field to the field below (without increment)    |
+| C-c -                           | Insert hline below                                           |
+| C-c RET                         | Insert hline below and place cursor into the row below hline |
+| C-u C-c C-c                     | Recalculate table by formulas                                |
+| C-c *                           | Recalculate current row by formula                           |
+| C-c " g                         | Draw plot by gnuplot                                         |
+| C-c ^                           | Sort                                                         |
+|---------------------------------+--------------------------------------------------------------|
+| C-c C-n                         | Go to next heading                                           |
+| C-c C-p                         | Go to previous heading                                       |
+| S-TAB                           | Cycle visibility                                             |
+| C-c C-o                         | Open link                                                    |
+| C-c C-l                         | Edit link                                                    |
+| C-c C-c                         | Insert tag                                                   |
+| C-c ,                           | Set priority                                                 |
+| C-c .                           | Insert timestamp                                             |
+| C-c C-d                         | Insert deadline                                              |
+| C-c C-s                         | Insert schedule                                              |
+| C-c C-x M                       | Insert new Checkbox item                                     |
+| C-c $                           | Archive entry                                                |
+| M-x org-redisplay-inline-images | Redisplay inline images                                      |
+| C-c C-,                         | Insert template                                              |
+|---------------------------------+--------------------------------------------------------------|
+| C-c C-x C-i                     | Clock in                                                     |
+| C-c C-x C-o                     | Clock out                                                    |
+| M-x org-clock-report            | Generate clock table                                         |
+| C-c C-x 0                       | Start timer                                                  |
+| C-c C-x ;                       | Start countdown timer                                        |
+| C-c C-x .                       | Insert timer value to buffer                                 |
+| C-c C-x ,                       | Pause timer                                                  |
+| C-c C-x _                       | Stop timer                                                   |
+|---------------------------------+--------------------------------------------------------------|
+
+* Inside agenda window:
+|--------+----------------------------------------------------|
+| Hotkey | Description                                        |
+|--------+----------------------------------------------------|
+| SPC    | Display original location                          |
+| TAB    | Go to original location                            |
+| A      | Select another agenda view and append it to buffer |
+| n      | next line                                          |
+| p      | previous line                                      |
+| t      | change TODO state                                  |
+| d      | show daily agenda                                  |
+| w      | show weekly agenda                                 |
+| o      | close other windows, show only agenda              |
+| NUMd   | show daily agenda for NUM day of month             |
+|--------+----------------------------------------------------|

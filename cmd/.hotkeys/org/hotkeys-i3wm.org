@@ -1,0 +1,26 @@
+|-----------------+----------------------------------------|
+| Hotkey          | Description                            |
+|-----------------+----------------------------------------|
+| Win+z           | split in horizontal orientation        |
+| Win+v           | split in vertical orientation          |
+| Win+a           | focus parent container                 |
+| Win+c           | focus child container                  |
+|-----------------+----------------------------------------|
+| Win+s           | stacking container layout              |
+| Win+w           | tabbed container layout                |
+| Win+e           | toggle split layout                    |
+|-----------------+----------------------------------------|
+| Win+Right_arrow | move window to right display           |
+| Win+Left_arrow  | move window to left display            |
+|-----------------+----------------------------------------|
+| Win+Shift+Space | toggle tiling / floating               |
+| Win+Space       | change focus between tiling / floating |
+|-----------------+----------------------------------------|
+| Win+q           | open scratchpad                        |
+| Win+Shift+-     | move to scratchpad                     |
+|-----------------+----------------------------------------|
+| Win+Shift+x     | lock screen                            |
+|-----------------+----------------------------------------|
+| Win+m           | set mark                               |
+| Win+g           | goto mark                              |
+|-----------------+----------------------------------------|

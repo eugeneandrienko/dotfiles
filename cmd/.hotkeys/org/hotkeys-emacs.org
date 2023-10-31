@@ -1,0 +1,15 @@
+|---------------------------+------------------------------|
+| Hotkey                    | Description                  |
+|---------------------------+------------------------------|
+| C-z                       | switch keyboard language     |
+| M-g                       | go to line                   |
+| C-j                       | insert new line below cursor |
+| C-x 2                     | horizontal split             |
+| C-x 3                     | vertical split               |
+| M-x untabify              | remove tabs from file        |
+| M-x recover-file          | recover unsaved file         |
+| C-s M-r                   | regexp search                |
+| C-r M-r                   | reverse regexp search        |
+| M-% (after search starts) | query replace (\(\) - group) |
+| C-x SPC                   | select rectangle             |
+|---------------------------+------------------------------|

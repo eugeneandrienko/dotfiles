@@ -53,7 +53,6 @@ autoload -z cloudsync_force_local
 autoload -z cloudsync_force_remote
 autoload -z scanphoto_10x15
 autoload -z scana4
-autoload -z hotkeys
 autoload -z png2jpg
 autoload -z jpg2timelapse
 autoload -z backup_data
@@ -66,6 +65,21 @@ autoload -z ydl_channel_id
 autoload -z youtube
 autoload -z create_enc_file
 autoload -z rename_photos_by_exif
+
+# Hotkeys helpers:
+fpath+=~/.hotkeys
+autoload -z hotkeys-emacs
+autoload -z hotkeys-emacs-java
+autoload -z hotkeys-emacs-latex
+autoload -z hotkeys-emacs-magit
+autoload -z hotkeys-emacs-org
+autoload -z hotkeys-i3wm
+autoload -z hotkeys-mc
+autoload -z hotkeys-mutt
+autoload -z hotkeys-rtorrent
+autoload -z hotkeys-tmux
+autoload -z hotkeys-vim
+autoload -z hotkeys-zathura
 
 # Aliases:
 if [ -e ~/.aliases ]; then

@@ -1,0 +1,17 @@
+|---------------------------+-------------------------------------|
+| Hotkey                    | Description                         |
+|---------------------------+-------------------------------------|
+| C-c C-c                   | Show window with all Magit commands |
+| M-x magit-log-buffer-file | Show changes for specific file      |
+| C-x g                     | Show Magit buffer                   |
+|---------------------------+-------------------------------------|
+
+* Inside magit buffer:
+|--------+--------------------------------|
+| Hotkey | Description                    |
+|--------+--------------------------------|
+| g      | Update Magit buffer            |
+| d d    | Show detailed diff for changes |
+| l l    | Show log                       |
+| c      | Commit                         |
+|--------+--------------------------------|

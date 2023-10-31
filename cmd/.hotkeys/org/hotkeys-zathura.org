@@ -1,0 +1,7 @@
+|--------+---------------------------------|
+| Hotkey | Description                     |
+|--------+---------------------------------|
+| a      | fit page to screen height       |
+| s      | fit page to screen width        |
+| d      | show one/two page(s) per screen |
+|--------+---------------------------------|
