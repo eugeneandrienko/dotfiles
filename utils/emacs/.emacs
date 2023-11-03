@@ -20,7 +20,6 @@
 (load "~/.emacs.d/rc-projectile.el")
 (load "~/.emacs.d/rc-treemacs.el")
 (load "~/.emacs.d/rc-java.el")
-(load "~/.emacs.d/rc-dashboard.el")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -30,7 +29,6 @@
  '(Man-notify-method 'pushy)
  '(ido-mode 'buffer nil (ido))
  '(initial-scratch-message nil)
- '(org-fold-catch-invisible-edits t nil nil "Customized with use-package org")
  '(show-trailing-whitespace t)
  '(package-selected-packages
    '(pinentry org company projectile lsp-ui lsp-java use-package fill-column-indicator color-theme-modern auto-complete auctex)))
