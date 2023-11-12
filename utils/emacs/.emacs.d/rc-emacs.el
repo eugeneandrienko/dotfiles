@@ -103,7 +103,7 @@
 
 ;; Font for GUI
 (add-to-list 'default-frame-alist
-             '(font . "Noto Sans Mono-12"))
+             '(font . "Noto Sans Mono-16"))
 
 ;; Emacs pinentry — ask password for GPG keys
 (use-package pinentry
