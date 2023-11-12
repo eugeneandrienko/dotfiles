@@ -219,9 +219,9 @@ for_window [window_role="task_dialog"] floating enable
 for_window [class="(?i)emacs"] mark emacs
 for_window [class="Vncviewer"] mark vncview
 # Assign workspaces to monitors:
-workspace 1   output DVI-D-1
-workspace web output DVI-D-1
-workspace 3   output DVI-D-2
+workspace 1   output DVI-D-0
+workspace web output DVI-D-0
+workspace 3   output HDMI-0
 
 # Colors
 # color-class           border  backgr  text    indicator
