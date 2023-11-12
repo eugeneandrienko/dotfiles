@@ -2,6 +2,9 @@
 
 source ~/.bin/get_machine_id.sh
 
+# Setup colors and fonts for different X-server programs:
+xrdb -I$HOME ~/.Xresources &
+
 # Start synchronization daemon:
 if ! pgrep -x syncthing > /dev/null; then
     syncthing serve &
@@ -10,17 +13,17 @@ fi
 # Configure keyboard layout:
 case "$MACHINE_HW" in
     "zalman")
-        setxkbmap -layout us,ru -option grp:caps_select -option grp_led:caps -option compose:ralt
-        numlockx on
+        setxkbmap -layout us,ru -option grp:caps_select -option grp_led:caps -option compose:ralt &
+        numlockx on &
         ;;
     "thinkpad")
-        setxkbmap -model "thinkpad" -layout us,ru -option grp:shift_caps_switch -option grp_led:caps -option compose:ralt
-        numlockx off
+        setxkbmap -model "thinkpad" -layout us,ru -option grp:shift_caps_switch -option grp_led:caps -option compose:ralt &
+        numlockx off &
         ;;
 esac
 
 # Set wallpaper:
-feh --bg-fill --no-fehbg /home/drag0n/rsync/filez/wallpaperz/14194150900090.png
+feh --bg-fill --no-fehbg /home/drag0n/rsync/filez/wallpaperz/14194150900090.png &
 
 # Configure video output(s):
 case "$MACHINE_HW" in
@@ -37,9 +40,6 @@ esac
 
 # Start redshift:
 ~/.bin/redshift.sh
-
-# Setup colors and fonts for different X-server programs:
-xrdb -I$HOME ~/.Xresources
 
 exec /usr/bin/i3 -c ~/.i3/config
 
