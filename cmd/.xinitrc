@@ -28,8 +28,8 @@ feh --bg-fill --no-fehbg /home/drag0n/rsync/filez/wallpaperz/14194150900090.png 
 # Configure video output(s):
 case "$MACHINE_HW" in
     "zalman")
-        xrandr --output DVI-D-1 --primary
-        xrandr --output HDMI-3 --auto --right-of DVI-D-1
+        xrandr --output DVI-D-0 --primary
+        xrandr --output HDMI-0 --auto --right-of DVI-D-0
         ;;
     "thinkpad")
         echo 2323 | sudo tee /sys/class/backlight/intel_backlight/brightness > /dev/null
