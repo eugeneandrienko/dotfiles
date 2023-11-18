@@ -1,0 +1,51 @@
+source ~/.zshfunctions/_sync_common
+
+if [ "$#" -ne 1 ]; then
+    echo "Usage:"
+    echo "\tphotosync NAME_OF_PROJECT"
+    echo
+    return 1
+fi
+
+# For new camera add it's mountpint name here [1]:
+MOUNTPOINTS=("9C33-6BBD")
+
+for mpnt ("$MOUNTPOINTS[@]"); do
+    mount | grep -q "/media/$mpnt"
+    if [ "$?" -ne "0" ]; then
+        continue
+    else
+        echo "Camera mounted to /media/$mpnt"
+        MOUNTPOINT="/media/$mpnt"
+# And here [2]:
+# Do not forget trailing slash in value for CAMERA variable!
+        case "$mpnt" in
+            "9C33-6BBD")
+                CAMERA="/media/$mpnt/DCIM/100OLYMP/"
+                ;;
+        esac
+        break
+    fi
+done
+
+if [ -z "$CAMERA" ]; then
+    echo "Camera not mounted to system!"
+    return 1
+fi
+
+if [ ! -d "$HOME/raws/$1" ]; then
+    echo "Creating directory ~/raws/$1"
+    mkdir "$HOME/raws/$1"
+fi
+
+if [ ! -d "$HOME/pictures/$1" ]; then
+    echo "Creating directory ~/pictures/$1"
+    mkdir "$HOME/pictures/$1"
+fi
+
+rsync -aEPhAX --progress "$CAMERA" "$HOME/raws/$1"
+chown drag0n:drag0n "$HOME/raws/$1"
+chmod go-w "$HOME/raws/$1"
+chmod a-x "$HOME/raws/$1/"*
+_umount_mnt "$MOUNTPOINT"
+
