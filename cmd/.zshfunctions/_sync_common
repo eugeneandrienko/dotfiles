@@ -1,7 +1,15 @@
 function _chown_mnt() {
-    echo 'Doing chown -R drag0n:drag0n /mnt/*'
+    echo "Doing chown -R drag0n:drag0n $1/*"
     while true; do
-        sudo chown -R drag0n:drag0n /mnt/*
+        sudo chown -R drag0n:drag0n $1/*
+        [[ "$?" -ne "0" ]] || break
+    done
+}
+
+function _umount_mnt() {
+    echo "Doing umount $1"
+    while true; do
+        sudo umount $1
         [[ "$?" -ne "0" ]] || break
     done
 }
@@ -30,7 +38,7 @@ function _safe_dsync() {
 
     rsync $opts $1 -ni $2 $3
 
-    echo "$2" | grep -q '/mnt'
+    echo "$2" | grep -q '/media/DRIVESYNC'
     if [ "$?" -eq 0 ]; then
         ASK="Sync these files from drive to local? [y/n] "
     else

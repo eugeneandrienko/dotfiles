@@ -5,30 +5,31 @@ function _safe_backup() {
     rsync $opts $1 $2 $3
 }
 
-mount | grep -q '/mnt'
+mount | grep -q '/media/BACKUP'
 if [ "$?" -ne "0" ]; then
-    echo "Disk not mounted to /mnt/"
+    echo "Backup disk not exists in system!"
     return 1
 fi
-_chown_mnt
+_chown_mnt /media/BACKUP
 OPTIONS="--delete"
 source ~/.bin/get_machine_id.sh
 if [ "$MACHINE_HW" = "zalman" ]; then
-    _safe_backup "$OPTIONS" ~/backups   /mnt/
-    _safe_backup "$OPTIONS" ~/git_repos /mnt/
-    _safe_backup "$OPTIONS" ~/music     /mnt/
-    _safe_backup "$OPTIONS" ~/palm      /mnt/
-    _safe_backup "$OPTIONS" ~/pictures  /mnt/
-    _safe_backup "$OPTIONS" ~/rsync     /mnt/
-    _safe_backup "$OPTIONS" ~/raws      /mnt/
-    _safe_backup "$OPTIONS" ~/video     /mnt/
-    _safe_backup "$OPTIONS" ~/.config/GIMP/2.10/brushes /mnt/gimp
-    _safe_backup "$OPTIONS" ~/.config/GIMP/2.10/scripts /mnt/gimp
-    _safe_backup "$OPTIONS" ~/.config/RawTherapee/profiles /mnt/rawtherapee
+    _safe_backup "$OPTIONS" ~/backups   /media/BACKUP/
+    _safe_backup "$OPTIONS" ~/git_repos /media/BACKUP/
+    _safe_backup "$OPTIONS" ~/music     /media/BACKUP/
+    _safe_backup "$OPTIONS" ~/palm      /media/BACKUP/
+    _safe_backup "$OPTIONS" ~/pictures  /media/BACKUP/
+    _safe_backup "$OPTIONS" ~/rsync     /media/BACKUP/
+    _safe_backup "$OPTIONS" ~/raws      /media/BACKUP/
+    _safe_backup "$OPTIONS" ~/video     /media/BACKUP/
+    _safe_backup "$OPTIONS" ~/.config/GIMP/2.10/brushes /media/BACKUP/gimp
+    _safe_backup "$OPTIONS" ~/.config/GIMP/2.10/scripts /media/BACKUP/gimp
+    _safe_backup "$OPTIONS" ~/.config/RawTherapee/profiles /media/BACKUP/rawtherapee
 elif [ "$MACHINE_HW" = "thinkpad" ]; then
-    _safe_backup "$OPTIONS" ~/git_repos/dotfiles    /mnt/git_repos/
-    _safe_backup "$OPTIONS" ~/git_repos/telepodcast /mnt/git_repos/
-    _safe_backup "$OPTIONS" ~/rsync     /mnt/
+    _safe_backup "$OPTIONS" ~/git_repos/dotfiles    /media/BACKUP/git_repos/
+    _safe_backup "$OPTIONS" ~/git_repos/telepodcast /media/BACKUP/git_repos/
+    _safe_backup "$OPTIONS" ~/rsync     /media/BACKUP/
 fi
 dunstify -a "backup_data" "Backup completed" -u low
+_umount_mnt /media/BACKUP
 

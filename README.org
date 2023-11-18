@@ -15,7 +15,8 @@ writing since 2005.
   review it and add useful entries to your =/etc/hosts= by hands!
 - =50trackball.conf= — X configuration for Logitech trackball
 - =50-udiskie.rules= — Rules for udiskie. Should be placed in
-  =/etc/polkit-1/rules.d/=.
+  =/etc/polkit-1/rules.d/=. Owner should be =polkitd=, and access right should be
+  =644=.
 - =97-udisks2.rules= — Rules for udiskie [2]. Should be placed in
   =/etc/udev/rules.d/=.
 
