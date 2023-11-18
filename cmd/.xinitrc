@@ -38,6 +38,12 @@ case "$MACHINE_HW" in
         ;;
 esac
 
+# Setup dunst for Devuan:
+if [ "$MACHINE_OS" = "debian" ]; then
+    sudo pkill xfce4-notifyd
+    dunst &
+fi
+
 # Start redshift:
 ~/.bin/redshift.sh
 
