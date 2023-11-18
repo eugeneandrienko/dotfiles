@@ -1,11 +1,3 @@
-function _chown_mnt() {
-    echo "Doing chown -R drag0n:drag0n $1/*"
-    while true; do
-        sudo chown -R drag0n:drag0n $1/*
-        [[ "$?" -ne "0" ]] || break
-    done
-}
-
 function _umount_mnt() {
     echo "Doing umount $1"
     while true; do

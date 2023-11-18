@@ -2,8 +2,6 @@ source ~/.zshfunctions/_sync_common
 
 OPTIONS="--update"
 
-_chown_mnt /media/DRIVESYNC
-
 # remote -> local
 _safe_dsync "$OPTIONS" /media/DRIVESYNC/rsync    ~/
 _safe_dsync "$OPTIONS" /media/DRIVESYNC/dotfiles ~/git_repos
