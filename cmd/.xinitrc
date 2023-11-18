@@ -47,5 +47,8 @@ fi
 # Start redshift:
 ~/.bin/redshift.sh
 
+# Start udiskie
+udiskie &
+
 exec /usr/bin/i3 -c ~/.i3/config
 

@@ -14,6 +14,10 @@ writing since 2005.
 - =hosts= — =/etc/hosts= file. This is not a valid =hosts= file! You should
   review it and add useful entries to your =/etc/hosts= by hands!
 - =50trackball.conf= — X configuration for Logitech trackball
+- =50-udiskie.rules= — Rules for udiskie. Should be placed in
+  =/etc/polkit-1/rules.d/=.
+- =97-udisks2.rules= — Rules for udiskie [2]. Should be placed in
+  =/etc/udev/rules.d/=.
 
 * Dependencies:
 You should have next programs in system before configuration deployment:
@@ -33,6 +37,7 @@ You should have next programs in system before configuration deployment:
 - syncthing
 - sudo
 - tmux (>= 3.2)
+- udisks
 - zsh
 
 ** Mail and IM:
@@ -71,6 +76,7 @@ You should have next programs in system before configuration deployment:
 - wget
 - xclip
 - yt-dlp
+- udiskie
 
 ** Multimedia:
 - feh
