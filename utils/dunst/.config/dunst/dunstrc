@@ -384,7 +384,7 @@
     format = "%s %n%%"
 
 [brightness_stack_tag]
-    stack_tag = bright
+    stack_tag = brightness
     format = "%s %n%%"
 
 # SCRIPTING
