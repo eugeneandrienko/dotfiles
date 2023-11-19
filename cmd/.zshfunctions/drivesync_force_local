@@ -1,6 +1,7 @@
 source ~/.zshfunctions/_sync_common
 
 OPTIONS="--delete"
+_chown_mnt /media/DRIVESYNC
 _safe_dsync "$OPTIONS" ~/rsync              /media/DRIVESYNC/
 _safe_dsync "$OPTIONS" ~/git_repos/dotfiles /media/DRIVESYNC/
 _safe_postgresql_sync "local" money /media/DRIVESYNC/postgresql/

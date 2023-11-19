@@ -10,6 +10,7 @@ if [ "$?" -ne "0" ]; then
     echo "Backup disk not exists in system!"
     return 1
 fi
+_chown_mnt /media/BACKUP
 OPTIONS="--delete"
 source ~/.bin/get_machine_id.sh
 if [ "$MACHINE_HW" = "zalman" ]; then
