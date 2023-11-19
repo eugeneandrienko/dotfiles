@@ -7,3 +7,4 @@
       (setq sqlind-basic-offset 4))
     (add-hook 'sql-mode-hook 'sqlind-set-my-offset)))
 
+(setq sql-product 'postgres)
