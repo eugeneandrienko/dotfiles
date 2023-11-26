@@ -7,11 +7,9 @@ _chown_mnt /media/DRIVESYNC
 # remote -> local
 _safe_dsync "$OPTIONS" /media/DRIVESYNC/rsync    ~/
 _safe_dsync "$OPTIONS" /media/DRIVESYNC/dotfiles ~/git_repos
-_safe_postgresql_sync "drive" money /media/DRIVESYNC/postgresql/
 # local -> remote
 _safe_dsync "$OPTIONS" ~/rsync              /media/DRIVESYNC/
 _safe_dsync "$OPTIONS" ~/git_repos/dotfiles /media/DRIVESYNC/
-_safe_postgresql_sync "local" money /media/DRIVESYNC/postgresql/
 
 _umount_mnt /media/DRIVESYNC
 

@@ -14,21 +14,6 @@ function _umount_mnt() {
     done
 }
 
-function _safe_postgresql_sync() {
-    case "$1" in
-    "local")
-        echo -n "Dumping $2 database ... "
-        pg_dump -f "$3/$2.sql.gz" -C -c -Z 9 "$2"
-        if [ "$?" -eq "0" ]; then
-            echo "OK"
-        fi
-    ;;
-    "drive")
-        gzip -d -c "$3/$2.sql.gz" | psql -q -U drag0n postgres
-    ;;
-    esac
-}
-
 function _safe_dsync() {
     if [ "$4" == "y" ]; then
         opts=(-aEPhAX --exclude-from=$HOME/rsync/.rsyncignore --exclude=rsync/mail)
