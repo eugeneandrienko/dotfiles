@@ -2,6 +2,12 @@
 
 source ~/.bin/get_machine_id.sh
 
+# Setup cpu frequency:
+if [ "$MACHINE_HW" = "thinkpad" ]; then
+    sudo cpupower frequency-set -d 800MHz -u 1GHz -g powersave
+    sudo cpupower set -b 8
+fi
+
 # Setup colors and fonts for different X-server programs:
 xrdb -I$HOME ~/.Xresources &
 

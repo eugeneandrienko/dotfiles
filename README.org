@@ -28,6 +28,7 @@ You should have next programs in system before configuration deployment:
 - bc
 - cal
 - cron
+- cpupower
 - curl
 - make (or gmake executable should be available in FreeBSD)
 - python3
@@ -174,4 +175,9 @@ drag0n ALL=(root) NOPASSWD: /usr/bin/tee /sys/class/backlight/intel_backlight/br
 To use dunst, not xfce4-notifyd in i3wm session — add next line to =/etc/sudoers=:
 #+BEGIN_EXAMPLE
 drag0n ALL=(root) NOPASSWD: /usr/bin/pkill xfce4-notifyd
+#+END_EXAMPLE
+
+To setup cpu frequency on Thinkpad, add this:
+#+BEGIN_EXAMPLE
+drag0n ALL=(root) NOPASSWD: /usr/bin/cpupower
 #+END_EXAMPLE

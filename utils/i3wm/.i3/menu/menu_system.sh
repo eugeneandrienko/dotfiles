@@ -9,7 +9,12 @@ fi
 source ~/.bin/get_machine_id.sh
 source ~/.i3/menu/menu_funcs.sh
 
-ITEMS="display mode:redshift:poweroff:reboot"
+if [ "$MACHINE_HW" = "thinkpad" ]; then
+    ITEMS="display mode:redshift:cpufreq:poweroff:reboot"
+else
+    ITEMS="display mode:redshift:poweroff:reboot"
+fi
+
 case $(echo $ITEMS | parse_items | f_dmenu 'Select:') in
     'display mode')
         case $(echo "normal:threatre" | parse_items | f_dmenu '>') in
@@ -30,7 +35,6 @@ case $(echo $ITEMS | parse_items | f_dmenu 'Select:') in
         else
             PROMPT+="off"
         fi
-        PROMPT+=""
         case $(echo "on:off" | parse_items | f_dmenu "$PROMPT") in
             'on')
                 ~/.bin/redshift.sh
@@ -64,6 +68,28 @@ case $(echo $ITEMS | parse_items | f_dmenu 'Select:') in
             "thinkpad")
                 sudo -A shutdown -r now
                 ;;
+        esac
+        ;;
+    'cpufreq')
+        case "$MACHINE_HW" in
+            "zalman")
+            ;;
+            "thinkpad")
+                PROMPT="Governor: "
+                PROMPT+=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor)
+                case $(echo "powersave:performance" | parse_items | f_dmenu "$PROMPT") in
+                    "powersave")
+                        sudo cpupower frequency-set -d 800MHz -u 1GHz -g powersave
+                        sudo cpupower set -b 8
+                        dunstify -u low "Powersave mode enabled"
+                    ;;
+                    "performance")
+                        sudo cpupower frequency-set -d 800MHz -u 3.4GHz -g performance
+                        sudo cpupower set -b 6
+                        dunstify -u low "Performance mode enabled"
+                    ;;
+                esac
+            ;;
         esac
         ;;
     *)
