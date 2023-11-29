@@ -84,7 +84,7 @@ case $(echo $ITEMS | parse_items | f_dmenu 'Select:') in
                         dunstify -u low "Powersave mode enabled"
                     ;;
                     "performance")
-                        sudo cpupower frequency-set -d 800MHz -u 3.4GHz -g performance
+                        sudo cpupower frequency-set -d 800MHz -u 2.7GHz -g performance
                         sudo cpupower set -b 6
                         dunstify -u low "Performance mode enabled"
                     ;;
