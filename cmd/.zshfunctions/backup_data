@@ -21,6 +21,7 @@ if [ "$MACHINE_HW" = "zalman" ]; then
     _safe_backup "$OPTIONS" ~/pictures  /media/BACKUP/
     _safe_backup "$OPTIONS" ~/rsync     /media/BACKUP/
     _safe_backup "$OPTIONS" ~/raws      /media/BACKUP/
+    _safe_backup "$OPTIONS" ~/thinkpad  /media/BACKUP/
     _safe_backup "$OPTIONS" ~/video     /media/BACKUP/
     _safe_backup "$OPTIONS" ~/.config/GIMP/2.10/brushes /media/BACKUP/gimp
     _safe_backup "$OPTIONS" ~/.config/GIMP/2.10/scripts /media/BACKUP/gimp
