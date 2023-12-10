@@ -1,6 +1,7 @@
 logfile $HOME/rsync/mail/logs/procmaillog
 
 MAILDIR=$HOME/rsync/mail
+MFILTERD=$HOME/.mailfilter.d
 
 BANKS=$MAILDIR/banks
 CHECKS=$MAILDIR/checks
@@ -17,37 +18,21 @@ RSS_PODCASTS=$MAILDIR/rss-podcasts
 RSS_YOUTUBE=$MAILDIR/rss-youtube
 
 
-if (/^From:.*inform@emails.tinkoff.ru/)
+if (/^From:\s*(.*)/ && lookup($MATCH1, $MFILTERD/banks.list))
     to $BANKS
-if (/^From:.*info@emails.tinkoff.ru/)
-    to $BANKS
-if (/^From:.*raiffeisen@email.raiffeisen.ru/)
-    to $BANKS
-if (/^From:.*Darya.KOMAROVA@raiffeisen.ru/)
-    to $BANKS
-if (/^From:.*@bspb.ru/)
-    to $BANKS
-if (/^From:.*@emails.tinkoffinsurance.ru/)
-    to $BANKS
-if (/^From:.*@raiffeisen.ru/)
-    to $BANKS
-if (/^From:.*@emails.tinkoff.ru/)
-    to $BANKS
-if (/^From:.*@email.tinkoff.ru/)
-    to $BANKS
+if (/^From:\s*(.*)/ && lookup($MATCH1, $MFILTERD/checks.list))
+    to $CHECKS
+if (/^From:\s*(.*)/ && lookup($MATCH1, $MFILTERD/infrastructure.list))
+    to $INFRASTRUCTURE
+if (/^From:\s*(.*)/ && lookup($MATCH1, $MFILTERD/social.list))
+    to $SOCIAL
+if (/^From:\s*(.*)/ && lookup($MATCH1, $MFILTERD/state.list))
+    to $STATE
+if (/^From:\s*(.*)/ && lookup($MATCH1, $MFILTERD/stores.list))
+    to $STORES
+if (/^From:\s*(.*)/ && lookup($MATCH1, $MFILTERD/unwanted.list))
+    to /dev/null
 
-if (/^From:.*ofdreceipt@beeline.ru/)
-    to $CHECKS
-if (/^From:.*robot@konturcheck.ru/)
-    to $CHECKS
-if (/^From:.*reestr@interrao.ru/)
-    to $CHECKS
-if (/^From:.*info@ecom.sberbank.ru/)
-    to $CHECKS
-if (/^From:.*noreply@chek.pofd.ru/)
-    to $CHECKS
-if (/^From:.*online@raiffeisen.ru/)
-    to $CHECKS
 if (/^From:.*no-reply-aws@amazon.com/ && \
     /^Subject: Thank you for your payment/ )
     to $CHECKS
@@ -57,48 +42,8 @@ if (/^From:.*aws-receivables-support@email.amazon.com/ && \
 if (/^From:.*no-reply-aws@amazon.com/ && \
     /^Subject: Amazon Web Services VAT Invoice.*/)
     to $CHECKS
-if (/^From:.*noreply@ozon.ru/)
-    to $CHECKS
-if (/^From:.*no-reply@taxi.yandex.ru/ || /^From:.*no-reply@taxi.yandex.com/)
-    to $CHECKS
-if (/^From:.*no-reply@xn--80ahmohdapg.xn--80asehdb/)
-    to $CHECKS
-if (/^From:.*noreply@taxcom.ru/)
-    to $CHECKS
-if (/^From:.*robot@robokassa.ru/)
-    to $CHECKS
-if (/^From:.*no-reply@ofd.yandex.ru/)
-    to $CHECKS
-if (/^From:.*noreply@rbkmoney.com/)
-    to $CHECKS
-if (/^From:.*ikus@pesc.ru/)
-    to $CHECKS
-if (/^From:.*kfl@mrg.spb.ru/)
-    to $CHECKS
-if (/^From:.*inform@yamoney.ru/)
-    to $CHECKS
-if (/^From:.*homeinternet@beeline.ru/)
-    to $CHECKS
-if (/^From:.*robot@peterburgregiongaz.ru/)
-    to $CHECKS
-if (/^From:.*robot@mail.peterburgregiongaz.ru/)
-    to $CHECKS
-if (/^From:.*check@uniteller.ru/)
-    to $CHECKS
-if (/^From:.*noreply@1-ofd.ru/)
-    to $CHECKS
-if (/^From:.*noreply@cloudkassir.ru/)
-    to $CHECKS
-if (/^From:.*noreply@sbis.ru/)
-    to $CHECKS
-if (/^From:.*noreply@ofd.ru/)
-    to $CHECKS
 if (/^From:.*admin@notify.vk.com/ && \
     /^Subject: Платёжная квитанция/)
-    to $CHECKS
-if (/^From:.*no-reply@ofd-ya.net/)
-    to $CHECKS
-if (/^From:.*noreply@rambler-co.ru/)
     to $CHECKS
 if (/^From:.*hello@afisha.yandex.ru/ && \
     /^Subject: Чек.*/)
@@ -106,302 +51,16 @@ if (/^From:.*hello@afisha.yandex.ru/ && \
 if (/^From:.*bingo@patreon.com/ && \
     /^Subject:.*Patreon receipt is here.*/)
    to $CHECKS
-if (/^From:.*@server.paykeeper.ru/)
-    to $CHECKS
-if (/^From:.*@cloudpayments.ru/)
-    to $CHECKS
-if (/^From:.*@yoomoney.ru/)
-    to $CHECKS
-if (/^From:.*noreply@taxovichkof.ru/)
-    to $CHECKS
-if (/^From:.*tickets@tickets.ppk-piter.ru/)
-    to $CHECKS
-if (/^From:.*noreply@sender.ozon.ru/)
-    to $CHECKS
-if (/^From:.*noreply-cloudkassir@cp.ru/)
-    to $CHECKS
-if (/^From:.*no-reply@katemedia.eu/)
-    to $CHECKS
-if (/^From:.*info@clients.rsb.ru/)
-    to $CHECKS
-if (/^From:.*echeck@1-ofd.ru/)
-    to $CHECKS
-if (/^From:.*@qiwi.com/)
-    to $CHECKS
-if (/^From:.*@modulbank.ru/)
-    to $CHECKS
-if (/^From:.*noreply-cloudpayments@cp.ru/)
-    to $CHECKS
 if (/^From:.*noreply@tinkoff.ru/ && /^Subject: Документы.*/)
     to $CHECKS
 
-if (/^From:.*cloudflare.com/)
-    to $INFRASTRUCTURE
-if (/^From:.*notifications@github.com/)
-    to $INFRASTRUCTURE
-
-if (/^From:.*@bumble.com/)
-    to $SOCIAL
-if (/^From:.*noreply@habr.com/)
-    to $SOCIAL
-if (/^From:.*no-reply@mail.instagram.com/)
-    to $SOCIAL
-if (/^From:.*notification@facebookmail.com/)
-    to $SOCIAL
-if (/^From:.*@account.tiktok.com/)
-    to $SOCIAL
-if (/^From:.*@gotinder.com/ || /^From:.*tinder@mail.tinder.com/)
-    to $SOCIAL
-if (/^From:.*@twitter.com/)
-    to $SOCIAL
-if (/^From:.*no-reply@dropboxmail.com/)
-    to $SOCIAL
-if (/^From:.*noreply@notify.docker.com/)
-    to $SOCIAL
-if (/^From:.*@linkedin.com/)
-    to $SOCIAL
-if (/^From:.*noreply@steampowered.com/)
-    to $SOCIAL
-if (/^From:.*no-reply@escapefromtarkov.com/)
-    to $SOCIAL
-if (/^From:.*@gaijin.net/)
-    to $SOCIAL
-if (/^From:.*@boosty.to/)
-    to $SOCIAL
-if (/^From:.*@facebookmail.com/)
-    to $SOCIAL
-if (/^From:.*@e.ea.com/)
-    to $SOCIAL
-if (/^From:.*bingo@patreon.com/)
-    to $SOCIAL
-if (/^From:.*noreply@deviantart.com/)
-    to $SOCIAL
-if (/^From:.*@erarta.com/)
-    to $SOCIAL
-if (/^From:.*@mail.instagram.com/)
-    to $SOCIAL
-if (/^From:.*no-reply@joyreactor.cc/)
-    to $SOCIAL
-
-if (/^From:.*no-reply@gosuslugi.ru/)
-    to $STATE
-if (/^From:.*noreply@fcod.nalog.ru/)
-    to $STATE
-if (/^From:.*info@gu.spb.ru/)
-    to $STATE
-if (/^From:.*noreply@gorod.gov.spb.ru/)
-    to $STATE
-if (/^From:.*no-reply@mvd.ru/)
-    to $STATE
-if (/^From:.*notification@russianpost.ru/)
-    to $STATE
-if (/^From:.*@roi.ru/)
-    to $STATE
-if (/^From:.*@debt.pes.spb.ru/)
-    to $STATE
-if (/^From:.*@rosreestr.ru/)
-    to $STATE
-if (/^From:.*info@peterburgregiongaz.ru/)
-    to $STATE
-if (/^From:.*@debt.eirc.spb.ru/)
-    to $STATE
-if (/^From:.*@gorzdrav.spb.ru/)
-    to $STATE
-if (/^From:.*@dzo.eirc.spb.ru/)
-    to $STATE
-
-if (/^From:.*@pickpoint.ru/)
-    to $STORES
-if (/^From:.*@tochkalubvi.ru/)
-    to $STORES
-if (/^From:.*@leroymerlin.ru/)
-    to $STORES
-if (/^From:.*@leroy-merlin.ru/)
-    to $STORES
-if (/^From:.*@chernaya100.com/)
-    to $STORES
-if (/^From:.*@chillengrillen.ru/)
-    to $STORES
-if (/^From:.*@ozon.ru/)
-    to $STORES
-if (/^From:.*@vsexshop.ru/)
-    to $STORES
-if (/^From:.*informer.vsexshop@gmail.com/)
-    to $STORES
-if (/^From:.*@ishooter.ru/)
-    to $STORES
-if (/^From:.*@lentamail.com/)
-    to $STORES
-if (/^From:.*@citilink.ru/)
-    to $STORES
-if (/^From:.*@bars-guns.ru/)
-    to $STORES
-if (/^From:.*@mountainpeaks.ru/)
-    to $STORES
-if (/^From:.*noreply@cdek.ru/)
-    to $STORES
-if (/^From:.*@huntline.ru/)
-    to $STORES
-if (/^From:.*@yarkiy.ru/)
-    to $STORES
-if (/^From:.*@photolubitel.com/)
-    to $STORES
-if (/^From:.*@bookvoed.ru/ && ! /^From:.*letter@bookvoed.ru/)
-    to $STORES
-if (/^From:.*@lavka.yandex.ru/)
-    to $STORES
-if (/^From:.*@papajohns.ru/)
-    to $STORES
-if (/^From:.*papatalk@smg.com/)
-    to $STORES
-if (/^From:.*@roboparts.ru/)
-    to $STORES
-if (/^From:.*@my.store-emails.com/)
-    to $STORES
-if (/^From:.*@6030000.ru/)
-    to $STORES
-if (/^From:.*@d-76.ru/)
-    to $STORES
-if (/^From:.*@aloea.ru/)
-    to $STORES
-if (/^From:.*@vkusnyesushi.ru/)
-    to $STORES
-if (/^From:.*@notice.alibaba.com/)
-    to $STORES
-if (/^From:.*@ikea.com/)
-    to $STORES
-if (/^From:.*@groomix.ru/)
-    to $STORES
-if (/^From:.*zadiarn@gmail.com/)
-    to $STORES
-if (/^From:.*@sender.mvideo.ru/)
-    to $STORES
-if (/^From:.*@iwearmedicine.ru/)
-    to $STORES
-if (/^From:.*@812photo.ru/)
-    to $STORES
-if (/^From:.*@hobbygames.ru/)
-    to $STORES
-if (/^From:.*zakaz@linzacity.ru/)
-    to $STORES
-if (/^From:.*@happylook.ru/)
-    to $STORES
-if (/^From:.*@vardex.ru/)
-    to $STORES
-if (/^From:.*mailer@sender.ozon.ru/)
-    to $STORES
-if (/^From:.*@stolichki.ru/)
-    to $STORES
-if (/^From:.*@tokyo-city.ru/)
-    to $STORES
-if (/^From:.*aliexpress.com/)
-    to $STORES
-if (/^From:.*@avito.ru/)
-    to $STORES
-if (/^From:.*@intimissimi.com/ || /^From:.*@email-intimissimi.com/)
-    to $STORES
-if (/^From:.*@boxberry.ru/)
-    to $STORES
-if (/^From:.*@club.perekrestok.ru/)
-    to $STORES
-if (/^From:.*@unverified.beget.ru/ || /^From:.*pf.vodovoz@yandex.ru/)
-    to $STORES
-
-if (/^From:.*news@news.ozon.ru/)
-    to /dev/null
-if (/^From:.*mail@no-muggles.ru/)
-    to /dev/null
-if (/^From:.*alena@getmeit.ru/)
-    to /dev/null
-if (/^From:.*company@isu.ifmo.ru/)
-    to /dev/null
-if (/^From:.*documents@isu.ifmo.ru/)
-    to /dev/null
-if (/^From:.*info@isu.ifmo.ru/)
-    to /dev/null
-if (/^From:.*alumni@isu.ifmo.ru/)
-    to /dev/null
-if (/^From:.*letter@mpi.pes.spb.ru/)
-    to /dev/null
-if (/^From:.*no-reply@maybe.ru/)
-    to /dev/null
-if (/^From:.*sendmail@katushkin.ru/)
-    to /dev/null
-if (/^From:.*mail@evildating.net/)
-    to /dev/null
-if (/^From:.*mailer@market.yandex.ru/)
-    to /dev/null
-if (/^From:.*news@pochta.ru/)
-    to /dev/null
-if (/^From:.*no-reply@2gis.ru/)
-    to /dev/null
-if (/^From:.*achievements@2gis.com/)
-    to /dev/null
-if (/^From:.*agentstvo.rizoma@yandex.ru/)
-    to /dev/null
-if (/^From:.*hello@music.yandex.ru/)
-    to /dev/null
-if (/^From:.*@psycheforum.ru/)
-    to /dev/null
-if (/^From:.*@turing.com/)
-    to /dev/null
 if (/^Subject:.*\[Haskell\] \[.*/)
-    to /dev/null
-if (/^From:.*@gmsservices.ru/)
-    to /dev/null
-if (/^From:.*@events-it.ru/)
-    to /dev/null
-if (/^From:.*donotreply@secureserver.net/)
-    to /dev/null
-if (/^From:.*offer@getoffer.dev/)
     to /dev/null
 if (/^From:.*events_ru@epam.com/ && \
     /^Subject:.*Hiring Week.*/)
     to /dev/null
-if (/^From:.*@worldanimalprotection.us/)
-    to /dev/null
-if (/^From:.*@www.stayer.su/)
-    to /dev/null
-if (/^From:.*letter@bookvoed.ru/)
-    to /dev/null
-if (/^From:.*@email.tvrain.ru/)
-    to /dev/null
-if (/^From:.*news@subscribe.irr.ru/)
-    to /dev/null
-if (/^From:.*newsletter@shopfans.ru/)
-    to /dev/null
-if (/^From:.*@latoken.com/)
-    to /dev/null
-if (/^From:.*@official.vsco.co/)
-    to /dev/null
-if (/^From:.*info@info.sportmaster.ru/)
-    to /dev/null
-if (/^From:.*@huntworld.ru/)
-    to /dev/null
 if (/^From:.*forum@guns.ru/ && \
     /^Subject: Forum Digest.*/)
-    to /dev/null
-if (/^From:.*info@mail.timepad.ru/)
-    to /dev/null
-if (/^From:.*no-reply@sushiwok.ru/)
-    to /dev/null
-if (/^From:.*@news.metizi.com/)
-    to /dev/null
-if (/^From:.*@torrefacto.ru/)
-    to /dev/null
-if (/^From:.*news@x5club.ru/)
-    to /dev/null
-if (/^From:.*promo@vsk.ru/)
-    to /dev/null
-if (/^From:.*@suhpaek.ru/)
-    to /dev/null
-if (/^From:.*@intuit.ru/)
-    to /dev/null
-if (/^From:.*@sender.fundayshop.com/)
-    to /dev/null
-if (/^From:.*@greenboxes.ru/)
-    to /dev/null
-if (/^From:.*@.*sutochno.ru/)
     to /dev/null
 
 if (/^X-RSS-Feed:.*beardycast.*/ || \
