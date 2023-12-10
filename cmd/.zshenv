@@ -50,3 +50,6 @@ export GPG_TTY=$(tty)
 
 export COLORTERM=truecolor
 
+# For hledger
+export LEDGER_FILE="$HOME/rsync/ledger/money.journal"
+

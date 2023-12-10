@@ -34,10 +34,12 @@ You should have next programs in system before configuration deployment:
 - python3
 - perl
 - rsync
+- sqlite3
 - stow
 - syncthing
 - sudo
 - tmux (>= 3.2)
+- xsltproc
 - udisks
 - zsh
 
@@ -67,6 +69,7 @@ You should have next programs in system before configuration deployment:
 - dunst
 - git
 - gpg
+- hledger
 - jq
 - mc
 - numlockx
