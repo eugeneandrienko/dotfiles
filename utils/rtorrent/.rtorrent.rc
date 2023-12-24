@@ -89,7 +89,7 @@ protocol.pex.set = yes
 
 # Add http proxy
 #network.http.proxy_address =  px2.blockme.site:3128
-#network.http.proxy_address =  px1.blockme.site:3128
+network.http.proxy_address =  px1.blockme.site:3128
 
 
 #
