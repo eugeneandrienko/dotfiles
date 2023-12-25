@@ -20,8 +20,8 @@ fi
 case "$MACHINE_HW" in
     "zalman")
         # Remap keys for new unprogrammable kbd:
-        xmodmap ~/.Xmodmap
-        setxkbmap -layout us,ru -option grp:caps_select -option grp_led:caps -option compose:ralt &
+        setxkbmap -layout us,ru -option grp:caps_select -option grp_led:caps -option compose:ralt
+        xmodmap ~/.Xmodmap &
         numlockx on &
         ;;
     "thinkpad")
