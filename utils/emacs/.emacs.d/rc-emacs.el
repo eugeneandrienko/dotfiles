@@ -110,8 +110,20 @@
  :custom
  (pinentry-start))
 
-;; Mail mode for mutt
-(add-to-list 'auto-mode-alist '("/mutt" . mail-mode))
+;; Message mode for mutt
+(add-to-list 'auto-mode-alist '("/mutt" . message-mode))
+(setq mail-header-separator "")
+(add-hook 'message-mode-hook
+          (function
+           (lambda ()
+             (progn
+               (setq show-trailing-whitespace nil)
+               (local-unset-key "\C-c\C-c")
+               (define-key message-mode-map "\C-c\C-c" '(lambda ()
+                                                          "save and exit quickly"
+                                                          (interactive)
+                                                          (save-buffer)
+                                                          (server-edit)))))))
 
 ;; Setup more smart buffer handling
 (global-set-key (kbd "C-x C-b") 'ibuffer)
