@@ -149,3 +149,8 @@
 
 ;; Show trailing whitespace
 (setq show-trailing-whitespace t)
+
+;; Enable pixel scroll precision:
+(if (>= emacs-major-version 29)
+      (pixel-scroll-precision-mode 1))
+
