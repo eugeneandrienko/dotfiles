@@ -13,3 +13,6 @@
 | M-% (after search starts) | query replace (\(\) - group) |
 | C-x SPC                   | select rectangle             |
 |---------------------------+------------------------------|
+| F11                       | enable syntax check (en)     |
+| F12                       | enable syntax check (ru)     |
+|---------------------------+------------------------------|

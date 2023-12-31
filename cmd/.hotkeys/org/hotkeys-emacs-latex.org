@@ -29,7 +29,6 @@
 | C-c C-f C-t                     | typewriter font                              |
 | C-c C-f C-d                     | delete font                                  |
 |---------------------------------+----------------------------------------------|
-| F12                             | enable syntax checking (by aspell)           |
 | C-c =                           | show ToC                                     |
 | C-c -                           | recenter ToC buffer to here                  |
 | C-c ^                           | switch to master file                        |

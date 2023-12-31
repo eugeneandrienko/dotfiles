@@ -24,7 +24,7 @@ writing since 2005.
 You should have next programs in system before configuration deployment:
 
 ** System programs:
-- aspell (with aspell-ru dictionary)
+- aspell (with aspell-en and aspell-ru dictionaries)
 - bc
 - cal
 - cron
