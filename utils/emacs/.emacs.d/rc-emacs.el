@@ -152,5 +152,11 @@
 
 ;; Enable pixel scroll precision:
 (if (>= emacs-major-version 29)
-      (pixel-scroll-precision-mode 1))
-
+    (use-package pixel-scroll
+      :bind
+      ([remap scroll-up-command]   . pixel-scroll-interpolate-down)
+      ([remap scroll-down-command] . pixel-scroll-interpolate-up)
+      :custom
+      (pixel-scroll-precision-interpolate-page t)
+      :init
+      (pixel-scroll-precision-mode 1)))
