@@ -17,9 +17,12 @@
   (org-capture-templates '(("n" "Note" entry (file "~/rsync/org/notes.org")
                             "* %? %^g\n"
                             :empty-lines 1)
-                           ("t" "Todo" entry (file+regexp "~/rsync/org/todo.org" "New TODOs")
-                            "** TODO %?\n"
-                            :empty-lines-after 2)
+                           ("t" "Todo" entry (file "~/rsync/org/todo.org")
+                            "* TODO %? %^g\n"
+                            :empty-lines-after 1)
+                           ("T" "Todo+time" entry (file "~/rsync/org/todo.org")
+                            "* TODO %? %^g\nSCHEDULED: %^t\n"
+                            :empty-lines-after 1)
                            ("d" "Daily" entry (file "~/rsync/org/daily.org")
                             "* TODO %? %^g\nSCHEDULED: %^t\n"
                             :empty-lines-before 0
