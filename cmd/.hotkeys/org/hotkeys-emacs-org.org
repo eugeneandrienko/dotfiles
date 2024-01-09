@@ -22,6 +22,7 @@
 |---------------------------------+--------------------------------------------------------------|
 | C-c C-n                         | Go to next heading                                           |
 | C-c C-p                         | Go to previous heading                                       |
+| C-c C-j                         | Jump between headings                                        |
 | S-TAB                           | Cycle visibility                                             |
 | C-c C-o                         | Open link                                                    |
 | C-c C-l                         | Edit link                                                    |
