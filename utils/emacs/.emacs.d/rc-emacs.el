@@ -61,6 +61,11 @@
           '(lambda ()
              (linum-mode 1)))
 
+                                        ; Default style for C code formatting
+(setq c-default-style "linux")
+                                        ; Tab = 4 spaces for C mode
+(setq c-basic-offset 4)
+
                                         ;height of compilation window
 (setq compilation-window-height 10)
                                         ;y is rather short than yes
