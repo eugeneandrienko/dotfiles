@@ -40,6 +40,10 @@
     defaultbranch = master
 [log]
     date = iso8601
+[commit]
+    gpgSign = true
+[tag]
+    gpgSign = true
 
 [color "branch"]
     current = yellow reverse
