@@ -31,7 +31,7 @@ case "$MACHINE_HW" in
 esac
 
 # Set wallpaper:
-feh --bg-fill --no-fehbg /home/drag0n/rsync/filez/wallpaperz/14194150900090.png &
+feh --bg-fill --no-fehbg /home/drag0n/rsync/filez/wallpaperz/DRG.jpg &
 
 # Configure video output(s):
 case "$MACHINE_HW" in
