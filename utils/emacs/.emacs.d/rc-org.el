@@ -31,11 +31,20 @@
                             "* TODO %? %^g\nSCHEDULED: %^T\n"
                             :empty-lines-before 0
                             :empty-lines-after 1)))
-  (org-startup-indented t "Indent headlines")
+  ;(org-startup-indented t "Indent headlines")
   (org-agenda-span 'day)
   (org-hide-emphasis-markers t)
+  (org-adapt-indentation t)
+  (org-auto-align-tags t)
+  (org-fold-catch-invisible-edits 'show-and-error)
+  (org-special-ctrl-a/e t)
+  (org-insert-heading-respect-content t)
   (org-src-fontify-natively t "Syntax highlight in BEGIN_SRC blocks")
+  (org-src-tab-acts-natively t)
+  (org-edit-src-content-indentation 0)
   (org-confirm-babel-evaluate nil "Dunno prompt before running the code in org")
+  (org-startup-with-inline-images 'inlineimages)
+  (org-image-actual-width 600)
   :config
   (progn
     (add-hook 'org-mode-hook
@@ -53,3 +62,21 @@
     (define-key org-mode-map (kbd "C-c <right>") nil)))
 
 (use-package gnuplot)
+
+(use-package org-modern
+  :after (org)
+  :custom
+  (org-modern-star nil)
+  (org-modern-hide-stars nil)
+  (org-modern-priority nil)
+  (org-modern-list nil)
+  (org-modern-checkbox nil)
+  (org-modern-todo nil)
+  (org-modern-keyword nil)
+  (org-modern-radio-target nil)
+  (org-modern-statistics nil)
+  (org-modern-progress nil)
+  (org-modern-block-name '("‣" . "‣"))
+  (org-modern-block-fringe t)
+  :config
+  (global-org-modern-mode))

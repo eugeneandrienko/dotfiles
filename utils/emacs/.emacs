@@ -15,6 +15,7 @@
 (load "~/.emacs.d/rc-company.el")
 (load "~/.emacs.d/rc-dockerfile-mode.el")
 (load "~/.emacs.d/rc-org.el")
+(load "~/.emacs.d/rc-olivetti.el")
 (load "~/.emacs.d/rc-sql.el")
 (load "~/.emacs.d/rc-flycheck.el")
 (load "~/.emacs.d/rc-projectile.el")
@@ -46,7 +47,7 @@
  '(font-latex-sectioning-5-face ((((class color) (background dark)) (:inherit variable-pitch :foreground "OliveDrab" :weight bold))) t)
  '(font-latex-string-face ((t (:inherit font-lock-keyword-face :foreground "OliveDrab" :height 1.0))) t)
  '(highlight-symbol-face ((((class color) (background dark)) (:background "OliveDrab"))) t)
- '(italic ((t (:slant italic :weight thin :height 120 :width normal :family "Noto Sans Mono Italic")))))
+ '(italic ((t (:slant italic :weight light :height 160 :width normal :family "Noto Sans Mono Italic" :spacing proportional)))))
 
 ;; Default cyr/latin input method
 (setq default-input-method "russian-computer")
