@@ -28,7 +28,6 @@ You should have next programs in system before configuration deployment:
 - bc
 - cal
 - cron
-- cpupower
 - curl
 - make (or gmake executable should be available in FreeBSD)
 - python3
@@ -54,11 +53,9 @@ You should have next programs in system before configuration deployment:
 - urlview
 
 ** Editing:
-- buttercup (for compiling gnuplot-mode for Emacs)
 - ctags
 - diff-highlight (can be installed with `pip3 install diff-highlight`)
 - emacs
-- gnuplot
 - idea
 - lacheck
 - latex (texlive)
@@ -69,7 +66,6 @@ You should have next programs in system before configuration deployment:
 - dunst
 - git
 - gpg
-- hledger
 - jq
 - mc
 - numlockx
@@ -89,11 +85,9 @@ You should have next programs in system before configuration deployment:
 - lame
 - mplayer
 - rawtherapee
-- shotcut
 - sxiv
 
 ** GUI:
-- audacious
 - firefox
 - i3
 - josm
@@ -102,9 +96,6 @@ You should have next programs in system before configuration deployment:
 *** Fonts:
 - Terminus
 - Noto Mono
-
-** Additional packages for Termux:
-- termux-api
 
 * Before deployment:
 If you need sensitive data (passwords, API keys, etc) in the new machine — use
@@ -153,34 +144,6 @@ Do the next to install Vim plugins:
   https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim=.
 - Second, in Vim execute =:BundleInstall=.
 
-** Emacs plugins compilation:
-Run =C-u 0 M-x byte-recompile-directory= to recomplile contents of
-=~/.emacs.d/plugins=.
-*** Org-mode installation:
-Sometimes Org-mode will not install via =use-package= plugin.
-
-To install Org-mode enter =M-x list-packages= and find =org= in opened
-buffer. Then press =i= on org entry and =x= to install it.
-*** Pinentry installation:
-=M-x package-install= -> =pinentry= — if it is not installed itself via
-=use-package=.
-
 ** /etc/hosts:
 You should update your =/etc/hosts= with data from =noauto/hosts=.
 
-** sudo setup:
-If you need to control brightness of display when starting X-server — add next
-line to =/etc/sudoers=:
-#+BEGIN_EXAMPLE
-drag0n ALL=(root) NOPASSWD: /usr/bin/tee /sys/class/backlight/intel_backlight/brightness
-#+END_EXAMPLE
-
-To use dunst, not xfce4-notifyd in i3wm session — add next line to =/etc/sudoers=:
-#+BEGIN_EXAMPLE
-drag0n ALL=(root) NOPASSWD: /usr/bin/pkill xfce4-notifyd
-#+END_EXAMPLE
-
-To setup cpu frequency on Thinkpad, add this:
-#+BEGIN_EXAMPLE
-drag0n ALL=(root) NOPASSWD: /usr/bin/cpupower
-#+END_EXAMPLE
