@@ -43,6 +43,8 @@
 (show-paren-mode t)
                                         ;tab = 4 spaces
 (setq-default tab-width 4)
+                                        ;indent only by spaces by default
+(setq-default indent-tabs-mode nil)
                                         ;highligth the current line
 (global-hl-line-mode 1)
                                         ;auto-revert buffer
@@ -57,9 +59,6 @@
 
 (add-hook 'octave-mode-hook 'my-ret-hook)
 (add-hook 'sh-mode-hook 'fci-mode)
-(add-hook 'sh-mode-hook
-          '(lambda ()
-             (linum-mode 1)))
 
                                         ; Default style for C code formatting
 (setq c-default-style "linux")
@@ -142,7 +141,9 @@
                         (name . "^\\*EGLOT.+")))
                ("LaTeX" (or
                          (mode . latex-mode)
-                         (mode . bibtex-mode)))))))
+                         (mode . bibtex-mode)))
+               ("C" (or
+                     (mode . c-mode)))))))
 (add-hook 'ibuffer-mode-hook
           (lambda ()
             (ibuffer-switch-to-saved-filter-groups "default")))
