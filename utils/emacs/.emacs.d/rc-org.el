@@ -31,7 +31,7 @@
                             "* TODO %? %^g\nSCHEDULED: %^T\n"
                             :empty-lines-before 0
                             :empty-lines-after 1)))
-  ;(org-startup-indented t "Indent headlines")
+  (org-startup-indented t "Indent headlines")
   (org-agenda-span 'day)
   (org-hide-emphasis-markers t)
   (org-adapt-indentation t)
