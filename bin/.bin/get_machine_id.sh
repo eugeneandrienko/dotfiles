@@ -6,13 +6,9 @@ case "$MACHINE_ID" in
         MACHINE_OS="gentoo"
         MACHINE_HW="zalman"
     ;;
-    "Debian on Thinkpad")
-        MACHINE_OS="debian"
+    "FreeBSD on Thinkpad")
+        MACHINE_OS="freebsd"
         MACHINE_HW="thinkpad"
-    ;;
-    "Termux")
-        MACHINE_OS="termux"
-        MACHINE_HW="termux"
     ;;
 esac
 

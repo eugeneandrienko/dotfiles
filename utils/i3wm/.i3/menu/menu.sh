@@ -22,7 +22,7 @@ case $(echo $DMENU_ITEMS | parse_items | f_dmenu 'Execute:') in
     'firefox_unsec')
         if [ "$MACHINE_OS" = "gentoo" ]; then
             /usr/bin/apulse /usr/bin/firefox-bin -P unsecure &
-        elif [ "$MACHINE_OS" = "debian" ]; then
+        elif [ "$MACHINE_OS" = "freebsd" ]; then
             /usr/bin/firefox -P unsecure &
         fi
         ;;

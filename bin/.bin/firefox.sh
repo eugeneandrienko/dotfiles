@@ -9,7 +9,7 @@ case "$MACHINE_OS" in
             /usr/bin/apulse /usr/bin/firefox-bin $1 &
         fi
         ;;
-    "debian")
+    "freebsd")
         /usr/bin/firefox $1 &
         ;;
     "*")

@@ -9,12 +9,6 @@ if [ "$(basename "$PWD")" != "$GITREPO_NAME" ] || [ ! -d ".git/" ]; then
     exit 1
 fi
 
-# Some Termux fixes before deploy
-if [ -d ~/.termux ]; then
-    rm -vf ~/.config/mc/ini
-    rm -vf ~/.emacs
-fi
-
 # Copying shell configuration to $HOME
 export STOW_DIR=.
 stow bin cmd
@@ -78,14 +72,12 @@ crontab ./utils/crontab/crontab
 pkill dunst
 
 # Select target system and OS if not selected yet
-if [ -d ~/.termux ]; then
-    echo "Termux" > ~/.machine_id
-elif [ ! -f ~/.machine_id ]; then
+if [ ! -f ~/.machine_id ]; then
     echo
     echo 'Machine:'
     echo
     echo '1) Gentoo (GNU/Linux) on Zalman'
-    echo '2) Debian on Thinkpad'
+    echo '2) FreeBSD on Thinkpad'
     echo
     read 'SELECTED_OS?Select machine: '
 
@@ -94,20 +86,13 @@ elif [ ! -f ~/.machine_id ]; then
             echo "Gentoo on Zalman" > ~/.machine_id
             ;;
         '2')
-            echo "Debian on Thinkpad" > ~/.machine_id
+            echo "FreeBSD on Thinkpad" > ~/.machine_id
             ;;
         '*')
             echo 'Wrong input!'
             exit 2
             ;;
     esac
-fi
-
-# Some fixes for Termux
-if [ -d ~/.termux ]; then
-    sed -ri 's!skin=/home/drag0n.*!skin=/home/.config/mc/gray-green-purple256.ini!g' ~/.config/mc/ini
-    rm -rf ~/.emacs.d/plugins/haskell-mode/
-    sed -ri '/haskell/d' ~/.emacs
 fi
 
 # m4 some config files
