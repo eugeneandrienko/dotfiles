@@ -65,7 +65,7 @@ if (/^From:.*forum@guns.ru/ && \
 
 if (/^X-RSS-Feed:.*beardycast.*/ || \
         /^X-RSS-Feed:.*radio-t.*/ || \
-        /^X-RSS-Feed:.*cloud.mave.digital\/37264/)
+        /^X-RSS-Feed:.*feeds.transistor.fm\/5f1e0bb2-458b-4ac4-8d85-f464a505f813/)
     to $RSS_PODCASTS
 if (/^X-RSS-Feed:.*www.youtube.com.*/)
     to $RSS_YOUTUBE
