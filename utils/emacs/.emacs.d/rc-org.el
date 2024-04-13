@@ -43,7 +43,6 @@
   (org-src-tab-acts-natively t)
   (org-edit-src-content-indentation 0)
   (org-confirm-babel-evaluate nil "Dunno prompt before running the code in org")
-  (org-startup-with-inline-images 'inlineimages)
   (org-image-actual-width 600)
   :config
   (progn

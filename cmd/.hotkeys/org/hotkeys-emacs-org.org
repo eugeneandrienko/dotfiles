@@ -34,6 +34,7 @@
 | C-c C-x M                       | Insert new Checkbox item                                     |
 | C-c $                           | Archive entry                                                |
 | M-x org-redisplay-inline-images | Redisplay inline images                                      |
+| C-c C-x C-v                     | Toggle inline images                                         |
 | C-c C-,                         | Insert template                                              |
 |---------------------------------+--------------------------------------------------------------|
 | C-c C-x C-i                     | Clock in                                                     |
