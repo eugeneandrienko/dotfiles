@@ -26,6 +26,18 @@ shell_patterns=0
 s       Run sxiv in current directory
         sxiv -t %d &
 
++ f \.jpg$ | f \.JPG$ | f \.jpeg$ | f \.JPEG$ | f \.png$ | f \.PNG$
+r       Resize images for Instagram
+        for i in %s; do
+            convert "$i" -resize 1080x1080^ resized_"$i"
+        done
+
++ f \.jpg$ | f \.JPG$ | f \.jpeg$ | f \.JPEG$ | f \.png$ | f \.PNG$
+k       Resize images for Chris
+        for i in %s; do
+            convert "$i" -resize 2560x2560^ resized_"$i"
+        done
+
 +
 m       Mount cryptocontainer
         sudo cryptsetup luksOpen ./%p %p
