@@ -64,6 +64,8 @@
 (setq c-default-style "linux")
                                         ; Tab = 4 spaces for C mode
 (setq c-basic-offset 4)
+                                        ; Electric pair mode
+(electric-pair-mode 1)
 
                                         ;height of compilation window
 (setq compilation-window-height 10)
