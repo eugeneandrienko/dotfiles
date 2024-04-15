@@ -21,9 +21,9 @@ export PS2="$YELLOW> $WHITE"
 export HISTCONTROL=ignoredups
 export HISTTIMEFORMAT="%t%d.%m.%y %H:%M:%S%t"
 export HISTFILE=~/.zsh_history
-export HISTSIZE=1000
-export SAVEHIST=1000
-export LISTMAX=9999
+export HISTSIZE=10000000
+export SAVEHIST=10000000
+export HISTORY_IGNORE="(ls|cd|pwd|:q|cd|bk|dw|rs)*"
 
 # press Ctrl+D twice for logout
 export IGNOREEOF=1
