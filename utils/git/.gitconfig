@@ -8,8 +8,7 @@
     # branches out.
     followTags = true
 [pull]
-    # No merge after pull
-    ff = only
+    rebase = true
 [alias]
     remotes = remote -v
     amend = commit --amend --reuse-message=HEAD
@@ -22,20 +21,20 @@
 [help]
     autocorrect = never
 [core]
-    pager =
     autocrlf = input
     whitespace = trailing-space,space-before-tab,blank-at-eol,tab-in-indent,blank-at-eof
     quotepath = false
-    # For git diff more colored output
     pager = diff-highlight | $PAGER
 [merge]
-    conflictstyle = diff3
+    conflictstyle = zdiff3
 [grep]
     linenumber = true
 [diff]
     algorithm = histogram
     colormoved = default
     colormovedws = allow-indentation-change
+    submodule = log
+    noprefix = true
 [init]
     defaultbranch = master
 [log]
@@ -44,6 +43,16 @@
     gpgSign = true
 [tag]
     gpgSign = true
+[transfer]
+    fsckobjects = true
+[fetch]
+    fsckobjects = true
+[receive]
+    fsckobjects = true
+[status]
+    submoduleSummary = true
+[advice]
+    detachedHead = false
 
 [color "branch"]
     current = yellow reverse
@@ -60,3 +69,5 @@
     changed = red
     untracked = cyan
 
+[url "git@github.com:"]
+    insteadOf = "https://github.com/"
