@@ -14,7 +14,6 @@ _chown_mnt /media/BACKUP
 OPTIONS="--delete"
 source ~/.bin/get_machine_id.sh
 if [ "$MACHINE_HW" = "zalman" ]; then
-    _safe_backup "$OPTIONS" ~/backups   /media/BACKUP/
     _safe_backup "$OPTIONS" ~/git_repos /media/BACKUP/
     _safe_backup "$OPTIONS" ~/music     /media/BACKUP/
     _safe_backup "$OPTIONS" ~/pictures  /media/BACKUP/
