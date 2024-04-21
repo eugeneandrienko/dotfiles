@@ -9,7 +9,15 @@ if [ "$MACHINE_HW" = "thinkpad" ]; then
 fi
 
 # Setup colors and fonts for different X-server programs:
-xrdb -I$HOME ~/.Xresources &
+case "$MACHINE_HW" in
+    "zalman")
+        xrdb -I$HOME ~/.Xresources &
+        ;;
+    "thinkpad")
+        xrdb -I$HOME ~/.Xresources && \
+            xrdb -merge ~/.Xresources.d/thinkpad_x220
+        ;;
+esac
 
 # Start synchronization daemon:
 if ! pgrep -x syncthing > /dev/null; then

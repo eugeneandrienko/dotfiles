@@ -53,3 +53,6 @@ export COLORTERM=truecolor
 # For hledger
 export LEDGER_FILE="$HOME/rsync/ledger/money.journal"
 
+if [ "$MACHINE_HW" = "thinkpad" ]; then
+    export GDK_DPI_SCALE=1.3
+fi

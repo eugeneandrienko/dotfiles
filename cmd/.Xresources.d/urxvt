@@ -48,9 +48,9 @@ URxvt.depth: 24
 URxvt.iso14755:             false
 URxvt.iso14755_52:          false
 
-URxvt.font: xft:Noto Sans Mono:style=Normal:pixelsize=16:antialias=true:autohint=true
-URxvt.boldFont: xft:Noto Sans Mono:style=Bold:pixelsize=16:antialias=true:autohint=true
-URxvt.italicFont: xft: Noto Sans Mono:style=Italic:pixelsize=16:antialias=true:autohint=true
+URxvt.font: xft:Noto Sans Mono:style=Normal:size=16:antialias=true:autohint=true
+URxvt.boldFont: xft:Noto Sans Mono:style=Bold:size=16:antialias=true:autohint=true
+URxvt.italicFont: xft: Noto Sans Mono:style=Italic:size=16:antialias=true:autohint=true
 URxvt.letterSpace: -1
 URxvt.lineSpace: 0
 ! Show bold text only by the boldness:
