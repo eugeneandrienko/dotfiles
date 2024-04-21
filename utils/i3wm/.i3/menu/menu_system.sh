@@ -48,7 +48,7 @@ case $(echo $ITEMS | parse_items | f_dmenu 'Select:') in
         if [ "$MACHINE_OS" = "gentoo" ]; then
             sudo -A shutdown -hP now
         elif [ "$MACHINE_OS" = "freebsd" ]; then
-            sudo -A shutdown -hp now
+            sudo -A shutdown -p now
         else
             sudo -A shutdown -h now
         fi
