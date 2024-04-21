@@ -2,12 +2,6 @@
 
 source ~/.bin/get_machine_id.sh
 
-# Setup cpu frequency:
-if [ "$MACHINE_HW" = "thinkpad" ]; then
-    sudo cpupower frequency-set -d 800MHz -u 1GHz -g powersave
-    sudo cpupower set -b 8
-fi
-
 # Setup colors and fonts for different X-server programs:
 case "$MACHINE_HW" in
     "zalman")
@@ -38,9 +32,6 @@ case "$MACHINE_HW" in
         ;;
 esac
 
-# Set wallpaper:
-feh --bg-fill --no-fehbg /home/drag0n/rsync/filez/wallpaperz/DRG.jpg &
-
 # Configure video output(s):
 case "$MACHINE_HW" in
     "zalman")
@@ -48,16 +39,27 @@ case "$MACHINE_HW" in
         xrandr --output HDMI-0 --auto --right-of DVI-D-0
         ;;
     "thinkpad")
-        echo 2323 | sudo tee /sys/class/backlight/intel_backlight/brightness > /dev/null
+        xrandr --output LVDS-1 --off
+        xrandr --output DP-3 --primary
+        backlight 0
         xset s off
         xset s noblank
         ;;
 esac
 
+# Set wallpaper:
+feh --bg-fill --no-fehbg /home/drag0n/rsync/filez/wallpaperz/DRG.jpg &
+
 # Start redshift:
 ~/.bin/redshift.sh
 
-# Start udiskie
-udiskie &
+# Start automount service to notify user about mounted devices:
+case "$MACHINE_OS" in
+    "gentoo")
+        udiskie &
+        ;;
+    "freebsd")
+        ;;
+esac
 
-exec /usr/bin/i3 -c ~/.i3/config
+exec /usr/bin/env i3 -c ~/.i3/config

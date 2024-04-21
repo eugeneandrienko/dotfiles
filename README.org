@@ -90,6 +90,7 @@ You should have next programs in system before configuration deployment:
 ** GUI:
 - firefox
 - i3
+- i3status
 - josm
 - qmapshack
 - telegram
@@ -146,4 +147,3 @@ Do the next to install Vim plugins:
 
 ** /etc/hosts:
 You should update your =/etc/hosts= with data from =noauto/hosts=.
-

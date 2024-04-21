@@ -15,9 +15,10 @@ m4_ifdef(`zalman',
 m4_ifdef(`thinkpad',
 `order += "cpu_temperature 0"
 order += "battery 0"
-order += "ethernet eth0"
+order += "ethernet em0"
 order += "wireless wlan0"'))
-order += "volume master"
+m4_ifdef(`zalman',
+`order += "volume master"')
 order += "tztime local"
 
 read_file weather {
@@ -55,7 +56,7 @@ battery 0 {
     last_full_capacity = true
 }
 
-ethernet eth0 {
+ethernet em0 {
     format_up = "🖧 %ip"
     format_down = "🖧 down"
 }
@@ -65,15 +66,15 @@ wireless wlan0 {
     format_down = "📡 down"
     format_quality = "%03d%s"
 }'))
-
+m4_ifdef(`zalman',
+`
 volume master {
     format = "🔊"
     format_muted = "🔇"
     device = "hw:0"
     mixer = "Master"
 }
-
+')
 tztime local {
     format = "%d-%m-%Y %H:%M:%S %a"
 }
-

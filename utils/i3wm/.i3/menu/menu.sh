@@ -4,12 +4,7 @@ source ~/.bin/get_machine_id.sh
 source ~/.i3/menu/menu_funcs.sh
 
 DMENU_ITEMS="firefox:firefox_unsec:telegram:syncthing"
-if [ "$MACHINE_HW" = "zalman" ]; then
-    DMENU_ITEMS+=":audacious:gimp:rawtherapee:shotwell:shotcut"
-elif [ "$MACHINE_HW" = "thinkpad" ]; then
-    DMENU_ITEMS+=":gimp:rawtherapee:shotwell"
-    DMENU_ITEMS+=":blueman"
-fi
+DMENU_ITEMS+=":audacious:gimp:rawtherapee:shotwell:shotcut"
 DMENU_ITEMS+=":qmapshack:josm:stellarium"
 DMENU_ITEMS+=":idea:umlet"
 DMENU_ITEMS+=":android-file-transfer"
@@ -45,7 +40,7 @@ case $(echo $DMENU_ITEMS | parse_items | f_dmenu 'Execute:') in
         /usr/bin/env shotwell &
         ;;
     'shotcut')
-        /usr/bin/shotcut &
+        /usr/bin/env shotcut &
         ;;
     'qmapshack')
          LC_MESSAGES="ru_RU.utf8" /usr/bin/env qmapshack &
@@ -64,9 +59,6 @@ case $(echo $DMENU_ITEMS | parse_items | f_dmenu 'Execute:') in
         ;;
     'android-file-transfer')
         /usr/bin/env android-file-transfer &
-        ;;
-    'blueman')
-        /usr/bin/env blueman-manager &
         ;;
     'homm3')
         cd $HOME/homm3 && wine HD_Launcher.exe &

@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 
 source ~/.bin/get_machine_id.sh
 
@@ -10,7 +10,7 @@ case "$MACHINE_OS" in
         fi
         ;;
     "freebsd")
-        /usr/bin/firefox $1 &
+        /usr/local/bin/firefox $1 &
         ;;
     "*")
         exit 1

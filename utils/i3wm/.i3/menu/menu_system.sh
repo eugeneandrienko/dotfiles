@@ -2,18 +2,16 @@
 
 if [ -f /usr/bin/x11-ssh-askpass ]; then
     export SUDO_ASKPASS="/usr/bin/x11-ssh-askpass"
+elif [ -f /usr/local/bin/x11-ssh-askpass ]; then
+    export SUDO_ASKPASS="/usr/local/bin/x11-ssh-askpass"
 else
-    export SUDO_ASKPASS="/usr/bin/ssh-askpass"
+    exit 1
 fi
 
 source ~/.bin/get_machine_id.sh
 source ~/.i3/menu/menu_funcs.sh
 
-if [ "$MACHINE_HW" = "thinkpad" ]; then
-    ITEMS="display mode:redshift:cpufreq:poweroff:reboot"
-else
-    ITEMS="display mode:redshift:poweroff:reboot"
-fi
+ITEMS="display mode:redshift:poweroff:reboot"
 
 case $(echo $ITEMS | parse_items | f_dmenu 'Select:') in
     'display mode')
@@ -47,7 +45,13 @@ case $(echo $ITEMS | parse_items | f_dmenu 'Select:') in
         esac
         ;;
     'poweroff')
-        sudo -A shutdown -hP now
+        if [ "$MACHINE_OS" = "gentoo" ]; then
+            sudo -A shutdown -hP now
+        elif [ "$MACHINE_OS" = "freebsd" ]; then
+            sudo -A shutdown -hp now
+        else
+            sudo -A shutdown -h now
+        fi
         i3-msg exit
         ;;
     'reboot')
@@ -68,28 +72,6 @@ case $(echo $ITEMS | parse_items | f_dmenu 'Select:') in
             "thinkpad")
                 sudo -A shutdown -r now
                 ;;
-        esac
-        ;;
-    'cpufreq')
-        case "$MACHINE_HW" in
-            "zalman")
-            ;;
-            "thinkpad")
-                PROMPT="Governor: "
-                PROMPT+=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor)
-                case $(echo "powersave:performance" | parse_items | f_dmenu "$PROMPT") in
-                    "powersave")
-                        sudo cpupower frequency-set -d 800MHz -u 1GHz -g powersave
-                        sudo cpupower set -b 8
-                        dunstify -u low "Powersave mode enabled"
-                    ;;
-                    "performance")
-                        sudo cpupower frequency-set -d 800MHz -u 2.7GHz -g performance
-                        sudo cpupower set -b 6
-                        dunstify -u low "Performance mode enabled"
-                    ;;
-                esac
-            ;;
         esac
         ;;
     *)

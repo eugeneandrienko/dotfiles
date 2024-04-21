@@ -9,7 +9,15 @@ export KEYTIMEOUT=1
 
 export LESS="-R"
 export LC_MESSAGES="C"
-export LC_ALL="en_US.utf8"
+source ~/.bin/get_machine_id.sh
+case "$MACHINE_OS" in
+    "gentoo")
+        export LC_ALL="en_US.utf8"
+        ;;
+    "freebsd")
+        export LC_ALL="en_US.UTF-8"
+        ;;
+esac
 
 # Set quoting style for ls here, since GNU/Linux coreutils
 # maintainers break the compatibility with decades of
