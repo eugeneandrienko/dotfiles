@@ -45,6 +45,8 @@
     gpgSign = true
 [rerere]
     enabled = true
+[branch]
+    sort = -committerdate
 [transfer]
     fsckobjects = true
 [fetch]
