@@ -24,7 +24,7 @@ case "$MACHINE_HW" in
         # Remap keys for new unprogrammable kbd:
         setxkbmap -layout us,ru -option grp:caps_select -option grp_led:caps -option compose:ralt
         xmodmap ~/.Xmodmap &
-        numlockx on &
+        numlockx off &
         ;;
     "thinkpad")
         setxkbmap -model "thinkpad" -layout us,ru -option grp:shift_caps_switch -option grp_led:caps -option compose:ralt &
