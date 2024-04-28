@@ -158,6 +158,9 @@
 ;; Show trailing whitespace
 (setq show-trailing-whitespace t)
 
+;; Fix "<Mutli_key> is undefined" in FreeBSD:
+(setq x-gtk-use-native-input 't)
+
 ;; Enable pixel scroll precision:
 (if (>= emacs-major-version 29)
     (use-package emacs
