@@ -1,3 +1,6 @@
 Sxiv.background: #909090
-Sxiv.font: Noto Mono:pixelsize=16:antialias=true:autohint=true
-
+Sxiv.font: Noto Mono:size=16:antialias=true:autohint=true
+Nsxiv.window.background: #909090
+Nsxiv.bar.background: #000000
+Nsxiv.bar.foreground: #eeeeee
+Nsxiv.bar.font: Noto Mono:size=16:antialias=true:autohint=true

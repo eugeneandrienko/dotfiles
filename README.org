@@ -85,7 +85,7 @@ You should have next programs in system before configuration deployment:
 - lame
 - mplayer
 - rawtherapee
-- sxiv
+- sxiv or nsxiv
 
 ** GUI:
 - firefox
