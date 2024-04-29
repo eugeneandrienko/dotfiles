@@ -8,7 +8,7 @@ if [ "$?" -ne "0" ]; then
             redshift -l $(~/.bin/geocoords.sh) -m vidmode &
             ;;
         "freebsd")
-            redshift -l $(~/.bin/geocoords.sh) -m drm &
+            redshift -l $(~/.bin/geocoords.sh) -m randr &
             ;;
     esac
 fi
