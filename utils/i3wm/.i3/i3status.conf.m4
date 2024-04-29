@@ -62,9 +62,8 @@ ethernet em0 {
 }
 
 wireless wlan0 {
-    format_up = "📡 %essid"
+    format_up = "📡 %essid (%bitrate)"
     format_down = "📡 down"
-    format_quality = "%03d%s"
 }'))
 m4_ifdef(`zalman',
 `
