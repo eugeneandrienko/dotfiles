@@ -6,11 +6,8 @@ case "$MACHINE_OS" in
     "gentoo")
         cal -m -n 3
         ;;
-    "debian")
-        ncal -3Mb
-        ;;
-    "termux")
-        cal -n 1
+    "freebsd")
+        ncal -3
         ;;
     "*")
         exit 1
