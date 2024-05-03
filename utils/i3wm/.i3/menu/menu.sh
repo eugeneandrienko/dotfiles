@@ -46,7 +46,19 @@ case $(echo $DMENU_ITEMS | parse_items | f_dmenu 'Execute:') in
          LC_MESSAGES="ru_RU.utf8" /usr/bin/env qmapshack &
         ;;
     'josm')
-        /usr/bin/env java -jar $HOME/bin/josm/josm-tested.jar &
+        if [ "$MACHINE_OS" = "gentoo" ]; then
+            /usr/bin/env java \
+                --add-exports=java.base/sun.security.action=ALL-UNNAMED \
+                --add-exports=java.desktop/com.sun.imageio.plugins.jpeg=ALL-UNNAMED \
+                --add-exports=java.desktop/com.sun.imageio.spi=ALL-UNNAMED \
+                -jar $HOME/bin/josm/josm-tested.jar &
+        elif [ "$MACHINE_OS" = "freebsd" ]; then
+            GDK_SCALE=2 /usr/bin/env java \
+                --add-exports=java.base/sun.security.action=ALL-UNNAMED \
+                --add-exports=java.desktop/com.sun.imageio.plugins.jpeg=ALL-UNNAMED \
+                --add-exports=java.desktop/com.sun.imageio.spi=ALL-UNNAMED \
+                -jar $HOME/bin/josm/josm-tested.jar &
+        fi
         ;;
     'stellarium')
         /usr/bin/env stellarium &
