@@ -19,6 +19,10 @@ writing since 2005.
   =644=.
 - =97-udisks2.rules= — Rules for udiskie [2]. Should be placed in
   =/etc/udev/rules.d/=.
+- =userChrome.css= — Disable tabs and tabbar in Firefox. Should be placed in
+  =~/.mozilla/firefox/your-profile-folder/chrome/=.
+- =user.js= — Setting for chrome to improve security and remove
+  annoyances. Should be placed in =~/.mozilla/firefox/your-profile-folder/=.
 
 * Dependencies:
 You should have next programs in system before configuration deployment:

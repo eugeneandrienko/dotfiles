@@ -1,0 +1,9 @@
+/* Squash tab bar to 1px tall and hide the tabs */
+#TabsToolbar {
+    height: 1px !important;
+    min-height: 1px !important;
+    max-height: 1px !important;
+}
+#TabsToolbar .tabbrowser-tab {
+    display: none !important;
+}
