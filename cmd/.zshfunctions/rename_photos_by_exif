@@ -1,4 +1,11 @@
-GREP=/bin/grep
+if [ -x /bin/grep ]; then
+    GREP=/bin/grep
+elif [ -x /usr/bin/grep ]; then
+    GREP=/usr/bin/grep
+else
+    echo "Grep not found!"
+    exit 1
+fi
 
 usage() {
     echo "Renames files from camera with date of file creation from EXIF"
