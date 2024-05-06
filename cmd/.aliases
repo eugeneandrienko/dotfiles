@@ -48,10 +48,10 @@ alias org2vas3k='ORG_TMP=$(mktemp /tmp/tmp.XXXXXXXX.org); emacsclient -a "" "$OR
 alias weather='ansiweather -l "$(geocoords.sh loc)" -k $(cat ~/.openweathermap) -H true | \
                sed -e "s/ - /\n/g" -e "s/: /:;/g" | \
                sed -r "s/ (Weather in.*:;)(.*)/"$(tput bold)"\1"$(tput sgr0)"\nTemperature:;\2/g" | \
-               column -s ";" -t -l 2'
+               column -s ";" -t -c 2'
 alias forecast='ansiweather -l "$(geocoords.sh loc)" -F | \
                 sed -r -e "s/: /:;/g" -e "s/ - /\n/g" -e "s/ (.* forecast):;(.*)/"$(tput bold)"\1:"$(tput sgr0)"\n\2/g" | \
-                column -s ";" -t -l 2'
+                column -s ";" -t -c 2'
 alias ledger='cd $HOME/rsync/ledger/; ./ledger.sh; popd'
 
 # Mistypes
