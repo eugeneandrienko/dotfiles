@@ -26,29 +26,29 @@ read_file weather {
 }
 
 cpu_usage {
-    format = "CPU %usage"
-    max_threshold = 75
-    degraded_threshold = 25
-    format_above_threshold = "WARNING %usage"
-    format_above_degraded_threshold = "DEGRADED %usage"
+    format = "🧠 %usage"
+    max_threshold = 90
+    degraded_threshold = 50
+    format_above_threshold = "🧠 %usage"
+    format_above_degraded_threshold = "🧠 %usage"
 }
 
 m4_ifdef(`zalman',
 `ethernet enp5s0 {
-    format_up = "🖧 %ip"
-    format_down = "🖧 down"
+    format_up = "🌐 %ip"
+    format_down = "🌐 down"
 }',
 m4_ifdef(`thinkpad',
 `cpu_temperature 0 {
-    format = "🌡 %degrees °C"
+    format = "🌡️ %degrees °C"
 }
 
 battery 0 {
     format = "%status %percentage %remaining"
     format_down = "No battery"
-    status_chr = "🔌"
-    status_bat = "🔋"
-    status_unk = "🕱"
+    status_chr = "⚡"
+    status_bat = "🪫"
+    status_unk = "Battery unknown"
     status_full = "🔋"
     threshold_type = "time"
     low_threshold = 10
@@ -57,13 +57,13 @@ battery 0 {
 }
 
 ethernet em0 {
-    format_up = "🖧 %ip"
-    format_down = "🖧 down"
+    format_up = "🌐 %ip"
+    format_down = "🌐 down"
 }
 
 wireless wlan0 {
-    format_up = "📡 %essid (%bitrate)"
-    format_down = "📡 down"
+    format_up = "📶 %essid (%bitrate)"
+    format_down = "📶 down"
 }'))
 m4_ifdef(`zalman',
 `
