@@ -44,6 +44,7 @@ case "$MACHINE_HW" in
         backlight 0
         xset s off
         xset s noblank
+        xset -dpms
         ;;
 esac
 
