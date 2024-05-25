@@ -9,6 +9,7 @@ DEFAULT=$MAILDIR/default
 EXPRESSO=$MAILDIR/expresso
 INFRASTRUCTURE=$MAILDIR/infrastructure
 MAILLISTS=$MAILDIR/maillists
+OSM=$MAILDIR/osm
 SOCIAL=$MAILDIR/social
 STATE=$MAILDIR/state
 STORES=$MAILDIR/stores
@@ -24,6 +25,8 @@ if (/^From:\s*(.*)/ && lookup($MATCH1, $MFILTERD/checks.list))
     to $CHECKS
 if (/^From:\s*(.*)/ && lookup($MATCH1, $MFILTERD/infrastructure.list))
     to $INFRASTRUCTURE
+if (/^From:\s*(.*)/ && lookup($MATCH1, $MFILTERD/osm.list))
+    to $OSM
 if (/^From:\s*(.*)/ && lookup($MATCH1, $MFILTERD/social.list))
     to $SOCIAL
 if (/^From:\s*(.*)/ && lookup($MATCH1, $MFILTERD/state.list))
@@ -71,6 +74,8 @@ if (/^X-RSS-Feed:.*www.youtube.com.*/)
     to $RSS_YOUTUBE
 if (/^X-RSS-Feed:.*/)
     to $RSS
+if (/^X-RSS-Feed:.*weeklyosm.eu.*/)
+    to $OSM
 
 if (/^From:.*@expresso.today/)
     to $EXPRESSO

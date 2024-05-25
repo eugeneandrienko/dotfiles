@@ -19,6 +19,7 @@ mailboxes =banks \
           =expresso \
           =infrastructure \
           =maillists \
+          =osm \
           =postponed \
           =rss \
           =rss-podcasts \
