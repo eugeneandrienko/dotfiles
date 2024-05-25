@@ -28,7 +28,7 @@ case $(echo $DMENU_ITEMS | parse_items | f_dmenu 'Execute:') in
         $HOME/.bin/firefox.sh https://127.0.0.1:8384/ &
         ;;
     'audacious')
-        /usr/bin/audacious &
+        /usr/bin/env audacious &
         ;;
     'gimp')
         /usr/bin/env gimp &
