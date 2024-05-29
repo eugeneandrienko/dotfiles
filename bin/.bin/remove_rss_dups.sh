@@ -8,7 +8,7 @@ fi
 
 # Search for duplicates in new mails:
 for NEW_MAIL in *; do
-    SUBJECT="$(/bin/grep -h 'Subject: ' $NEW_MAIL)"
+    SUBJECT="$(grep -h 'Subject: ' $NEW_MAIL)"
 
     # Search for duplicates in cur/ directory:
     if [ $(ls ../cur | wc -l) -gt 0 ]; then
