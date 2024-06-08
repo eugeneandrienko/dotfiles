@@ -8,6 +8,10 @@ writing since 2005.
 - =utils/= — configuration files for different utilities, like vim or tmux.
 - =noauto/= — different system configuration files, not for automatic
   installation. Described below.
+- =scripts/= — scripts to:
+  - save private credentials
+  - backup editor plugins
+  - install/update JOSM.
 - =deploy.sh= — main deployment script.
 
 ** =noauto/= contents:
