@@ -22,14 +22,6 @@
                             :empty-lines-after 1)
                            ("T" "Todo+time" entry (file "~/rsync/org/todo.org")
                             "* TODO %? %^g\nSCHEDULED: %^t\n"
-                            :empty-lines-after 1)
-                           ("d" "Daily" entry (file "~/rsync/org/daily.org")
-                            "* TODO %? %^g\nSCHEDULED: %^t\n"
-                            :empty-lines-before 0
-                            :empty-lines-after 1)
-                           ("e" "Daily+time" entry (file "~/rsync/org/daily.org")
-                            "* TODO %? %^g\nSCHEDULED: %^T\n"
-                            :empty-lines-before 0
                             :empty-lines-after 1)))
   (org-startup-indented t "Indent headlines")
   (org-agenda-span 'day)
