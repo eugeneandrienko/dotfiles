@@ -61,21 +61,3 @@
     (define-key org-mode-map (kbd "C-c <right>") nil)))
 
 (use-package gnuplot)
-
-(use-package org-modern
-  :after (org)
-  :custom
-  (org-modern-star nil)
-  (org-modern-hide-stars nil)
-  (org-modern-priority nil)
-  (org-modern-list nil)
-  (org-modern-checkbox nil)
-  (org-modern-todo nil)
-  (org-modern-keyword nil)
-  (org-modern-radio-target nil)
-  (org-modern-statistics nil)
-  (org-modern-progress nil)
-  (org-modern-block-name '("‣" . "‣"))
-  (org-modern-block-fringe t)
-  :config
-  (global-org-modern-mode))
