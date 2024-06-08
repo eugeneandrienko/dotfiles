@@ -72,10 +72,10 @@ if (/^X-RSS-Feed:.*beardycast.*/ || \
     to $RSS_PODCASTS
 if (/^X-RSS-Feed:.*www.youtube.com.*/)
     to $RSS_YOUTUBE
-if (/^X-RSS-Feed:.*/)
-    to $RSS
 if (/^X-RSS-Feed:.*weeklyosm.eu.*/)
     to $OSM
+if (/^X-RSS-Feed:.*/)
+    to $RSS
 
 if (/^From:.*@expresso.today/)
     to $EXPRESSO
