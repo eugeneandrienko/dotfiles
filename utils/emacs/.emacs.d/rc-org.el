@@ -53,3 +53,15 @@
     (define-key org-mode-map (kbd "C-c <right>") nil)))
 
 (use-package gnuplot)
+
+(use-package org-alert
+  :ensure t
+  :custom
+  (alert-default-style 'libnotify)
+  :config
+  (progn
+    (setq org-alert-notification-title "OrgMode")
+    (setq org-alert-interval 300
+          org-alert-notify-cutoff 10
+          org-alert-notify-after-event-cutoff 10)
+    (org-alert-enable)))
