@@ -1,0 +1,4 @@
+;;; -*- lisp-data -*-
+(("~/rsync/blog/articles/")
+ ("~/git_repos/dotfiles/")
+ ("~/git_repos/palm-sync-daemon/"))
