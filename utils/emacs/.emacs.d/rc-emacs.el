@@ -49,8 +49,6 @@
 (global-hl-line-mode 1)
                                         ;auto-revert buffer
 (global-auto-revert-mode t)
-                                        ;use spaces instead of tabs
-(setq-default indent-tabs-mode nil)
 
 ;; Identation by default
 (defun my-ret-hook()
