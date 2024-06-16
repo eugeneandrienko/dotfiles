@@ -61,7 +61,7 @@
   :config
   (progn
     (setq org-alert-notification-title "OrgMode")
-    (setq org-alert-interval 300
+    (setq org-alert-interval 1800
           org-alert-notify-cutoff 10
           org-alert-notify-after-event-cutoff 10)
     (org-alert-enable)))
