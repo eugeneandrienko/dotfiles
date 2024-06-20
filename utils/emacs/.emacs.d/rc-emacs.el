@@ -140,7 +140,7 @@
                         (mode . java-mode)
                         (name . "^\\*EGLOT.+")))
                ("LaTeX" (or
-                         (mode . latex-mode)
+                         (mode . LaTeX-mode)
                          (mode . bibtex-mode)))
                ("C" (or
                      (mode . c-mode)))))))
