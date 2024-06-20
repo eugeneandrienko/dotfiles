@@ -56,6 +56,6 @@ chown drag0n:drag0n "$HOME/raws/$1"
 chmod go-w "$HOME/raws/$1"
 chmod a-x "$HOME/raws/$1/"*
 # Move jpegs to already created subfolders in ~/pictures/
-mv "$HOME/raws/$1/*.JPG" "$HOME/pictures/$1/"
+mv "$HOME/raws/$1/"*.JPG "$HOME/pictures/$1/"
 _umount_mnt "$MOUNTPOINT"
 
