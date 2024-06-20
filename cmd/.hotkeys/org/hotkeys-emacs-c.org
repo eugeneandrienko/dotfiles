@@ -1,0 +1,12 @@
+|-------------+------------------------------|
+| Hotkey      | Description                  |
+|-------------+------------------------------|
+| C-c C-q     | Indent top-level function    |
+| C-x h C-M-\ | Indent whole buffer          |
+| C-M-\       | Indent selected region       |
+| C-c C-c     | Comment selected region      |
+| C-M-a       | Go to beginning of function  |
+| C-M-e       | Go to end of function        |
+| M-a         | Go to beginning of statement |
+| M-e         | Go to end of statement       |
+|-------------+------------------------------|
