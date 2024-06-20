@@ -32,19 +32,6 @@
 %\addbibresource{bib.bib}
 %\setbeamertemplate{bibliography item}{\insertbiblabel}
 
-\lstset{language=C,
-  escapechar=|,
-  frame=single,
-  basicstyle=\scriptsize,
-  stringstyle=\color{mygreen},
-  showstringspaces=false,
-  inputencoding=utf8,
-  extendedchars=true,
-  captionpos=b,
-  breaklines=true,
-  postbreak=\mbox{\textcolor{mygreen}{\rotatebox[origin=c]{180}{$\Lsh$}}\space}}
-
-
 \definecolor{mygreen}{rgb}{.2,.6,.2}
 \usetheme{Luebeck}
 \usecolortheme{lily}
@@ -62,6 +49,23 @@
 \setbeamercolor{description item}{fg=mygreen}
 \hypersetup{urlcolor=mygreen}
 \setbeamercolor{footline}{fg=black}
+
+\newsavebox{\greenarrow}
+\sbox\greenarrow{\raisebox{0ex}[0ex][0ex]{\ensuremath{
+      \mbox{\textcolor{mygreen}{\rotatebox[origin=c]{180}{$\Lsh$}}\space}}}}
+
+\lstset{language=C,
+  escapechar=|,
+  frame=single,
+  basicstyle=\ttfamily\scriptsize,
+  columns=fullflexible,
+  stringstyle=\color{mygreen},
+  showstringspaces=false,
+  inputencoding=utf8,
+  extendedchars=true,
+  captionpos=b,
+  breaklines=true,
+  postbreak=\usebox\greenarrow}
 
 
 \renewcommand{\le}{\leqslant}
