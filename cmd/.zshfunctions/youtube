@@ -1,5 +1,9 @@
-mplayer -cookies -cookies-file /tmp/cookies.txt \
-$(yt-dlp -gf 22 \
-    --cookies /tmp/cookies.txt "$1"); \
-rm -f /tmp/cookies.txt
+SEEK_TIME="$2"
+if [ -z "$SEEK_TIME" ]; then
+    SEEK_TIME="nopts"
+fi
 
+yt-dlp -o - -f 22 \
+        --cookies-from-browser firefox \
+        --sponsorblock-remove sponsor,selfpromo,interaction \
+        --mark-watched "$1" | mplayer -ss "$SEEK_TIME" -
