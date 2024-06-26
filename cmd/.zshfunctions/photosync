@@ -8,7 +8,7 @@ if [ "$#" -gt 3 ] || [ "$#" -eq 2 ]; then
 fi
 
 # For new camera add it's mountpint name here [1]:
-MOUNTPOINTS=("9C33-6BBD")
+MOUNTPOINTS=("9C33-6BBD" "da0s1")
 if [ "$#" -eq 3 ]; then
     MOUNTPOINTS+=("$2")
 fi
@@ -27,7 +27,7 @@ for mpnt ("$MOUNTPOINTS[@]"); do
             # And here [2]:
             # Do not forget trailing slash in value for CAMERA variable!
             case "$mpnt" in
-                "9C33-6BBD")
+                "9C33-6BBD" | "da0s1")
                     CAMERA="/media/$mpnt/DCIM/100OLYMP/"
                     ;;
             esac
