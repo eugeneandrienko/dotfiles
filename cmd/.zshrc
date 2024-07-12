@@ -70,6 +70,7 @@ autoload -z ydl_channel_id
 autoload -z youtube
 autoload -z create_enc_file
 autoload -z rename_photos_by_exif
+autoload -z screenrecord
 
 # Hotkeys helpers:
 fpath+=~/.hotkeys

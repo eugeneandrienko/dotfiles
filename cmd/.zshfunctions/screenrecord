@@ -1,0 +1,22 @@
+if [ "$#" -ne "1" ]; then
+    echo "Specify video file name"
+    exit 1
+fi
+
+source $HOME/.bin/get_machine_id.sh
+
+case "$MACHINE_HW" in
+    "zalman")
+        RESOLUTION=""
+    ;;
+    "thinkpad")
+        RESOLUTION="2560x1440"
+    ;;
+    *)
+        echo "Unknown machine - unknown resolution"
+        exit 2
+    ;;
+esac
+
+ffmpeg -video_size "$RESOLUTION" -framerate 60 -f x11grab -i :0 "$1"
+
