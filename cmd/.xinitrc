@@ -39,12 +39,12 @@ case "$MACHINE_HW" in
         xrandr --output HDMI-0 --auto --right-of DVI-D-0
         ;;
     "thinkpad")
-        xrandr --output LVDS-1 --off
         xrandr --output DP-3 --primary
         backlight 0
         xset s off
         xset s noblank
         xset -dpms
+        xrandr --output LVDS-1 --off
         ;;
 esac
 
