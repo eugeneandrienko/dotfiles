@@ -24,6 +24,7 @@
                             "* TODO %? %^g\nSCHEDULED: %^t\n"
                             :empty-lines-after 1)))
   (org-startup-indented t "Indent headlines")
+  (org-hide-leading-stars t "Hide leading stars")
   (org-agenda-span 'day)
   (org-hide-emphasis-markers t)
   (org-adapt-indentation t)
@@ -52,8 +53,6 @@
     (define-key org-mode-map (kbd "C-c <left>") nil)
     (define-key org-mode-map (kbd "C-c <right>") nil)))
 
-(use-package gnuplot)
-
 (use-package org-alert
   :ensure t
   :custom
@@ -63,5 +62,12 @@
     (setq org-alert-notification-title "OrgMode")
     (setq org-alert-interval 1800
           org-alert-notify-cutoff 10
-          org-alert-notify-after-event-cutoff 10)
-    (org-alert-enable)))
+          org-alert-notify-after-event-cutoff 10)))
+
+(use-package company-org-block
+  :ensure t
+  :custom
+  (company-org-block-edit-style 'inline)
+  :hook ((org-mode . (lambda ()
+                       (setq-local company-backends '(company-org-block))
+                       (company-mode +1)))))

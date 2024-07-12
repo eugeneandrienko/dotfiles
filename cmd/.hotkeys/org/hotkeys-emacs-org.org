@@ -36,6 +36,7 @@
 | M-x org-redisplay-inline-images | Redisplay inline images                                      |
 | C-c C-x C-v                     | Toggle inline images                                         |
 | C-c C-,                         | Insert template                                              |
+| <                               | Autocomplete SRC block                                       |
 |---------------------------------+--------------------------------------------------------------|
 | C-c C-x C-i                     | Clock in                                                     |
 | C-c C-x C-o                     | Clock out                                                    |

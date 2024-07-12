@@ -1,7 +1,7 @@
 (use-package company
   :custom
   (company-idle-delay 0.2)
-  (company-global-modes '(java-mode))
+  (company-global-modes '(java-mode org-mode))
   (company-lighter-base "CA")
   (company-format-margin-function #'company-text-icons-margin)
   :config
