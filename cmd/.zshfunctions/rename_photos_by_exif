@@ -71,7 +71,7 @@ for i in $(get_images_list | sort | uniq); do
         FNAME=$(exif "$i" | $GREP 'exif:DateTime' | sed -r -e 's/exif:DateTime=(.+[0-9])/\1/g' -e 's/://g' -e 's/ /_/g')
     fi
     if [ ! -n "$FNAME" ] || [ "$FNAME" == "" ]; then
-        FNAME=$(stat --printf="%y" "$i" | sed -r -e 's/([0-9 :-])\.[0-9 +]+/\1/g' -e 's/[-:]//g' -e 's/ /_/g')
+        FNAME=$(ls -l -D '%Y%m%d_%H%M%S' "$i" | awk '{print $6}' | tr -d '\n')
     fi
     if [ -n "$DESCR" ] && [ "$DESCR" != "" ] && [ ! -n "$NO_DESCRIPTION" ]; then
         FNAME="$FNAME - $DESCR"
