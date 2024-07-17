@@ -75,7 +75,7 @@ autoload -z screenrecord
 # Hotkeys helpers:
 fpath+=~/.hotkeys
 autoload -z hotkeys-emacs
-autoload -z hotkeys-emacs-java
+autoload -z hotkeys-emacs-c
 autoload -z hotkeys-emacs-latex
 autoload -z hotkeys-emacs-magit
 autoload -z hotkeys-emacs-org
