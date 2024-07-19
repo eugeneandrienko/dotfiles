@@ -97,10 +97,10 @@
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
 (setq package-archive-priorities
-      '(("melpa-stable" . 10)
+      '(("melpa" . 10)
         ("gnu" . 9)
-        ("nongnu" . 8)
-        ("melpa" . 1)))
+        ("melpa-stable" . 8)
+        ("nongnu" . 1)))
 (package-initialize)
 
 ;; Font for GUI

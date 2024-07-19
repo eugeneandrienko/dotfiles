@@ -8,7 +8,7 @@
 (load "~/.emacs.d/rc-aspell.el")
 (load "~/.emacs.d/rc-auctex.el")
 (load "~/.emacs.d/rc-colortheme.el")
-(load "~/.emacs.d/rc-magit.el")
+(load "~/.emacs.d/rc-git.el")
 (load "~/.emacs.d/rc-rst-mode.el")
 (load "~/.emacs.d/rc-fill-column-indicator.el")
 (load "~/.emacs.d/rc-company.el")
