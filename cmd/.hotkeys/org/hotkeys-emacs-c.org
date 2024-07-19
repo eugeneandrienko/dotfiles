@@ -5,6 +5,7 @@
 | C-x h C-M-\ | Indent whole buffer                        |
 | C-M-\       | Indent selected region                     |
 | C-c C-c     | Comment selected region                    |
+| C-u C-c C-c | Uncomment selected region                  |
 | C-M-a       | Go to beginning of function                |
 | C-M-e       | Go to end of function                      |
 | M-a         | Go to beginning of statement               |
