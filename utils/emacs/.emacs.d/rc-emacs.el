@@ -167,3 +167,9 @@
       (pixel-scroll-precision-interpolate-page t)
       :init
       (pixel-scroll-precision-mode 1)))
+
+;; Setup native fill-column-indicator
+(setopt display-fill-column-indicator-column 80)
+(set-face-attribute 'fill-column-indicator nil :background nil
+                  :foreground "grey")
+(add-hook 'c-mode-hook #'display-fill-column-indicator-mode)
