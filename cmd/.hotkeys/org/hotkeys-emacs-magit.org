@@ -7,11 +7,14 @@
 |---------------------------+-------------------------------------|
 
 * Inside magit buffer:
-|--------+--------------------------------|
-| Hotkey | Description                    |
-|--------+--------------------------------|
-| g      | Update Magit buffer            |
-| d d    | Show detailed diff for changes |
-| l l    | Show log                       |
-| c      | Commit                         |
-|--------+--------------------------------|
+|--------+-------------------------------------|
+| Hotkey | Description                         |
+|--------+-------------------------------------|
+| g      | Update Magit buffer                 |
+| d d    | Show detailed diff for changes      |
+| l l    | Show log                            |
+| c      | Commit                              |
+| s      | Stage changes (whole file or patch) |
+| P u    | Push                                |
+| k      | Cancel hunk                         |
+|--------+-------------------------------------|

@@ -10,6 +10,7 @@
 | C-M-e       | Go to end of function                      |
 | M-a         | Go to beginning of statement               |
 | M-e         | Go to end of statement                     |
+| M-x imenu   | Display list of functions                  |
 |-------------+--------------------------------------------|
 | M-x woman   | Show manpage for function under the cursor |
 |-------------+--------------------------------------------|
