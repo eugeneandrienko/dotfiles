@@ -108,9 +108,7 @@
              '(font . "Noto Sans Mono-16"))
 
 ;; Emacs pinentry — ask password for GPG keys
-(use-package pinentry
- :custom
- (pinentry-start))
+(setq epg-pinentry-mode 'loopback)
 
 ;; Message mode for mutt
 (add-to-list 'auto-mode-alist '("/mutt" . message-mode))
