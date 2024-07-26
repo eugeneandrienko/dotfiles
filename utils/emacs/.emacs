@@ -4,7 +4,8 @@
 (load "~/.emacs.d/rc-use-package.el")
 (load "~/.emacs.d/rc-emacs.el")
 
-(load "~/.emacs.d/rc-ido.el")
+(load "~/.emacs.d/rc-vertico.el")
+(load "~/.emacs.d/rc-marginalia.el")
 (load "~/.emacs.d/rc-aspell.el")
 (load "~/.emacs.d/rc-auctex.el")
 (load "~/.emacs.d/rc-colortheme.el")
@@ -24,7 +25,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(Man-notify-method 'pushy)
- '(ido-mode 'buffer nil (ido))
  '(initial-scratch-message nil)
  '(package-selected-packages
    '(pinentry org company projectile lsp-ui lsp-java use-package fill-column-indicator color-theme-modern auto-complete auctex))
