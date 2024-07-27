@@ -1,10 +1,26 @@
 (use-package vertico
   :custom
   (vertico-cycle t)
+  (vertico-resize t)
   :init
   (vertico-mode)
+  :bind
+  (:map vertico-map
+        ("<escape>" . minibuffer-keyboard-quit))
   :config
   (progn
+    ;; Input at bottom of completion list:
+    (defun vertico-bottom--display-candidates (lines)
+      "Display LINES in bottom."
+      (move-overlay vertico--candidates-ov (point-min) (point-min))
+      (unless (eq vertico-resize t)
+        (setq lines (nconc (make-list (max 0 (- vertico-count (length lines))) "\n") lines)))
+      (let ((string (apply #'concat lines)))
+        (add-face-text-property 0 (length string) 'default 'append string)
+        (overlay-put vertico--candidates-ov 'before-string string)
+        (overlay-put vertico--candidates-ov 'after-string nil))
+      (vertico--resize-window (length lines)))
+    (advice-add #'vertico--display-candidates :override #'vertico-bottom--display-candidates)
     ;; Fixes for OrgMode:
     (advice-add #'org-make-tags-matcher :around #'vertico-enforce-basic-completion)
     (advice-add #'org-agenda-filter :around #'vertico-enforce-basic-completion)
@@ -41,6 +57,11 @@
 
 (use-package orderless
   :custom
+  (orderless-matching-styles '(orderless-literal
+                               orderless-prefixes
+                               orderless-initialism
+                                        ; Fuzzy finding
+                               orderless-flex))
   (completion-styles '(substring orderless basic))
   (completion-category-defaults nil)
   (completion-category-overrides '((file (styles partial-completion)))))
