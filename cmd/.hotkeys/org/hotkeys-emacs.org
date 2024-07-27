@@ -1,25 +1,29 @@
-|---------------------------+------------------------------|
-| Hotkey                    | Description                  |
-|---------------------------+------------------------------|
-| C-z                       | switch keyboard language     |
-| M-g                       | go to line                   |
-| C-j                       | insert new line below cursor |
-| C-x 2                     | horizontal split             |
-| C-x 3                     | vertical split               |
-| M-x untabify              | remove tabs from file        |
-| M-x recover-file          | recover unsaved file         |
-| C-s M-r                   | regexp search                |
-| C-r M-r                   | reverse regexp search        |
-| M-% (after search starts) | query replace (\(\) - group) |
-| C-x SPC                   | select rectangle             |
-|---------------------------+------------------------------|
-| F11                       | enable syntax check (en)     |
-| F12                       | enable syntax check (ru)     |
-|---------------------------+------------------------------|
-| C-x p f                   | Find file in project         |
-| C-x p g                   | Grep in project              |
-| C-x p D                   | Open Dired for project       |
-| C-x p C-b                 | List of project buffers      |
-| C-x p k                   | Kill all project buffers     |
-| C-x p p                   | Switch to another project    |
-|---------------------------+------------------------------|
+|---------------------------+--------------------------------------------|
+| Hotkey                    | Description                                |
+|---------------------------+--------------------------------------------|
+| C-z                       | switch keyboard language                   |
+| M-g                       | go to line                                 |
+| C-j                       | insert new line below cursor               |
+| C-x 2                     | horizontal split                           |
+| C-x 3                     | vertical split                             |
+| M-x untabify              | remove tabs from file                      |
+| M-x recover-file          | recover unsaved file                       |
+| C-s M-r                   | regexp search                              |
+| C-r M-r                   | reverse regexp search                      |
+| M-% (after search starts) | query replace (\(\) - group)               |
+| C-x SPC                   | select rectangle                           |
+| C-SPC                     | Set mark                                   |
+| C-u C-SPC                 | Go to previously saved marks               |
+| C-x C-SPC                 | Go to mark from another buffer             |
+| C-x C-x                   | Exchange cursor position and the last mark |
+|---------------------------+--------------------------------------------|
+| F11                       | enable syntax check (en)                   |
+| F12                       | enable syntax check (ru)                   |
+|---------------------------+--------------------------------------------|
+| C-x p f                   | Find file in project                       |
+| C-x p g                   | Grep in project                            |
+| C-x p D                   | Open Dired for project                     |
+| C-x p C-b                 | List of project buffers                    |
+| C-x p k                   | Kill all project buffers                   |
+| C-x p p                   | Switch to another project                  |
+|---------------------------+--------------------------------------------|
