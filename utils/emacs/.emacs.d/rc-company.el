@@ -1,9 +1,19 @@
 (use-package company
   :custom
-  (company-idle-delay 0.2)
-  (company-global-modes '(java-mode org-mode))
+  (company-idle-delay 0.1)
+  (company-minimum-prefix-length 2)
+  (company-global-modes '(java-mode org-mode c-mode))
   (company-lighter-base "CA")
   (company-format-margin-function #'company-text-icons-margin)
+  (company-show-quick-access 'left)
+  (company-backends '(company-etags
+                      company-bbdb
+                      company-semantic
+                      company-capf
+                      company-files
+                      (company-dabbrev-code company-gtags company-keywords)
+                      company-oddmuse
+                      company-dabbrev))
   :config
   (progn
     (with-eval-after-load 'company
