@@ -32,7 +32,6 @@ writing since 2005.
 You should have next programs in system before configuration deployment:
 
 ** System programs:
-- aspell (with aspell-en and aspell-ru dictionaries)
 - bc
 - cal
 - cron
@@ -66,6 +65,7 @@ You should have next programs in system before configuration deployment:
 - emacs
 - idea
 - lacheck
+- [[https://dev.languagetool.org/http-server][language-tool]]
 - latex (texlive)
 - vim
 

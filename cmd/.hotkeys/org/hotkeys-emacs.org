@@ -17,8 +17,7 @@
 | C-x C-SPC                 | Go to mark from another buffer             |
 | C-x C-x                   | Exchange cursor position and the last mark |
 |---------------------------+--------------------------------------------|
-| F11                       | enable syntax check (en)                   |
-| F12                       | enable syntax check (ru)                   |
+| F12                       | Start LanguageTool check                   |
 |---------------------------+--------------------------------------------|
 | C-x p f                   | Find file in project                       |
 | C-x p g                   | Grep in project                            |

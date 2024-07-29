@@ -6,7 +6,7 @@
 
 (load "~/.emacs.d/rc-vertico.el")
 (load "~/.emacs.d/rc-marginalia.el")
-(load "~/.emacs.d/rc-aspell.el")
+(load "~/.emacs.d/rc-langtool.el")
 (load "~/.emacs.d/rc-auctex.el")
 (load "~/.emacs.d/rc-colortheme.el")
 (load "~/.emacs.d/rc-git.el")
@@ -43,7 +43,8 @@
  '(font-latex-sectioning-5-face ((((class color) (background dark)) (:inherit variable-pitch :foreground "OliveDrab" :weight bold))) t)
  '(font-latex-string-face ((t (:inherit font-lock-keyword-face :foreground "OliveDrab" :height 1.0))) t)
  '(highlight-symbol-face ((((class color) (background dark)) (:background "OliveDrab"))) t)
- '(italic ((t (:slant italic :weight light :height 160 :width normal :family "Noto Sans Mono Italic" :spacing proportional)))))
+ '(italic ((t (:slant italic :weight light :height 160 :width normal :family "Noto Sans Mono Italic" :spacing proportional))))
+ '(popup-tip-face ((t (:background "#eee8d5" :foreground "#657b83" :box (:line-width (2 . 2) :color "dim gray" :style flat-button))))))
 
 ;; Default cyr/latin input method
 (setq default-input-method "russian-computer")
