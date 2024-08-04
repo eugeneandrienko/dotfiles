@@ -283,3 +283,6 @@ user_pref("network.prefetch-next", false);
 // [3] https://github.com/dillbyrne/random-agent-spoofer/issues/238#issuecomment-110214518
 // [4] https://www.igvita.com/posa/high-performance-networking-in-google-chrome/#predictor
 user_pref("network.predictor.enabled", false);
+
+// PREF: Disable captive portal detection
+user_pref("network.captive-portal-service.enabled", false);
