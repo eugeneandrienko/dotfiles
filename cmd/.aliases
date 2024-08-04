@@ -30,8 +30,9 @@ alias panic='rm -rfv ~/.cache/thumbnails/*; \
              rm -rfv ~/.cache/sxiv/*; \
              rm -rfv ~/.cache/nsxiv/*'
 alias df='df -h'
-alias fuck_censorship='ssh -p 443 -ND 8080 fuck@censorship.1984; \
-                       notify-send -u critical -t 5000 "Warning" "SSH tunnel is down"'
+alias fuck_censorship='cd ~/bin/v2raya && \
+                      ./v2raya --lite --address 127.0.0.1:1984 --v2ray-assetsdir "/home/$USER/.local/share/xray"; \
+                       dunstify "V2raya" "v2raya is down" -u critical'
 alias sxiv='sxiv -s d -p'
 alias rtorrent='~/.rtorrent/download_blocklist.sh && rtorrent'
 alias -g vi='vim'
@@ -107,17 +108,21 @@ alias emerge-update='sudo emerge-webrsync; \
                      sudo emerge --ask -uDU --keep-going --with-bdeps=y @world'
 
 # yt-dlp aliases
-alias ydl="yt-dlp --continue --write-description \
+alias ydl="yt-dlp --proxy socks5://localhost:1984 \
+           --continue --write-description \
            --output '%(upload_date)s_%(title)s.%(ext)s'"
-alias ydl_mp4="yt-dlp --continue --write-description --embed-thumbnail --recode-video mp4 \
+alias ydl_mp4="yt-dlp --proxy socks5://localhost:1984 \
+               --continue --write-description --embed-thumbnail --recode-video mp4 \
                --output '%(upload_date)s_%(title)s.%(ext)s'"
-alias ydl_podcast="yt-dlp --continue \
+alias ydl_podcast="yt-dlp --proxy socks5://localhost:1984 \
+                  --continue \
                   --write-description --extract-audio --audio-format mp3 \
                   --embed-thumbnail --output '%(title)s.%(ext)s' \
                   --exec after_move:'lame --scale 3 %(filepath)q' \
                   --exec after_move:'rm %(filepath)q' \
                   --exec after_move:'rename .mp3.mp3 .mp3 %(filepath)q.mp3'"
-alias ydl_mp3="yt-dlp --continue \
+alias ydl_mp3="yt-dlp --proxy socks5://localhost:1984 \
+               --continue \
                --extract-audio --audio-format mp3 \
                --embed-thumbnail --output '%(title)s.%(ext)s'"
 alias ydl_tor="yt-dlp --continue --output '%(title)s.%(ext)s' \
