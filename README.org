@@ -32,8 +32,6 @@ writing since 2005.
 You should have next programs in system before configuration deployment:
 
 ** System programs:
-- bc
-- cal
 - cron
 - curl
 - make (or gmake executable should be available in FreeBSD)
