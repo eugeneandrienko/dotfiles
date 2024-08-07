@@ -190,3 +190,4 @@
 (set-face-attribute 'fill-column-indicator nil :background nil
                   :foreground "grey")
 (add-hook 'c-mode-hook #'display-fill-column-indicator-mode)
+(add-hook 'sh-mode-hook #'display-fill-column-indicator-mode)
