@@ -26,3 +26,5 @@
 | C-x p k                   | Kill all project buffers                   |
 | C-x p p                   | Switch to another project                  |
 |---------------------------+--------------------------------------------|
+| M-&                       | Run asynchronous shell command             |
+|---------------------------+--------------------------------------------|
