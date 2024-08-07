@@ -27,8 +27,7 @@
  '(Man-notify-method 'pushy)
  '(initial-scratch-message nil)
  '(package-selected-packages
-   '(pinentry org company projectile lsp-ui lsp-java use-package fill-column-indicator color-theme-modern auto-complete auctex))
- '(show-trailing-whitespace t))
+   '(pinentry org company projectile lsp-ui lsp-java use-package fill-column-indicator color-theme-modern auto-complete auctex)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

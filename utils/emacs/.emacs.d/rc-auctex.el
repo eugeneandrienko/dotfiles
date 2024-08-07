@@ -2,7 +2,7 @@
   :ensure auctex
   :config
   (progn
-    (add-hook 'LaTeX-mode-hook '(lambda () (set-fill-column 80)))
+    (add-hook 'LaTeX-mode-hook #'(lambda () (set-fill-column 80)))
     (add-hook 'LaTeX-mode-hook 'auto-fill-mode)
     (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
     ;; Asks for master file in multi-file TeX documents

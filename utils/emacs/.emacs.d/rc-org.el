@@ -40,12 +40,12 @@
   :config
   (progn
     (add-hook 'org-mode-hook
-              '(lambda()
-                 (progn
-                   (add-to-list 'org-file-apps
-                                '("\\.jpg\\'" . "sxiv %s"))
-                   (add-to-list 'org-file-apps
-                                '("\\.png\\'" . "sxiv %s")))))
+              #'(lambda()
+                  (progn
+                    (add-to-list 'org-file-apps
+                                 '("\\.jpg\\'" . "sxiv %s"))
+                    (add-to-list 'org-file-apps
+                                 '("\\.png\\'" . "sxiv %s")))))
     (org-babel-do-load-languages 'org-babel-load-languages
                                  '((shell  . t)))
     (define-key org-mode-map (kbd "C-c <up>") nil)
