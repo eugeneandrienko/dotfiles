@@ -109,6 +109,7 @@
 
 ;; Emacs pinentry — ask password for GPG keys
 (setq epg-pinentry-mode 'loopback)
+(pinentry-start)
 
 ;; Message mode for mutt
 (add-to-list 'auto-mode-alist '("/mutt" . message-mode))
