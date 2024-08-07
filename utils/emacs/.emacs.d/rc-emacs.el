@@ -118,13 +118,12 @@
           (function
            (lambda ()
              (progn
-               (setq show-trailing-whitespace nil)
                (local-unset-key "\C-c\C-c")
-               (define-key message-mode-map "\C-c\C-c" '(lambda ()
-                                                          "save and exit quickly"
-                                                          (interactive)
-                                                          (save-buffer)
-                                                          (server-edit)))))))
+               (define-key message-mode-map "\C-c\C-c" #'(lambda ()
+                                                           "save and exit quickly"
+                                                           (interactive)
+                                                           (save-buffer)
+                                                           (server-edit)))))))
 
 ;; Setup more smart buffer handling
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -150,8 +149,27 @@
 (setq recentf-max-menu-items 25)
 (setq recentf-max-saved-items 25)
 
-;; Show trailing whitespace
-(setq show-trailing-whitespace t)
+;; Show trailing whitespace only in necessary modes
+(setq-default show-trailing-whitespace nil)
+(defun enable-whitespace-fn()
+  "Enable whitespace"
+  (setq show-trailing-whitespace t))
+
+(add-hook 'java-mode-hook 'enable-whitespace-fn)
+(add-hook 'c-mode-hook 'enable-whitespace-fn)
+(add-hook 'sh-mode-hook 'enable-whitespace-fn)
+(add-hook 'LaTeX-mode-hook 'enable-whitespace-fn)
+(add-hook 'bibtex-mode-hook 'enable-whitespace-fn)
+(add-hook 'emacs-lisp-mode-hook 'enable-whitespace-fn)
+
+(defun disable-whitespace-fn()
+  "Disable whitespace"
+  (setq show-trailing-whitespace nil))
+
+(add-hook 'org-mode-hook 'disable-whitespace-fn)
+(add-hook 'calendar-mode-hook 'disable-whitespace-fn)
+(add-hook 'message-mode-hook 'disable-whitespace-fn)
+
 
 ;; Fix "<Mutli_key> is undefined" in FreeBSD:
 (setq x-gtk-use-native-input 't)
