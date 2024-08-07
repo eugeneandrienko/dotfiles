@@ -25,6 +25,8 @@
     whitespace = trailing-space,space-before-tab,blank-at-eol,tab-in-indent,blank-at-eof
     quotepath = false
     pager = diff-highlight | $PAGER
+[pager]
+    log = false
 [merge]
     conflictstyle = zdiff3
 [grep]
