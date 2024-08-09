@@ -1,7 +1,8 @@
-(use-package magit)
+(use-package magit
+  :custom
+  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 
 (use-package git-gutter
-  :ensure t
   :config
   (progn
     (global-git-gutter-mode +1)
@@ -9,7 +10,6 @@
     (setq git-gutter:update-interval 0.02)))
 
 (use-package git-gutter-fringe
-  :ensure t
   :config
   (setq-default left-fringe-width 20)
   (setq-default right-fringe-width 40)
