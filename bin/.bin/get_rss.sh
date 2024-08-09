@@ -3,8 +3,43 @@
 source ~/.bin/get_machine_id.sh
 
 FORCE=0
-if [ "$1" = "--force" ]; then
-    FORCE=1
+PROXY=0
+
+args=$(getopt fp $*)
+if [ "$?" -ne "0" ]; then
+    echo "Usage:"
+    echo "$0 [-fp]"
+    echo "-f Force run"
+    echo "-p Use proxy on 127.0.0.1"
+    echo
+    exit 1
+fi
+
+set -- $args
+
+while :; do
+    case "$1" in
+        -f)
+            FORCE=1
+            shift
+            ;;
+        -p)
+            PROXY=1
+            shift
+            ;;
+        --)
+            shift
+            break
+            ;;
+    esac
+done
+
+if [ "$PROXY" -eq "1" ]; then
+    export http_proxy="127.0.0.1:20171"
+    export https_proxy="127.0.0.1:20171"
+    PROXY="_proxy"
+else
+    PROXY=""
 fi
 
 if [ "$MACHINE_HW" = "zalman" ] || [ "$FORCE" -eq 1 ]; then
@@ -12,7 +47,11 @@ if [ "$MACHINE_HW" = "zalman" ] || [ "$FORCE" -eq 1 ]; then
         exit 0;
     fi
 
-    r2e -c ~/rsync/mail/rss2email.cfg -d ~/rsync/mail/rss2email.json run > /dev/null 2>&1
+    if [ "$FORCE" -eq 1 ]; then
+        r2e -c ~/rsync/mail/rss2email"$PROXY".cfg -d ~/rsync/mail/rss2email.json run
+    else
+        r2e -c ~/rsync/mail/rss2email"$PROXY".cfg -d ~/rsync/mail/rss2email.json run > /dev/null 2>&1
+    fi
     cd ~/rsync/mail/rss-inbox
     find cur new -type f | while read FILENAME; do
         maildrop < "$FILENAME"
