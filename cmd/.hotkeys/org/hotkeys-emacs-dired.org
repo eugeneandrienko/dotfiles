@@ -1,0 +1,60 @@
+|-------------------------------+--------------------------------------------------|
+| Hotkey                        | Description                                      |
+|-------------------------------+--------------------------------------------------|
+| C-x d                         | Enter Dired mode                                 |
+| C-x C-j                       | Open Dired for current directory                 |
+| C-x C-c                       | Enter WDired mode                                |
+| C-c C-c                       | Apply changes and exit from WDired mode          |
+| v                             | Visit file in View mode                          |
+| j                             | Jump to file                                     |
+| (                             | Hide details                                     |
+| +                             | Create directory                                 |
+| < or >                        | Jump between directories in listing              |
+| i                             | Display subdirectory in the same buffer          |
+| C-u k                         | Remove subdirectory from buffer                  |
+| $                             | Hide subdirectory                                |
+| M-$                           | Hide all subdirectories                          |
+| d                             | Mark for deletion                                |
+| u                             | Remove deletion mark                             |
+| x                             | Delete marked for deletion files                 |
+| ^                             | Goto up directory                                |
+| a                             | Open current file and close Dired                |
+| y                             | Show file type                                   |
+| L                             | Load Emacs Lisp file to Emacs                    |
+| l                             | Reload                                           |
+| c                             | Compress selected files                          |
+| H                             | Show/hide dotfiles                               |
+| =                             | Diff files                                       |
+| M-x dired-compare-directories | Compare directories and mark differ files        |
+| w                             | Copy names of files to kill ring                 |
+|-------------------------------+--------------------------------------------------|
+| C                             | Copy                                             |
+| R                             | Rename/Move files                                |
+| D                             | Delete files                                     |
+| M-x dired-create-empty-file   | Create new file                                  |
+| M                             | Chmod                                            |
+| r                             | Rsync for non-blocking copy                      |
+| !                             | Run command on file(s))                          |
+| &                             | Run command on file(s) asynchronously            |
+| M-n                           | Show guessed commands                            |
+|-------------------------------+--------------------------------------------------|
+| m                             | Mark files                                       |
+| % m                           | Mark files by regexp                             |
+| #                             | Mark autosave files                              |
+| ~                             | Mark backup files                                |
+| % d                           | Mark for deletion by regexp                      |
+| * s                           | Mark all files                                   |
+| U                             | Unmark all marks                                 |
+|-------------------------------+--------------------------------------------------|
+| :e                            | Encrypt files                                    |
+| :d                            | Decrypt files                                    |
+| :s                            | Sign files                                       |
+| :v                            | Verify signature                                 |
+|-------------------------------+--------------------------------------------------|
+| C-x C-q                       | Make all files editable in buffer                |
+| Z Z                           | Confirm edits                                    |
+| Z Q                           | Abort                                            |
+|-------------------------------+--------------------------------------------------|
+| C-t C-t                       | Show thumbnails for marked files in dired buffer |
+| C-t d                         | Show thumbnails for marked files in new buffer   |
+|-------------------------------+--------------------------------------------------|

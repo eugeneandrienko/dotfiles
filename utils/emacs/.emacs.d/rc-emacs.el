@@ -139,7 +139,9 @@
                          (mode . LaTeX-mode)
                          (mode . bibtex-mode)))
                ("C" (or
-                     (mode . c-mode)))))))
+                     (mode . c-mode)))
+               ("Dired" (or
+                         (mode . dired-mode)))))))
 (add-hook 'ibuffer-mode-hook
           (lambda ()
             (ibuffer-switch-to-saved-filter-groups "default")))
@@ -191,3 +193,8 @@
                   :foreground "grey")
 (add-hook 'c-mode-hook #'display-fill-column-indicator-mode)
 (add-hook 'sh-mode-hook #'display-fill-column-indicator-mode)
+
+;; Setup all-the-icons
+;; M-x all-the-icons-install-fonts
+;; Installation path: ~/.local/share/fonts/
+(use-package all-the-icons)

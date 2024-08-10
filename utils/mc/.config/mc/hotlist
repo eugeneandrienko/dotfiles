@@ -1,6 +1,0 @@
-ENTRY "blog" URL "/home/drag0n/rsync/blog"
-ENTRY "diary" URL "/home/drag0n/rsync/docs/diary"
-ENTRY "raws" URL "/home/drag0n/raws"
-ENTRY "pictures" URL "/home/drag0n/pictures"
-ENTRY "music" URL "/home/drag0n/music"
-ENTRY "syncthing" URL "/home/drag0n/syncthing"

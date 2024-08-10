@@ -53,7 +53,6 @@ alias forecast='ansiweather -l "$(geocoords.sh loc)" -F | \
                 sed -r -e "s/: /:;/g" -e "s/ - /\n/g" -e "s/ (.* forecast):;(.*)/"$(tput bold)"\1:"$(tput sgr0)"\n\2/g" | \
                 column -s ";" -t -c 2'
 alias ledger='cd $HOME/rsync/ledger/; ./ledger.sh; popd'
-alias mc='mc -u'
 
 # Mistypes
 alias -g xs='cd'

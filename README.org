@@ -73,7 +73,6 @@ You should have next programs in system before configuration deployment:
 - git
 - gpg
 - jq
-- mc
 - numlockx
 - pass
 - pass-otp
@@ -150,6 +149,17 @@ Do the next to install Vim plugins:
 - First, install Vundle plugin: =git clone
   https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim=.
 - Second, in Vim execute =:BundleInstall=.
+
+** Emacs fonts installation
+Run this after first Emacs run:
+#+begin_example
+M-x all-the-icons-install-fonts
+#+end_example
+
+Fonts should be installed to =~/.local/share/fonts/=. After installation:
+- Run =fc-cache -f -v ~/.local/share/fonts/=, if not executed by
+  =all-the-icons-install-fonts= itself.
+- Restart Emacs daemon
 
 ** /etc/hosts:
 You should update your =/etc/hosts= with data from =noauto/hosts=.

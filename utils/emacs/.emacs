@@ -6,6 +6,7 @@
 
 (load "~/.emacs.d/rc-vertico.el")
 (load "~/.emacs.d/rc-marginalia.el")
+(load "~/.emacs.d/rc-dired.el")
 (load "~/.emacs.d/rc-langtool.el")
 (load "~/.emacs.d/rc-auctex.el")
 (load "~/.emacs.d/rc-colortheme.el")
@@ -49,3 +50,4 @@
 ;; Default cyr/latin input method
 (setq default-input-method "russian-computer")
 (global-set-key "\C-z" 'toggle-input-method)
+(put 'dired-find-alternate-file 'disabled nil)

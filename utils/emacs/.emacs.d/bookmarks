@@ -1,0 +1,23 @@
+;;;; Emacs Bookmark Format Version 1;;;; -*- coding: utf-8-emacs; mode: lisp-data -*-
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("syncthing"
+ (filename . "~/syncthing/")
+ (front-context-string . "Руслан Кондратен")
+ (rear-context-string . "6M Dec 29  2023 ")
+ (position . 77)
+ (last-modified 26294 16533 14154 209000))
+("pictures"
+ (filename . "~/pictures/")
+ (front-context-string . "2024-00-00 Unsor")
+ (rear-context-string . "1B Aug  5 01:06 ")
+ (position . 181)
+ (last-modified 26294 16513 457744 932000))
+("blog"
+ (filename . "~/rsync/blog/")
+ (front-context-string . "articles\n  drwxr")
+ (rear-context-string . "8B Jun 15 11:22 ")
+ (position . 183)
+ (last-modified 26294 16268 6125 575000))
+)

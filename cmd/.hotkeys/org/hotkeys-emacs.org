@@ -28,3 +28,9 @@
 |---------------------------+--------------------------------------------|
 | M-&                       | Run asynchronous shell command             |
 |---------------------------+--------------------------------------------|
+| C-x r l                   | List bookmarks                             |
+| C-x r m                   | Set bookmark                               |
+| C-x r m bookmark          | Set bookmark named bookmark                |
+| C-x r b bookmark          | Jump to bookmark named bookmark            |
+| M-x bookmark-save         | Save all current bookmarks to file         |
+|---------------------------+--------------------------------------------|
