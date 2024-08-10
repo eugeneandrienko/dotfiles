@@ -63,4 +63,8 @@ case "$MACHINE_OS" in
         ;;
 esac
 
+picom -f --crop-shadow-to-monitor \
+      -I 0.08 -O 0.12 -D 20 \
+      --clear-shadow --force-win-blend \
+      --daemon
 exec /usr/bin/env i3 -c ~/.i3/config

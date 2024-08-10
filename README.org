@@ -76,6 +76,7 @@ You should have next programs in system before configuration deployment:
 - numlockx
 - pass
 - pass-otp
+- picom
 - rtorrent
 - shred
 - wget
