@@ -12,6 +12,7 @@
 | C-r M-r                   | reverse regexp search                      |
 | M-% (after search starts) | query replace (\(\) - group)               |
 | C-x SPC                   | select rectangle                           |
+|---------------------------+--------------------------------------------|
 | C-SPC                     | Set mark                                   |
 | C-u C-SPC                 | Go to previously saved marks               |
 | C-x C-SPC                 | Go to mark from another buffer             |
@@ -33,4 +34,9 @@
 | C-x r m bookmark          | Set bookmark named bookmark                |
 | C-x r b bookmark          | Jump to bookmark named bookmark            |
 | M-x bookmark-save         | Save all current bookmarks to file         |
+|---------------------------+--------------------------------------------|
+| C-x r SPC                 | Save position and buffer to register       |
+| C-x r j                   | Jump to position from register             |
+| C-x r s                   | Save text to register                      |
+| C-x r i                   | Insert text from register                  |
 |---------------------------+--------------------------------------------|

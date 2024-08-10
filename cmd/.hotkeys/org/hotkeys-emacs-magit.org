@@ -14,6 +14,7 @@
 | d d    | Show detailed diff for changes      |
 | l l    | Show log                            |
 | c      | Commit                              |
+| c F    | Add staged changes to any commit    |
 | s      | Stage changes (whole file or patch) |
 | P u    | Push                                |
 | k      | Cancel hunk                         |
