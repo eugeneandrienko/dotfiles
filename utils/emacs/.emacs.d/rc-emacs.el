@@ -151,6 +151,9 @@
 (setq recentf-max-menu-items 25)
 (setq recentf-max-saved-items 25)
 
+;; Monday is the start of the week:
+(setq calendar-week-start-day 1)
+
 ;; Show trailing whitespace only in necessary modes
 (setq-default show-trailing-whitespace nil)
 (defun enable-whitespace-fn()

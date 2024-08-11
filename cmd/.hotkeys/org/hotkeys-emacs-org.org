@@ -54,6 +54,7 @@
 |--------+----------------------------------------------------|
 | SPC    | Display original location                          |
 | TAB    | Go to original location                            |
+| c      | Open calendar and switch to it                     |
 | A      | Select another agenda view and append it to buffer |
 | n      | next line                                          |
 | p      | previous line                                      |
