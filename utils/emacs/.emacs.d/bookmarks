@@ -2,12 +2,18 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("syncthing"
+(("org"
+ (filename . "~/rsync/org/")
+ (front-context-string . "todo.org\n  -rw-r")
+ (rear-context-string . "0K Aug 11 22:10 ")
+ (position . 791)
+ (last-modified 26297 7025 184916 290000))
+("syncthing"
  (filename . "~/syncthing/")
- (front-context-string . "Руслан Кондратен")
- (rear-context-string . "6M Dec 29  2023 ")
- (position . 77)
- (last-modified 26294 16533 14154 209000))
+ (front-context-string . "memes\n  drwxr-xr")
+ (rear-context-string . "9B Aug 10 13:29 ")
+ (position . 332)
+ (last-modified 26297 54254 125904 870000))
 ("pictures"
  (filename . "~/pictures/")
  (front-context-string . "2024-00-00 Unsor")
