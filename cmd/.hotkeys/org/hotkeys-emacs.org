@@ -6,6 +6,7 @@
 | C-j                       | insert new line below cursor               |
 | C-x 2                     | horizontal split                           |
 | C-x 3                     | vertical split                             |
+| C-x o                     | Switch between windows                     |
 | M-x untabify              | remove tabs from file                      |
 | M-x recover-file          | recover unsaved file                       |
 | C-s M-r                   | regexp search                              |
@@ -26,6 +27,7 @@
 | C-x p C-b                 | List of project buffers                    |
 | C-x p k                   | Kill all project buffers                   |
 | C-x p p                   | Switch to another project                  |
+| C-x p c                   | Compile project                            |
 |---------------------------+--------------------------------------------|
 | M-&                       | Run asynchronous shell command             |
 |---------------------------+--------------------------------------------|
@@ -39,6 +41,12 @@
 | C-x r j                   | Jump to position from register             |
 | C-x r s                   | Save text to register                      |
 | C-x r i                   | Insert text from register                  |
+|---------------------------+--------------------------------------------|
+| C-x 5 2                   | Create new frame                           |
+| C-x 5 b                   | Open buffer in another frame               |
+| C-x 5 f                   | Open file in another frame                 |
+| C-x 5 d                   | Open Dired in another frame                |
+| C-x 5 0                   | Destroy current frame                      |
 |---------------------------+--------------------------------------------|
 
 * Inside calendar buffer:

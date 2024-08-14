@@ -1,16 +1,28 @@
-|-------------+--------------------------------------------|
-| Hotkey      | Description                                |
-|-------------+--------------------------------------------|
-| C-c C-q     | Indent top-level function                  |
-| C-x h C-M-\ | Indent whole buffer                        |
-| C-M-\       | Indent selected region                     |
-| C-c C-c     | Comment selected region                    |
-| C-u C-c C-c | Uncomment selected region                  |
-| C-M-a       | Go to beginning of function                |
-| C-M-e       | Go to end of function                      |
-| M-a         | Go to beginning of statement               |
-| M-e         | Go to end of statement                     |
-| M-x imenu   | Display list of functions                  |
-|-------------+--------------------------------------------|
-| M-x woman   | Show manpage for function under the cursor |
-|-------------+--------------------------------------------|
+|--------------+--------------------------------------------|
+| Hotkey       | Description                                |
+|--------------+--------------------------------------------|
+| C-c C-q      | Indent top-level function                  |
+| C-x h C-M-\  | Indent whole buffer                        |
+| C-M-\        | Indent selected region                     |
+| C-c C-c      | Comment selected region                    |
+| C-u C-c C-c  | Uncomment selected region                  |
+|--------------+--------------------------------------------|
+| M-a          | Go to beginning of statement               |
+| M-e          | Go to end of statement                     |
+| C-M-f        | Forward over balanced expression           |
+| C-M-b        | Backward over balanced expression          |
+| C-M-k        | Kill balanced expression                   |
+| C-M-SPC      | Select balanced expression                 |
+| C-M-a        | Go to beginning of function                |
+| C-M-e        | Go to end of function                      |
+| C-M-h        | Select current function                    |
+|--------------+--------------------------------------------|
+| C-x n d      | Narrow buffer to current function          |
+| C-x n n      | Narrow region                              |
+| C-x n w      | Widen buffer                               |
+|--------------+--------------------------------------------|
+| M-x imenu    | Display list of functions                  |
+| M-x woman    | Show manpage for function under the cursor |
+| M-x tabify   | Use TAB for identation                     |
+| M-x untabify | Use spaces for identation                  |
+|--------------+--------------------------------------------|
