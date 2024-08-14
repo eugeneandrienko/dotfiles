@@ -1,1 +1,3 @@
-(use-package dockerfile-mode)
+(use-package dockerfile-mode
+  :pin melpa
+  :disabled)

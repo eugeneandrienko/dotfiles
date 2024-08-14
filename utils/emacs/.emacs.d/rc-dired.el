@@ -1,12 +1,12 @@
 (use-package dired
   :ensure nil
   :custom
-  (dired-listing-switches "-lah")
+  (dired-listing-switches "-lah" "Arguments for ls")
   (dired-kill-when-opening-new-dired-buffer t "Only one Dired buffer")
-  (image-dired-thumb-margin 5)
+  (image-dired-thumb-margin 5 "Margin between thumbnails")
   (dired-dwim-target t "Suggest already opened Dired buffers for file operations")
-  (dired-recursive-copies 'always)
-  (dired-recursive-deletes 'always)
+  (dired-recursive-copies 'always "Copy recursively")
+  (dired-recursive-deletes 'always "Delete recursively")
   (dired-guess-shell-alist-user (list
                                  (list "\\.\\([Jj][Pp][Ee]?[Gg]\\|[Pp][Nn][Gg]\\|[Tt][Ii][Ff]\\{2\\}\\|[Ww][Ee][Bb][Pp]\\)$"
                                        "sxiv -t * "
@@ -17,35 +17,43 @@
                                  (list "\\.ORF$"
                                        "rawtherapee * ")
                                  (list "\\.[Gg][Pp][Xx]$"
-                                       "qmapshack * ")))
-  (wdired-allow-to-change-permissions t)
+                                       "qmapshack * "))
+                                "Special commands for files with specified extensions")
+  (wdired-allow-to-change-permissions t "Change permissions in WDired")
   (dired-mouse-drag-files t "Enable mouse dragging to another apps")
   :config
-  (progn
-    (defun mydired-sort ()
-      "Sort dired listings with directories first."
-      (save-excursion
-        (let (buffer-read-only)
-          (forward-line 2) ;; beyond dir. header
-          (sort-regexp-fields t "^.*$" "[ ]*." (point) (point-max)))
-        (set-buffer-modified-p nil)))
-
-    (defadvice dired-readin
-        (after dired-after-updating-hook first () activate)
-      "Sort dired listings with directories first before adding marks."
-      (mydired-sort))))
+  (defun mydired-sort ()
+    "Sort dired listings with directories first."
+    (save-excursion
+      (let (buffer-read-only)
+        (forward-line 2) ;; beyond dir. header
+        (sort-regexp-fields t "^.*$" "[ ]*." (point) (point-max)))
+      (set-buffer-modified-p nil)))
+  (defadvice dired-readin
+      (after dired-after-updating-hook first () activate)
+    "Sort dired listings with directories first before adding marks."
+    (mydired-sort)))
 
 (use-package all-the-icons-dired
-  :hook (dired-mode . all-the-icons-dired-mode))
+  :pin melpa
+  :requires (all-the-icons dired)
+  :after dired
+  :hook (dired-mode . all-the-icons-dired-mode)
+  :delight all-the-icons-dired-mode)
 
 (use-package dired-hide-dotfiles
+  :pin melpa
+  :requires dired
+  :after dired
   :hook (dired-mode . dired-hide-dotfiles-mode)
   :bind
   (:map dired-mode-map
-        ("H" . dired-hide-dotfiles-mode)))
+        ("H" . dired-hide-dotfiles-mode))
+  :delight dired-hide-dotfiles-mode)
 
 (use-package dired-rsync
-  :demand t
+  :pin melpa
+  :requires dired
   :after dired
   :bind
   (:map dired-mode-map
