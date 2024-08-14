@@ -25,7 +25,7 @@ alias pingya='ping -c3 ya.ru'
 alias s='sudo'
 alias ss='sudo -s'
 alias wget='wget -c'
-alias sget='wget -c -e http_proxy=127.0.0.1:8080 -e https_proxy=127.0.0.1:8080'
+alias sget='wget -c -e http_proxy=127.0.0.1:20171 -e https_proxy=127.0.0.1:20171'
 alias panic='rm -rfv ~/.cache/thumbnails/*; \
              rm -rfv ~/.cache/sxiv/*; \
              rm -rfv ~/.cache/nsxiv/*'
