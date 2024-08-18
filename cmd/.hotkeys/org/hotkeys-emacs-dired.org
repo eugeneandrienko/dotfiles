@@ -3,7 +3,7 @@
 |-------------------------------+--------------------------------------------------|
 | C-x d                         | Enter Dired mode                                 |
 | C-x C-j                       | Open Dired for current directory                 |
-| C-x C-c                       | Enter WDired mode                                |
+| C-x C-q                       | Enter WDired mode                                |
 | C-c C-c                       | Apply changes and exit from WDired mode          |
 | v                             | Visit file in View mode                          |
 | j                             | Jump to file                                     |
