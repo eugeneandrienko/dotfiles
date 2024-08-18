@@ -65,6 +65,7 @@ esac
 
 picom -f --crop-shadow-to-monitor \
       -I 0.08 -O 0.12 -D 20 \
-      --clear-shadow --force-win-blend \
+      --backend glx --force-win-blend \
+      --shadow-exclude 'class_g = "firefox"' \
       --daemon
 exec /usr/bin/env i3 -c ~/.i3/config
