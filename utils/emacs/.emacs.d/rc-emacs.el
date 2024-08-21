@@ -192,7 +192,13 @@
   :init
   (pixel-scroll-precision-mode 1))
 
-;;; Setup all-the-icons
-;;; M-x all-the-icons-install-fonts
+;;; Setup nerd-icons
+;;; M-x nerd-icons-install-fonts
 ;;; Installation path: ~/.local/share/fonts/
-(use-package all-the-icons)
+(use-package nerd-icons
+  :custom
+  (nerd-icons-color-icons nil))
+
+(use-package nerd-icons-ibuffer
+  :after nerd-icons
+  :hook (ibuffer-mode . nerd-icons-ibuffer-mode))

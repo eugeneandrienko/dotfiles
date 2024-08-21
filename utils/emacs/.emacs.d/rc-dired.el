@@ -34,12 +34,12 @@
     "Sort dired listings with directories first before adding marks."
     (mydired-sort)))
 
-(use-package all-the-icons-dired
+(use-package nerd-icons-dired
   :pin melpa
-  :requires (all-the-icons dired)
+  :requires (nerd-icons dired)
   :after dired
-  :hook (dired-mode . all-the-icons-dired-mode)
-  :delight all-the-icons-dired-mode)
+  :hook (dired-mode . nerd-icons-dired-mode)
+  :delight nerd-icons-dired-mode)
 
 (use-package dired-hide-dotfiles
   :pin melpa
