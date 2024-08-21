@@ -25,7 +25,7 @@ alias pingya='ping -c3 ya.ru'
 alias s='sudo'
 alias ss='sudo -s'
 alias wget='wget -c'
-alias sget='wget -c -e http_proxy=127.0.0.1:20171 -e https_proxy=127.0.0.1:20171'
+alias sget='wget -c -e http_proxy=127.0.0.1:20172 -e https_proxy=127.0.0.1:20172'
 alias panic='rm -rfv ~/.cache/thumbnails/*; \
              rm -rfv ~/.cache/sxiv/*; \
              rm -rfv ~/.cache/nsxiv/*'
@@ -107,20 +107,20 @@ alias emerge-update='sudo emerge-webrsync; \
                      sudo emerge --ask -uDU --keep-going --with-bdeps=y @world'
 
 # yt-dlp aliases
-alias ydl="yt-dlp --proxy socks5://localhost:1984 \
+alias ydl="yt-dlp --proxy socks5://localhost:20173 \
            --continue --write-description \
            --output '%(upload_date)s_%(title)s.%(ext)s'"
-alias ydl_mp4="yt-dlp --proxy socks5://localhost:1984 \
+alias ydl_mp4="yt-dlp --proxy socks5://localhost:20173 \
                --continue --write-description --embed-thumbnail --recode-video mp4 \
                --output '%(upload_date)s_%(title)s.%(ext)s'"
-alias ydl_podcast="yt-dlp --proxy socks5://localhost:1984 \
+alias ydl_podcast="yt-dlp --proxy socks5://localhost:20173 \
                   --continue \
                   --write-description --extract-audio --audio-format mp3 \
                   --embed-thumbnail --output '%(title)s.%(ext)s' \
                   --exec after_move:'lame --scale 3 %(filepath)q' \
                   --exec after_move:'rm %(filepath)q' \
                   --exec after_move:'rename .mp3.mp3 .mp3 %(filepath)q.mp3'"
-alias ydl_mp3="yt-dlp --proxy socks5://localhost:1984 \
+alias ydl_mp3="yt-dlp --proxy socks5://localhost:20173 \
                --continue \
                --extract-audio --audio-format mp3 \
                --embed-thumbnail --output '%(title)s.%(ext)s'"
