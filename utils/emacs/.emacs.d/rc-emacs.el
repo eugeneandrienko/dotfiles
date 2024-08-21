@@ -48,6 +48,8 @@
   (calendar-week-start-day 1 "Monday is the start of the week")
   (x-gtk-use-native-input t "Fix '<Multi_key> is undefined' on FreeBSD")
   (vc-follow-symlinks t "Do not ask when follow symlink")
+  (frame-title-format '("(%+) %b on %F"))
+  (find-file-visit-truename t "Show real filename when visit symlink")
                                         ; Programming-related configuration
   (compilation-scroll-output 1 "Scroll compilation window")
   (compilation-window-height 10 "Compilation window height")
