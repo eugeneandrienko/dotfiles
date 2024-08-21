@@ -9,6 +9,9 @@ DMENU_ITEMS+=":qmapshack:josm:stellarium"
 DMENU_ITEMS+=":idea:umlet"
 DMENU_ITEMS+=":android-file-transfer"
 DMENU_ITEMS+=":homm3"
+if [ "$MACHINE_HW" = "thinkpad" ]; then
+    DMENU_ITEMS+=":fuck_censorship"
+fi
 
 case $(echo $DMENU_ITEMS | parse_items | f_dmenu 'Execute:') in
     'firefox')
@@ -74,6 +77,9 @@ case $(echo $DMENU_ITEMS | parse_items | f_dmenu 'Execute:') in
         ;;
     'homm3')
         cd $HOME/homm3 && wine HD_Launcher.exe &
+        ;;
+    'fuck_censorship')
+        urxvt -e zsh -ci fuck_censorship
         ;;
     *)
         exit 1
