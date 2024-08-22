@@ -58,3 +58,5 @@
 | C-t C-t                       | Show thumbnails for marked files in dired buffer |
 | C-t d                         | Show thumbnails for marked files in new buffer   |
 |-------------------------------+--------------------------------------------------|
+| C-c RET C-a                   | Attach marked files to new e-mail                |
+|-------------------------------+--------------------------------------------------|

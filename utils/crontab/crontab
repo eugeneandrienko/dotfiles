@@ -1,4 +1,2 @@
-*/10 * * * * /home/drag0n/.bin/get_mail.sh
-0 */1 * * * /home/drag0n/.bin/get_rss.sh
 0 3 * * * /home/drag0n/.bin/get_exchange_rate.sh
 */30 * * * * /home/drag0n/.i3/scripts/get_weather.sh

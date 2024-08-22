@@ -1,5 +1,8 @@
 (use-package dired
   :ensure nil
+  :hook
+  ;; Use Dired to attach files in mu4e
+  (dired-mode . turn-on-gnus-dired-mode)
   :custom
   (dired-listing-switches "-lah" "Arguments for ls")
   (dired-kill-when-opening-new-dired-buffer t "Only one Dired buffer")

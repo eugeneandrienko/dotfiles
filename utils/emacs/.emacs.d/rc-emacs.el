@@ -149,18 +149,6 @@
                '(font . "Noto Sans Mono-16"))
                                         ; Emacs pinentry
   (pinentry-start)
-                                        ; Message mode for mutt
-  (add-to-list 'auto-mode-alist '("/mutt" . message-mode))
-  (add-hook 'message-mode-hook
-            (function
-             (lambda ()
-               (progn
-                 (local-unset-key "\C-c\C-c")
-                 (define-key message-mode-map "\C-c\C-c" #'(lambda ()
-                                                             "save and exit quickly"
-                                                             (interactive)
-                                                             (save-buffer)
-                                                             (server-edit)))))))
                                         ; Smart buffer handling
   (add-hook 'ibuffer-mode-hook
             (lambda ()

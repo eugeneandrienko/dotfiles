@@ -50,12 +50,11 @@ You should have next programs in system before configuration deployment:
 ** Mail and IM:
 - abook
 - fdm
-- lynx
 - maildrop
 - msmtp
-- mutt
+- mu
+- mu4e
 - [[https://github.com/rss2email/rss2email][rss2email]]
-- urlview
 
 ** Editing:
 - ctags
@@ -116,8 +115,8 @@ SSH-key with empty passphrase. This key should be added to remote server to
 =rsync= account into =~/.ssh/authorized_keys=.
 
 ** Passwords:
-For using Mutt with GMail mailboxes you should specify mail server passwords
-in =~/.netrc=.
+For using GMail with =fetchmail= and =msmtp= you should specify mail server
+passwords in =~/.netrc=.
 
 ** Import GPG keys:
 Use this commands:
@@ -151,7 +150,12 @@ Do the next to install Vim plugins:
   https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim=.
 - Second, in Vim execute =:BundleInstall=.
 
-** Emacs fonts installation
+** Emacs plugins and fonts installation
+=Mu4e= e-mail client should be install via the OS package manager, for example:
+#+begin_example
+sudo pkg install mu4e
+#+end_example
+
 Run this after first Emacs run:
 #+begin_example
 M-x all-the-icons-install-fonts

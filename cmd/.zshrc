@@ -79,9 +79,9 @@ autoload -z hotkeys-emacs-c
 autoload -z hotkeys-emacs-dired
 autoload -z hotkeys-emacs-latex
 autoload -z hotkeys-emacs-magit
+autoload -z hotkeys-emacs-mu4e
 autoload -z hotkeys-emacs-org
 autoload -z hotkeys-i3wm
-autoload -z hotkeys-mutt
 autoload -z hotkeys-rtorrent
 autoload -z hotkeys-tmux
 autoload -z hotkeys-vim

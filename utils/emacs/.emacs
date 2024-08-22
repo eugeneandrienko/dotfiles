@@ -13,6 +13,7 @@
 (load "~/.emacs.d/rc-company.el")
 (load "~/.emacs.d/rc-dockerfile-mode.el")
 (load "~/.emacs.d/rc-org.el")
+(load "~/.emacs.d/rc-mu4e.el")
 (load "~/.emacs.d/rc-olivetti.el")
 (load "~/.emacs.d/rc-sql.el")
 (load "~/.emacs.d/rc-pass.el")

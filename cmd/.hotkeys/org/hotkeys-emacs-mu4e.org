@@ -1,0 +1,37 @@
+|---------+-----------------------------------------|
+| Hotkey  | Description                             |
+|---------+-----------------------------------------|
+| C-x m   | Open mu4e                               |
+| U       | Get new emails                          |
+| n,p     | Next/previous message                   |
+| ],[     | Next/previous unread message            |
+| },{     | Next/previous thread                    |
+| y       | Switch between message and headers view |
+| j       | Jump to maildir                         |
+|---------+-----------------------------------------|
+| s       | Search query                            |
+| S       | Edit last query                         |
+| /       | Narrow search query                     |
+|---------+-----------------------------------------|
+| C-c C-c | Send e-mail                             |
+| C-c C-d | Save e-mail as draft                    |
+| C-c C-k | Kill message buffer                     |
+| C-c C-a | Attach file                             |
+|---------+-----------------------------------------|
+| D       | Mark for complete deletion              |
+| m       | Mark for moving to another maildir      |
+| ?       | Mark as unread                          |
+| !       | Mark as read                            |
+| %       | Mark with regexp                        |
+| x       | Execute actions                         |
+|---------+-----------------------------------------|
+| R       | Reply                                   |
+| W       | Reply to all                            |
+| F       | Forward                                 |
+| C       | Compose                                 |
+| E       | Edit                                    |
+|---------+-----------------------------------------|
+| M-RET   | Open url/attachment at point            |
+| e       | Save attachment(s)                      |
+| .       | Show raw message                        |
+|---------+-----------------------------------------|
