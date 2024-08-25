@@ -33,5 +33,6 @@
 |---------+-----------------------------------------|
 | M-RET   | Open url/attachment at point            |
 | e       | Save attachment(s)                      |
+| g       | go to numbered URL                      |
 | .       | Show raw message                        |
 |---------+-----------------------------------------|
