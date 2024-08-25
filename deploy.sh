@@ -15,7 +15,7 @@ stow bin cmd
 
 # Copying dotfiles to $HOME
 export STOW_DIR=./utils
-stow abook ansiweather dunst emacs git gnupg mplayer mail rtorrent ssh tmux vim
+stow abook dunst emacs git gnupg mplayer mail rtorrent ssh tmux vim
 stow --ignore="i3status\.conf\.m4" i3wm
 
 # Making necessary (empty) directories
