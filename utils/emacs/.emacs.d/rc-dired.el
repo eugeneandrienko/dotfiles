@@ -62,3 +62,8 @@
         ("r" . dired-rsync))
   :config
   (add-to-list 'mode-line-misc-info '(:eval dired-rsync-modeline-status 'append)))
+
+(use-package image-dired
+  :ensure nil
+  :custom
+  (image-dired-external-viewer "gimp"))
