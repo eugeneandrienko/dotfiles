@@ -43,8 +43,8 @@
                             (:maildir "/rss-podcasts" :key ?p)
                             (:maildir "/rss-youtube" :key ?y)
                             (:maildir "/social" :key ?s)
-                            (:maildir "/state" :key ?t)
-                            (:maildir "/stores" :key ?r)))
+                            (:maildir "/state" :key ?z)
+                            (:maildir "/stores" :key ?t)))
   (mu4e-headers-fields '((:human-date . 12) (:flags . 6) (:from . 22) (:thread-subject)))
   :config
                                         ; Use mu4e as preferred method for reading e-mails
