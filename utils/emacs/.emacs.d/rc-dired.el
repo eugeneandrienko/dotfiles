@@ -1,8 +1,5 @@
 (use-package dired
   :ensure nil
-  :hook
-  ;; Use Dired to attach files in mu4e
-  (dired-mode . turn-on-gnus-dired-mode)
   :custom
   (dired-listing-switches "-lah" "Arguments for ls")
   (dired-kill-when-opening-new-dired-buffer t "Only one Dired buffer")
@@ -35,7 +32,9 @@
   (defadvice dired-readin
       (after dired-after-updating-hook first () activate)
     "Sort dired listings with directories first before adding marks."
-    (mydired-sort)))
+    (mydired-sort))
+                                        ; Use Dired to attach files in mu4e
+  (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode))
 
 (use-package nerd-icons-dired
   :pin melpa
