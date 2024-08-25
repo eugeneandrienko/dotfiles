@@ -8,16 +8,11 @@
 (load "~/.emacs.d/rc-dired.el")
 (load "~/.emacs.d/rc-langtool.el")
 (load "~/.emacs.d/rc-auctex.el")
-(load "~/.emacs.d/rc-colortheme.el")
 (load "~/.emacs.d/rc-git.el")
 (load "~/.emacs.d/rc-company.el")
-(load "~/.emacs.d/rc-dockerfile-mode.el")
 (load "~/.emacs.d/rc-org.el")
 (load "~/.emacs.d/rc-mu4e.el")
-(load "~/.emacs.d/rc-olivetti.el")
-(load "~/.emacs.d/rc-sql.el")
 (load "~/.emacs.d/rc-pass.el")
-(load "~/.emacs.d/rc-pdf-tools.el")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

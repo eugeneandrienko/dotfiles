@@ -192,3 +192,43 @@
 (use-package nerd-icons-ibuffer
   :after nerd-icons
   :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
+
+(use-package solarized-theme
+  :pin melpa
+  :init
+  (load-theme 'solarized-light t)
+  :custom
+  (solarized-use-variable-pitch nil "Don't change font for headings")
+  (solarized-scale-org-headlines nil "Don't change font for Org headlines")
+  (solarized-high-contrast-mode-line t "High contrast modeline")
+  (x-underline-at-descent-line t "Put underline below font bottomline for X"))
+
+(use-package olivetti
+  :pin melpa
+  :bind
+  ("<f11>" . 'olivetti-mode)
+  :custom
+  (olivetti-body-width 0.6)
+  (olivetti-minimum-body-width 90))
+
+(use-package pdf-tools
+  :pin melpa
+  :after tex-site
+  :config
+  (pdf-loader-install))
+
+(use-package dockerfile-mode
+  :pin melpa
+  :disabled)
+
+(use-package sql-indent
+  :pin gnu
+  :disabled
+  :custom
+  (sql-product 'postgres "Default SQL dialect")
+  :config
+  (add-hook 'sql-mode-hook 'sqlind-minor-mode)
+  (defun sqlind-set-my-offset()
+    "Setup my offset"
+    (setq sqlind-basic-offset 4))
+  (add-hook 'sql-mode-hook 'sqlind-set-my-offset))
