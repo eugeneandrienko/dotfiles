@@ -214,6 +214,9 @@
 (use-package pdf-tools
   :pin melpa
   :after tex-site
+  :bind
+  (:map pdf-view-mode-map
+        ("M-g" . 'pdf-view-goto-page))
   :config
   (pdf-loader-install))
 
