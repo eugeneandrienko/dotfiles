@@ -81,11 +81,11 @@ autoload -z hotkeys-emacs-latex
 autoload -z hotkeys-emacs-magit
 autoload -z hotkeys-emacs-mu4e
 autoload -z hotkeys-emacs-org
+autoload -z hotkeys-emacs-pdf
 autoload -z hotkeys-i3wm
 autoload -z hotkeys-rtorrent
 autoload -z hotkeys-tmux
 autoload -z hotkeys-vim
-autoload -z hotkeys-zathura
 
 # Aliases:
 if [ -e ~/.aliases ]; then

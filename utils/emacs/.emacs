@@ -17,6 +17,7 @@
 (load "~/.emacs.d/rc-olivetti.el")
 (load "~/.emacs.d/rc-sql.el")
 (load "~/.emacs.d/rc-pass.el")
+(load "~/.emacs.d/rc-pdf-tools.el")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

@@ -5,12 +5,14 @@
   (add-hook 'LaTeX-mode-hook #'(lambda () (set-fill-column 80)))
   (add-hook 'LaTeX-mode-hook 'auto-fill-mode)
   (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
-  ;; Asks for master file in multi-file TeX documents
+                                        ; Asks for master file in multi-file TeX documents
   (setq-default TeX-master nil)
-  ;; Enable RefTeX
+                                        ; Enable RefTeX
   (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
   (setq reftex-plug-into-AUCTeX t)
   (setq LaTeX-reftex-cite-format-auto-activate t)
+                                        ; Update PDF buffer after LaTeX compilation
+  (add-hook 'TeX-after-compilation-finished-hook #'TeX-revert-document-buffer)
   :custom
   (TeX-open-quote "<<" "Russian-specific quotes")
   (TeX-close-quote ">>" "Russian-specific quotes")
@@ -19,13 +21,9 @@
   (TeX-parse-self t "Parse document on load")
   (TeX-source-correlate-mode t "For SyncTeX")
   (TeX-source-correlate-method 'synctex "For SyncTeX")
-  (TeX-view-program-list '(("Zathura"
-			    ("zathura %o"
-			     (mode-io-correlate " --synctex-forward %n:0:%b -x \"emacsclient +%{line} %{input}\" "))
-			    "zathura"))
-			 "Setup Zathura as default document viewer with SyncTeX support")
-  (TeX-view-program-selection '((output-pdf "Zathura"))
-                              "Select zathura as default document viewer")
+  (TeX-source-correlate-start-server t "For SyncTeX")
+  (TeX-view-program-selection '((output-pdf "PDF Tools"))
+                              "Select Emacs as default document viewer")
   (LaTeX-command "latex" "Default LaTeX command")
   (TeX-PDF-mode t "Use pdflatex instead of latex")
   (LaTeX-electric-left-right-brace t "Automatically close braces")
