@@ -4,6 +4,7 @@
 | C-p / C-n | Scroll up/down by the line      |
 | C-f / C-b | Scroll right / left             |
 | M-s o     | Grep PDF                        |
+| g         | Refresh file                    |
 | o         | Display outline                 |
 | F         | Go to link                      |
 | f         | Search in links                 |
