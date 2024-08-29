@@ -204,6 +204,14 @@
   (setopt display-fill-column-indicator-column 80)
   (set-face-attribute 'fill-column-indicator nil :background nil
                       :foreground "grey")
+                                        ; Prettify some symbols
+  (add-hook 'c-mode-hook (lambda ()
+                           (push '("==" .?＝) prettify-symbols-alist)
+                           (push '("!=" . ?≠) prettify-symbols-alist)
+                           (push '("<=" . ?⩽) prettify-symbols-alist)
+                           (push '(">=" . ?⩾) prettify-symbols-alist)
+                           (prettify-symbols-mode)))
+  (add-hook 'emacs-lisp-mode-hook 'prettify-symbols-mode)
                                         ; For dekstop saving
   (setq desktop-dirname ".")
   (setq desktop-path (list "~/.emacs.d/desktop"))
