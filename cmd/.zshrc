@@ -84,7 +84,6 @@ autoload -z hotkeys-emacs-org
 autoload -z hotkeys-emacs-pdf
 autoload -z hotkeys-i3wm
 autoload -z hotkeys-rtorrent
-autoload -z hotkeys-tmux
 autoload -z hotkeys-vim
 
 # Aliases:
@@ -93,42 +92,21 @@ if [ -e ~/.aliases ]; then
 fi
 
 # Prompt setup:
-autoload -Uz vcs_info
-precmd_vcs_info() { vcs_info }
-precmd_functions+=( precmd_vcs_info )
+autoload -Uz add-zsh-hook vcs_info
 setopt prompt_subst
+add-zsh-hook precmd vcs_info
 zstyle ':vcs_info:git:*' formats ' %F{cyan}(%b)%f'
 zstyle ':vcs_info:*' enable git
-
-function zle-line-init zle-keymap-select {
-    mode_vi=${${KEYMAP/vicmd/%B+%b}/(main|viins)/%B%#%b}
-    PS1="%F{green}%2~%f\$vcs_info_msg_0_ ${mode_vi} "
-    zle reset-prompt
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
-precmd() { printf "\a\033]2;\033\\" }
-
-if [ -z $MC_TMPDIR ]; then
-    RPROMPT="%F{blue}[%D{%H:%M:%S}]%f"
-else
-    # To properly display shell prompt without RPROMPT in mc
-    RPROMPT=""
-fi
+PS1="%F{green}%2~%f\$vcs_info_msg_0_ %B%#%b "
+export PS1
+RPROMPT="%F{blue}[%D{%H:%M:%S}]%f"
 export RPROMPT
 
-# Maildirs:
-mailpath=(
-    ~/rsync/mail/default"?New mail in =default"
-    ~/rsync/mail/infrastructure"?New mail in =infrastructure"
-    ~/rsync/mail/maillists"?New mail in =maillists"
-    ~/rsync/mail/rss"?New mail in =rss"
-    ~/rsync/mail/rss-podcasts"?New mail in =rss-podcasts"
-    ~/rsync/mail/rss-youtube"?New mail in =rss-youtube"
-    ~/rsync/mail/social"?New mail in =social"
-    ~/rsync/mail/state"?New mail in =state"
-    ~/rsync/mail/stores"?New mail in =stores"
-)
+zle -N zle-keymap-select
+
+# Integration with emacs-eat
+[ -n "$EAT_SHELL_INTEGRATION_DIR" ] && \
+    source "$EAT_SHELL_INTEGRATION_DIR/zsh"
 
 # Remove unnecessary catalogs:
 if [ -d "$HOME/Desktop" ] || [ -d "$HOME/Downloads" ]; then
@@ -139,4 +117,3 @@ fi
 if [ -e ~/.userconfig ]; then
     . ~/.userconfig
 fi
-

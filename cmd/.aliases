@@ -42,8 +42,8 @@ alias http_server='python3 -m http.server'
 alias mount_phone='sudo chown drag0n:drag0n /mnt && aft-mtp-mount -o nonempty /mnt'
 alias umount_phone='sudo umount -v /mnt && sudo chown root:root /mnt'
 alias emacskill='emacsclient -e "(kill-emacs)"'
+alias open='_eat_msg open'
 alias r2e='r2e -c ~/rsync/mail/rss2email.cfg -d ~/rsync/mail/rss2email.json'
-alias org2vas3k='ORG_TMP=$(mktemp /tmp/tmp.XXXXXXXX.org); emacsclient -a "" "$ORG_TMP"; pandoc -s "$ORG_TMP" -t gfm | xclip -in -selection clipboard; rm -f "$ORG_TMP"'
 alias ledger='cd $HOME/rsync/ledger/; ./ledger.sh; popd'
 
 # Mistypes
@@ -81,12 +81,6 @@ alias org='cd ~/rsync/org'
 alias mvnci='mvn clean install'
 alias mvnpom='mvn help:effective-pom'
 alias mvndep='mvn dependency:tree'
-
-# Tmux
-alias txl='tmux list-sessions'
-alias txa='tmux -2 a -t'
-alias txn='tmux -2 new -s'
-alias tmux='tmux -2'
 
 # Xclip
 alias xcopy='xclip -selection clipboard'

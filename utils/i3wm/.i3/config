@@ -47,8 +47,8 @@ workspace_layout tabbed
 # Hide both borders
 hide_edge_borders both
 
-# start a terminal
-bindsym $mod+Return exec urxvt -e zsh -l -c tmux
+# start an Emacs
+bindsym $mod+Return exec emacs
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -210,7 +210,7 @@ bar {
 # Workspace-mapped windows:
 assign [class="(?i)firefox"] web
 assign [class="Telegram"]    web
-assign [class="tmux"]        1
+assign [class="emacs"]        1
 assign [class="Vncviewer"]   10
 assign [class="Vinagre"]     10
 # Floating windows:

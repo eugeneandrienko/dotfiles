@@ -57,3 +57,17 @@
 | c      | Open OrgMode Agenda for selected date    |
 | M-=    | Count of days in selected (C-SPC) region |
 |--------+------------------------------------------|
+
+* Inside EAT
+
+|-------------+---------------------------------------------|
+| Hotkey      | Description                                 |
+|-------------+---------------------------------------------|
+| C-u M-x eat | Open another instance of EAT                |
+| C-q         | Enter special key in "semichar" mode        |
+| C-c M-d     | Goto "char" mode                            |
+| M-RET       | Return to "semichar" mode from "char" mode  |
+| C-c C-e     | Goto "emacs" mode                           |
+| C-c C-j     | Return to "semichar" mode from "emacs" mode |
+| C-c C-p     | Prompt for password                         |
+|-------------+---------------------------------------------|

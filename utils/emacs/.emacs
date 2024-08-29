@@ -21,7 +21,8 @@
  ;; If there is more than one, they won't work right.
  '(Man-notify-method 'pushy)
  '(initial-scratch-message nil)
- '(package-selected-packages '(pinentry org company use-package auto-complete auctex)))
+ '(package-selected-packages
+   '(highlight-thing pinentry org company use-package auto-complete auctex)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

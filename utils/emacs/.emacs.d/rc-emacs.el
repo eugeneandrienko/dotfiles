@@ -85,7 +85,8 @@
                       (mode . bibtex-mode)))
             ("C" (or
                   (mode . c-mode)))
-            ("Dired" (mode . dired-mode))))))
+            ("Dired" (mode . dired-mode))
+            ("EAT" (mode . eat-mode))))))
                                         ; Misc
   (epg-pinentry-mode 'loopback)
   (mail-header-separator "")
@@ -235,3 +236,18 @@
     "Setup my offset"
     (setq sqlind-basic-offset 4))
   (add-hook 'sql-mode-hook 'sqlind-set-my-offset))
+(use-package eat
+  :pin nongnu
+  :custom
+  (eat-enable-directory-tracking t "Track current working directory")
+  (eat-term-scrollback-size nil "Unlimited scrollback")
+  :bind
+  (:map eat-mode-map
+        ("C-c C-p" . eat-send-password))
+  :config
+  (defun my-eat-open (file)
+    "Opens file from EAT"
+    (if (file-exists-p file)
+        (find-file-other-window file t)
+      (warn "File doesn't exists")))
+  (add-to-list 'eat-message-handler-alist (cons "open" 'my-eat-open)))

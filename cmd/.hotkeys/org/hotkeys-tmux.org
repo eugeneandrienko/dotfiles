@@ -1,6 +1,0 @@
-|--------+---------------------------------------|
-| Hotkey | Description                           |
-|--------+---------------------------------------|
-| C-b u  | open urls from current window         |
-| C-b z  | toogle zoom state of the current pane |
-|--------+---------------------------------------|

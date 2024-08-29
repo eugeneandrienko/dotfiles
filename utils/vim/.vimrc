@@ -200,7 +200,7 @@ set updatetime=100
 highlight clear SignColumn
 " Fix window sizes when window manager resize it
 autocmd VimResized * wincmd =
-" Update vim title for X11 and tmux
+" Update vim title for X11
 set titleold = ""
 set title
 autocmd BufEnter * let &titlestring = expand("%:t")

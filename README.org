@@ -5,7 +5,7 @@ writing since 2005.
 
 * Contents:
 - =cmd/= — shell-related configuration files.
-- =utils/= — configuration files for different utilities, like vim or tmux.
+- =utils/= — configuration files for different utilities, like emacs or msmtp.
 - =noauto/= — different system configuration files, not for automatic
   installation. Described below.
 - =scripts/= — scripts to:
@@ -42,7 +42,6 @@ You should have next programs in system before configuration deployment:
 - stow
 - syncthing
 - sudo
-- tmux (>= 3.2)
 - xsltproc
 - udisks
 - zsh
