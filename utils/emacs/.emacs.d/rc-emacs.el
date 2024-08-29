@@ -99,6 +99,12 @@
   (desktop-auto-save-timeout 30 "Autosave every 30 seconds")
 
   :config
+                                        ; Use UTF8 everywhere
+  (prefer-coding-system 'utf-8)
+  (set-default-coding-systems 'utf-8)
+  (set-terminal-coding-system 'utf-8)
+  (set-keyboard-coding-system 'utf-8)
+  (set-language-environment 'utf-8)
                                         ; Turn off the panel
   (when (fboundp 'tool-bar-mode)
     (tool-bar-mode -1))
