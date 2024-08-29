@@ -258,6 +258,14 @@
   :config
   (pdf-loader-install))
 
+(use-package pdf-view-restore
+  :pin melpa
+  :after pdf-tools
+  :hook
+  (pdf-view-mode . pdf-view-restore-mode)
+  :custom
+  (pdf-view-restore-filename "~/.emacs.d/.pdf-view-restore"))
+
 (use-package dockerfile-mode
   :pin melpa
   :disabled)
