@@ -67,5 +67,5 @@ picom -f --crop-shadow-to-monitor \
       -I 0.08 -O 0.12 -D 20 \
       --backend glx --force-win-blend \
       --shadow-exclude 'class_g = "firefox"' \
-      --daemon
+      --no-vsync --daemon
 exec /usr/bin/env i3 -c ~/.i3/config
