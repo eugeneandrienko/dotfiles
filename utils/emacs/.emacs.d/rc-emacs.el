@@ -281,6 +281,22 @@
     "Setup my offset"
     (setq sqlind-basic-offset 4))
   (add-hook 'sql-mode-hook 'sqlind-set-my-offset))
+
+(use-package nov
+  :pin melpa
+  :mode ("\\.epub\\'" . nov-mode)
+  :custom
+  (nov-text-width 100 "EPUB text width"))
+
+(use-package fb2-reader
+  :pin melpa
+  :mode ("\\.fb2\\(\\.zip\\)?\\'" . fb2-reader-mode)
+  :commands (fb2-reader-continue)
+  :custom
+  (fb2-reader-page-width 100)
+  (fb2-reader-image-max-width 600)
+  (fb2-reader-image-max-height 600))
+
 (use-package eat
   :pin nongnu
   :custom
