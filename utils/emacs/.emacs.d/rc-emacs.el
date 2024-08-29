@@ -138,8 +138,13 @@
   (setq-default tab-width 4)
                                         ; Indent only by spaces by default
   (setq-default indent-tabs-mode nil)
-                                        ; Highligth the current line
-  (global-hl-line-mode 1)
+                                        ; Highligth the current line for some modes
+  (add-hook 'java-mode-hook 'hl-line-mode)
+  (add-hook 'c-mode-hook 'hl-line-mode)
+  (add-hook 'sh-mode-hook 'hl-line-mode)
+  (add-hook 'LaTeX-mode-hook 'hl-line-mode)
+  (add-hook 'bibtex-mode-hook 'hl-line-mode)
+  (add-hook 'emacs-lisp-mode-hook 'hl-line-mode)
                                         ; Auto-revert buffer
   (global-auto-revert-mode t)
                                         ; Identation by default
@@ -275,3 +280,20 @@
         (find-file-other-window file t)
       (warn "File doesn't exists")))
   (add-to-list 'eat-message-handler-alist (cons "open" 'my-eat-open)))
+
+(use-package highlight-thing
+  :pin melpa
+  :delight
+  (hightlight-thing-mode)
+  (hi-lock-mode)
+  :hook
+  ((c-mode . highlight-thing-mode)
+   (java-mode . highlight-thing-mode)
+   (sh-mode . highlight-thing-mode)
+   (emacs-lisp-mode . highlight-thing-mode))
+  :custom
+  (highlight-thing-what-thing 'word "Highlight words")
+  (highlight-thing-delay-seconds 1.0)
+  (highlight-thing-case-sensitive-p t)
+  :custom-face
+  (highlight-thing ((t (:inherit hi-pink :weight bold)))))
