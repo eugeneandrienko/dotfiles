@@ -129,7 +129,11 @@
   (if (file-directory-p "~/.emacs.d/autosave")
       (setq auto-save-file-name-transforms '((".*" "~/.emacs.d/autosave/" t))))
                                         ; Matching brackets highliting
-  (show-paren-mode t)
+  (add-hook 'java-mode-hook 'show-paren-local-mode)
+  (add-hook 'c-mode-hook 'show-paren-local-mode)
+  (add-hook 'LaTeX-mode-hook 'show-paren-local-mode)
+  (add-hook 'bibtex-mode-hook 'show-paren-local-mode)
+  (add-hook 'emacs-lisp-mode-hook 'show-paren-local-mode)
                                         ; Tab = 4 spaces
   (setq-default tab-width 4)
                                         ; Indent only by spaces by default
@@ -145,7 +149,12 @@
   (add-hook 'octave-mode-hook 'my-ret-hook)
   (add-hook 'sh-mode-hook 'fci-mode)
                                         ; Electric pair mode
-  (electric-pair-mode 1)
+  (add-hook 'java-mode-hook 'electric-pair-local-mode)
+  (add-hook 'c-mode-hook 'electric-pair-local-mode)
+  (add-hook 'sh-mode-hook 'electric-pair-local-mode)
+  (add-hook 'LaTeX-mode-hook 'electric-pair-local-mode)
+  (add-hook 'bibtex-mode-hook 'electric-pair-local-mode)
+  (add-hook 'emacs-lisp-mode-hook 'electric-pair-local-mode)
                                         ; y is rather short than yes
   (fset 'yes-or-no-p 'y-or-n-p)
                                         ; Use blinking cursor
