@@ -92,6 +92,11 @@
   (mail-header-separator "")
   (recentf-max-menu-items 25)
   (recentf-max-saved-items 25)
+  (desktop-base-file-name "emacs.desktop")
+  (desktop-base-lock-name "emacs.desktop.lock")
+  (desktop-save t "Do not ask to save desktop")
+  (desktop-load-locked-desktop nil "Do not load locked desktop")
+  (desktop-auto-save-timeout 30 "Autosave every 30 seconds")
 
   :config
                                         ; Turn off the panel
@@ -179,6 +184,10 @@
   (setopt display-fill-column-indicator-column 80)
   (set-face-attribute 'fill-column-indicator nil :background nil
                       :foreground "grey")
+                                        ; For dekstop saving
+  (setq desktop-dirname ".")
+  (setq desktop-path (list "~/.emacs.d/desktop"))
+  (setq desktop-files-not-to-save "^$")
 
   :init
   (pixel-scroll-precision-mode 1))
