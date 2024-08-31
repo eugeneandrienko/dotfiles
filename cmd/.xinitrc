@@ -68,4 +68,8 @@ picom -f --crop-shadow-to-monitor \
       --backend glx --force-win-blend \
       --shadow-exclude 'class_g = "firefox"' \
       --no-vsync --daemon
+
+nohup /usr/bin/env emacs --daemon &
+rm -f nohup.out ~/nohup.out
+
 exec /usr/bin/env i3 -c ~/.i3/config

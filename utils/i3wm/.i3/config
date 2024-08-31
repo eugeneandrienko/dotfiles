@@ -48,7 +48,7 @@ workspace_layout tabbed
 hide_edge_borders both
 
 # start an Emacs
-bindsym $mod+Return exec emacs
+bindsym $mod+Return exec zsh -ic emacs
 
 # kill focused window
 bindsym $mod+Shift+q kill

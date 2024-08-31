@@ -96,7 +96,7 @@
   (desktop-base-lock-name "emacs.desktop.lock")
   (desktop-save t "Do not ask to save desktop")
   (desktop-load-locked-desktop nil "Do not load locked desktop")
-  (desktop-auto-save-timeout 30 "Autosave every 30 seconds")
+  (desktop-auto-save-timeout 60 "Autosave every 60 seconds")
 
   :config
                                         ; Use UTF8 everywhere
@@ -216,6 +216,13 @@
   (setq desktop-dirname ".")
   (setq desktop-path (list "~/.emacs.d/desktop"))
   (setq desktop-files-not-to-save "^$")
+  (desktop-save-mode 1)
+                                        ; Misc
+  (defun server-shutdown ()
+    "Save buffers, quit and shutdown server"
+    (interactive)
+    (save-some-buffers)
+    (kill-emacs))
 
   :init
   (pixel-scroll-precision-mode 1))

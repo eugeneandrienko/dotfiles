@@ -4,4 +4,3 @@ if [ "$?" -eq "1" ]; then
 else
     emacsclient -n -a "" "$@"
 fi
-
