@@ -95,8 +95,8 @@
   (desktop-base-file-name "emacs.desktop")
   (desktop-base-lock-name "emacs.desktop.lock")
   (desktop-save t "Do not ask to save desktop")
-  (desktop-load-locked-desktop nil "Do not load locked desktop")
-  (desktop-auto-save-timeout 60 "Autosave every 60 seconds")
+  (desktop-load-locked-desktop t "Load locked desktop")
+  (desktop-auto-save-timeout 600 "Autosave every 5 minutes")
 
   :config
                                         ; Use UTF8 everywhere
