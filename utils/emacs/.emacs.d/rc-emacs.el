@@ -222,11 +222,24 @@
   (setq desktop-files-not-to-save "^$")
   (desktop-save-mode 1)
                                         ; Misc
-  (defun server-shutdown ()
-    "Save buffers, quit and shutdown server"
+  (defun shutdown ()
+    "Save buffers, quit, shutdown Emacs server and system"
     (interactive)
     (save-some-buffers)
     (kill-emacs))
+  (add-hook 'kill-emacs-hook
+            (lambda ()
+              (progn
+                (setenv "SUDO_ASKPASS" (cond
+                                        ((eq system-type 'gnu/linux)
+                                         "/usr/bin/x11-ssh-askpass")
+                                        ((eq system-type 'berkeley-unix)
+                                         "/usr/local/bin/x11-ssh-askpass")))
+                (call-process "sudo" nil nil nil "-A" "poweroff"))))
+  (add-hook 'emacs-startup-hook
+            (lambda ()
+              (call-process "dunstify" nil nil nil
+                            "Emacs" "Daemon started" "-u" "normal")))
 
   :init
   (pixel-scroll-precision-mode 1))
