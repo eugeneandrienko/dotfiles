@@ -85,8 +85,12 @@
                       (mode . bibtex-mode)))
             ("C" (or
                   (mode . c-mode)))
+            ("LISP" (or
+                     (mode . emacs-lisp-mode)
+                     (name . "^\\*scratch\\*$")))
             ("Dired" (mode . dired-mode))
             ("EAT" (mode . eat-mode))))))
+  (ibuffer-never-show-predicates '("*Messages\\*" "*Help\\*" "*Quick Help\\*"))
                                         ; Misc
   (epg-pinentry-mode 'loopback)
   (mail-header-separator "")
