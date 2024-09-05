@@ -16,6 +16,8 @@
   (message-sendmail-envelope-from 'header)
   (send-mail-function 'sendmail-send-it)
   (message-send-mail-function 'sendmail-send-it)
+  (sendmail-coding-system 'utf-8)
+  (message-generate-headers-first t "Generate all required headers before composing message")
   (message-kill-buffer-on-exit t "Don't keep message buffer after send")
   (mu4e-get-mail-command "~/.bin/get_mail.sh -pm")
   (mail-user-agent 'mu4e-user-agent "Use mu4e as default email client")
@@ -23,6 +25,7 @@
   (user-mail-address "evg.andrienko@gmail.com")
   (mu4e-user-mail-address-list '("h0rr0rrdrag@gmail.com"
                                  "evg.andrienko@gmail.com"))
+  (mu4e-compose-format-flowed t "Use format=flowed to reflow paragraphs")
   (user-full-name "Eugene")
   (message-signature "Eugene Andrienko")
   (mu4e-bookmarks '((:name "Unread messages"
