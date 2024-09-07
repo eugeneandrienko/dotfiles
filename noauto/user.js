@@ -286,3 +286,6 @@ user_pref("network.predictor.enabled", false);
 
 // PREF: Disable captive portal detection
 user_pref("network.captive-portal-service.enabled", false);
+
+// PREF: Turn on normal scrollbars
+user_pref("widget.non-native-theme.scrollbar.style", 4);
