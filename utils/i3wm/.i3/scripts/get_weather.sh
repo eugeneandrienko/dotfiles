@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 
 WEATHER=/home/drag0n/.cache/weather
 
@@ -14,8 +14,15 @@ curl -s 'https://api.openweathermap.org/data/2.5/weather?lat='$(/home/drag0n/.bi
         -e 's/(.+°C )11[dn]( \(.*\))/\1⛈️\2/g' \
         -e 's/(.+°C )13[dn]( \(.*\))/\1❄️\2/g'  \
         -e 's/(.+°C )50[dn]( \(.*\))/\1🌫️\2/g' \
-    > "$WEATHER"
+    > "$WEATHER".temp
 
 if [ "$?" -ne "0" ]; then
     echo "No weather data :-(" > "$WEATHER"
+else
+    ANSWER_CHECK=$(cat "$WEATHER".temp | wc -c | sed -r 's/.+([0-9]+).*/\1/g')
+    if [ "$ANSWER_CHECK" -eq "0" ]; then
+        echo "No weather data" > "$WEATHER"
+    else
+        cp "$WEATHER".temp "$WEATHER"
+    fi
 fi
