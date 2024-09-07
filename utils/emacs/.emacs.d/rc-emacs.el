@@ -50,6 +50,7 @@
   (vc-follow-symlinks t "Do not ask when follow symlink")
   (frame-title-format '("(%+) %b on %F"))
   (find-file-visit-truename t "Show real filename when visit symlink")
+  (warning-minimum-level :emergency "Don't show warnings in buffer")
                                         ; Programming-related configuration
   (compilation-scroll-output 1 "Scroll compilation window")
   (compilation-window-height 10 "Compilation window height")
