@@ -91,7 +91,11 @@
                      (name . "^\\*scratch\\*$")))
             ("Dired" (mode . dired-mode))
             ("EAT" (mode . eat-mode))))))
-  (ibuffer-never-show-predicates '("*Messages\\*" "*Help\\*" "*Quick Help\\*"))
+  (ibuffer-never-show-predicates '("*Messages\\*" "*Help\\*" "*Quick Help\\*"
+                                   "*Quail Completions\\*" "*Warnings\\*"
+                                   "*Calc Trail\\*" "*Compile-Log\\*"
+                                   "*Async-native-compile-log\\*"
+                                   "*Native-compile-log\\*"))
                                         ; Misc
   (epg-pinentry-mode 'loopback)
   (mail-header-separator "")
