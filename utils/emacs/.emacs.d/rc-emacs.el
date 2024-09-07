@@ -227,6 +227,7 @@
     "Save buffers, quit, shutdown Emacs server and system"
     (interactive)
     (save-some-buffers)
+    (desktop-save-in-desktop-dir)
     (kill-emacs))
   (add-hook 'kill-emacs-hook
             (lambda ()
