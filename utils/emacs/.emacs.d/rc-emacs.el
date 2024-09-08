@@ -30,6 +30,9 @@
   ("C-c <right>" . windmove-right)
   ("C-x C-b" . ibuffer)
   ("\C-z" . toggle-input-method)
+  ("M-j" . (lambda ()
+             (interactive)
+             (join-line -1)))
 
   :hook
   ((c-mode . display-fill-column-indicator-mode)
