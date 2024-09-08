@@ -244,7 +244,7 @@
                            (push '(">=" . ?⩾) prettify-symbols-alist)
                            (prettify-symbols-mode)))
   (add-hook 'emacs-lisp-mode-hook 'prettify-symbols-mode)
-                                        ; For dekstop saving
+                                        ; For desktop saving
   (setq desktop-dirname ".")
   (setq desktop-path (list "~/.emacs.d/desktop"))
   (setq desktop-files-not-to-save "^$")
