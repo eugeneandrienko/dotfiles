@@ -127,6 +127,8 @@
   (desktop-load-locked-desktop t "Load locked desktop")
   (desktop-auto-save-timeout 600 "Autosave every 5 minutes")
   (Man-notify-method 'pushy "How manpage is displayed")
+                                        ; Disable writing custom options to the end of ~/.emacs
+  (custom-file (make-temp-file "emacs-custom-"))
 
   :config
                                         ; Use UTF8 everywhere
