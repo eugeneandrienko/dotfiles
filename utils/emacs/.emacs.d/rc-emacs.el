@@ -91,6 +91,7 @@
      ("gnu" . 9)
      ("melpa-stable" . 8)
      ("nongnu" . 1)))
+  (package-install-upgrade-built-in t "Update built-in packages")
                                         ; Smart buffer handling
   (ibuffer-saved-filter-groups
    (quote (("default"
