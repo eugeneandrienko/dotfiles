@@ -21,6 +21,7 @@
                                 "Special commands for files with specified extensions")
   (wdired-allow-to-change-permissions t "Change permissions in WDired")
   (dired-mouse-drag-files t "Enable mouse dragging to another apps")
+  (dired-free-space nil "Don't show free space line")
   :config
   (defun mydired-sort ()
     "Sort dired listings with directories first."
