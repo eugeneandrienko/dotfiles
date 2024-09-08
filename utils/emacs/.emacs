@@ -13,27 +13,3 @@
 (load "~/.emacs.d/rc-org.el")
 (load "~/.emacs.d/rc-mu4e.el")
 (load "~/.emacs.d/rc-pass.el")
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(Man-notify-method 'pushy)
- '(initial-scratch-message nil)
- '(package-selected-packages
-   '(highlight-thing pinentry org company use-package auto-complete auctex)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:size "14pt" :family "Noto Sans Mono-14"))))
- '(italic ((t (:slant italic :weight light :height 160 :width normal :family "Noto Sans Mono Italic" :spacing proportional))))
- '(popup-tip-face ((t (:background "#eee8d5" :foreground "#657b83" :box (:line-width (2 . 2) :color "dim gray" :style flat-button))))))
-
-;; Default cyr/latin input method
-(setq default-input-method "russian-computer")
-(global-set-key "\C-z" 'toggle-input-method)
-(put 'dired-find-alternate-file 'disabled nil)
-(put 'narrow-to-region 'disabled nil)

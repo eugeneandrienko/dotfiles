@@ -29,12 +29,21 @@
   ("C-c <down>" . windmove-down)
   ("C-c <right>" . windmove-right)
   ("C-x C-b" . ibuffer)
+  ("\C-z" . toggle-input-method)
 
   :hook
   ((c-mode . display-fill-column-indicator-mode)
    (sh-mode . display-fill-column-indicator-mode))
 
   :custom
+                                        ; List of manually installed packages
+  (package-selected-packages '(highlight-thing
+                               pinentry
+                               org
+                               company
+                               use-package
+                               auto-complete
+                               auctex))
                                         ; Interface configuration
   (scroll-step 1 "My favorite scrolling")
   (pixel-scroll-precision-interpolate-page t "For pixel-precision scrolling")
@@ -51,6 +60,8 @@
   (frame-title-format '("(%+) %b on %F"))
   (find-file-visit-truename t "Show real filename when visit symlink")
   (warning-minimum-level :emergency "Don't show warnings in buffer")
+                                        ; Default cyr/latin input method
+  (default-input-method "russian-computer")
                                         ; Programming-related configuration
   (compilation-scroll-output 1 "Scroll compilation window")
   (compilation-window-height 10 "Compilation window height")
@@ -106,6 +117,7 @@
   (desktop-save t "Do not ask to save desktop")
   (desktop-load-locked-desktop t "Load locked desktop")
   (desktop-auto-save-timeout 600 "Autosave every 5 minutes")
+  (Man-notify-method 'pushy "How manpage is displayed")
 
   :config
                                         ; Use UTF8 everywhere
@@ -226,6 +238,8 @@
   (setq desktop-path (list "~/.emacs.d/desktop"))
   (setq desktop-files-not-to-save "^$")
   (desktop-save-mode 1)
+                                        ; Enable region narrowing
+  (put 'narrow-to-region 'disabled nil)
                                         ; Misc
   (defun shutdown ()
     "Save buffers, quit, shutdown Emacs server and system"
@@ -248,7 +262,11 @@
                             "Emacs" "Daemon started" "-u" "normal")))
 
   :init
-  (pixel-scroll-precision-mode 1))
+  (pixel-scroll-precision-mode 1)
+  :custom-face
+  (default ((t (:size "14pt" :family "Noto Sans Mono-14"))))
+  (italic ((t (:slant italic :weight light :height 160 :width normal :family "Noto Sans Mono Italic" :spacing proportional))))
+  (popup-tip-face ((t (:background "#eee8d5" :foreground "#657b83" :box (:line-width (2 . 2) :color "dim gray" :style flat-button))))))
 
 ;;; Setup nerd-icons
 ;;; M-x nerd-icons-install-fonts

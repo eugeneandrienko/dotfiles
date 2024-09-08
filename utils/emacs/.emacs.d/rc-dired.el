@@ -35,7 +35,8 @@
     "Sort dired listings with directories first before adding marks."
     (mydired-sort))
                                         ; Use Dired to attach files in mu4e
-  (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode))
+  (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode)
+  (put 'dired-find-alternate-file 'disabled nil))
 
 (use-package nerd-icons-dired
   :pin melpa
