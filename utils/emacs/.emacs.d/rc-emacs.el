@@ -112,7 +112,9 @@
                                    "*Quail Completions\\*" "*Warnings\\*"
                                    "*Calc Trail\\*" "*Compile-Log\\*"
                                    "*Async-native-compile-log\\*"
-                                   "*Native-compile-log\\*"))
+                                   "*Native-compile-log\\*"
+                                   "*Calculator\\*" "*Calendar\\*"
+                                   "*Warning\\*"))
                                         ; Misc
   (epg-pinentry-mode 'loopback)
   (mail-header-separator "")
