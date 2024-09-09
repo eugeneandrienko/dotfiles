@@ -25,7 +25,7 @@ case $(echo $ITEMS | parse_items | f_dmenu 'Select:') in
                 picom -f --crop-shadow-to-monitor \
                       -I 0.08 -O 0.12 -D 20 \
                       --backend glx --force-win-blend \
-                      --shadow-exclude 'class_g = "firefox"' \
+                      --shadow-exclude 'class_g = "librewolf"' \
                       --daemon
                 notify-send -u low -t 5000 "Screen mode: NORMAL"
                 ;;
@@ -57,7 +57,7 @@ EOF
                 picom -f --crop-shadow-to-monitor \
                       -I 0.08 -O 0.12 -D 20 \
                       --backend glx --force-win-blend \
-                      --shadow-exclude 'class_g = "firefox"' \
+                      --shadow-exclude 'class_g = "librewolf"' \
                       --window-shader-fg "$NIGHT_SHADER" \
                       --daemon
                 notify-send -u low -t 5000 "Screen mode: NIGHT"

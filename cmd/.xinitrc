@@ -66,7 +66,7 @@ esac
 picom -f --crop-shadow-to-monitor \
       -I 0.08 -O 0.12 -D 20 \
       --backend glx --force-win-blend \
-      --shadow-exclude 'class_g = "firefox"' \
+      --shadow-exclude 'class_g = "librewolf"' \
       --no-vsync --daemon
 
 nohup /usr/bin/env emacs --daemon &

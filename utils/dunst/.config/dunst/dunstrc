@@ -375,8 +375,8 @@
 # GLib based applications export their desktop-entry name. In comparison to the appname,
 # the desktop-entry won't get localized.
 
-[firefox]
-    desktop_entry = Firefox
+[librewolf]
+    desktop_entry = Librewolf
     format = "<b>%a</b>\n%b"
 
 [audio_stack_tag]
