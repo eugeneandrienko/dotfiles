@@ -29,7 +29,6 @@
   ("C-c <down>" . windmove-down)
   ("C-c <right>" . windmove-right)
   ("C-x C-b" . ibuffer)
-  ("\C-z" . toggle-input-method)
   ("M-j" . (lambda ()
              (interactive)
              (join-line -1)))
@@ -68,8 +67,6 @@
   (find-file-visit-truename t "Show real filename when visit symlink")
   (warning-minimum-level :emergency "Don't show warnings in buffer")
   (hl-line-sticky-flag nil "Don't show hl-line on unfocused windows")
-                                        ; Default cyr/latin input method
-  (default-input-method "russian-computer")
                                         ; Programming-related configuration
   (compilation-scroll-output 1 "Scroll compilation window")
   (compilation-window-height 10 "Compilation window height")
@@ -251,7 +248,18 @@
   (desktop-save-mode 1)
                                         ; Enable region narrowing
   (put 'narrow-to-region 'disabled nil)
-                                        ; Misc
+                                          ; Notify when Emacs Daemon started
+  (add-hook 'emacs-startup-hook
+            (lambda ()
+              (call-process "dunstify" nil nil nil
+                            "Emacs" "Daemon started" "-u" "normal")))
+                                        ; Setup language switching
+  (add-hook 'emacs-startup-hook
+            (lambda ()
+              (progn
+                (setq default-input-method "russian-computer")
+                (global-set-key "\C-z" 'toggle-input-method))))
+                                        ; Functions to shutdown Emacs Daemon
   (defun emacs-shutdown ()
     "Save buffers, quit, shutdown Emacs server and system"
     (interactive)
@@ -277,10 +285,6 @@
                 (call-process "dunstify" nil nil nil
                               "Emacs" "Daemon stopped" "-u" "normal")))
     (kill-emacs))
-  (add-hook 'emacs-startup-hook
-            (lambda ()
-              (call-process "dunstify" nil nil nil
-                            "Emacs" "Daemon started" "-u" "normal")))
 
   :init
   (pixel-scroll-precision-mode 1)
