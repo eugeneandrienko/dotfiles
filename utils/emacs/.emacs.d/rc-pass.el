@@ -9,4 +9,5 @@
   :requires (password-store password-store-otp)
   :after (password-store password-store-otp)
   :custom
-  (pass-username-fallback-on-filename t "Take username from filename if no entry in file itself"))
+  (pass-username-fallback-on-filename t "Take username from filename if no entry in file itself")
+  (pass-suppress-confirmations t "Don't ask for confirmations"))
