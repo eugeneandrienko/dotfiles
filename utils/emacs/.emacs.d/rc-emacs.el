@@ -250,7 +250,7 @@
   (desktop-save-mode 1)
                                         ; Enable region narrowing
   (put 'narrow-to-region 'disabled nil)
-                                          ; Notify when Emacs Daemon started
+                                        ; Notify when Emacs Daemon started
   (add-hook 'emacs-startup-hook
             (lambda ()
               (call-process "dunstify" nil nil nil
@@ -386,7 +386,17 @@
     (if (file-exists-p file)
         (find-file-other-window file t)
       (warn "File doesn't exists")))
-  (add-to-list 'eat-message-handler-alist (cons "open" 'my-eat-open)))
+  (add-to-list 'eat-message-handler-alist (cons "open" 'my-eat-open))
+  (defun eat2 ()
+    "Open 2 EAT windows with fuck_censorship in one"
+    (interactive)
+    (eat)
+    (eat "zsh -i -c fuck_censorship" 1))
+  (defun eat-work ()
+    "Open 2 EAT windows with connection to work"
+    (interactive)
+    (eat "~/work.sh" 9)
+    (eat "~/work.sh" 8)))
 
 (use-package highlight-thing
   :pin melpa
