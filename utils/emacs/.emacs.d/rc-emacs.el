@@ -115,16 +115,17 @@
                                    "*Native-compile-log\\*"
                                    "*Calculator\\*" "*Calendar\\*"
                                    "*Warning\\*"))
-                                        ; Misc
-  (epg-pinentry-mode 'loopback)
-  (mail-header-separator "")
-  (recentf-max-menu-items 25)
-  (recentf-max-saved-items 25)
+                                        ; Desktop save/restore
   (desktop-base-file-name "emacs.desktop")
   (desktop-base-lock-name "emacs.desktop.lock")
   (desktop-save t "Do not ask to save desktop")
   (desktop-load-locked-desktop t "Load locked desktop")
   (desktop-auto-save-timeout 600 "Autosave every 5 minutes")
+                                        ; Misc
+  (epg-pinentry-mode 'loopback)
+  (mail-header-separator "")
+  (recentf-max-menu-items 25)
+  (recentf-max-saved-items 25)
   (Man-notify-method 'pushy "How manpage is displayed")
                                         ; Disable writing custom options to the end of ~/.emacs
   (custom-file (make-temp-file "emacs-custom-"))
@@ -247,7 +248,9 @@
   (setq desktop-dirname ".")
   (setq desktop-path (list "~/.emacs.d/desktop"))
   (setq desktop-files-not-to-save "^$")
-  (desktop-save-mode 1)
+  (add-hook 'server-after-make-frame-hook (lambda ()
+                                            (desktop-read)
+                                            (desktop-save-mode 1)))
                                         ; Enable region narrowing
   (put 'narrow-to-region 'disabled nil)
                                         ; Notify when Emacs Daemon started
