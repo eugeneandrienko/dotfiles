@@ -1,6 +1,6 @@
 if [ "$#" -ne "1" ]; then
     echo "Specify video file name"
-    exit 1
+    return
 fi
 
 source $HOME/.bin/get_machine_id.sh
@@ -14,7 +14,7 @@ case "$MACHINE_HW" in
     ;;
     *)
         echo "Unknown machine - unknown resolution"
-        exit 2
+        return
     ;;
 esac
 
