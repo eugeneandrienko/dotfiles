@@ -380,16 +380,7 @@
   :custom
   (eat-enable-directory-tracking t "Track current working directory")
   (eat-term-scrollback-size nil "Unlimited scrollback")
-  :bind
-  (:map eat-mode-map
-        ("C-c C-p" . eat-send-password))
-  :config
-  (defun my-eat-open (file)
-    "Opens file from EAT"
-    (if (file-exists-p file)
-        (find-file-other-window file t)
-      (warn "File doesn't exists")))
-  (add-to-list 'eat-message-handler-alist (cons "open" 'my-eat-open))
+  :init
   (defun eat2 ()
     "Open 2 EAT windows with fuck_censorship in one"
     (interactive)
@@ -399,7 +390,17 @@
     "Open 2 EAT windows with connection to work"
     (interactive)
     (eat "~/work.sh" 9)
-    (eat "~/work.sh" 8)))
+    (eat "~/work.sh" 8))
+  :bind
+  (:map eat-mode-map
+        ("C-c C-p" . eat-send-password))
+  :config
+  (defun my-eat-open (file)
+    "Opens file from EAT"
+    (if (file-exists-p file)
+        (find-file-other-window file t)
+      (warn "File doesn't exists")))
+  (add-to-list 'eat-message-handler-alist (cons "open" 'my-eat-open)))
 
 (use-package highlight-thing
   :pin melpa
