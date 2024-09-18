@@ -41,7 +41,6 @@ alias newsboat='newsboat -u ~/rsync/filez/rss/urls'
 alias http_server='python3 -m http.server'
 alias mount_phone='sudo chown drag0n:drag0n /mnt && aft-mtp-mount -o nonempty /mnt'
 alias umount_phone='sudo umount -v /mnt && sudo chown root:root /mnt'
-alias open='_eat_msg open'
 alias r2e='r2e -c ~/rsync/mail/rss2email.cfg -d ~/rsync/mail/rss2email.json'
 alias ledger='cd $HOME/rsync/ledger/; ./ledger.sh; popd'
 

@@ -393,14 +393,7 @@
     (eat "~/work.sh" 8))
   :bind
   (:map eat-mode-map
-        ("C-c C-p" . eat-send-password))
-  :config
-  (defun my-eat-open (file)
-    "Opens file from EAT"
-    (if (file-exists-p file)
-        (find-file-other-window file t)
-      (warn "File doesn't exists")))
-  (add-to-list 'eat-message-handler-alist (cons "open" 'my-eat-open)))
+        ("C-c C-p" . eat-send-password)))
 
 (use-package highlight-thing
   :pin melpa
