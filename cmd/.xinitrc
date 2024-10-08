@@ -49,7 +49,7 @@ case "$MACHINE_HW" in
 esac
 
 # Set wallpaper:
-feh --bg-fill --no-fehbg /home/drag0n/rsync/filez/wallpaperz/DRG.jpg &
+feh --image-bg "#000000" --bg-center --no-fehbg /home/drag0n/rsync/filez/wallpaperz/scarletspectrum_adine.png &
 
 # Start redshift:
 ~/.bin/redshift.sh
