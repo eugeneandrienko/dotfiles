@@ -5,8 +5,8 @@ source ~/.bin/get_machine_id.sh
 case "$MACHINE_OS" in
     "gentoo")
         if [ -x /usr/bin/apulse ] &&
-           [ -x /usr/bin/librewolf-bin ]; then
-            /usr/bin/apulse /usr/bin/librewolf-bin $1 &
+           [ -x /usr/bin/librewolf ]; then
+            /usr/bin/apulse /usr/bin/librewolf $1 &
         fi
         ;;
     "freebsd")
