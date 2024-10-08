@@ -443,6 +443,69 @@
   :bind
   (:map global-map
         ("C-x C-w" . windresize)))
+
+(use-package ielm
+  :demand
+  :hook
+  ((ielm-mode . rainbow-delimiters-mode)
+   (ielm-mode . show-paren-local-mode)
+   (ielm-mode . electric-indent-local-mode)
+   (ielm-mode . disable-whitespace-fn)
+   (ielm-mode . eldoc-mode))
+  :bind
+  (:map inferior-emacs-lisp-mode-map
+        ("C-l" . comint-clear-buffer))
+  (:map global-map
+        ("C-M-:" . ielm))
+  (:map paredit-mode-map
+        ("RET" . nil)
+        ("C-j" . paredit-newline))
+  :config
+                                        ; Save history
+  (defun g-ielm-init-history ()
+    (let ((path (expand-file-name "ielm/history" user-emacs-directory)))
+      (make-directory (file-name-directory path) t)
+      (setq-local comint-input-ring-file-name path))
+    (setq-local comint-input-ring-size 10000)
+    (setq-local comint-input-ignoredups t)
+    (comint-read-input-ring))
+  (add-hook 'ielm-mode-hook 'g-ielm-init-history)
+  (defun g-ielm-write-history (&rest _args)
+    (with-file-modes #o600
+      (comint-write-input-ring)))
+  (advice-add 'ielm-send-input :after 'g-ielm-write-history)
+  (define-key inferior-emacs-lisp-mode-map (kbd "C-r")
+              'comint-history-isearch-backward-regexp)
+                                        ; Setup prompt
+  (cl-defun my-make-right-arrow-icon ()
+    "Return a string that displays arrow icon  when inserted in a buffer."
+    (propertize (nerd-icons-octicon "nf-oct-chevron_right")
+                'face `(:family ,(nerd-icons-octicon-family) :height 1.2)
+                'display '(raise 0)))
+  (setq ielm-prompt (concat (my-make-right-arrow-icon) " "))
+                                        ; Setup buffer position
+  (add-to-list 'display-buffer-alist
+               '("*ielm*"
+                 (display-buffer-in-side-window)
+                 (side . bottom)
+                 (window-height . 10)))
+                                        ; No header
+  (setq ielm-header ""))
+
+(use-package paredit
+  :pin melpa-stable
+  :delight
+  :hook
+  ((ielm-mode . paredit-mode)
+   (emacs-lisp-mode . paredit-mode))
+  :config
+  (defun ea-setup-paredit-keybindings ()
+    "Setup proper keybindings for some modes"
+    (progn
+      (define-key paredit-mode-map (kbd "RET") 'paredit-newline)
+      (define-key paredit-mode-map (kbd "C-j") nil)))
+  (add-hook 'emacs-lisp-mode-hook 'ea-setup-paredit-keybindings))
+
 (use-package htmlize
   :pin melpa
   :delight)
