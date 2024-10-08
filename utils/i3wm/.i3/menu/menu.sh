@@ -16,7 +16,7 @@ case $(echo $DMENU_ITEMS | parse_items | f_dmenu 'Execute:') in
         ;;
     'librewolf_unsec')
         if [ "$MACHINE_OS" = "gentoo" ]; then
-            /usr/bin/apulse /usr/bin/librewolf-bin -P unsecure &
+            /usr/bin/apulse /usr/bin/librewolf -P unsecure &
         elif [ "$MACHINE_OS" = "freebsd" ]; then
             /usr/local/bin/librewolf -P unsecure &
         fi
