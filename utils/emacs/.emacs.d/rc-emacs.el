@@ -398,17 +398,7 @@
   :custom
   (eat-enable-directory-tracking t "Track current working directory")
   (eat-term-scrollback-size nil "Unlimited scrollback")
-  :init
-  (defun eat2 ()
-    "Open 2 EAT windows with fuck_censorship in one"
-    (interactive)
-    (eat)
-    (eat "zsh -i -c fuck_censorship" 1))
-  (defun eat-work ()
-    "Open 2 EAT windows with connection to work"
-    (interactive)
-    (eat "~/work.sh" 9)
-    (eat "~/work.sh" 8))
+  (eat-kill-buffer-on-exit t "Kill buffer on exit")
   :bind
   (:map eat-mode-map
         ("C-c C-p" . eat-send-password)))
