@@ -6,7 +6,9 @@
 | C-j                       | insert new line below cursor               |
 | C-x 2                     | horizontal split                           |
 | C-x 3                     | vertical split                             |
-| C-x o                     | Switch between windows                     |
+| C-x o                     |                                            |
+| C-x O                     | Switch between windows                     |
+| C-x C-w                   | Change window size by arrows               |
 | M-x untabify              | remove tabs from file                      |
 | M-x recover-file          | recover unsaved file                       |
 | C-s M-r                   | regexp search                              |
@@ -14,12 +16,18 @@
 | M-% (after search starts) | query replace (\(\) - group)               |
 | C-x SPC                   | select rectangle                           |
 |---------------------------+--------------------------------------------|
+| C-t                       | Transpose symbol with previous one         |
+| M-t                       | Transpose word with next one               |
+| C-M-t                     | Transpose two balanced sexps               |
+| C-x C-t                   | Transpose two lines                        |
+|---------------------------+--------------------------------------------|
 | C-SPC                     | Set mark                                   |
 | C-u C-SPC                 | Go to previously saved marks               |
 | C-x C-SPC                 | Go to mark from another buffer             |
 | C-x C-x                   | Exchange cursor position and the last mark |
 |---------------------------+--------------------------------------------|
 | F12                       | Start LanguageTool check                   |
+| Scroll Lock               | Toggle readonly mode in buffer             |
 |---------------------------+--------------------------------------------|
 | C-x p f                   | Find file in project                       |
 | C-x p g                   | Grep in project                            |
@@ -47,6 +55,25 @@
 | C-x 5 f                   | Open file in another frame                 |
 | C-x 5 d                   | Open Dired in another frame                |
 | C-x 5 0                   | Destroy current frame                      |
+|---------------------------+--------------------------------------------|
+| C-x +                     | Balance windows                            |
+|---------------------------+--------------------------------------------|
+| C-M-:                     | Open Emacs List REPL                       |
+| M-x ielm                  | Open Emacs Lisp REPL                       |
+| M-x re-builder            | Build regexp                               |
+| C-M-x                     | Eval top level S-expression                |
+| C-h k                     | Describe keybinding                        |
+| C-h f                     | Describe function                          |
+| C-h v                     | Describe variable                          |
+| C-h b                     | Describe keybindings for current buffer    |
+| )                         | Go to the end of current S-expression      |
+| C-M-u                     | Go to the upper S-expression               |
+| C-M-b                     | Go to the start of S-expression            |
+| C-M-f                     | Go to the end of S-expression              |
+| M-r                       | Replace parent node by the current node    |
+| C-M-SPC                   | Select the whole S-expression              |
+| M-J                       | Join 2 S-expressions                       |
+| M-?                       | Convolute S-expression                     |
 |---------------------------+--------------------------------------------|
 
 * Inside calendar buffer:

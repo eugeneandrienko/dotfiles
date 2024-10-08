@@ -1,7 +1,7 @@
 |-------------------------------+--------------------------------------------------|
 | Hotkey                        | Description                                      |
 |-------------------------------+--------------------------------------------------|
-| C-x d                         | Enter Dired mode                                 |
+| C-x C-d                       | Enter Dired mode                                 |
 | C-x C-j                       | Open Dired for current directory                 |
 | C-x C-q                       | Enter WDired mode                                |
 | C-c C-c                       | Apply changes and exit from WDired mode          |
