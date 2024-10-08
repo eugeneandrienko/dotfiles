@@ -4,6 +4,7 @@
   :custom
   (company-idle-delay 0.1 "Delay before show completions")
   (company-minimum-prefix-length 2 "Characters to start completion")
+  (company-tooltip-align-annotations t "Right align additional annotations")
   (company-global-modes '(java-mode c-mode) "Modes with enabled completion")
   (company-format-margin-function #'company-text-icons-margin "Use text-icons with completion results")
   (company-show-quick-access 'left "Show quick access hints")

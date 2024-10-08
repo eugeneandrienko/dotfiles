@@ -1,5 +1,7 @@
 (use-package dired
   :ensure nil
+  :bind
+  ("C-x C-d" . dired)
   :custom
   (dired-listing-switches "-lah" "Arguments for ls")
   (dired-kill-when-opening-new-dired-buffer t "Only one Dired buffer")

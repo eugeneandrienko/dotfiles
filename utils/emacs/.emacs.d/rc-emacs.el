@@ -13,6 +13,7 @@
   (use-package-always-ensure t "Always download package if not exists"))
 
 (use-package delight
+  :demand
   :requires use-package
   :after use-package)
 
@@ -20,6 +21,8 @@
 ;;; (not related to other packages)
 (use-package emacs
   :demand
+  :delight
+  (subword-mode)
   :bind
   ([remap scroll-up-command]   . pixel-scroll-interpolate-down)
   ([remap scroll-down-command] . pixel-scroll-interpolate-up)
@@ -32,6 +35,10 @@
   ("M-j" . (lambda ()
              (interactive)
              (join-line -1)))
+  ("C-x f" . nil)
+                                        ; Reverse C-x o
+  ("C-x O" . (lambda () (interactive) (other-window -1) (setq this-command 'other-window)))
+  ("<Scroll_Lock>" . read-only-mode)
 
   :hook
   ((c-mode . display-fill-column-indicator-mode)
@@ -67,6 +74,9 @@
   (find-file-visit-truename t "Show real filename when visit symlink")
   (warning-minimum-level :emergency "Don't show warnings in buffer")
   (hl-line-sticky-flag nil "Don't show hl-line on unfocused windows")
+  (scroll-preserve-screen-position 'always "Point doesn't jumping around")
+  (window-combination-resize t "Take new window space from ALL other windows, not the current one")
+  (echo-keystrokes 0.01 "Show keystroke in echo area as fast as possible")
                                         ; Programming-related configuration
   (compilation-scroll-output 1 "Scroll compilation window")
   (compilation-window-height 10 "Compilation window height")
@@ -78,6 +88,7 @@
                        "Comment styles")
   (project-vc-extra-root-markers '(".project" ".project.el")
                                  "Extra markers for project root")
+  (global-subword-mode 1 "Iterate through CameCaseWords")
                                         ; Package sources
   (package-archives '(("melpa-stable" . "https://stable.melpa.org/packages/")
                       ("gnu" . "https://elpa.gnu.org/packages/")
@@ -105,6 +116,7 @@
                   (mode . c-mode)))
             ("LISP" (or
                      (mode . emacs-lisp-mode)
+                     (mode . ielm-mode)
                      (name . "^\\*scratch\\*$")))
             ("Dired" (mode . dired-mode))
             ("EAT" (mode . eat-mode))))))
@@ -123,6 +135,8 @@
   (desktop-auto-save-timeout 600 "Autosave every 5 minutes")
                                         ; Misc
   (epg-pinentry-mode 'loopback)
+  (user-mail-address "evg.andrienko@gmail.com")
+  (user-full-name "Eugene Andrienko")
   (mail-header-separator "")
   (recentf-max-menu-items 25)
   (recentf-max-saved-items 25)
@@ -179,19 +193,18 @@
   (add-hook 'emacs-lisp-mode-hook 'hl-line-mode)
                                         ; Auto-revert buffer
   (global-auto-revert-mode t)
-                                        ; Identation by default
-  (defun my-ret-hook()
-    "Make new lines indented"
-    (local-set-key (kbd "RET") 'newline-and-indent))
-  (add-hook 'octave-mode-hook 'my-ret-hook)
-  (add-hook 'sh-mode-hook 'fci-mode)
                                         ; Electric pair mode
   (add-hook 'java-mode-hook 'electric-pair-local-mode)
   (add-hook 'c-mode-hook 'electric-pair-local-mode)
   (add-hook 'sh-mode-hook 'electric-pair-local-mode)
   (add-hook 'LaTeX-mode-hook 'electric-pair-local-mode)
   (add-hook 'bibtex-mode-hook 'electric-pair-local-mode)
-  (add-hook 'emacs-lisp-mode-hook 'electric-pair-local-mode)
+                                        ; Electric indent mode
+  (add-hook 'java-mode-hook 'electric-indent-local-mode)
+  (add-hook 'c-mode-hook 'electric-indent-local-mode)
+  (add-hook 'sh-mode-hook 'electric-indent-local-mode)
+  (add-hook 'LaTeX-mode-hook 'electric-indent-local-mode)
+  (add-hook 'bibtex-mode-hook 'electric-indent-local-mode)
                                         ; y is rather short than yes
   (fset 'yes-or-no-p 'y-or-n-p)
                                         ; Use blinking cursor
@@ -234,8 +247,8 @@
 
                                         ; Setup native fill-column-indicator
   (setopt display-fill-column-indicator-column 80)
-  (set-face-attribute 'fill-column-indicator nil :background nil
-                      :foreground "grey")
+  (set-face-attribute 'fill-column-indicator nil
+                      :background nil :foreground "grey")
                                         ; Prettify some symbols
   (add-hook 'c-mode-hook (lambda ()
                            (push '("==" .?＝) prettify-symbols-alist)
@@ -257,7 +270,12 @@
   (add-hook 'emacs-startup-hook
             (lambda ()
               (call-process "dunstify" nil nil nil
-                            "Emacs" "Daemon started" "-u" "normal")))
+                            "Emacs"
+                            (format "Daemon started in %.2f seconds with %d garbage collections"
+                                    (float-time
+                                     (time-subtract after-init-time before-init-time))
+                                    gcs-done)
+                            "-u" "normal")))
                                         ; Setup language switching
   (add-hook 'emacs-startup-hook
             (lambda ()
@@ -398,7 +416,7 @@
 (use-package highlight-thing
   :pin melpa
   :delight
-  (hightlight-thing-mode)
+  (highlight-thing-mode)
   (hi-lock-mode)
   :hook
   ((c-mode . highlight-thing-mode)
@@ -411,3 +429,20 @@
   (highlight-thing-case-sensitive-p t)
   :custom-face
   (highlight-thing ((t (:inherit hi-pink :weight bold)))))
+
+(use-package rainbow-delimiters
+  :pin melpa
+  :hook
+  (emacs-lisp-mode . rainbow-delimiters-mode))
+
+(use-package windresize
+  :pin gnu
+  :demand
+  :custom
+  (windresize-pam t "Change window size by moving borders")
+  :bind
+  (:map global-map
+        ("C-x C-w" . windresize)))
+(use-package htmlize
+  :pin melpa
+  :delight)
