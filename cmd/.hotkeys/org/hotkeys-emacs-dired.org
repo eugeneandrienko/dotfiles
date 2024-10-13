@@ -27,6 +27,7 @@
 | =                             | Diff files                                       |
 | M-x dired-compare-directories | Compare directories and mark differ files        |
 | w                             | Copy names of files to kill ring                 |
+| s                             | Sort files by name or by date                    |
 |-------------------------------+--------------------------------------------------|
 | C                             | Copy                                             |
 | R                             | Rename/Move files                                |
