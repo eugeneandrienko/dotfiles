@@ -251,7 +251,6 @@
                       :background nil :foreground "grey")
                                         ; Prettify some symbols
   (add-hook 'c-mode-hook (lambda ()
-                           (push '("==" .?＝) prettify-symbols-alist)
                            (push '("!=" . ?≠) prettify-symbols-alist)
                            (push '("<=" . ?⩽) prettify-symbols-alist)
                            (push '(">=" . ?⩾) prettify-symbols-alist)
