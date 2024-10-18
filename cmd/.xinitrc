@@ -64,7 +64,7 @@ case "$MACHINE_OS" in
 esac
 
 picom -f --crop-shadow-to-monitor \
-      -I 0.08 -O 0.12 -D 20 \
+      -I 0.08 -O 0.12 -D 20 -i 1.0 \
       --backend glx --force-win-blend \
       --shadow-exclude 'class_g = "librewolf"' \
       --no-vsync --daemon
