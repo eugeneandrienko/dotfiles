@@ -98,8 +98,7 @@ You should have next programs in system before configuration deployment:
 - qmapshack
 - telegram
 *** Fonts:
-- Terminus
-- Noto Mono
+- [[https://github.com/source-foundry/Hack][Hack]]
 
 * Before deployment:
 If you need sensitive data (passwords, API keys, etc) in the new machine — use

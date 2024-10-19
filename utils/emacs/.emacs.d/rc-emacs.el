@@ -217,7 +217,7 @@
   (add-hook 'text-mode-hook #'(lambda () (set-fill-column 78)))
                                         ; Font for GUI
   (add-to-list 'default-frame-alist
-               '(font . "Noto Sans Mono-16"))
+               '(font . "Hack-16"))
                                         ; Emacs pinentry
   (pinentry-start)
                                         ; Smart buffer handling
@@ -311,8 +311,8 @@
   :init
   (pixel-scroll-precision-mode 1)
   :custom-face
-  (default ((t (:size "14pt" :family "Noto Sans Mono-14"))))
-  (italic ((t (:slant italic :weight light :height 160 :width normal :family "Noto Sans Mono Italic" :spacing proportional))))
+  (default ((t (:size "14pt" :family "Hack-16"))))
+  (italic ((t (:slant italic :weight light :height 160 :width normal :family "Hack Italic-16" :spacing proportional))))
   (popup-tip-face ((t (:background "#eee8d5" :foreground "#657b83" :box (:line-width (2 . 2) :color "dim gray" :style flat-button))))))
 
 ;;; Setup nerd-icons

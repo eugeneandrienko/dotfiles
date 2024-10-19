@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-FONT="'-xos4-terminus-*-*-*-*-14-*-*-*-*-*-*-u'"
+FONT="Hack-14"
 COLORS="-sb '#46585e' -sf '#fdf6e3' -nb '#fdf6e3' -nf '#46585e'"
 DMENU_CMD="dmenu -i -b -fn $FONT $COLORS"
 
