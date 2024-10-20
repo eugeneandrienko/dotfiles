@@ -89,6 +89,8 @@
   (project-vc-extra-root-markers '(".project" ".project.el")
                                  "Extra markers for project root")
   (global-subword-mode 1 "Iterate through CameCaseWords")
+  (gdb-many-windows t "Multi-window layout for GDB")
+  (gdb-show-main t "Show source when debug")
                                         ; Package sources
   (package-archives '(("melpa-stable" . "https://stable.melpa.org/packages/")
                       ("gnu" . "https://elpa.gnu.org/packages/")
