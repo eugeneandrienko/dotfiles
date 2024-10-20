@@ -292,7 +292,7 @@
                 (progn
                   (setenv "SUDO_ASKPASS" (cond
                                           ((eq system-type 'gnu/linux)
-                                           "/usr/bin/x11-ssh-askpass")
+                                           "/usr/bin/ssh-askpass-fullscreen")
                                           ((eq system-type 'berkeley-unix)
                                            "/usr/local/bin/x11-ssh-askpass")))
                   (call-process "sudo" nil nil nil "-A" "poweroff"))))
