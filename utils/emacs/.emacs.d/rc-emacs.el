@@ -91,6 +91,8 @@
   (global-subword-mode 1 "Iterate through CameCaseWords")
   (gdb-many-windows t "Multi-window layout for GDB")
   (gdb-show-main t "Show source when debug")
+  (semanticdb-default-save-directory "~/.emacs.d/semanticdb")
+  (semantic-idle-scheduler-idle-time 5 "Time of idle in seconds before reparsing starts")
                                         ; Package sources
   (package-archives '(("melpa-stable" . "https://stable.melpa.org/packages/")
                       ("gnu" . "https://elpa.gnu.org/packages/")
@@ -246,6 +248,19 @@
   (add-hook 'org-mode-hook 'disable-whitespace-fn)
   (add-hook 'calendar-mode-hook 'disable-whitespace-fn)
   (add-hook 'message-mode-hook 'disable-whitespace-fn)
+                                        ; Enable Semantic
+  (require 'semantic)
+  (global-semanticdb-minor-mode 1)
+  (global-semantic-idle-scheduler-mode 1)
+  (global-semantic-idle-summary-mode 1)
+  (semantic-mode 1)
+  (setq-mode-local c-mode
+                   semanticdb-find-default-throttle
+                   '(project unloaded system recursive))
+  (defun my-inhibit-semantic-p ()
+    (not (equal major-mode 'c-mode)))
+  (with-eval-after-load 'semantic
+    (add-to-list 'semantic-inhibit-functions #'my-inhibit-semantic-p))
 
                                         ; Setup native fill-column-indicator
   (setopt display-fill-column-indicator-column 80)
@@ -436,7 +451,6 @@
         ("C-x C-w" . windresize)))
 
 (use-package ielm
-  :demand
   :hook
   ((ielm-mode . rainbow-delimiters-mode)
    (ielm-mode . show-paren-local-mode)
