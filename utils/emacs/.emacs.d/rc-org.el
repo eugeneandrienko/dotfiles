@@ -91,3 +91,9 @@
   (setq org-alert-interval 1800
         org-alert-notify-cutoff 10
         org-alert-notify-after-event-cutoff 10))
+
+(use-package org-jekyll
+  :load-path "~/rsync/blog/"
+  :ensure nil
+  :commands org-jekyll-init
+  :hook (org-mode . org-jekyll-init))
