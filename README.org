@@ -63,7 +63,6 @@ You should have next programs in system before configuration deployment:
 - lacheck
 - [[https://dev.languagetool.org/http-server][language-tool]]
 - latex (texlive)
-- vim
 
 ** Utilities:
 - dunst
@@ -142,12 +141,6 @@ Add your OpenWeatherMap API key to =~/.openweathermap= file.
       functions, which should exists on one machine and shouldn't on another.
 
 * After deployment:
-** Vim plugins installation
-Do the next to install Vim plugins:
-- First, install Vundle plugin: =git clone
-  https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim=.
-- Second, in Vim execute =:BundleInstall=.
-
 ** Emacs plugins and fonts installation
 =Mu4e= e-mail client should be install via the OS package manager, for example:
 #+begin_example

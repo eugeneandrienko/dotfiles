@@ -84,7 +84,6 @@ autoload -z hotkeys-emacs-org
 autoload -z hotkeys-emacs-pdf
 autoload -z hotkeys-i3wm
 autoload -z hotkeys-rtorrent
-autoload -z hotkeys-vim
 
 # Aliases:
 if [ -e ~/.aliases ]; then

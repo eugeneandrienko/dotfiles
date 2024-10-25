@@ -35,7 +35,6 @@ alias fuck_censorship='cd ~/bin/v2raya && \
                        dunstify "V2raya" "v2raya is down" -u critical'
 alias sxiv='sxiv -s d -p'
 alias rtorrent='~/.rtorrent/download_blocklist.sh && rtorrent'
-alias -g vi='vim'
 alias abook='abook --datafile ~/rsync/filez/abook/addressbook'
 alias newsboat='newsboat -u ~/rsync/filez/rss/urls'
 alias http_server='python3 -m http.server'
