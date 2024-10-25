@@ -75,8 +75,7 @@
 
 (use-package org-bullets
   :pin melpa
-  :requires org
-  :after org
+  :commands org-bullets-mode
   :hook (org-mode . org-bullets-mode)
   :custom
   (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
