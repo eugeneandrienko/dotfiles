@@ -45,6 +45,7 @@ case "$MACHINE_HW" in
         xset s noblank
         xset -dpms
         xrandr --output LVDS-1 --off
+        brightness_agan2k -b 10
         ;;
 esac
 
