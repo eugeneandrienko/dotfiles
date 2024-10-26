@@ -64,11 +64,7 @@ case "$MACHINE_OS" in
         ;;
 esac
 
-picom -f --crop-shadow-to-monitor \
-      -I 0.08 -O 0.12 -D 20 -i 1.0 \
-      --backend glx --force-win-blend \
-      --shadow-exclude 'class_g = "librewolf"' \
-      --no-vsync --daemon
+picom --config ~/.config/picom.conf --daemon
 
 nohup /usr/bin/env emacs --daemon &
 rm -f nohup.out ~/nohup.out

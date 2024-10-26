@@ -22,11 +22,7 @@ case $(echo $ITEMS | parse_items | f_dmenu 'Select:') in
                 fi
                 rm -f /tmp/nightmode.glsl*
                 pkill picom
-                picom -f --crop-shadow-to-monitor \
-                      -I 0.08 -O 0.12 -D 20 \
-                      --backend glx --force-win-blend \
-                      --shadow-exclude 'class_g = "librewolf"' \
-                      --daemon
+                picom --config ~/.config/picom.conf --daemon
                 notify-send -u low -t 5000 "Screen mode: NORMAL"
                 ;;
             'theatre')
@@ -54,10 +50,7 @@ vec4 window_shader() {
 }
 EOF
                 pkill picom
-                picom -f --crop-shadow-to-monitor \
-                      -I 0.08 -O 0.12 -D 20 \
-                      --backend glx --force-win-blend \
-                      --shadow-exclude 'class_g = "librewolf"' \
+                picom --config ~/.config/picom.conf \
                       --window-shader-fg "$NIGHT_SHADER" \
                       --daemon
                 notify-send -u low -t 5000 "Screen mode: NIGHT"
