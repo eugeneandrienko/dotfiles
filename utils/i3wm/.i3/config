@@ -50,6 +50,9 @@ hide_edge_borders both
 # start an Emacs
 bindsym $mod+Return exec zsh -ic emacs
 
+# Launch Emacs Everywhere
+bindsym $mod+z exec emacsclient --eval "(emacs-everywhere)"
+
 # kill focused window
 bindsym $mod+Shift+q kill
 

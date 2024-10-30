@@ -530,3 +530,17 @@
 (use-package htmlize
   :pin melpa
   :delight)
+
+;; Dependencies: xclip, xdotool, xprop, xwininfo
+(use-package emacs-everywhere
+  :config
+  (if (eq system-type 'berkeley-unix)
+      (progn
+        (setq emacs-everywhere--display-server 'x11)
+        (setq emacs-everywhere-app-info-function #'emacs-everywhere--app-info-linux-x11)
+        (setq emacs-everywhere-copy-command
+              (list "xclip" "-selection" "clipboard" "%f"))
+        (setq emacs-everywhere-paste-command
+              (list "xdotool" "key" "--clearmodifiers" "Shift+Insert"))
+        (setq emacs-everywhere-window-focus-command
+              (list "xdotool" "windowactivate" "--sync" "%w")))))
