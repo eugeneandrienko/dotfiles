@@ -77,6 +77,8 @@
   (scroll-preserve-screen-position 'always "Point doesn't jumping around")
   (window-combination-resize t "Take new window space from ALL other windows, not the current one")
   (echo-keystrokes 0.01 "Show keystroke in echo area as fast as possible")
+  (isearch-lazy-count t "Show size of search results")
+  (lazy-count-prefix-format "(%s/%s) " "Format of search results")
                                         ; Programming-related configuration
   (compilation-scroll-output 1 "Scroll compilation window")
   (compilation-window-height 10 "Compilation window height")
@@ -93,6 +95,7 @@
   (gdb-show-main t "Show source when debug")
   (semanticdb-default-save-directory "~/.emacs.d/semanticdb")
   (semantic-idle-scheduler-idle-time 5 "Time of idle in seconds before reparsing starts")
+  (help-window-select t "Always select opened help window")
                                         ; Package sources
   (package-archives '(("melpa-stable" . "https://stable.melpa.org/packages/")
                       ("gnu" . "https://elpa.gnu.org/packages/")
@@ -144,6 +147,7 @@
   (mail-header-separator "")
   (recentf-max-menu-items 25)
   (recentf-max-saved-items 25)
+  (delete-old-versions t "Delete old backup versions")
   (Man-notify-method 'pushy "How manpage is displayed")
                                         ; Disable writing custom options to the end of ~/.emacs
   (custom-file (make-temp-file "emacs-custom-"))
