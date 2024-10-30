@@ -21,6 +21,7 @@
 | C-x n n      | Narrow region                              |
 | C-x n w      | Widen buffer                               |
 |--------------+--------------------------------------------|
+| <f2>         |                                            |
 | M-x imenu    | Display list of functions                  |
 | M-x woman    | Show manpage for function under the cursor |
 | M-x tabify   | Use TAB for identation                     |

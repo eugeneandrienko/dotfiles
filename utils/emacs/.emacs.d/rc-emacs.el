@@ -501,6 +501,18 @@
                                         ; No header
   (setq ielm-header ""))
 
+(use-package imenu-list
+  :delight
+  :bind
+  ("<f2>" . 'imenu-list-smart-toggle)
+  :custom
+  (imenu-list-focus-after-activation t)
+  (imenu-list-auto-resize t "Autoresize imenu buffer")
+  (imenu-list-position 'right)
+  :config
+                                        ; Disable recenter buffer when go to entry
+  (setq imenu-list-after-jump-hook nil))
+
 (use-package paredit
   :pin melpa-stable
   :delight
