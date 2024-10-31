@@ -3,14 +3,18 @@
 source ~/.bin/get_machine_id.sh
 
 if [ "$MACHINE_HW" = "zalman" ]; then
-    if [ "$1" = "up" ]; then
+    if [ "$BLOCK_BUTTON" -eq 1 ]; then
+        ~/.i3/scripts/mute.sh
+    elif [ "$1" = "up" ]; then
         amixer -c 0 -- sset Master 1+
     elif [ "$1" = "down" ]; then
         amixer -c 0 -- sset Master 1-
     fi
     VOLUME=$(amixer -M -c 0 -- get Master | grep 'Mono: Playback' | sed -r 's/.*\[([0-9]+)%\].*/\1/g')
 elif [ "$MACHINE_HW" = "thinkpad" ] && [ "$MACHINE_OS" = "freebsd" ]; then
-    if [ "$1" = "up" ]; then
+    if [ "$BLOCK_BUTTON" -eq 1 ]; then
+        ~/.i3/scripts/mute.sh
+    elif [ "$1" = "up" ]; then
         mixer vol.volume=+0.05:+0.05
     elif [ "$1" = "down" ]; then
         mixer vol.volume=-0.05:-0.05

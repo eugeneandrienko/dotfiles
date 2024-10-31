@@ -16,6 +16,10 @@ if [ "$MACHINE_HW" = "thinkpad" ] && [ "$MACHINE_OS" = "freebsd" ]; then
         echo "$SSID"
         echo "#2AA198"
     fi
+
+    if [ "$BLOCK_BUTTON" -eq 1 ]; then
+        i3-msg -q exec wpa_gui
+    fi
 else
     echo ""
 fi
