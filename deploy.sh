@@ -15,8 +15,7 @@ stow bin cmd
 
 # Copying dotfiles to $HOME
 export STOW_DIR=./utils
-stow abook dunst emacs git gnupg mplayer mail picom rtorrent ssh
-stow --ignore="i3status\.conf\.m4" i3wm
+stow abook dunst emacs git gnupg i3wm mplayer mail picom rtorrent ssh
 
 # Making necessary (empty) directories
 mkdir -pv "$HOME/.emacs.d/desktop"
@@ -95,10 +94,6 @@ if [ ! -f ~/.machine_id ]; then
             ;;
     esac
 fi
-
-# m4 some config files
-source ~/.bin/get_machine_id.sh
-m4 -P -D"$MACHINE_HW" utils/i3wm/.i3/i3status.conf.m4 > ~/.i3/i3status.conf
 
 echo
 echo 'Done!'

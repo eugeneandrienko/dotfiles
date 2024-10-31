@@ -19,4 +19,16 @@ elif [ "$MACHINE_HW" = "thinkpad" ] && [ "$MACHINE_OS" = "freebsd" ]; then
     VOLUME=$(echo "$VOLUME * 100" | bc)
 fi
 
-dunstify -h string:x-dunst-stack-tag:audio -h int:value:"$VOLUME" -t 1200 "Volume:"
+if [ "$1" = "get" ]; then
+    VOLUME=$(echo "$VOLUME/1" | bc)
+    if [ "$MACHINE_HW" = "zalman" ] && $(amixer -c 0 -- sget); then
+        echo "🔇"
+    elif [ "$MACHINE_HW" = "thinkpad" ] && [ "$MACHINE_OS" = "freebsd" ] && \
+             $(mixer vol.mute | grep -q =on); then
+        echo "🔇"
+    else
+        echo "🔊$VOLUME%"
+    fi
+else
+    dunstify -h string:x-dunst-stack-tag:audio -h int:value:"$VOLUME" -t 1200 "Volume:"
+fi

@@ -93,7 +93,7 @@ You should have next programs in system before configuration deployment:
 ** GUI:
 - librewolf
 - i3
-- i3status
+- i3blocks
 - josm
 - qmapshack
 - telegram

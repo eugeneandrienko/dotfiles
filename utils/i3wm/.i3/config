@@ -207,7 +207,7 @@ bar {
         inactive_workspace #fdf6e3 #fdf6e3 #46585e
         focused_workspace  #46585e #46585e #fdf6e3
     }
-    status_command i3status --config ~/.i3/i3status.conf
+    status_command i3blocks -c ~/.i3/i3blocks.conf
 }
 
 # Workspace-mapped windows:
