@@ -63,4 +63,5 @@ export LEDGER_FILE="$HOME/rsync/ledger/money.journal"
 
 if [ "$MACHINE_HW" = "thinkpad" ]; then
     export GDK_DPI_SCALE=1.3
+    export QT_SCALE_FACTOR=1.3
 fi
