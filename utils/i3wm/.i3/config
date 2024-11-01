@@ -208,6 +208,7 @@ bar {
         focused_workspace  #46585e #46585e #fdf6e3
     }
     status_command i3blocks -c ~/.i3/i3blocks.conf
+    tray_output none
 }
 
 # Workspace-mapped windows:
