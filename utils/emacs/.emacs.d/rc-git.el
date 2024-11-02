@@ -7,6 +7,12 @@
    #'magit-display-buffer-same-window-except-diff-v1
    "Show magit screens in the same window"))
 
+(use-package magit-todos
+  :after magit
+  :custom
+  (magit-todos-update-remote t)
+  :config (magit-todos-mode 1))
+
 (use-package git-gutter
   :pin melpa
   :custom
