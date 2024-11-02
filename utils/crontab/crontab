@@ -1,1 +1,2 @@
 0 3 * * * /home/drag0n/.bin/get_exchange_rate.sh
+*/10 * * * * /home/drag0n/.config/conky/get_weather.sh

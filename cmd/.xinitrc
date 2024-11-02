@@ -66,6 +66,9 @@ esac
 
 picom --config ~/.config/picom.conf --daemon
 
+conky -c ~/.config/conky/conky-left.conf
+conky -c ~/.config/conky/conky-right.conf
+
 nohup /usr/bin/env emacs --daemon &
 rm -f nohup.out ~/nohup.out
 

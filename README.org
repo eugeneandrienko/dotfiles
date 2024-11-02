@@ -125,9 +125,6 @@ gpg --import priv.key
 After that call =gpg --edit-key <key-id>= and set trust level to 5 via command
 =trust=. Quit gpg console with =quit= command.
 
-** Weather forecasts:
-Add your OpenWeatherMap API key to =~/.openweathermap= file.
-
 * Deployment:
 1. Clone this repository to some suitable directory. You *mustn't* clone it to
    your =~= directory!

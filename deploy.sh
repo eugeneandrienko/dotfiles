@@ -15,7 +15,7 @@ stow bin cmd
 
 # Copying dotfiles to $HOME
 export STOW_DIR=./utils
-stow abook dunst emacs git gnupg i3wm mplayer mail picom rtorrent ssh
+stow abook conky dunst emacs git gnupg i3wm mplayer mail picom rtorrent ssh
 
 # Making necessary (empty) directories
 mkdir -pv "$HOME/.emacs.d/desktop"
@@ -54,15 +54,11 @@ touch "$HOME/rsync/.rsyncignore"
 # Create empty ~/.netrc if it not exists
 touch $HOME/.netrc
 
-# Create empty OpenWeatherMap API key file
-touch $HOME/.openweathermap
-
 # Changing access rights
 chmod -v 600 ~/.fdm.conf
 chmod -v 600 ~/.mailfilter
 chmod -v 600 ~/.msmtprc
 chmod -v 600 ~/.netrc
-chmod -v 600 ~/.openweathermap
 
 # Installing crontab
 echo "Installing crontab"
