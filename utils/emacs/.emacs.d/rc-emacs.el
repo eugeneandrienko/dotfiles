@@ -421,6 +421,14 @@
   (eat-enable-directory-tracking t "Track current working directory")
   (eat-term-scrollback-size nil "Unlimited scrollback")
   (eat-kill-buffer-on-exit t "Kill buffer on exit")
+  (process-adaptive-read-buffering nil "Faster EAT")
+  (read-process-output-max (* 4 1024 1024))
+  (eat-term-name "xterm-256color" "https://codeberg.org/akib/emacs-eat/issues/119")
+  :init
+  (add-to-list 'project-switch-commands '(eat-project "Eat terminal") t)
+  (add-to-list 'project-kill-buffer-conditions '(major-mode . eat-mode))
+  :config
+  (define-key project-prefix-map (kbd "t") 'eat-project)
   :bind
   (:map eat-mode-map
         ("C-c C-p" . eat-send-password)))
