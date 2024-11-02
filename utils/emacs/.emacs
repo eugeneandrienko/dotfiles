@@ -13,4 +13,5 @@
 (load "~/.emacs.d/rc-org.el")
 (load "~/.emacs.d/rc-mu4e.el")
 (load "~/.emacs.d/rc-pass.el")
-(load "~/.emacs.d/rc-prodigy")
+(load "~/.emacs.d/rc-prodigy.el")
+(load "~/.emacs.d/rc-cheatsheet.el")
