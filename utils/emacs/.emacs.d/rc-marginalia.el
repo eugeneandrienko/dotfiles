@@ -10,6 +10,7 @@
 
 (use-package nerd-icons-completion
   :after (nerd-icons marginalia)
+  :requires (nerd-icons marginalia)
   :config
   (nerd-icons-completion-mode)
   (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))

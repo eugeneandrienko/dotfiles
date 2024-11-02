@@ -271,7 +271,7 @@
                                         ; Setup native fill-column-indicator
   (setopt display-fill-column-indicator-column 80)
   (set-face-attribute 'fill-column-indicator nil
-                      :background nil :foreground "grey")
+                      :background 'unspecified' :foreground "grey")
                                         ; Prettify some symbols
   (add-hook 'c-mode-hook (lambda ()
                            (push '("!=" . ?≠) prettify-symbols-alist)
@@ -346,7 +346,7 @@
   (nerd-icons-color-icons nil))
 
 (use-package nerd-icons-ibuffer
-  :after nerd-icons
+  :requires nerd-icons
   :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
 
 (use-package solarized-theme
@@ -417,6 +417,7 @@
 
 (use-package eat
   :pin nongnu
+  :commands (eat eat-project)
   :custom
   (eat-enable-directory-tracking t "Track current working directory")
   (eat-term-scrollback-size nil "Unlimited scrollback")
@@ -425,8 +426,9 @@
   (read-process-output-max (* 4 1024 1024))
   (eat-term-name "xterm-256color" "https://codeberg.org/akib/emacs-eat/issues/119")
   :init
-  (add-to-list 'project-switch-commands '(eat-project "Eat terminal") t)
-  (add-to-list 'project-kill-buffer-conditions '(major-mode . eat-mode))
+  (with-eval-after-load 'project
+    (add-to-list 'project-switch-commands '(eat-project "Eat terminal" "t") t)
+    (add-to-list 'project-kill-buffer-conditions '(major-mode . eat-mode)))
   :config
   (define-key project-prefix-map (kbd "t") 'eat-project)
   :bind
@@ -457,7 +459,6 @@
 
 (use-package windresize
   :pin gnu
-  :demand
   :custom
   (windresize-pam t "Change window size by moving borders")
   :bind
@@ -539,10 +540,12 @@
 
 (use-package htmlize
   :pin melpa
+  :demand
   :delight)
 
 ;; Dependencies: xclip, xdotool, xprop, xwininfo
 (use-package emacs-everywhere
+  :commands (emacs-everywhere)
   :config
   (if (eq system-type 'berkeley-unix)
       (progn

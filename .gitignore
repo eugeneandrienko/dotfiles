@@ -1,7 +1,3 @@
 cmd/.userconfig
-utils/emacs/.emacs.d/plugins/haskell-mode/build*/
-utils/emacs/.emacs.d/plugins/haskell-mode/dir
-utils/emacs/.emacs.d/plugins/haskell-mode/haskell-mode-autoloads.el
-utils/emacs/.emacs.d/plugins/haskell-mode/haskell-mode.info
 *.tar.bz2
 

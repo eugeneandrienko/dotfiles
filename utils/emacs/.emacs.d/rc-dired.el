@@ -42,6 +42,7 @@
 
 (use-package nerd-icons-dired
   :pin melpa
+  :after (nerd-icons dired)
   :requires (nerd-icons dired)
   :after dired
   :hook (dired-mode . nerd-icons-dired-mode)
@@ -69,5 +70,16 @@
 
 (use-package image-dired
   :ensure nil
+  :after dired
   :custom
   (image-dired-external-viewer "gimp"))
+
+(use-package dired-open
+  :after dired
+  :custom
+  (dired-open-extensions '(("png" . "sxiv")
+                           ("PNG" . "sxiv")
+                           ("jpeg" . "sxiv")
+                           ("jpg" . "sxiv")
+                           ("JPEG" . "sxiv")
+                           ("JPG" . "sxiv"))))

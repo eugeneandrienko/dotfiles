@@ -1,5 +1,5 @@
 ;; Increase GC limit to boot speedup
-(setq gc-cons-threshold 100000000)
+(setq gc-cons-threshold (* 100 1000 1000))
 
 (load "~/.emacs.d/rc-emacs.el")
 
@@ -15,3 +15,6 @@
 (load "~/.emacs.d/rc-pass.el")
 (load "~/.emacs.d/rc-prodigy.el")
 (load "~/.emacs.d/rc-cheatsheet.el")
+
+;; Return GC limit back
+(setq gc-cons-threshold (* 2 1000 1000))

@@ -5,6 +5,7 @@
   :requires password-store
   :after password-store)
 (use-package pass
+  :commands (pass)
   :pin melpa
   :requires (password-store password-store-otp)
   :after (password-store password-store-otp)
