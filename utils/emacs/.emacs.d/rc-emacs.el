@@ -152,10 +152,13 @@
   (recentf-max-saved-items 25)
   (delete-old-versions t "Delete old backup versions")
   (Man-notify-method 'pushy "How manpage is displayed")
+  (history-length 100 "Minibuffer history length")
                                         ; Disable writing custom options to the end of ~/.emacs
   (custom-file (make-temp-file "emacs-custom-"))
                                         ; Speedbar settings
   (speedbar-use-images t "Use images in speedbar")
+                                        ; Save last place in file
+  (save-place-mode 1)
 
   :config
                                         ; Use UTF8 everywhere
