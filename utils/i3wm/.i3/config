@@ -241,4 +241,3 @@ client.unfocused        #fdf6e3 #fdf6e3 #bbbbbb #fdf6e3
 client.urgent           #dc322f #dc322f #fdf6e3 #dc322f
 #client.placeholder     #46585e #9f9f9f #333333 #46585e
 client.background       #ffffff
-
