@@ -39,6 +39,7 @@
                                         ; Reverse C-x o
   ("C-x O" . (lambda () (interactive) (other-window -1) (setq this-command 'other-window)))
   ("<Scroll_Lock>" . read-only-mode)
+  ("<f10>" . speedbar)
 
   :hook
   ((c-mode . display-fill-column-indicator-mode)
@@ -153,6 +154,8 @@
   (Man-notify-method 'pushy "How manpage is displayed")
                                         ; Disable writing custom options to the end of ~/.emacs
   (custom-file (make-temp-file "emacs-custom-"))
+                                        ; Speedbar settings
+  (speedbar-use-images t "Use images in speedbar")
 
   :config
                                         ; Use UTF8 everywhere

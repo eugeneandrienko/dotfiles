@@ -224,6 +224,7 @@ for_window [instance="shotcut" floating] border none
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 for_window [class="gnuplot"] floating enable
+for_window [title="^Speedbar" class="(?i)emacs"] floating enable, border none, move position 85 ppt 20 px
 # Mark windows:
 for_window [class="(?i)emacs"] mark emacs
 for_window [class="Vncviewer"] mark vncview
