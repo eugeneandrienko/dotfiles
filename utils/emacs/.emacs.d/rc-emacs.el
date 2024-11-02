@@ -133,7 +133,9 @@
                                    "*Async-native-compile-log\\*"
                                    "*Native-compile-log\\*"
                                    "*Calculator\\*" "*Calendar\\*"
-                                   "*Warning\\*"))
+                                   "*Warning\\*" "*prodigy.*" "magit:.*"
+                                   "*Org Help\\*"))
+  (switch-to-buffer-obey-display-actions t "Don't distuingish automatic and manual window switching")
                                         ; Desktop save/restore
   (desktop-base-file-name "emacs.desktop")
   (desktop-base-lock-name "emacs.desktop.lock")
