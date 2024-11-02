@@ -4,6 +4,7 @@
 (use-package mu4e
   :ensure nil
   :after smtpmail
+  :commands (mu4e)
   :custom
   (mu4e-sent-folder "/sent")
   (mu4e-drafts-folder "/postponed")

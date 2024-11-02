@@ -367,7 +367,7 @@
 
 (use-package pdf-tools
   :pin melpa
-  :after tex-site
+  :magic ("%PDF" . pdf-view-mode)
   :bind
   (:map pdf-view-mode-map
         ("M-g" . 'pdf-view-goto-page))
