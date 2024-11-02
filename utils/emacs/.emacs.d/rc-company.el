@@ -9,7 +9,7 @@
                          (interactive)
                          (company-complete-common-or-cycle -1))))
   :custom
-  (company-idle-delay 0.2 "Delay before show completions")
+  (company-idle-delay 0 "Delay before show completions")
   (company-minimum-prefix-length 3 "Characters to start completion")
   (company-tooltip-align-annotations t "Right align additional annotations")
   (company-inhibit-inside-symbols t "Disable completion in the middle of string")
@@ -21,6 +21,7 @@
   (company-show-quick-access 'left "Show quick access hints")
   (company-transformers '(delete-consecutive-dups company-sort-by-occurrence)
                         "Filters for completion results")
+  (company-dabbrev-downcase 0 "Don't downcase text for speedup")
   :config
   (global-company-mode))
 
