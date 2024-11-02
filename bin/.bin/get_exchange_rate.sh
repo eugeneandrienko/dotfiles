@@ -4,7 +4,7 @@ declare -A CURRENCY_CODES=(["$"]="R01235" ["EUR"]="R01239")
 CBR_DATE=$(date '+%d/%m/%Y')
 CBR_XSLT=$(mktemp /tmp/cbr.XXXXXX.xslt)
 
-JOURNAL="$HOME/rsync/ledger/exchange_rates.journal"
+JOURNAL="$HOME/rsync/ledger/exchange_rates.ledger"
 JOURNAL_DATE=$(date '+%Y-%m-%d')
 
 cat << EOF > "$CBR_XSLT"
