@@ -6,6 +6,9 @@ if [ "$MACHINE_HW" = "thinkpad" ] && [ "$MACHINE_OS" = "freebsd" ]; then
     BATTERY_CAPACITY="$(echo $ACPI_OUTPUT | grep 'Remaining capacity:' | sed -r 's/.+city:[ \t]+(.+)%$/\1/g')"
     BATTERY_REMAINING="$(echo $ACPI_OUTPUT | grep 'Remaining time:' | sed -r 's/.+time:[ \t]+(.+)$/\1/g')"
     case $BATTERY_STATE in
+        "high")
+            echo "🔋"
+            ;;
         "charging")
             echo "⚡$BATTERY_CAPACITY%"
         ;;
