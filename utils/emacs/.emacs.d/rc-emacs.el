@@ -426,11 +426,11 @@
   :commands (eat eat-project)
   :custom
   (eat-enable-directory-tracking t "Track current working directory")
-  (eat-term-scrollback-size nil "Unlimited scrollback")
   (eat-kill-buffer-on-exit t "Kill buffer on exit")
+  (eat-term-scrollback-size 16384)
   (process-adaptive-read-buffering nil "Faster EAT")
   (read-process-output-max (* 4 1024 1024))
-  (eat-term-name "xterm-256color" "https://codeberg.org/akib/emacs-eat/issues/119")
+  ;; (eat-term-name "xterm-256color" "https://codeberg.org/akib/emacs-eat/issues/119")
   :init
   (with-eval-after-load 'project
     (add-to-list 'project-switch-commands '(eat-project "Eat terminal" "t") t)
