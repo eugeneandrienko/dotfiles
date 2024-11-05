@@ -50,6 +50,8 @@
                             (:maildir "/state" :key ?z)
                             (:maildir "/stores" :key ?t)))
   (mu4e-headers-fields '((:human-date . 12) (:flags . 6) (:from . 22) (:thread-subject)))
+  (mu4e-headers-results-limit 1000 "Limit of messages to display in buffer")
+  (mu4e-headers-full-search t "Ignore limit in search results")
   :config
                                         ; Use mu4e as preferred method for reading e-mails
   (set-variable 'read-mail-command 'mu4e)
