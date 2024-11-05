@@ -92,6 +92,13 @@
         org-alert-notify-cutoff 10
         org-alert-notify-after-event-cutoff 10))
 
+(use-package toc-org
+  :pin melpa
+  :hook (org-mode . toc-org-mode)
+  :config
+  (defun toc-org-hrefify-blog (str &optional hash)
+    (concat "* " (toc-org-format-visible-link str))))
+
 (use-package org-jekyll
   :load-path "~/rsync/blog/"
   :ensure nil
