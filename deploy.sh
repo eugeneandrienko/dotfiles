@@ -54,11 +54,15 @@ touch "$HOME/rsync/.rsyncignore"
 # Create empty ~/.netrc if it not exists
 touch $HOME/.netrc
 
+# Create ~/.authinfo.gpg if not exists
+touch $HOME/.authinfo.gpg
+
 # Changing access rights
 chmod -v 600 ~/.fdm.conf
 chmod -v 600 ~/.mailfilter
 chmod -v 600 ~/.msmtprc
 chmod -v 600 ~/.netrc
+chmod -v 600 ~/.authinfo.gpg
 
 # Installing crontab
 echo "Installing crontab"
