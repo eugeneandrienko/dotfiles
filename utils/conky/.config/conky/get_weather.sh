@@ -10,6 +10,12 @@ WEATHER_URL+='surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m'
 WEATHER_URL+='&wind_speed_unit=ms&timezone=Europe%2FMoscow&models=metno_seamless'
 
 curl -so "$WEATHER_DATA" "$WEATHER_URL"
+if [ "$?" -ne "0" ]; then
+    rm -f "$WEATHER_DATA" "$HOME"/.cache/weather \
+       "$HOME"/.cache/weather.descr \
+       "$HOME"/.cache/weather.png
+    exit 0
+fi
 
 TEMPERATURE=$(cat "$WEATHER_DATA" | \
                   jq -M '(.current.temperature_2m | tostring) + "°C"' | \
