@@ -72,7 +72,7 @@ case "$WEATHER_CODE" in
     "45"|"48")
         WEATHER_IMG+="50-"
         ;;
-    "*")
+    *)
         WEATHER_IMG+="unknown-"
         ;;
 esac
@@ -88,7 +88,7 @@ case "$WEATHER_CODE" in
         WEATHER_DESCRIPTION=$([ "$IS_DAY" -ne 0 ] && echo "Sunny" || echo "Clear")
         ;;
     "1")
-        WEATHER_DESCRIPTION=$([ "$IS_DAY" -ne 0 ] && echo "Mainly Sunny" || "Mainly Clear")
+        WEATHER_DESCRIPTION=$([ "$IS_DAY" -ne 0 ] && echo "Mainly Sunny" || echo "Mainly Clear")
         ;;
     "2")
         WEATHER_DESCRIPTION="Partly Cloudy"
