@@ -168,8 +168,8 @@ case "$WEATHER_CODE" in
     "99")
         WEATHER_DESCRIPTION="Thunderstorm with Hail"
         ;;
-    "*")
-        WEATHER_DESCRIPTION="Unknown weather code: $WEATHER_CODE"
+    *)
+        WEATHER_DESCRIPTION="Unknown code: $WEATHER_CODE"
         ;;
 esac
 
