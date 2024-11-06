@@ -64,7 +64,9 @@ case "$MACHINE_OS" in
         ;;
 esac
 
-picom --config ~/.config/picom.conf --daemon
+if [ "$MACHINE_HW" = "thinkpad" ] && [ "$MACHINE_SW" = "freebsd" ]; then
+    picom --config ~/.config/picom.conf --daemon
+fi
 
 conky -c ~/.config/conky/conky-left.conf
 conky -c ~/.config/conky/conky-right.conf

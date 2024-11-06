@@ -25,7 +25,7 @@ fi
 
 if [ "$1" = "get" ]; then
     VOLUME=$(echo "$VOLUME/1" | bc)
-    if [ "$MACHINE_HW" = "zalman" ] && $(amixer -c 0 -- sget); then
+    if [ "$MACHINE_HW" = "zalman" ] && $(amixer -M -c 0 -- get Master | grep 'Mono:' | grep -q '\[off\]'); then
         echo "🔇"
     elif [ "$MACHINE_HW" = "thinkpad" ] && [ "$MACHINE_OS" = "freebsd" ] && \
              $(mixer vol.mute | grep -q =on); then
