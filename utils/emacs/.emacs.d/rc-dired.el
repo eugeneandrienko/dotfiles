@@ -50,8 +50,6 @@
 
 (use-package dired-hide-dotfiles
   :pin melpa
-  :requires dired
-  :after dired
   :hook (dired-mode . dired-hide-dotfiles-mode)
   :bind
   (:map dired-mode-map
@@ -60,7 +58,6 @@
 
 (use-package dired-rsync
   :pin melpa
-  :requires dired
   :after dired
   :bind
   (:map dired-mode-map
