@@ -7,7 +7,6 @@ export EDITOR="emacs.sh"
 # For emacs mode in zsh
 export KEYTIMEOUT=1
 
-export LESS="-R"
 export LC_MESSAGES="C"
 source ~/.bin/get_machine_id.sh
 case "$MACHINE_OS" in
