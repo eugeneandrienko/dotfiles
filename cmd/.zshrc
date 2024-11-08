@@ -71,6 +71,12 @@ autoload -z youtube
 autoload -z create_enc_file
 autoload -z rename_photos_by_exif
 autoload -z screenrecord
+autoload -z d2h
+autoload -z d2b
+autoload -z h2b
+autoload -z h2d
+autoload -z b2d
+autoload -z b2h
 
 # Hotkeys helpers:
 fpath+=~/.hotkeys

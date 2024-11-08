@@ -1,0 +1,1 @@
+echo 16 o 2 i $1 p | dc

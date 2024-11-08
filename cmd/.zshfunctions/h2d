@@ -1,0 +1,1 @@
+echo 16 i $(echo $1 | tr a-z A-Z) p | dc
