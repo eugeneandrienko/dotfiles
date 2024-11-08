@@ -82,6 +82,17 @@ element {
     spacing: 5px ;
     border:  0;
 }
+@media ( enabled: env(WINDOWS_LIST, false))
+{
+    element {
+        orientation: vertical;
+        children: [ element-text ];
+        padding: 1px ;
+        cursor:  pointer;
+        spacing: 5px ;
+        border:  0;
+    }
+}
 element normal.normal {
     background-color: var(normal-background);
     text-color:       var(normal-foreground);
@@ -158,6 +169,18 @@ listview {
     border:       2px dash 0px 0px ;
     layout: horizontal;
 }
+@media ( enabled: env(WINDOWS_LIST, false)) {
+    listview {
+        padding:      2px 0px 0px ;
+        scrollbar:    false;
+        border-color: var(separatorcolor);
+        spacing:      5px;
+        fixed-height: 0;
+        border:       2px dash 0px 0px ;
+        layout: vertical;
+    }
+}
+
 scrollbar {
     width:        4px ;
     padding:      0;
@@ -217,4 +240,7 @@ textbox-prompt-colon {
     expand:     false;
     str:        ":";
     text-color: inherit;
+}
+mode-switcher {
+    enabled: false;
 }
