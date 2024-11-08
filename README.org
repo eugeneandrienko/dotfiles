@@ -94,9 +94,7 @@ You should have next programs in system before configuration deployment:
 - librewolf
 - i3
 - i3blocks
-- josm
-- qmapshack
-- telegram
+- rofi
 *** Fonts:
 - [[https://github.com/source-foundry/Hack][Hack]]
 

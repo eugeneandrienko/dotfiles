@@ -9,13 +9,12 @@ else
 fi
 
 source ~/.bin/get_machine_id.sh
-source ~/.i3/menu/menu_funcs.sh
 
 ITEMS="display mode:redshift:poweroff:reboot"
 
-case $(echo $ITEMS | parse_items | f_dmenu 'Select:') in
+case $(echo $ITEMS | rofi -dmenu -sep ":" -p "Select") in
     'display mode')
-        case $(echo "normal:threatre:night" | parse_items | f_dmenu '>') in
+        case $(echo "normal:threatre:night" | rofi -dmenu -sep ":" -p '>') in
             'normal')
                 if [ "$MACHINE_HW" != "thinkpad" ]; then
                     xset +dpms
@@ -64,7 +63,7 @@ EOF
         else
             PROMPT+="off"
         fi
-        case $(echo "on:off" | parse_items | f_dmenu "$PROMPT") in
+        case $(echo "on:off" | rofi -dmenu -sep ":" -p "$PROMPT") in
             'on')
                 ~/.bin/redshift.sh
                 dunstify -u low "Redshift enabled"
@@ -88,7 +87,7 @@ EOF
     'reboot')
         case "$MACHINE_HW" in
             "zalman")
-                case $(echo "windows:linux" | parse_items | f_dmenu '>') in
+                case $(echo "windows:linux" | rofi -dmenu -sep ":" -p '>') in
                     'windows')
                         sudo -A touch /root/REBOOT.reboot
                         sudo -A grub-reboot 'Windows 10 (on /dev/sda1)'

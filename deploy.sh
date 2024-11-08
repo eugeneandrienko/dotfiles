@@ -15,7 +15,7 @@ stow bin cmd
 
 # Copying dotfiles to $HOME
 export STOW_DIR=./utils
-stow abook conky dunst emacs git gnupg i3wm mplayer mail picom rtorrent ssh
+stow abook conky dunst emacs git gnupg i3wm mplayer mail picom rofi rtorrent ssh
 
 # Making necessary (empty) directories
 mkdir -pv "$HOME/.emacs.d/desktop"

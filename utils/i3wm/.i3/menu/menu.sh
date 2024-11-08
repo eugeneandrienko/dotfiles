@@ -1,16 +1,14 @@
 #!/usr/bin/env zsh
 
 source ~/.bin/get_machine_id.sh
-source ~/.i3/menu/menu_funcs.sh
 
 DMENU_ITEMS="librewolf:librewolf_unsec:telegram:syncthing"
 DMENU_ITEMS+=":audacious:gimp:rawtherapee:shotwell:shotcut"
 DMENU_ITEMS+=":qmapshack:josm:stellarium"
 DMENU_ITEMS+=":idea:umlet"
 DMENU_ITEMS+=":android-file-transfer"
-DMENU_ITEMS+=":homm3"
 
-case $(echo $DMENU_ITEMS | parse_items | f_dmenu 'Execute:') in
+case $(echo $DMENU_ITEMS | rofi -dmenu -sep ":" -p "Execute") in
     'librewolf')
         $HOME/.bin/librewolf.sh
         ;;
@@ -71,9 +69,6 @@ case $(echo $DMENU_ITEMS | parse_items | f_dmenu 'Execute:') in
         ;;
     'android-file-transfer')
         /usr/bin/env android-file-transfer &
-        ;;
-    'homm3')
-        cd $HOME/homm3 && wine HD_Launcher.exe &
         ;;
     *)
         exit 1

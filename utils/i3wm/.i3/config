@@ -120,6 +120,9 @@ bindsym $mod+m exec ~/.i3/mark/mark_set.sh
 # Goto marked window
 bindsym $mod+g exec ~/.i3/mark/mark_goto.sh
 
+# List of windows
+bindsym $mod+Tab exec rofi -show window -config ~/.config/rofi/window.rasi
+
 # switch to workspace
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace web
