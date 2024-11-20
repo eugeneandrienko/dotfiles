@@ -1,5 +1,6 @@
 (use-package dired
   :ensure nil
+  :delight auto-revert-mode
   :bind
   ("C-x C-d" . dired)
   :custom
@@ -38,6 +39,8 @@
     (mydired-sort))
                                         ; Use Dired to attach files in mu4e
   (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode)
+                                        ; Auto refresh dired buffer
+  (add-hook 'dired-mode-hook 'auto-revert-mode)
   (put 'dired-find-alternate-file 'disabled nil))
 
 (use-package nerd-icons-dired
