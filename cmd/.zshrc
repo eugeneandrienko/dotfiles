@@ -64,7 +64,6 @@ autoload -z drivesync
 autoload -z drivesync_force_drive
 autoload -z drivesync_force_local
 autoload -z phonesync
-autoload -z photosync
 autoload -z emacs
 autoload -z ydl_channel_id
 autoload -z youtube

@@ -8,8 +8,22 @@ if [ "$MACHINE_HW" = "zalman" ]; then
         EXCLUDE_MAIL="y"
     fi
 fi
+if [ -b /dev/sdc1 ]; then
+    _mount_veracrypt /dev/sdc1 /media/DRIVESYNC
+elif [ -b /dev/da0s1 ]; then
+    _mount_veracrypt /dev/da0s1 /media/DRIVESYNC
+else
+    echo "No devices to store sync data"
+    return
+fi
 _chown_mnt /media/DRIVESYNC
 _safe_dsync "$OPTIONS" /media/DRIVESYNC/rsync    ~/          $EXCLUDE_MAIL
 _safe_dsync "$OPTIONS" /media/DRIVESYNC/dotfiles ~/git_repos $EXCLUDE_MAIL
-_umount_mnt /media/DRIVESYNC
-
+if [ -b /dev/sdc1 ]; then
+    _umount_veracrypt /dev/sdc1 /media/DRIVESYNC
+elif [ -b /dev/da0s1 ]; then
+    _umount_veracrypt /dev/da0s1 /media/DRIVESYNC
+else
+    echo "No devices to store sync data"
+    return
+fi

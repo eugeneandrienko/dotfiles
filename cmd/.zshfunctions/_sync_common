@@ -1,17 +1,18 @@
 function _chown_mnt() {
     echo "Doing chown -R drag0n:drag0n $1/*"
-    while true; do
-        sudo chown -R drag0n:drag0n $1/*
-        [[ "$?" -ne "0" ]] || break
-    done
+    sudo chown -R drag0n:drag0n $1/*
 }
 
-function _umount_mnt() {
-    echo "Doing umount $1"
-    while true; do
-        sudo umount $1
-        [[ "$?" -ne "0" ]] || break
-    done
+function _mount_veracrypt() {
+    echo "Mounting $1 on $2"
+    sudo true
+    veracrypt -t --use-dummy-sudo-password --non-interactive -k ~/.drivesync.file -v --mount "$1" "$2"
+}
+
+function _umount_veracrypt() {
+    echo "Doing umount $1 (mounted on $2)"
+    sudo true
+    veracrypt -t --use-dummy-sudo-password --non-interactive -k ~/.drivesync.file -v --dismount "$1" "$2"
 }
 
 function _safe_dsync() {
@@ -61,4 +62,3 @@ function _safe_rsync() {
         rsync $opts -e 'ssh -i ~/.ssh/sync' $1 $2 $3
     fi
 }
-
