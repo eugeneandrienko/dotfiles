@@ -56,6 +56,13 @@
                                auctex))
                                         ; Interface configuration
   (scroll-step 1 "My favorite scrolling")
+  (auto-window-vscroll nil "Nicer scrolling without random half-screen jumps")
+  (scroll-step 1 "Default scroll step")
+  (scroll-conservatively 100000 "Dont jump to center")
+  (scroll-margin 0 "Start scrolling when marker at top/bottom")
+  (scroll-preserve-screen-position 'always "Point doesn't jumping around")
+  (mouse-wheel-scroll-amount '(1) "Mouse scroll moves 1 line at a time")
+  (mouse-wheel-progressive-speed nil "Don't use progressive speed when scrolling with mouse")
   (pixel-scroll-precision-interpolate-page t "For pixel-precision scrolling")
   (line-number-mode t "Show line number in modeline")
   (column-number-mode t "Show column number in modeline")
@@ -75,11 +82,19 @@
   (find-file-visit-truename t "Show real filename when visit symlink")
   (warning-minimum-level :emergency "Don't show warnings in buffer")
   (hl-line-sticky-flag nil "Don't show hl-line on unfocused windows")
-  (scroll-preserve-screen-position 'always "Point doesn't jumping around")
   (window-combination-resize t "Take new window space from ALL other windows, not the current one")
   (echo-keystrokes 0.01 "Show keystroke in echo area as fast as possible")
   (isearch-lazy-count t "Show size of search results")
   (lazy-count-prefix-format "(%s/%s) " "Format of search results")
+  (x-stretch-cursor nil "Do not stretch cursor for wide characters")
+  (cursor-in-non-selected-windows nil "Don't render cursor in inactive window")
+  (highlight-nonselected-windows nil "Don't render selection in inactive window")
+  (lazy-highlight-initial-delay 0 "No delay before highlight search matches")
+  (buffer-file-coding-system 'utf-8-unix "Preferrable file coding system")
+  (locale-coding-system 'utf-8 "Code system for system messages")
+  (x-select-enable-clipboard t "Copy/paste uses clipboard")
+                                        ; Auto revert non-file buffers
+  (global-auto-revert-non-file-buffers t)
                                         ; Programming-related configuration
   (compilation-scroll-output 1 "Scroll compilation window")
   (compilation-window-height 10 "Compilation window height")
@@ -97,6 +112,8 @@
   (semanticdb-default-save-directory "~/.emacs.d/semanticdb")
   (semantic-idle-scheduler-idle-time 5 "Time of idle in seconds before reparsing starts")
   (help-window-select t "Always select opened help window")
+  (comment-multi-line t "Enable autoidentation for multi-line comments")
+  (comment-empty-lines t "Empty lines should be commented inside multiline comment")
                                         ; Package sources
   (package-archives '(("melpa-stable" . "https://stable.melpa.org/packages/")
                       ("gnu" . "https://elpa.gnu.org/packages/")
@@ -167,6 +184,8 @@
   (set-terminal-coding-system 'utf-8)
   (set-keyboard-coding-system 'utf-8)
   (set-language-environment "UTF-8")
+  (set-selection-coding-system 'utf-8)
+  (prefer-coding-system 'utf-8)
                                         ; Turn off the panel
   (when (fboundp 'tool-bar-mode)
     (tool-bar-mode -1))
@@ -240,6 +259,9 @@
   (add-hook 'ibuffer-mode-hook
             (lambda ()
               (ibuffer-switch-to-saved-filter-groups "default")))
+                                        ; Prevent killing of some buffers
+  (with-current-buffer "*Messages*" (emacs-lock-mode 'kill))
+  (with-current-buffer "*scratch*" (emacs-lock-mode 'kill))
                                         ; Enable recentf
   (recentf-mode 1)
                                         ; Show trailing whitespaces only for necessary modes
@@ -294,6 +316,9 @@
                                             (desktop-save-mode 1)))
                                         ; Enable region narrowing
   (put 'narrow-to-region 'disabled nil)
+                                        ; Compilation related settings
+  (setq compilation-always-kill t)
+  (setq compilation-scroll-output 'first-error)
                                         ; Notify when Emacs Daemon started
   (add-hook 'emacs-startup-hook
             (lambda ()
