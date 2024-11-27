@@ -170,6 +170,7 @@
   (delete-old-versions t "Delete old backup versions")
   (Man-notify-method 'pushy "How manpage is displayed")
   (history-length 100 "Minibuffer history length")
+  (auth-sources '("~/.authinfo.gpg"))
                                         ; Disable writing custom options to the end of ~/.emacs
   (custom-file (make-temp-file "emacs-custom-"))
                                         ; Speedbar settings
@@ -369,6 +370,22 @@
   (italic ((t (:slant italic :weight light :height 160 :width normal :family "Hack Italic-16" :spacing proportional))))
   (popup-tip-face ((t (:background "#eee8d5" :foreground "#657b83" :box (:line-width (2 . 2) :color "dim gray" :style flat-button))))))
 
+(use-package window
+  :ensure nil
+  :preface
+  (defun hsplit-last-buffer ()
+    "Focus to the last created horizontal window."
+    (interactive)
+    (split-window-horizontally)
+    (other-window 1))
+  (defun vsplit-last-buffer ()
+    "Focus to the last created vertical window."
+    (interactive)
+    (split-window-vertically)
+    (other-window 1))
+  (global-set-key (kbd "C-x 2") #'vsplit-last-buffer)
+  (global-set-key (kbd "C-x 3") #'hsplit-last-buffer))
+
 ;;; Setup nerd-icons
 ;;; M-x nerd-icons-install-fonts
 ;;; Installation path: ~/.local/share/fonts/
@@ -404,8 +421,11 @@
   :bind
   (:map pdf-view-mode-map
         ("M-g" . 'pdf-view-goto-page))
+  :custom
+  (pdf-annot-activate-created-annotations t)
   :config
-  (pdf-loader-install))
+  (pdf-loader-install)
+  (setq-default pdf-view-display-size 'fit-page))
 
 (use-package pdf-view-restore
   :pin melpa
@@ -495,6 +515,15 @@
   :bind
   (:map global-map
         ("C-x C-w" . windresize)))
+
+(use-package eldoc
+  :ensure nil
+  :commands eldoc-mode
+  :hook (emacs-lisp-mode . turn-on-eldoc-mode)
+  :diminish eldoc-mode
+  :config
+  ;; Show ElDoc messages in the echo area immediately, instead of after 1/2 a second.
+  (setq eldoc-idle-delay 0))
 
 (use-package ielm
   :hook

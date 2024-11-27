@@ -45,9 +45,18 @@
   (org-insert-heading-respect-content t "Respect indentation when M-RET")
   (org-src-fontify-natively t "Syntax highlight in BEGIN_SRC blocks")
   (org-src-tab-acts-natively t "Tab acts like in code buffer in BEGIN_SRC blocks")
+  (org-src-preserve-indentaion t)
+  (org-src-window-setup 'current-window "Edit source block in current window")
   (org-edit-src-content-indentation 0 "No additinal indentation in BEGIN_SRC blocks")
   (org-confirm-babel-evaluate nil "Dunno prompt before running the code in org")
   (org-image-actual-width 600 "Width of inline images")
+  (org-enforce-todo-depencencies t "Undone TODO entries will block switching parent to DONE")
+  (org-enforce-todo-checkbox-dependencies t "Unchecked boxes will block switching parent to DONE")
+  (org-ellipsis "↴" "Nicer ellipses")
+  (org-fontify-quote-and-verse-blocks t "Stand out quotes")
+  (org-pretty-entities t "Make LaTeX looks good")
+  (org-pretty-entities-include-sub-superscripts t "Prettify sub/superscripts")
+  (org-read-date-prefer-future 'time "Incomplete dates refer to future dates & times")
   :config
   (add-hook 'org-mode-hook
             #'(lambda()

@@ -17,6 +17,7 @@
   (message-sendmail-envelope-from 'header)
   (send-mail-function 'sendmail-send-it)
   (message-send-mail-function 'sendmail-send-it)
+  (mail-interactive t "Wait for sendmail completion and display any errors")
   (sendmail-coding-system 'utf-8)
   (message-generate-headers-first t "Generate all required headers before composing message")
   (message-kill-buffer-on-exit t "Don't keep message buffer after send")
