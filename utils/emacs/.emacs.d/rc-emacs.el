@@ -1,9 +1,3 @@
-;;; Performance
-                                        ; Disable bidirectional text processing
-(setq bidi-inhibit-bpa t)
-(setq-default bidi-display-reordering 'left-to-right
-              bidi-paragraph-direction 'left-to-right)
-
 ;;; First, setup use-package:
 (condition-case nil
     (require 'use-package)
