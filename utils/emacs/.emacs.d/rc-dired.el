@@ -46,7 +46,6 @@
 (use-package nerd-icons-dired
   :pin melpa
   :after (nerd-icons dired)
-  :requires (nerd-icons dired)
   :after dired
   :hook (dired-mode . nerd-icons-dired-mode)
   :delight nerd-icons-dired-mode)

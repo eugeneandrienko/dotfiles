@@ -25,10 +25,11 @@
   (mail-user-agent 'mu4e-user-agent "Use mu4e as default email client")
   (mu4e-compose-reply-to-address "evg.andrienko@gmail.com")
   (user-mail-address "evg.andrienko@gmail.com")
+  (user-full-name "Eugene Andrienko")
   (mu4e-user-mail-address-list '("h0rr0rrdrag@gmail.com"
                                  "evg.andrienko@gmail.com"))
+  (mail-header-separator "")
   (mu4e-compose-format-flowed t "Use format=flowed to reflow paragraphs")
-  (user-full-name "Eugene")
   (message-signature "Eugene Andrienko")
   (mu4e-bookmarks '((:name "Unread messages"
                            :query "flag:unread AND NOT flag:trashed"

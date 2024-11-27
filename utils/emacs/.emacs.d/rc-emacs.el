@@ -47,35 +47,44 @@
                                use-package
                                auto-complete
                                auctex))
-                                        ; Interface configuration
-  (scroll-step 1 "My favorite scrolling")
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; Interface configuration ;;
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                                        ; Startup
+  (inhibit-startup-screen t "Disable startup screen")
+  (inhibit-startup-echo-area-message t "Disable startup message")
+  (inhibit-splash-screen t "Disable startup screens and messages")
+  (inhibit-startup-buffer-menu t "Don't show buffer menu then there are 2 or more files loaded")
+  (inhibit-startup-message t)
+  (initial-buffer-choice t "Always start from *scratch* buffer")
+  (initial-scratch-message nil "Remove message in *scratch*")
+                                        ; Use text prompts as dialogs
+  (use-file-dialog nil "Don't use GUI file dialog")
+  (use-dialog-box nil "Don't use GUI dialog boxes")
+  (use-short-answers t "Replace yes/no with y/n")
+                                        ; Scrolling
   (auto-window-vscroll nil "Nicer scrolling without random half-screen jumps")
+  (fast-but-imprecise-scrolling t "More rapid scrolling through unfontified regions")
+  (hscroll-margin 1 "Reduce margin triggering hscrolling")
+  (hscroll-step 1 "Slower horizontal scrolling")
+  (scroll-step 1 "My favorite scrolling")
   (scroll-step 1 "Default scroll step")
   (scroll-conservatively 100000 "Dont jump to center")
   (scroll-margin 0 "Start scrolling when marker at top/bottom")
   (scroll-preserve-screen-position 'always "Point doesn't jumping around")
   (mouse-wheel-scroll-amount '(1) "Mouse scroll moves 1 line at a time")
+  (mouse-wheel-scroll-amount-horizontal 2 "Horizontal scroll speed by mouse")
   (mouse-wheel-progressive-speed nil "Don't use progressive speed when scrolling with mouse")
+  (pixel-scroll-precision-mode t "Enable pixel-precision scrolling")
   (pixel-scroll-precision-interpolate-page t "For pixel-precision scrolling")
+  (pixel-scroll-precision-use-momentum t "For large buffers")
+                                        ; UI tweaks
   (line-number-mode t "Show line number in modeline")
   (column-number-mode t "Show column number in modeline")
-  (inhibit-startup-screen t "Disable startup screen")
-  (inhibit-startup-echo-area-message t "Disable startup message")
-  (initial-buffer-choice t "Always start from *scratch* buffer")
-  (initial-scratch-message nil "Remove message in *scratch*")
-  (use-file-dialog nil "Don't use GUI file dialog")
-  (use-dialog-box nil "Don't use GUI dialog boxes")
-  (echo-keystrokes 0.2 "Immediately show keystrokes")
-  (calendar-week-start-day 1 "Monday is the start of the week")
-  (calendar-date-style 'iso)
-  (calendar-time-zone-style 'numeric)
-  (x-gtk-use-native-input t "Fix '<Multi_key> is undefined' on FreeBSD")
-  (vc-follow-symlinks t "Do not ask when follow symlink")
   (frame-title-format '("(%+) %b on %F"))
   (find-file-visit-truename t "Show real filename when visit symlink")
   (warning-minimum-level :emergency "Don't show warnings in buffer")
   (hl-line-sticky-flag nil "Don't show hl-line on unfocused windows")
-  (window-combination-resize t "Take new window space from ALL other windows, not the current one")
   (echo-keystrokes 0.01 "Show keystroke in echo area as fast as possible")
   (isearch-lazy-count t "Show size of search results")
   (lazy-count-prefix-format "(%s/%s) " "Format of search results")
@@ -83,42 +92,35 @@
   (cursor-in-non-selected-windows nil "Don't render cursor in inactive window")
   (highlight-nonselected-windows nil "Don't render selection in inactive window")
   (lazy-highlight-initial-delay 0 "No delay before highlight search matches")
+  (x-select-enable-clipboard t "Copy/paste uses clipboard")
+
+  ;;;;;;;;;;
+  ;; UTF8 ;;
+  ;;;;;;;;;;
   (buffer-file-coding-system 'utf-8-unix "Preferrable file coding system")
   (locale-coding-system 'utf-8 "Code system for system messages")
-  (x-select-enable-clipboard t "Copy/paste uses clipboard")
-                                        ; Auto revert non-file buffers
-  (global-auto-revert-non-file-buffers t)
-                                        ; Programming-related configuration
-  (compilation-scroll-output 1 "Scroll compilation window")
-  (compilation-window-height 10 "Compilation window height")
-  (c-default-style "linux" "Linux style for C code formatting")
-  (c-basic-offset 4 "Tab = 4 spaces")
-  (c-doc-comment-style '((java-mode . javadoc)
-                         (pike-mode . autodoc)
-                         (c-mode . doxygen))
-                       "Comment styles")
-  (project-vc-extra-root-markers '(".project" ".project.el")
-                                 "Extra markers for project root")
-  (global-subword-mode 1 "Iterate through CameCaseWords")
-  (gdb-many-windows t "Multi-window layout for GDB")
-  (gdb-show-main t "Show source when debug")
-  (semanticdb-default-save-directory "~/.emacs.d/semanticdb")
-  (semantic-idle-scheduler-idle-time 5 "Time of idle in seconds before reparsing starts")
-  (help-window-select t "Always select opened help window")
-  (comment-multi-line t "Enable autoidentation for multi-line comments")
-  (comment-empty-lines t "Empty lines should be commented inside multiline comment")
-                                        ; Package sources
-  (package-archives '(("melpa-stable" . "https://stable.melpa.org/packages/")
-                      ("gnu" . "https://elpa.gnu.org/packages/")
-                      ("nongnu" . "https://elpa.nongnu.org/nongnu/")
-                      ("melpa" . "https://melpa.org/packages/")))
-  (package-archive-priorities
-   '(("melpa" . 10)
-     ("gnu" . 9)
-     ("melpa-stable" . 8)
-     ("nongnu" . 1)))
-  (package-install-upgrade-built-in t "Update built-in packages")
-                                        ; Smart buffer handling
+
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; Desktop/files/history save/restore ;;
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  (desktop-base-file-name "emacs.desktop")
+  (desktop-base-lock-name "emacs.desktop.lock")
+  (desktop-save t "Do not ask to save desktop")
+  (desktop-load-locked-desktop t "Load locked desktop")
+  (desktop-auto-save-timeout 600 "Autosave every 5 minutes")
+  (delete-old-versions t "Delete old backup versions")
+  (history-length 100 "Minibuffer history length")
+  (save-place-mode 1 "Save last place in file")
+
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; Windows configuration ;;
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  (window-combination-resize t "Take new window space from ALL other windows, not the current one")
+
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; Buffers configuration ;;
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  (global-auto-revert-non-file-buffers t "Auto revert non-file buffers")
   (ibuffer-saved-filter-groups
    (quote (("default"
             ("Org" (or
@@ -147,32 +149,44 @@
                                    "*Warning\\*" "*prodigy.*" "magit:.*"
                                    "*Org Help\\*"))
   (switch-to-buffer-obey-display-actions t "Don't distuingish automatic and manual window switching")
-                                        ; Desktop save/restore
-  (desktop-base-file-name "emacs.desktop")
-  (desktop-base-lock-name "emacs.desktop.lock")
-  (desktop-save t "Do not ask to save desktop")
-  (desktop-load-locked-desktop t "Load locked desktop")
-  (desktop-auto-save-timeout 600 "Autosave every 5 minutes")
-                                        ; Misc
+
+  ;;;;;;;;;;;;;;
+  ;; Packages ;;
+  ;;;;;;;;;;;;;;
+  (package-archives '(("melpa-stable" . "https://stable.melpa.org/packages/")
+                      ("gnu" . "https://elpa.gnu.org/packages/")
+                      ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+                      ("melpa" . "https://melpa.org/packages/")))
+  (package-archive-priorities
+   '(("melpa" . 10)
+     ("gnu" . 9)
+     ("melpa-stable" . 8)
+     ("nongnu" . 1)))
+  (package-install-upgrade-built-in t "Update built-in packages")
+
+  ;;;;;;;;;;
+  ;; Misc ;;
+  ;;;;;;;;;;
   (epg-pinentry-mode 'loopback)
-  (user-mail-address "evg.andrienko@gmail.com")
-  (user-full-name "Eugene Andrienko")
-  (mail-header-separator "")
-  (recentf-max-menu-items 25)
-  (recentf-max-saved-items 25)
-  (delete-old-versions t "Delete old backup versions")
-  (Man-notify-method 'pushy "How manpage is displayed")
-  (history-length 100 "Minibuffer history length")
-  (auth-sources '("~/.authinfo.gpg"))
+  (vc-follow-symlinks t "Do not ask when follow symlink")
                                         ; Disable writing custom options to the end of ~/.emacs
   (custom-file (make-temp-file "emacs-custom-"))
-                                        ; Speedbar settings
-  (speedbar-use-images t "Use images in speedbar")
-                                        ; Save last place in file
-  (save-place-mode 1)
+  (calendar-week-start-day 1 "Monday is the start of the week")
+  (calendar-date-style 'iso)
+  (calendar-time-zone-style 'numeric)
+
+  ;;;;;;;;;;;;;;;;;;;;;;
+  ;; FreeBSD-specific ;;
+  ;;;;;;;;;;;;;;;;;;;;;;
+  (x-gtk-use-native-input t "Fix '<Multi_key> is undefined' on FreeBSD")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
   :config
-                                        ; Use UTF8 everywhere
+  ;;;;;;;;;;
+  ;; UTF8 ;;
+  ;;;;;;;;;;
   (prefer-coding-system 'utf-8)
   (set-default-coding-systems 'utf-8)
   (set-terminal-coding-system 'utf-8)
@@ -180,6 +194,10 @@
   (set-language-environment "UTF-8")
   (set-selection-coding-system 'utf-8)
   (prefer-coding-system 'utf-8)
+
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; Interface configuration ;;
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                                         ; Turn off the panel
   (when (fboundp 'tool-bar-mode)
     (tool-bar-mode -1))
@@ -193,6 +211,17 @@
   (let ((no-border '(internal-border-width . 0)))
     (add-to-list 'default-frame-alist no-border)
     (add-to-list 'initial-frame-alist no-border))
+                                        ; Use blinking cursor
+  (blink-cursor-mode t)
+                                        ; Insert newline at the EOF
+  (setq-default require-final-newline t)
+                                        ; Font for GUI
+  (add-to-list 'default-frame-alist
+               '(font . "Hack-16"))
+
+  ;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; Backups/autoreverse ;;
+  ;;;;;;;;;;;;;;;;;;;;;;;;;
                                         ; Save all backups to "~/.emacs.d/backups/"
   (when (not (file-directory-p "~/.emacs.d/backups"))
     (make-directory "~/.emacs.d/backups"))
@@ -212,11 +241,33 @@
   (add-hook 'server-after-make-frame-hook (lambda ()
                                             (desktop-read)
                                             (desktop-save-mode 1)))
+
+  ;;;;;;;;;;;;;
+  ;; Buffers ;;
+  ;;;;;;;;;;;;;
+                                        ; Smart buffer handling
+  (add-hook 'ibuffer-mode-hook
+            (lambda ()
+              (ibuffer-switch-to-saved-filter-groups "default")))
+                                        ; Prevent killing of some buffers
+  (with-current-buffer "*Messages*" (emacs-lock-mode 'kill))
+  (with-current-buffer "*scratch*" (emacs-lock-mode 'kill))
+
+  ;;;;;;;;;;
+  ;; Misc ;;
+  ;;;;;;;;;;
+                                        ; Default mode for text
+  (setq default-major-mode 'text-mode)
+  (add-hook 'text-mode-hook 'visual-line-mode)
+  (add-hook 'text-mode-hook #'(lambda () (set-fill-column 78)))
+                                        ; Emacs pinentry
+  (pinentry-start)
                                         ; Enable region narrowing
   (put 'narrow-to-region 'disabled nil)
-                                        ; Compilation related settings
-  (setq compilation-always-kill t)
-  (setq compilation-scroll-output 'first-error)
+
+  ;;;;;;;;;;;;;;;;;;;;;;
+  ;; Custom functions ;;
+  ;;;;;;;;;;;;;;;;;;;;;;
                                         ; Notify when Emacs Daemon started
   (add-hook 'emacs-startup-hook
             (lambda ()
@@ -249,6 +300,7 @@
                                            "/usr/local/bin/x11-ssh-askpass")))
                   (call-process "sudo" nil nil nil "-A" "poweroff"))))
     (kill-emacs))
+
   (defun emacs-stop ()
     "Save buffers, quit and shutdown Emacs server"
     (interactive)
@@ -260,19 +312,32 @@
                               "Emacs" "Daemon stopped" "-u" "normal")))
     (kill-emacs))
 
-  :init
-  (pixel-scroll-precision-mode 1)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
   :custom-face
   (default ((t (:size "14pt" :family "Hack-16"))))
   (italic ((t (:slant italic :weight light :height 160 :width normal :family "Hack Italic-16" :spacing proportional))))
   (popup-tip-face ((t (:background "#eee8d5" :foreground "#657b83" :box (:line-width (2 . 2) :color "dim gray" :style flat-button))))))
 
+(use-package recentf
+  :ensure nil
+  :custom
+  (recentf-max-menu-items 25)
+  (recentf-max-saved-items 25)
+  (recentf-keep '(file-remote-p file-readable-p))
+  :hook
+  (after-init . recentf-mode))
+
 (use-package tramp
+  :ensure nil
   :custom
   (tramp-show-ad-hoc-proxies t)
   (tramp-default-method "sudo")
+  (auth-sources '("~/.authinfo.gpg"))
+  :config
                                         ; Disable consult preview of remote buffer
-  ;; From: https://github.com/minad/consult/discussions/969#discussioncomment-10871508
+                                        ; From: https://github.com/minad/consult/discussions/969#discussioncomment-10871508
   (defun buffer-remote-p (buf)
     "Return t when BUF is remote."
     (if-let ((fp (buffer-file-name buf)))

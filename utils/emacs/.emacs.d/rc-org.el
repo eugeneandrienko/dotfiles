@@ -1,3 +1,8 @@
+(use-package htmlize
+  :pin melpa
+  :demand
+  :delight)
+
 (use-package org
   :bind
   (("C-c a" . org-agenda)
