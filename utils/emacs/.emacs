@@ -46,6 +46,7 @@
 (load "~/.emacs.d/rc-marginalia.el")
 (load "~/.emacs.d/rc-dired.el")
 (load "~/.emacs.d/rc-langtool.el")
+(load "~/.emacs.d/rc-programming.el")
 (load "~/.emacs.d/rc-auctex.el")
 (load "~/.emacs.d/rc-git.el")
 (load "~/.emacs.d/rc-corfu.el")
