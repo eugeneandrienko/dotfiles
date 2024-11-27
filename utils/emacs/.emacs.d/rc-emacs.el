@@ -467,3 +467,40 @@
               (list "xdotool" "key" "--clearmodifiers" "Shift+Insert"))
         (setq emacs-everywhere-window-focus-command
               (list "xdotool" "windowactivate" "--sync" "%w")))))
+
+(use-package mood-line
+  :custom
+  (mood-line-glyph-alist '((:checker-info . ?↳)
+                           (:checker-issues . ?→)
+                           (:checker-good . ?✓)
+                           (:checker-checking . ?⟳)
+                           (:checker-errored . ?x)
+                           (:checker-interrupted . ?=)
+                           (:vc-added . ?+)
+                           (:vc-needs-merge . ?⟷)
+                           (:vc-needs-update . ?↓)
+                           (:vc-conflict . ?x)
+                           (:vc-good . ?✓)
+                           (:buffer-narrowed . ?v)
+                           (:buffer-modified . ?◉)
+                           (:buffer-read-only . ?#)
+                           (:frame-client . ?@)
+                           (:count-separator . ?×)))
+  (mood-line-format
+   (mood-line-defformat
+    :left
+    (((mood-line-segment-buffer-status) . " ")
+     ((mood-line-segment-buffer-name) . " ")
+     ((mood-line-segment-major-mode) . " ")
+     ((mood-line-segment-cursor-position) . " "))
+    :right
+    (((mood-line-segment-process) . " ")
+     ((mood-line-segment-misc-info) . " ")
+     ((mood-line-segment-project) . " ")
+     ((mood-line-segment-vc) . " "))))
+  :hook
+  (after-init . mood-line-mode)
+  :custom-face
+  (mood-line-buffer-status-modified ((t (:inherit error :weight normal :foreground "dark salmon"))))
+  (mood-line-major-mode ((t (:inherit normal :foreground "deep sky blue"))))
+  (mood-line-status-info ((t (:inherit font-lock-keyword-face :weight normal :foreground "lime green")))))
