@@ -6,13 +6,12 @@ function _chown_mnt() {
 function _mount_veracrypt() {
     echo "Mounting $1 on $2"
     sudo true
-    veracrypt -t --use-dummy-sudo-password --non-interactive -k ~/.drivesync.file -v --mount "$1" "$2"
+    sudo veracrypt -t --use-dummy-sudo-password --non-interactive -k ~/.drivesync.file -v --mount "$1" "$2"
 }
 
 function _umount_veracrypt() {
     echo "Doing umount $1 (mounted on $2)"
-    sudo true
-    veracrypt -t --use-dummy-sudo-password --non-interactive -k ~/.drivesync.file -v --dismount "$1" "$2"
+    sudo veracrypt -t --use-dummy-sudo-password --non-interactive -k ~/.drivesync.file -v --dismount "$1" "$2"
 }
 
 function _safe_dsync() {
@@ -24,7 +23,7 @@ function _safe_dsync() {
 
     rsync $opts $1 -ni $2 $3
 
-    echo "$2" | grep -q '/media/DRIVESYNC'
+    echo "$2" | grep -q '/mnt'
     if [ "$?" -eq 0 ]; then
         ASK="Sync these files from drive to local? [y/n] "
     else

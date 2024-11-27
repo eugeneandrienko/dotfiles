@@ -2,20 +2,20 @@ source ~/.zshfunctions/_sync_common
 
 OPTIONS="--delete"
 if [ -b /dev/sdc1 ]; then
-    _mount_veracrypt /dev/sdc1 /media/DRIVESYNC
-elif [ -b /dev/da0s1 ]; then
-    _mount_veracrypt /dev/da0s1 /media/DRIVESYNC
+    _mount_veracrypt /dev/sdc1 /mnt
+elif [ -c /dev/da0s1 ]; then
+    _mount_veracrypt /dev/da0s1 /mnt
 else
     echo "No devices to store sync data"
     return
 fi
-_chown_mnt /media/DRIVESYNC
-_safe_dsync "$OPTIONS" ~/rsync              /media/DRIVESYNC/
-_safe_dsync "$OPTIONS" ~/git_repos/dotfiles /media/DRIVESYNC/
+_chown_mnt /mnt
+_safe_dsync "$OPTIONS" ~/rsync              /mnt/
+_safe_dsync "$OPTIONS" ~/git_repos/dotfiles /mnt/
 if [ -b /dev/sdc1 ]; then
-    _umount_veracrypt /dev/sdc1 /media/DRIVESYNC
-elif [ -b /dev/da0s1 ]; then
-    _umount_veracrypt /dev/da0s1 /media/DRIVESYNC
+    _umount_veracrypt /dev/sdc1 /mnt
+elif [ -c /dev/da0s1 ]; then
+    _umount_veracrypt /dev/da0s1 /mnt
 else
     echo "No devices to store sync data"
     return

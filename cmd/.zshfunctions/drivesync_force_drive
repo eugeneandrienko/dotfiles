@@ -9,20 +9,20 @@ if [ "$MACHINE_HW" = "zalman" ]; then
     fi
 fi
 if [ -b /dev/sdc1 ]; then
-    _mount_veracrypt /dev/sdc1 /media/DRIVESYNC
-elif [ -b /dev/da0s1 ]; then
-    _mount_veracrypt /dev/da0s1 /media/DRIVESYNC
+    _mount_veracrypt /dev/sdc1 /mnt
+elif [ -c /dev/da0s1 ]; then
+    _mount_veracrypt /dev/da0s1 /mnt
 else
     echo "No devices to store sync data"
     return
 fi
-_chown_mnt /media/DRIVESYNC
-_safe_dsync "$OPTIONS" /media/DRIVESYNC/rsync    ~/          $EXCLUDE_MAIL
-_safe_dsync "$OPTIONS" /media/DRIVESYNC/dotfiles ~/git_repos $EXCLUDE_MAIL
+_chown_mnt /mnt
+_safe_dsync "$OPTIONS" /mnt/rsync    ~/          $EXCLUDE_MAIL
+_safe_dsync "$OPTIONS" /mnt/dotfiles ~/git_repos $EXCLUDE_MAIL
 if [ -b /dev/sdc1 ]; then
-    _umount_veracrypt /dev/sdc1 /media/DRIVESYNC
-elif [ -b /dev/da0s1 ]; then
-    _umount_veracrypt /dev/da0s1 /media/DRIVESYNC
+    _umount_veracrypt /dev/sdc1 /mnt
+elif [ -c /dev/da0s1 ]; then
+    _umount_veracrypt /dev/da0s1 /mnt
 else
     echo "No devices to store sync data"
     return
