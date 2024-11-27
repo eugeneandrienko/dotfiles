@@ -9,7 +9,7 @@
 (load "~/.emacs.d/rc-langtool.el")
 (load "~/.emacs.d/rc-auctex.el")
 (load "~/.emacs.d/rc-git.el")
-(load "~/.emacs.d/rc-company.el")
+(load "~/.emacs.d/rc-corfu.el")
 (load "~/.emacs.d/rc-org.el")
 (load "~/.emacs.d/rc-mu4e.el")
 (load "~/.emacs.d/rc-pass.el")

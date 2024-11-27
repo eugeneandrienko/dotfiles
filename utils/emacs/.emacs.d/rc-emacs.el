@@ -50,7 +50,7 @@
   (package-selected-packages '(highlight-thing
                                pinentry
                                org
-                               company
+                               corfu
                                use-package
                                auto-complete
                                auctex))
@@ -369,6 +369,26 @@
   (default ((t (:size "14pt" :family "Hack-16"))))
   (italic ((t (:slant italic :weight light :height 160 :width normal :family "Hack Italic-16" :spacing proportional))))
   (popup-tip-face ((t (:background "#eee8d5" :foreground "#657b83" :box (:line-width (2 . 2) :color "dim gray" :style flat-button))))))
+
+(use-package tramp
+  :custom
+  (tramp-show-ad-hoc-proxies t)
+  (tramp-default-method "sudo")
+                                        ; Disable consult preview of remote buffer
+  ;; From: https://github.com/minad/consult/discussions/969#discussioncomment-10871508
+  (defun buffer-remote-p (buf)
+    "Return t when BUF is remote."
+    (if-let ((fp (buffer-file-name buf)))
+        (file-remote-p fp)
+      nil))
+  (setq consult-preview-excluded-buffers 'buffer-remote-p))
+
+(use-package dabbrev
+                                        ; Swap M-/ and C-M-/
+  :bind (("M-/" . dabbrev-completion)
+         ("C-M-/" . dabbrev-expand))
+  :config
+  (add-to-list 'dabbrev-ignored-buffer-regexps "\\(\\` \\)\\|\\(^\\*\\)"))
 
 (use-package window
   :ensure nil
