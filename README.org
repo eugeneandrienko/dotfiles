@@ -59,10 +59,10 @@ You should have next programs in system before configuration deployment:
 - ctags
 - diff-highlight (can be installed with `pip3 install diff-highlight`)
 - emacs
-- idea
 - lacheck
 - [[https://dev.languagetool.org/http-server][language-tool]]
 - latex (texlive)
+- [[https://github.com/plantuml/plantuml][plantuml]]
 
 ** Utilities:
 - dunst
@@ -86,12 +86,12 @@ You should have next programs in system before configuration deployment:
 - gimp
 - imagemagick
 - lame
+- librewolf
 - mplayer
 - rawtherapee
 - sxiv or nsxiv
 
 ** GUI:
-- librewolf
 - i3
 - i3blocks
 - rofi
@@ -110,8 +110,8 @@ SSH-key with empty passphrase. This key should be added to remote server to
 =rsync= account into =~/.ssh/authorized_keys=.
 
 ** Passwords:
-For using GMail with =fetchmail= and =msmtp= you should specify mail server
-passwords in =~/.netrc=.
+For using GMail with =mu4e= and =msmtp= you should specify mail server passwords
+in =~/.netrc=.
 
 ** Import GPG keys:
 Use this commands:
@@ -126,12 +126,12 @@ After that call =gpg --edit-key <key-id>= and set trust level to 5 via command
 * Deployment:
 1. Clone this repository to some suitable directory. You *mustn't* clone it to
    your =~= directory!
-2. Run =deploy.sh= script, which do the next:
-   1) Make soft links from our catalog to the user $HOME catalog via stow.
-   2) Create necessary empty directories.
-   3) Create mail directories.
-   4) Set right access rights to some configuration files.
-   5) Store in =~= special file with OS and hardware type of machine where
+2. Run =deploy.sh= script, which does the next:
+   1) Makes soft links from our catalog to the user $HOME catalog via stow.
+   2) Creates necessary empty directories.
+   3) Creates mail directories.
+   4) Sets proper access rights to some configuration files.
+   5) Stores in =~= special file with OS and hardware type of machine where
       this repository is cloned to. It is necessary to properly handle some
       functions, which should exists on one machine and shouldn't on another.
 
@@ -144,12 +144,12 @@ sudo pkg install mu4e
 
 Run this after first Emacs run:
 #+begin_example
-M-x all-the-icons-install-fonts
+M-x nerd-icons-install-fonts
 #+end_example
 
 Fonts should be installed to =~/.local/share/fonts/=. After installation:
 - Run =fc-cache -f -v ~/.local/share/fonts/=, if not executed by
-  =all-the-icons-install-fonts= itself.
+  =nerd-icons-install-fonts= itself.
 - Restart Emacs daemon
 
 ** /etc/hosts:
