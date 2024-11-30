@@ -82,3 +82,14 @@
                            ("jpg" . "sxiv")
                            ("JPEG" . "sxiv")
                            ("JPG" . "sxiv"))))
+
+(use-package dired-subtree
+  :after dired
+  :bind
+  (:map dired-mode-map
+        ("<tab>" . dired-subtree-toggle)
+        ("TAB" . dired-subtree-toggle)
+        ("<backtab>" . dired-subtree-remove)
+        ("S-TAB" . dired-subtree-remove))
+  :custom
+  (dired-subtree-use-backgrounds nil "Use default background face in directory listing"))
