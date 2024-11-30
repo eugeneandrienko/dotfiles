@@ -5,8 +5,6 @@ source ~/.bin/get_machine_id.sh
 DMENU_ITEMS="librewolf:librewolf_unsec:telegram:syncthing"
 DMENU_ITEMS+=":audacious:gimp:rawtherapee:shotwell:shotcut"
 DMENU_ITEMS+=":qmapshack:josm:stellarium"
-DMENU_ITEMS+=":idea:umlet"
-DMENU_ITEMS+=":android-file-transfer"
 
 case $(echo $DMENU_ITEMS | rofi -dmenu -sep ":" -p "Execute") in
     'librewolf')
@@ -60,15 +58,6 @@ case $(echo $DMENU_ITEMS | rofi -dmenu -sep ":" -p "Execute") in
         ;;
     'stellarium')
         /usr/bin/env stellarium &
-        ;;
-    'idea')
-        $HOME/bin/idea/bin/idea.sh
-        ;;
-    'umlet')
-        $HOME/bin/umlet/umlet.sh &
-        ;;
-    'android-file-transfer')
-        /usr/bin/env android-file-transfer &
         ;;
     *)
         exit 1
