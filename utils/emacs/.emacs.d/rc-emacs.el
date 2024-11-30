@@ -531,3 +531,8 @@ The DWIM behaviour of this command is as follows:
   (mood-line-buffer-status-modified ((t (:inherit error :weight normal :foreground "dark salmon"))))
   (mood-line-major-mode ((t (:inherit normal :foreground "deep sky blue"))))
   (mood-line-status-info ((t (:inherit font-lock-keyword-face :weight normal :foreground "lime green")))))
+
+(use-package delsel
+  :ensure nil
+  :delight
+  :hook (after-init . delete-selection-mode))
