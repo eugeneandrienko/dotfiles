@@ -3,6 +3,11 @@ function _chown_mnt() {
     sudo chown -R drag0n:drag0n $1/*
 }
 
+function _umount_mnt() {
+    echo "Doing umount $1"
+    sudo umount $1
+}
+
 function _mount_veracrypt() {
     echo "Mounting $1 on $2"
     sudo true
