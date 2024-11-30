@@ -8,6 +8,9 @@
   :custom
   (compilation-scroll-output 1 "Scroll compilation window")
   (compilation-window-height 10 "Compilation window height")
+  (compilation-max-output-line-length nil "Don't hide long lines")
+  (compilation-always-kill t "Only one compilation at a time")
+  (compilation-auto-jump-to-first-error t "Auto jump to the first compilation error")
   (c-default-style "linux" "Linux style for C code formatting")
   (c-basic-offset 4 "Tab = 4 spaces")
   (c-doc-comment-style '((java-mode . javadoc)
@@ -98,10 +101,7 @@
                            (push '("<=" . ?⩽) prettify-symbols-alist)
                            (push '(">=" . ?⩾) prettify-symbols-alist)
                            (prettify-symbols-mode)))
-  (add-hook 'emacs-lisp-mode-hook 'prettify-symbols-mode)
-                                        ; Compilation related settings
-  (setq compilation-always-kill t)
-  (setq compilation-scroll-output 'first-error))
+  (add-hook 'emacs-lisp-mode-hook 'prettify-symbols-mode))
 
 (use-package dabbrev
                                         ; Swap M-/ and C-M-/
