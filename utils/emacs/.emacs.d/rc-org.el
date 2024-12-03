@@ -60,9 +60,11 @@
   (org-ellipsis "↴" "Nicer ellipses")
   (org-fontify-quote-and-verse-blocks t "Stand out quotes")
   (org-pretty-entities t "Make LaTeX looks good")
-  (org-pretty-entities-include-sub-superscripts t "Prettify sub/superscripts")
+  (org-pretty-entities-include-sub-superscripts nil "Don't prettify sub/superscripts")
   (org-read-date-prefer-future 'time "Incomplete dates refer to future dates & times")
   (org-plantuml-jar-path "~/bin/plantuml/plantuml.jar")
+  (org-export-backends '(ascii html latex md)
+                       "Export configuration")
   :config
   (add-hook 'org-mode-hook
             #'(lambda()
