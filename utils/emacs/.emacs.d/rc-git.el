@@ -2,10 +2,18 @@
   :pin melpa
   :bind
   ("C-x g" . magit)
+  :commands (magit)
+  :init
+  (with-eval-after-load 'project
+    (add-to-list 'project-switch-commands '(magit "Magit" "m") t))
+  :config
+  (define-key project-prefix-map (kbd "m") 'magit)
   :custom
   (magit-display-buffer-function
    #'magit-display-buffer-same-window-except-diff-v1
-   "Show magit screens in the same window"))
+   "Show magit screens in the same window")
+  (magit-log-margin '(t "%F %R" magit-log-margin-width t 18)
+                    "Show absolute dates"))
 
 (use-package magit-todos
   :after magit
