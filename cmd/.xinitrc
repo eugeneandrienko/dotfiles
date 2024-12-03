@@ -3,15 +3,10 @@
 source ~/.bin/get_machine_id.sh
 
 # Setup colors and fonts for different X-server programs:
-case "$MACHINE_HW" in
-    "zalman")
-        xrdb -I$HOME ~/.Xresources &
-        ;;
-    "thinkpad")
-        xrdb -I$HOME ~/.Xresources && \
-            xrdb -merge ~/.Xresources.d/thinkpad_x220
-        ;;
-esac
+xrdb -I$HOME ~/.Xresources
+if [ "$MACHINE_HW" = "thinkpad" ]; then
+    xrdb -merge ~/.Xresources.d/thinkpad_x220
+fi
 
 # Start synchronization daemon:
 if ! pgrep -x syncthing > /dev/null; then
@@ -21,16 +16,14 @@ fi
 # Configure keyboard layout:
 case "$MACHINE_HW" in
     "zalman")
-        # Remap keys for new unprogrammable kbd:
         setxkbmap -layout us,ru -option grp:caps_select -option grp_led:caps -option compose:ralt
         xmodmap ~/.Xmodmap &
-        numlockx off &
         ;;
     "thinkpad")
         setxkbmap -model "thinkpad" -layout us,ru -option grp:shift_caps_switch -option grp_led:caps -option compose:ralt &
-        numlockx off &
         ;;
 esac
+numlockx off &
 
 # Configure video output(s):
 case "$MACHINE_HW" in
@@ -56,13 +49,9 @@ feh --image-bg "#000000" --bg-center --no-fehbg /home/drag0n/rsync/filez/wallpap
 ~/.bin/redshift.sh
 
 # Start automount service to notify user about mounted devices:
-case "$MACHINE_OS" in
-    "gentoo")
-        udiskie &
-        ;;
-    "freebsd")
-        ;;
-esac
+if [ "$MACHINE_OS" = "gentoo" ]; then
+    udiskie &
+fi
 
 picom --config ~/.config/picom.conf --daemon
 
