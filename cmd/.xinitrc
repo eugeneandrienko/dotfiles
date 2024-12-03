@@ -16,13 +16,13 @@ fi
 # Configure keyboard layout:
 case "$MACHINE_HW" in
     "zalman")
-        setxkbmap -layout us,ru -option grp:caps_select -option grp_led:caps -option compose:ralt
-        xmodmap ~/.Xmodmap &
+        setxkbmap -layout us,ru -option grp:menu_toggle -option grp_led:caps -option compose:ralt -option shift:both_capslock_cancel -option caps:ctrl_modifier
         ;;
     "thinkpad")
-        setxkbmap -model "thinkpad" -layout us,ru -option grp:shift_caps_switch -option grp_led:caps -option compose:ralt &
+        setxkbmap -model "thinkpad" -layout us,ru -option grp:menu_toggle -option grp_led:caps -option compose:ralt -option shift:both_capslock_cancel -option caps:ctrl_modifier
         ;;
 esac
+xmodmap ~/.xmodmaprc
 numlockx off &
 
 # Configure video output(s):
