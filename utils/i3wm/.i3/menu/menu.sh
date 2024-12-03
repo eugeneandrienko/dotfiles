@@ -4,7 +4,7 @@ source ~/.bin/get_machine_id.sh
 
 DMENU_ITEMS="librewolf:librewolf_unsec:telegram:syncthing"
 DMENU_ITEMS+=":audacious:gimp:rawtherapee:shotwell:shotcut"
-DMENU_ITEMS+=":qmapshack:josm:stellarium"
+DMENU_ITEMS+=":qmapshack:josm:stellarium:xonotic"
 
 case $(echo $DMENU_ITEMS | rofi -dmenu -sep ":" -p "Execute") in
     'librewolf')
@@ -58,6 +58,9 @@ case $(echo $DMENU_ITEMS | rofi -dmenu -sep ":" -p "Execute") in
         ;;
     'stellarium')
         /usr/bin/env stellarium &
+        ;;
+    'xonotic')
+        $HOME/xonotic/xonotic-linux-glx.sh &
         ;;
     *)
         exit 1
