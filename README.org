@@ -75,7 +75,6 @@ You should have next programs in system before configuration deployment:
 - picom
 - rtorrent
 - shred
-- [[https://github.com/atj/ssh-askpass-fullscreen][ssh-askpass-fullscreen]]
 - wget
 - xclip
 - yt-dlp

@@ -1,3 +1,5 @@
 #include ".Xresources.d/sxiv"
 #include ".Xresources.d/cursor"
 #include ".Xresources.d/xft"
+#include ".Xresources.d/askpass"
+

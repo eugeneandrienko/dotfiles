@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
-if [ -f /usr/bin/ssh-askpass-fullscreen ]; then
-    export SUDO_ASKPASS="/usr/bin/ssh-askpass-fullscreen"
+if [ -f /usr/bin/x11-ssh-askpass ]; then
+    export SUDO_ASKPASS="/usr/bin/x11-ssh-askpass"
 elif [ -f /usr/local/bin/x11-ssh-askpass ]; then
     export SUDO_ASKPASS="/usr/local/bin/x11-ssh-askpass"
 else
