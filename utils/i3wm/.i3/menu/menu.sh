@@ -6,7 +6,7 @@ DMENU_ITEMS="librewolf:librewolf_unsec:telegram:syncthing"
 DMENU_ITEMS+=":audacious:gimp:rawtherapee:shotwell:shotcut"
 DMENU_ITEMS+=":qmapshack:josm:stellarium:xonotic"
 
-case $(echo $DMENU_ITEMS | rofi -dmenu -sep ":" -p "Execute") in
+case $(echo $DMENU_ITEMS | rofi -dpi 0 -dmenu -sep ":" -p "Execute") in
     'librewolf')
         $HOME/.bin/librewolf.sh
         ;;

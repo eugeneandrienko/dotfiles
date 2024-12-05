@@ -12,9 +12,9 @@ source ~/.bin/get_machine_id.sh
 
 ITEMS="display mode:redshift:poweroff:reboot"
 
-case $(echo $ITEMS | rofi -dmenu -sep ":" -p "Select") in
+case $(echo $ITEMS | rofi -dpi 0 -dmenu -sep ":" -p "Select") in
     'display mode')
-        case $(echo "normal:threatre:night" | rofi -dmenu -sep ":" -p '>') in
+        case $(echo "normal:threatre:night" | rofi -dpi 0 -dmenu -sep ":" -p '>') in
             'normal')
                 if [ "$MACHINE_HW" != "thinkpad" ]; then
                     xset +dpms
@@ -63,7 +63,7 @@ EOF
         else
             PROMPT+="off"
         fi
-        case $(echo "on:off" | rofi -dmenu -sep ":" -p "$PROMPT") in
+        case $(echo "on:off" | rofi -dpi 0 -dmenu -sep ":" -p "$PROMPT") in
             'on')
                 ~/.bin/redshift.sh
                 dunstify -u low "Redshift enabled"
@@ -87,7 +87,7 @@ EOF
     'reboot')
         case "$MACHINE_HW" in
             "zalman")
-                case $(echo "windows:linux" | rofi -dmenu -sep ":" -p '>') in
+                case $(echo "windows:linux" | rofi -dpi 0 -dmenu -sep ":" -p '>') in
                     'windows')
                         sudo -A touch /root/REBOOT.reboot
                         sudo -A grub-reboot 'Windows 10 (on /dev/sda1)'

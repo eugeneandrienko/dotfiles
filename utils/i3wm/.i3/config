@@ -121,7 +121,7 @@ bindsym $mod+m exec ~/.i3/mark/mark_set.sh
 bindsym $mod+g exec ~/.i3/mark/mark_goto.sh
 
 # List of windows
-bindsym $mod+Tab exec WINDOWS_LIST=true rofi -show window
+bindsym $mod+Tab exec WINDOWS_LIST=true rofi -dpi 0 -show window
 
 # switch to workspace
 bindsym $mod+1 workspace 1
