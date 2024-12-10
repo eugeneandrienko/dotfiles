@@ -92,12 +92,57 @@
                   (org-level-8 . 1.1)))
     (set-face-attribute (car face) nil :weight 'regular :height (cdr face))))
 
-(use-package org-bullets
-  :pin melpa
-  :commands org-bullets-mode
-  :hook (org-mode . org-bullets-mode)
+(use-package org-modern
+  :hook (org-mode . org-modern-mode)
   :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+  (org-modern-radio-target '("❰" t "❱"))
+  (org-modern-internal-target '("↪ " t ""))
+  (org-modern-table nil)
+  (org-modern-checkbox nil)
+  (org-modern-timestamp t)
+  (org-modern-statistics nil)
+  (org-modern-progress nil)
+  (org-modern-priority nil)
+  (org-modern-horizontal-rule "──────────")
+  (org-modern-hide-stars "·")
+  (org-modern-star ["⁖"])
+  (org-modern-keyword "‣")
+  (org-modern-list '((43 . "–")
+                     (45 . "•")
+                     (42 . "↪")))
+  :config
+  (defface org-modern-verified
+    '((default :inherit org-modern-label)
+      (t :background "orange"))
+    "Default face used for verified labels.")
+  (defface org-modern-cancelled
+    '((default :inherit org-modern-label)
+      (t :background "dodger blue" :foreground "black"))
+    "Default face used for cancelled labels.")
+  (defun my-org-modern--todo ()
+    "Custom function to prettify headline todo keywords."
+    (let ((todo (match-string-no-properties 1))
+          (beg (match-beginning 1))
+          (end (match-end 1)))
+      (put-text-property beg (1+ beg) 'display
+                         (format #(" %c" 1 3 (cursor t)) (char-after beg)))
+      (put-text-property (1- end) end 'display (string (char-before end) ?\s))
+      (put-text-property
+       beg end 'face
+       (if-let ((face (or (cdr (assoc todo org-modern-todo-faces))
+                          (cdr (assq t org-modern-todo-faces)))))
+           `(:inherit (,face org-modern-label))
+         (cond ((string-match-p "TODO" todo) 'org-modern-todo)
+               ((string-match-p "VERIFIED" todo) 'org-modern-verified)
+               ((string-match-p "DONE" todo) 'org-modern-done)
+               ((string-match-p "CANCELLED" todo) 'org-modern-cancelled)
+               (t 'org-modern-done))))))
+  (advice-add 'org-modern--todo :override #'my-org-modern--todo)
+  :custom-face
+  (org-modern-done ((t (:background "forest green"))))
+  (org-modern-label ((t (:height 1.0))))
+  (org-modern-radio-target ((t (:inherit 'default :foreground "deep sky blue"))))
+  (org-modern-internal-target ((t (:inherit 'default :foreground "deep sky blue")))))
 
 (use-package org-alert
   :pin melpa
