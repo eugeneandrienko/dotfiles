@@ -19,7 +19,9 @@
   :hook (corfu-mode . corfu-popupinfo-mode)
   :custom
   (corfu-popupinfo-delay '(0.25 . 0.1))
-  (corfu-popupinfo-hide nil))
+  (corfu-popupinfo-hide nil)
+  :custom-face
+  (corfu-popupinfo ((t (:height 0.9)))))
 
 (use-package cape
   :delight
