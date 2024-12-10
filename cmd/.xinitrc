@@ -17,12 +17,13 @@ fi
 case "$MACHINE_HW" in
     "zalman")
         setxkbmap -layout us,ru -option grp:menu_toggle -option grp_led:caps -option compose:ralt -option shift:both_capslock_cancel -option caps:ctrl_modifier
+        xmodmap ~/.xmodmaprc
         ;;
     "thinkpad")
         setxkbmap -model "thinkpad" -layout us,ru -option grp:menu_toggle -option grp_led:caps -option compose:ralt -option shift:both_capslock_cancel -option caps:ctrl_modifier
+        xmodmap -e "keycode 147  = ISO_Next_Group Menu ISO_Next_Group Menu"
         ;;
 esac
-xmodmap ~/.xmodmaprc
 numlockx off &
 
 # Configure video output(s):
