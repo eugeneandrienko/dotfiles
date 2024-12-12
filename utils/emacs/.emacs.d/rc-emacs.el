@@ -239,7 +239,9 @@
   (setq desktop-files-not-to-save "^$")
   (add-hook 'server-after-make-frame-hook (lambda ()
                                             (desktop-read)
-                                            (desktop-save-mode 1)))
+                                            (desktop-save-mode 1)
+                                            (call-process "dunstify" nil nil nil
+                                                          "Emacs" "Desktop restored" "-u" "normal")))
 
   ;;;;;;;;;;;;;
   ;; Buffers ;;
