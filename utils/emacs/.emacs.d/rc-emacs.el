@@ -515,31 +515,22 @@ The DWIM behaviour of this command is as follows:
                            (:buffer-read-only . ?#)
                            (:frame-client . ?@)
                            (:count-separator . ?×)))
-  :config
-  (defun mood-line-segment-input-method ()
-    "Return the encoded name of current input method"
-    (propertize
-     (substring-no-properties
-      (format-mode-line
-       (if (and current-input-method
-                (string-match-p "russian-computer" current-input-method))
-           "RU"
-         "")))
-     'face 'mood-line-major-mode))
-  (setq mood-line-format
-        (mood-line-defformat
-         :left
-         (((mood-line-segment-buffer-status) . " ")
-          ((mood-line-segment-buffer-name) . " ")
-          ((mood-line-segment-major-mode) . " ")
-          ((mood-line-segment-cursor-position) . ":")
-          ((mood-line-segment-scroll) . " ")
-          ((mood-line-segment-input-method) . " "))
-         :right
-         (((mood-line-segment-process) . " ")
-          ((mood-line-segment-misc-info) . " ")
-          ((mood-line-segment-project) . " ")
-          ((mood-line-segment-vc) . " "))))
+  (mood-line-format
+   (mood-line-defformat
+    :left
+    (((mood-line-segment-buffer-status) . " ")
+     ((mood-line-segment-buffer-name) . " ")
+     ((mood-line-segment-major-mode) . " ")
+     ((mood-line-segment-cursor-position) . ":")
+     ((mood-line-segment-scroll) . " ")
+     (((lambda () (propertize
+              (if current-input-method-title current-input-method-title "")
+              'face 'mood-line-major-mode))) . " "))
+    :right
+    (((mood-line-segment-process) . " ")
+     ((mood-line-segment-misc-info) . " ")
+     ((mood-line-segment-project) . " ")
+     ((mood-line-segment-vc) . " "))))
   :hook
   (after-init . mood-line-mode)
   :custom-face
