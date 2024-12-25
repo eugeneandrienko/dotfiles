@@ -45,7 +45,6 @@
                             (:maildir "/maillists" :key ?a)
                             (:maildir "/osm" :key ?m)
                             (:maildir "/rss" :key ?r)
-                            (:maildir "/rss-lobsters" :key ?l)
                             (:maildir "/rss-podcasts" :key ?p)
                             (:maildir "/rss-youtube" :key ?y)
                             (:maildir "/social" :key ?s)

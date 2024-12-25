@@ -15,7 +15,6 @@ STATE=$MAILDIR/state
 STORES=$MAILDIR/stores
 
 RSS=$MAILDIR/rss
-RSS_LOBSTERS=$MAILDIR/rss-lobsters
 RSS_PODCASTS=$MAILDIR/rss-podcasts
 RSS_YOUTUBE=$MAILDIR/rss-youtube
 
@@ -67,8 +66,6 @@ if (/^From:.*forum@guns.ru/ && \
     /^Subject: Forum Digest.*/)
     to /dev/null
 
-if (/^X-RSS-Feed:.*lobste.rs.*/)
-   to $RSS_LOBSTERS
 if (/^X-RSS-Feed:.*beardycast.*/ || \
         /^X-RSS-Feed:.*radio-t.*/ || \
         /^X-RSS-Feed:.*feeds.transistor.fm\/5f1e0bb2-458b-4ac4-8d85-f464a505f813/)
