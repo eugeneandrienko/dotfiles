@@ -1,12 +1,5 @@
 ;;; Performance
 
-;; Increase GC limit to boot speedup:
-(setq gc-cons-threshold most-positive-fixnum
-      gc-cons-percentage 0.6)
-;; And restore it after startup:
-(add-hook 'after-init-hook (lambda ()
-                             (setq gc-cons-threshold (* 16 1024 1024))))
-
 ;; Don't resize frame during startup:
 (setq frame-inhibit-implied-resize t)
 
