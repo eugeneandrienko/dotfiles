@@ -60,7 +60,11 @@ case $(echo $DMENU_ITEMS | rofi -dpi 0 -dmenu -sep ":" -p "Execute") in
         /usr/bin/env stellarium &
         ;;
     'xonotic')
-        $HOME/xonotic/xonotic-linux-glx.sh &
+        if [ -x /usr/local/bin/xonotic ]; then
+            xonotic &
+        else
+            $HOME/xonotic/xonotic-linux-glx.sh &
+        fi
         ;;
     *)
         exit 1
