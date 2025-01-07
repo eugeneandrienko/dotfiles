@@ -1,3 +1,5 @@
+Repo moved to https://codeberg.org/evgandr/dotfiles
+
 * About this repository
 
 This repository contains different configuration files, which I have been
